@@ -1,0 +1,230 @@
+\documentclass[a4paper,100pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage{mathtext}
+\usepackage[T2A]{fontenc}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}
+\usepackage{icomma}
+\usepackage{euscript}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage[usenames]{color}
+\newtheoremstyle{indented}{0 pt}{0 pt}{\addtolength{\leftskip}{0 em}}{}{\bfseries}{. }{0 em}{ }
+
+%\geometry{verbose,a4paper,tmargin=2cm,bmargin=2cm,lmargin=2.5cm,rmargin=1.5cm}
+\title{Геометрия и Топология}
+\author{Мастера конспектов}
+
+\theoremstyle{indented}
+\newtheorem{theorem}{Теорема}
+
+\begin{document}
+
+\maketitle 
+
+\newpage
+
+\paragraph{Билет 1} \
+
+\medskip
+
+\textbf{Метрические пространства, произведение метрических пространств, пространство $\mathbb{R}^n$.} \\
+
+Функция $d: X \times X \rightarrow \mathbb{R}_+ = \{x \in \mathbb{R} : x\geq 0\}$ называется \textit{метрикой} (или \textit{расстоянием}) 
+в множестве $X$, если \
+
+\medskip
+
+1. $d(x, y)=0 \Leftrightarrow x=y$; \\
+\indent
+2. $d(x, y)= d(y, x)$ для любых $x, y \in X$; \\
+\indent
+3. $d(x, y)\leq d(x, z)+d(z, y)$. \\
+
+Пара $(X, d)$, где $d$ - метрика в $X$, называется \textit{метрическим пространством}. \\
+
+\begin{theorem}
+(Прямое произведение матриц). Пусть $(X, d_X)$ и $(Y, d_Y)$ - метрические пространства. Тогда функция
+\[
+    d((x_1, y_1), (x_2, y_2))=\sqrt{d_X(x_1, x_2)^2+d_y(y_1, y_2)^2}
+\]
+задаёт метрику на $X\times Y$.
+\end{theorem}
+
+\begin{proof}
+1 и 2 аксиомы очевидны. Проверим выполнение третьей. Сделать это несложно, нужно всего лишь написать неравенство и дважды возвести в квадрат. Можно как-нибудь поиспользовать Коши или КБШ, на ваш вкус.
+\end{proof}
+
+\medskip
+
+Пространство $X=\mathbb{R}^n, x=(x_1, \dots, x_n), y=(y_1, \dots, y+n)$, на котором задана метрика
+
+\[
+    d(x, y)=\sqrt{(x_1-y_2)^2+\dots+(x_n-y_n)^2}
+\]
+
+
+(которая называется \textit{евклидовой}), есть $\mathbb{R}^n$.
+
+\paragraph{Билет 2} \
+
+\medskip
+
+\textbf{Шары и сферы. Открытые множества в метрическом пространстве. Объединения и пересечения открытых множеств.}
+    \begin{itemize}
+    \item Пусть $\left(X, d\right)$ --- метрическое пространство, $a \in X, r \in \mathbb R, r > 0.$
+    
+    Множества 
+    \[
+    \begin{aligned}
+        B_r(a) &= \{x \in X : d(a,x) < r\}, \\
+        \overline{B_r} (a) = D_r &(a) = \{x \in X: d(a,x) \leq r\}. \\
+    \end{aligned}
+    \]
+    называются, соответственно, открытым шаром (или просто шаром) и замкнутым шаром пространства $\left(X,d\right)$ с центром в точке $a$ и радиусом $r$.
+    \item Пусть $\left(X, d\right)$ --- метрическое пространство, $A \subseteq X$. Множество $A$ называется открытым в метрическом пространстве, если
+    \[
+        \forall a \in A \exists r > 0: B_r(a) \subseteq A.
+    \]
+    \textbf{Примеры:} \begin{itemize}
+        \item $\varnothing$, $X$ и $B_r(a)$ открыты в произвольном метрическом пространстве $X$.
+        \item В пространстве с дискретной метрикой любое множество открыто.
+    \end{itemize}
+    \item 
+    \begin{theorem}
+    
+    В произвольном метрическом пространстве $X$ 
+    \begin{enumerate}
+        \item объединение любого набора открытых множеств открыто;
+        \item пересечение конечного набора открытых множеств открыто.
+    \end{enumerate}
+    \end{theorem}
+    \begin{proof}
+    \
+    \begin{enumerate}
+        \item Пусть $\left\{U_i\right\}_{i \in I}$ --- семейство открытых множеств в $X$.
+        Хотим доказать, что $U = \bigcup_{i \in I}U_i$ --- открыто.
+        \[
+            x \in U \Rightarrow \exists j \in I : x \in U_j \Rightarrow \exists r > 0: B_r(x) \subseteq U_j \subseteq U.
+        \]
+        \item
+        Пусть семейство $\left\{U_i\right\}_{i=1}^n$ --- семейство открытых множеств в $X$.
+        Хотим доказать, что $U = \bigcap_{i=1}^n U_i$ --- открыто.
+        \[
+            \begin{aligned}
+        x \in U \Rightarrow \forall i&: x \in U_i \Rightarrow \exists r_i: B_{r_i} (x) \subseteq U_i; \\ 
+        r :&= min\{r_i\} \Rightarrow B_r \subseteq U.
+            \end{aligned}
+        \]
+    \end{enumerate}
+    \end{proof}
+    \end{itemize}
+
+
+
+  
+\paragraph{Билет 4} \
+
+\medskip
+    
+\textbf{Внутренность, замыкание и граница множества: определение и свойства включения, объединения, пересечения.} \\
+
+Пусть $(X, \Omega)$ - топологическое пространство и $A\subseteq X$. \textit{Внутренностью} множества $A$ называется объединение всех открытых множество, содержащихся в $A$, т. е.:
+\[
+    \text{Int} A = \bigcup_{U\in \Omega, U\subseteq A} U.
+\]
+
+Свойства:
+\begin{itemize}
+    
+    \item $\text{Int} A $ - открытое множество;
+    \item $\text{Int} A \subseteq A$;
+    \item $B$ открыто, $B\subseteq A \Rightarrow B\subseteq \text{Int} A$;
+    \item $A = \text{Int}A \Leftrightarrow A$ открыто;
+    \item $\text{Int}(\text{Int} A)=\text{Int}A$;
+    \item $A \subseteq B \Rightarrow \text{Int} A \subseteq \text{Int} B$;
+    \item $\text{Int}(A\cap B) = \text{Int}A\cap\text{Int}B$; \\ 
+    \textit{Доказательство}:\\
+    $\subseteq: A\cap B\subseteq A \Rightarrow \text{Int} (A\cap B)\subseteq \text{Int}A \dots$; \\
+    $\supseteq: \text{Int}A\cap\text{Int} B \subseteq A\cap B \Rightarrow \text{Int}A\cap\text{Int}B \subseteq \text{Int}(A\cap B)$.
+    \item $\text{Int}(A\cup B)\supseteq \text{Int}A\cup\text{Int}B$; \\
+    \textit{Доказательство $\neq$}:\\
+    $X = \mathbb{R}, A = \mathbb{Q}, B=\mathbb{R}\backslash \mathbb{Q}$, \\
+    $\text{Int}A=\text{Int}B = \emptyset , \text{Int}(A\cup B) = \text{Int}\mathbb{R} = \mathbb{R}$
+
+
+\end{itemize}
+
+Пусть $(X, \Omega)$ - топологическое пространство и $A\subseteq X$. \textit{Замыканием} множества $A$ называется пересечение всех замкнутых множество, содержащих $A$, т. е.:
+\[
+    \text{Cl} A = \bigcap_{X\backslash V\in \Omega, V\supseteq A} V.
+\]
+
+Свойства:
+\begin{itemize}
+    
+    \item $\text{Cl}A$ - замкнутое множество;
+    \item $A\subseteq \text{Cl}A$;
+    \item $B$ замкнуто, $B\supseteq A \rightarrow B \supseteq \text{Cl}A$;
+    \item $A = \text{Cl}A \Leftrightarrow A$ замкнуто;
+    \item $\text{Cl}(\text{Cl}A)=\text{Cl}A$;
+    \item $A\subseteq B \rightarrow \text{Cl}A\subseteq \text{Cl}B$;
+    \item $\text{Cl}(A\cup B)=\text{Cl}A\cup \text{Cl}B$;
+    \item $\text{Cl}(A\cap B)\subseteq \text{Cl}A\cap\text{Cl}B $ (на самом деле, даже $\neq$);
+    \item \textcolor{red}{$\text{Cl}A=X\backslash \text{Int}(X\backslash(X\backslash A))$}.
+
+\end{itemize}
+
+Пусть $(X, \Omega)$ - топологическое пространство и $A\subseteq X$. Тогда \textit{границей} множества $A$ называется разность его замыкания и внутренности: $\text{Fr}A = \text{Cl}A\backslash \text{Int}A$. \\
+
+Свойства:
+\begin{itemize}
+
+    \item $\text{Fr} A$ - замкнутое множество;
+    \item $\text{Fr} A = \text{Fr}(X\backslash A)$;
+    \item $A$ замкнуто $\Leftrightarrow A \supseteq \text{Fr} A$;
+    \item $A$ открыто $\Leftrightarrow A \cap \text{Fr} A = \emptyset$.
+
+\end{itemize}
+
+\paragraph{Билет 5} \
+
+\medskip
+
+\textbf{ Расположение точки относительно множества: внутренние и граничные точки, точки прикосновения, предельные и изолированные точки. Внутренность, замыкание и граница множества: из каких точек они состоят.}
+    \begin{itemize}
+        \item Определения($A$ - множество в топологическом пространстве):
+        \begin{enumerate}
+            \item Окрестностью точки топологического пространства называется любое открытое множество, содержащее эту точку.
+            \item Точка называется внутренней для $A$, если некоторая её окрестность содержится в $A$.
+            \item Точка называется точкой прикосновения для $A$, если любая её окрестность пересекается с $A$.
+            \item Точка называется граничной для $A$, если любая её окрестность пересекается с $A$ и с дополнением $A$
+            \item Точка называется изолированной для $A$, если она лежит в $A$ и некоторая её окрестность пересекается по $A$ ровно по этой точке.
+            \item Точка называется предельной для $A$, если любая её выколотая окрестность пересекается с $A$.
+        \end{enumerate}
+        \textcolor{red}{Примеры... :(}
+        
+        \item 
+        \begin{enumerate}
+            \item Внутренность множества есть множество его внутренних точек:
+                \begin{itemize}
+                    \item $b$ --- внутр. точка для $A \Rightarrow \exists U_{(b)} \subseteq A \Rightarrow U_{(b)} \subseteq Int A  \Rightarrow b \in IntA$;
+                    \item $b \in Int A \Rightarrow b \text{ лежит в $A$ вместе с окрестностью } IntA \Rightarrow b$ --- внутренняя точка для $A$. 
+                \end{itemize}
+            \item Замыкание множества есть множество его точек прикосновения:
+                    $b$ --- точка прикосновения для $A \iff b \notin Int(X \setminus A) \iff b \in ClA$
+            \item Граница множества есть множество его граничных точек:
+            
+                $b$ --- граничная точка множества $A \iff (b \in ClA) \wedge (b \in Cl(X \setminus~ A)) \iff (b\in ClA) \wedge (b \notin IntA) \iff b \in FrA$.
+            \item Замыкание множества есть объединение множеств предельных и изолированных точек:
+            
+            \textcolor{red}{TBC...}
+            \item Замыкание множества есть объединение граничных и внутренних точек:
+            
+            \textcolor{red}{TBC...}
+        \end{enumerate}
+    \end{itemize}
+
+\end{document}
