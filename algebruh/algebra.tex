@@ -1,0 +1,251 @@
+\documentclass[a4paper,100pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[unicode, pdftex]{hyperref}
+\usepackage{cmap}
+\usepackage{mathtext}
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\usepackage[T2A]{fontenc}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}
+\usepackage{icomma}
+\usepackage{euscript}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage[usenames]{color}
+\hypersetup{
+     colorlinks=true,
+     linkcolor=red,
+     filecolor=red,
+     citecolor =black,      
+     urlcolor=cyan,
+     }
+\usepackage{fancyhdr}
+\pagestyle{fancy} 
+\fancyhead{} 
+\fancyhead[LE,RO]{\thepage} 
+\fancyhead[CO]{\hyperlink{t2}{к списку объектов}}
+\fancyhead[LO]{\hyperlink{t1}{к содержанию}} 
+\fancyhead[CE]{текст-центр-четные} 
+\fancyfoot{}
+\newtheoremstyle{indented}{0 pt}{0 pt}{\itshape}{}{\bfseries}{. }{0 em}{ }
+
+%\geometry{verbose,a4paper,tmargin=2cm,bmargin=2cm,lmargin=2.5cm,rmargin=1.5cm}
+\title{Алгебра}
+\author{Мастера конспектов}
+\date{22 января 2020 г.}
+
+\theoremstyle{indented}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}{Лемма}
+
+\theoremstyle{definition} 
+\newtheorem{defn}{Определение}
+\newtheorem{exl}{Пример(ы)}
+
+\theoremstyle{remark} 
+\newtheorem{remark}{Примечание}
+\newtheorem{cons}{Следствие}
+
+\begin{document}
+
+\newcommand{\resetexlcounters}{%
+  \setcounter{exl}{0}%
+  
+} 
+
+\newcommand{\resetremarkcounters}{%
+  \setcounter{remark}{0}%
+  
+} 
+
+\newcommand{\reseconscounters}{%
+  \setcounter{cons}{0}%
+  
+} 
+
+\newcommand{\resetall}{%
+    \resetexlcounters
+    \resetremarkcounters
+    \reseconscounters%
+
+}
+
+\maketitle 
+
+\newpage
+
+\hypertarget{t1}{Честно говоря, ненависть} к этой вашей топологии просто невообразимая.
+\tableofcontents
+
+\newpage
+
+
+
+\section{Билеты}
+
+
+
+\subsection{Определение кольца. Простейшие следствия из аксиом. Примеры. Области целостности}
+
+\medskip
+
+\begin{defn}
+    \hypertarget{n1}{\textcolor{red}{\textit{Кольцом}}} называется множество $R$ вместе с бинарными операциями $+$ и $\cdot$ (которые называются сложением и умножением соответственно), удовлетворяющим аксиомам:\
+
+    \begin{itemize}
+        \item операция сложения ассоциативна;
+        \item по отношению к сложению существует нейтральный элемент;
+        \item у каждого элемента есть обратный по сложению
+        \item операция сложения коммутативна;
+        \item умножение ассоциативно;
+        \item умножение дистрибутивно по сложеиню.
+    \end{itemize}
+\end{defn}
+
+Также можно добавить, что если на множестве выполныны три первые аксиомы, то оно будет называться \textit{группой}, а если выполнены первые четыре, то это уже \textit{абелева группа}. Нейтральный по сложению элемент кольца называют \textit{нулём}.
+
+\begin{exl}
+    Кольцо называется:\
+
+    \begin{itemize}
+        \item \textit{коммутативным}, если оно коммутативно по умножению;
+        \item \textit{кольцом с единицей}, если оно содержит нейтральный элемент по умножению (единица);
+        \item \textit{телом}, если в нём есть 1, и для любых $a\neq 0 \rightarrow a \cdot a^{-1}=a^{-1}\cdot a=1$;
+        \item \textit{полем}, если это коммутативное тело;
+        \item \textit{полукольцом}, если нет требования противоположного элемента по сложению.
+    \end{itemize}
+\end{exl}
+
+\begin{cons}
+    Некоторые следствия из аксиом:\
+
+    \begin{itemize}
+        \item $0\cdot a = 0$
+        \begin{proof}
+            \[
+               0\cdot a = (0+0)\cdot a = 0\cdot a + 0\cdot a
+            \]
+            Прибавим к обеим частям $-0\cdot a$ и получим требуемое.
+        \end{proof}
+        \item Нейтральный элемент по сложению единственный
+        \begin{proof}
+            Рассмотрим их сумму справа и слева.
+        \end{proof}
+    \end{itemize}
+\end{cons}
+
+\begin{defn}
+    Коммутативное кольцо $R$ с единицей, обладающее свойством
+    \[
+        xy=0 \Longrightarrow x=0 \vee y=0 \text{ }(\forall x, y\in R)
+    \]
+    называется \hypertarget{n2}{\textcolor{red}{\textit{областью целостности}}} или просто \textit{областью}.
+\end{defn}
+
+\begin{defn}
+    Число $d\neq 0$ называется \hypertarget{n3}{\textcolor{red}{\textit{делителем нуля}}}, если существует такое $d'\neq 0$, что $dd'=0$.
+\end{defn}
+
+Нетрудно понять, что область целостности - в точности коммутативное кольцо с единицей без делителей нуля.
+
+\resetall
+
+\subsection{Евклидовы кольца. Евклидовость $\mathbb{Z}$. Неприводимые и простые элементы.}
+
+\subsection{Идеалы, главные идеалы. Евклидово кольцо как кольцо главных идеалов}
+
+\subsection{Основная теорема арифметики}
+
+\subsection{Кольцо вычетов $\mathbb{Z}/_{n\mathbb{Z}}$. Китайская теорема об остатках}
+
+\subsection{Определение поля. $\mathbb{Z}/_{p\mathbb{Z}}$ как поле. Поле частных целостного кольца}
+
+\subsection{Определение гомоморфизма и изоморфизма колец. Фактор-кольцо}
+
+\subsection{Теорема о гомоморфизме}
+
+\subsection{Кольцо многочленов. Целостность и евклидовость кольца многочленов над полем}
+
+\subsection{Лемма Гаусса}
+
+\subsection{Факториальность кольца многочленов}
+
+\subsection{Теорема Безу. Производная многочлена и кратные корни}
+
+\subsection{Интерполяция Лагранжа}
+
+\subsection{Интерполяция Эрмита}
+
+\subsection{Поле разложение многочлена}
+
+\subsection{Комплексные числа. Решение квадратных уравнений в $\mathbb{С}$}
+
+\subsection{Основная теорема алгебры}
+
+\subsection{Разложение рациональной функции в простейшие дроби над $\mathbb{C}$ и над $\mathbb{R}$}
+
+\subsection{Определение векторного пространства. Линейная зависимость. Существование базиса}
+
+\subsection{Размерность векторного пространства}
+
+\subsection{Линейные отображения векторных пространств. Подпространство, фактор-пространство. Ранг линейного отображения}
+
+\subsection{Матрица линейного отображения. Композиция линейных отображений и произведение матриц. Кольцо матриц}
+
+\subsection{Элементарные преобразования. Метод Гаусса. Системы линейных уравнений}
+
+\subsection{Теорема Кронекера-Капелли}
+
+\subsection{Определение группы. Циклическая группа. Порядок элемента}
+
+\subsection{Группа перестановок. Циклы, транспозиции. Знак перестановки}
+
+\subsection{Действие группы на множестве. Орбиты. Классы сопряженности}
+
+\subsection{Группа обратимых элементов кольца. Вычисление обратимых элементов $\mathbb{Z}/_{n\mathbb{Z}}$. Функция Эйлера}
+
+\subsection{Гомоморфизмы и изоморфизмы групп. Смежные классы, теорема Лагранжа. Теорема Эйлера}
+
+\subsection{Многочлены деления круга}
+
+\subsection{Конечные поля (существование, единственность, цикличность мультипликативной группы)}
+
+\subsection{Фактор-группа, теорема о гомоморфизме}
+
+\subsection{Определитель матрицы. Инвариантность при элементарных преобразованиях, разложение по строчке и столбцу}
+
+\subsection{Присоединенная матрица. Формула Крамера. Определитель транспонированной матрицы}
+
+\subsection{Вычисление определителя методом Гаусса}
+
+\subsection{Принцип продолжения алгебраических тождеств. Определитель произведения матриц}
+
+
+
+\newpage
+
+\hypertarget{t2}{И в заключение...}
+
+
+
+\section{Пофамильный указатель всех мразей}
+
+\begin{multicols}{2}
+    [
+    Быстрый список для особо заебавшегося поиска.
+    ]
+
+    \hyperlink{n3}{делитель нуля}\
+    
+    \hyperlink{n1}{кольцо, а также его вариации}\
+
+    \hyperlink{n2}{область целостности}\
+    
+
+\end{multicols}
+
+
+
+\end{document}
