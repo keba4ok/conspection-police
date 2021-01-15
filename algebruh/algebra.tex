@@ -18,7 +18,7 @@
      colorlinks=true,
      linkcolor=red,
      filecolor=red,
-     citecolor =black,      
+     citecolor=black,      
      urlcolor=cyan,
      }
 \usepackage{fancyhdr}
@@ -32,6 +32,7 @@
 \newtheoremstyle{indented}{0 pt}{0 pt}{\itshape}{}{\bfseries}{. }{0 em}{ }
 
 %\geometry{verbose,a4paper,tmargin=2cm,bmargin=2cm,lmargin=2.5cm,rmargin=1.5cm}
+
 \title{Алгебра}
 \author{Мастера конспектов}
 \date{22 января 2020 г.}
@@ -52,24 +53,20 @@
 
 \newcommand{\resetexlcounters}{%
   \setcounter{exl}{0}%
-  
 } 
 
 \newcommand{\resetremarkcounters}{%
   \setcounter{remark}{0}%
-  
 } 
 
 \newcommand{\reseconscounters}{%
   \setcounter{cons}{0}%
-  
 } 
 
 \newcommand{\resetall}{%
     \resetexlcounters
     \resetremarkcounters
     \reseconscounters%
-
 }
 
 \maketitle 
@@ -133,6 +130,12 @@
         \begin{proof}
             Рассмотрим их сумму справа и слева.
         \end{proof}
+        \item $a\cdot 0 = 0$
+        \begin{proof}
+            \[
+                a\cdot 1 = a \Longrightarrow (0+1)a = a \Longrightarrow 0\cdot a+1\cdot a = a \Longrightarrow 0\cdot a = 0
+            \]
+        \end{proof}
     \end{itemize}
 \end{cons}
 
@@ -153,6 +156,87 @@
 \resetall
 
 \subsection{Евклидовы кольца. Евклидовость $\mathbb{Z}$. Неприводимые и простые элементы.}
+
+\medskip
+
+Для начала, некоторые связанные понятия, не упомянутые в билетах.
+
+\begin{defn}
+    Говорят, что $d$ \textit{делит} $p$ и пишут $d|p$, если $p=dq$ для некоторго $q\in R$.
+\end{defn}
+
+\begin{defn}
+    Элемент $\varepsilon$ называется \textit{обратимым}, если он делит единицу, то есть существует такое $\varepsilon^{-1} \in R$, что $\varepsilon^{-1} \cdot \varepsilon = 1$. 
+\end{defn}
+
+\begin{defn}
+    Будем говорит, что элементы $a$ и $b$ \hypertarget{n4}{\textcolor{red}{\textit{ассоциированы}}} и писать $a\sim b$, если выполнено одно из двух эквивалентных условий:
+    \begin{itemize}
+        \item существует обратимый элемент $\varepsilon$, для которого $a=\varepsilon b$;
+        \item $a|b$ и $b|a$.
+    \end{itemize}
+\end{defn}
+
+Покажем, что эти условия действительно эквивалентны.
+
+\begin{proof}
+    Докажем в обе стороны:\
+
+    \textcolor{red}{$\Rightarrow$} Если $a=\varepsilon b$, то $\varepsilon^{-1}a=b$. Это и есть второе условие.\
+
+    \textcolor{red}{$\Leftarrow$} Пусть $a=bc$ и $b=ac'$ для каких-то $c, c'$. Тогда $a = (ac')c=a(cc')\leftrightarrow a(1-cc')=0$. Тогда либо $a=0$, либо $cc'=1$, потому что делителей нуля в нашем кольце нет. В любом случае, $a$ и $b$ отличаются на обратимый: либо они оба равны нулю, либо $c$ - обратимый.
+\end{proof}
+
+А теперь, что касается самого билета.
+
+\begin{defn}
+    Область целостности  $R$ называется \hypertarget{n5}{\textcolor{red}{\textit{евклидовым кольцом}}}, если существует евклидова норма $N: R\rightarrow \mathbb{N}_0$ такая, что $N(0)=0$ и для любых элементов $a, b \in R$, где $b \neq 0$, существует меньший чем $b$ по норме элемент $r\in R$ такой, что выполнено равенство $a=bq+r$.
+\end{defn}
+
+\begin{exl}
+    Кольцо целых чисел $\mathbb{Z}$ евклидово.
+\end{exl}
+
+\begin{proof}
+    Пусть у нас имеются целое число $a$ и ненулевое целое $b$. Тогда существуют такие целые числа $q$ и $r$, что модуль $r$ меньше модуля $b$, а также $a=bq+r$. Отметим на оси все ератные $b$. Тогда если число $a$ попало на отрезок $[kb, (k+1)b]$, $k$ будет частным, а $a-kb$ - остатком. Дальнейшую формализация можно провести индукцией.
+\end{proof}
+
+Опять несколько небольших новых определений перед тем как перейти к последнему пункту билета (их можно упустить).
+
+\begin{defn}
+    Пусть $R$ - область целостности; $a,b\in R$. Элемент $d\in R$ называется \hypertarget{n6}{\textcolor{red}{\textit{наибольшим общим делителем}}} $a$ и $b$, если 
+    \begin{itemize}
+        \item $d|a$ и $d|b$;
+        \item для любого $d'\in R$, который также делит $a$ и $b$, выполнено также, что он делит $d$.
+    \end{itemize}
+\end{defn}
+
+\begin{theorem}
+    (О линейном представлении НОД в евклидовых кольцах). Пусть $R$ - евклидово кольцо, $a, b\in R$.Тогда существуют $d:=\gcd (a,b)$ и такие $x,y\in R$, что $d=ax+by$.
+\end{theorem}\
+
+Теперь про простые и неприводимые.
+
+\begin{defn}
+    Пусть $R$ - область. Необратимый элемент $p\in R$ - \hypertarget{n7}{\textcolor{red}{\textit{неприводимый}}}, если 
+    \[
+        \forall d\in R:d\vert p \Longrightarrow d\sim 1 \vee d\sim p
+    \]
+\end{defn}
+
+\begin{defn}
+    Пусть $R$ - область. Ненулевой необратимый элемент $p\in R\backslash 0$ называется \hypertarget{n8}{\textcolor{red}{\textit{простым}}}, если $\forall a,b\in R: p\vert ab \Longrightarrow p\vert a \vee p\vert b$.
+\end{defn}
+
+\begin{lemma}
+    (Простые $\subset$ неприводимые). Если $p$ - простой элемент произвольного коммутативног кольцв с единицей, то $p$ - неприводим.
+\end{lemma}
+
+\begin{proof}
+    Пусть $d$ - какой-то делитель $p$, что эквивалентно равенству $p=da$ для какого-то $a$. Проверим, что либо $d\sim 1$, либо $d\sim p$. Раз $p$ - простой, то либо он делит $d$, либо он делит $a$. Если первое, что сразу $d\sim p$.Если второе, перепишем в виде $da=p\vert a$. Это то же самое, что $bda=a$ для некоторого $b$. Здесь либо $a=0$, то тогда $p=o$, что невозможно по определению простого, либо мы можем сократить на $a$ и получим $bd=1$, тогда $d$ ассоциирован с 1.
+\end{proof}
+
+\resetall
 
 \subsection{Идеалы, главные идеалы. Евклидово кольцо как кольцо главных идеалов}
 
@@ -237,11 +321,21 @@
     Быстрый список для особо заебавшегося поиска.
     ]
 
+    \hyperlink{n4}{ассоциированность}\
+    
     \hyperlink{n3}{делитель нуля}\
+
+    \hyperlink{n5}{евклидово кольцо}\
     
     \hyperlink{n1}{кольцо, а также его вариации}\
 
+    \hyperlink{n7}{неприводимые}\
+
+    \hyperlink{n6}{НОД}\
+
     \hyperlink{n2}{область целостности}\
+
+    \hyperlink{n8}{простые}\ 
     
 
 \end{multicols}
