@@ -1,0 +1,108 @@
+\documentclass[a4paper,100pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[unicode, pdftex]{hyperref}
+\usepackage{cmap}
+\usepackage{mathtext}
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\usepackage[T2A]{fontenc}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}
+\usepackage{icomma}
+\usepackage{euscript}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage[usenames]{color}
+\hypersetup{
+     colorlinks=true,
+     linkcolor=green,
+     filecolor=green,
+     citecolor=black,      
+     urlcolor=cyan,
+     }
+\usepackage{fancyhdr}
+\pagestyle{fancy} 
+\fancyhead{} 
+\fancyhead[LE,RO]{\thepage} 
+\fancyhead[CO]{\hyperlink{t2}{к списку объектов}}
+\fancyhead[LO]{\hyperlink{t1}{к содержанию}} 
+\fancyhead[CE]{текст-центр-четные} 
+\fancyfoot{}
+\newtheoremstyle{indented}{0 pt}{0 pt}{\itshape}{}{\bfseries}{. }{0 em}{ }
+
+%\geometry{verbose,a4paper,tmargin=2cm,bmargin=2cm,lmargin=2.5cm,rmargin=1.5cm}
+
+\title{Теория вероятностей. Конспект 2 сем.}
+\author{Мастера Конспектов\\ \\ (по материалам лекций Давыдова Ю. А.,\\ а также других источников)}
+\date{16 февраля 2021 г.}
+
+\theoremstyle{indented}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}{Лемма}
+
+\theoremstyle{definition} 
+\newtheorem{defn}{Определение}
+\newtheorem{exl}{Пример(ы)}
+
+\theoremstyle{remark} 
+\newtheorem{remark}{Примечание}
+\newtheorem{cons}{Следствие}
+\newtheorem{stat}{Утверждение}
+
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Tors}{Tors}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\Imf}{Im}
+\DeclareMathOperator{\cont}{cont}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\chard}{char}
+\DeclareMathOperator{\CC}{\mathbb{C}}
+\DeclareMathOperator{\ZZ}{\mathbb{Z}}
+\DeclareMathOperator{\RR}{\mathbb{R}}
+\DeclareMathOperator{\NN}{\mathbb{N}}
+\DeclareMathOperator{\PP}{\mathbb{P}}
+\DeclareMathOperator{\FF}{\mathcal{F}}
+\DeclareMathOperator{\Rho}{\mathcal{P}}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\adj}{adj}
+
+\begin{document}
+
+\newcommand{\resetexlcounters}{%
+  \setcounter{exl}{0}%
+} 
+
+\newcommand{\resetremarkcounters}{%
+  \setcounter{remark}{0}%
+} 
+
+\newcommand{\reseconscounters}{%
+  \setcounter{cons}{0}%
+} 
+
+\newcommand{\resetall}{%
+    \resetexlcounters
+    \resetremarkcounters
+    \reseconscounters%
+}
+
+\maketitle 
+
+\newpage
+
+\hypertarget{t1}{Некоторые} записи по матанализу.
+\tableofcontents
+
+\newpage
+
+
+\section{Лекция 1.}
+
+
+
+\end{document}

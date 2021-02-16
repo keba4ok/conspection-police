@@ -1,0 +1,246 @@
+\documentclass[a4paper,100pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[unicode, pdftex]{hyperref}
+\usepackage{cmap}
+\usepackage{mathtext}
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\usepackage[T2A]{fontenc}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}
+\usepackage{icomma}
+\usepackage{euscript}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage[usenames]{color}
+\hypersetup{
+     colorlinks=true,
+     linkcolor=cyan,
+     filecolor=cyan,
+     citecolor=black,      
+     urlcolor=cyan,
+     }
+\usepackage{fancyhdr}
+\pagestyle{fancy} 
+\fancyhead{} 
+\fancyhead[LE,RO]{\thepage} 
+\fancyhead[CO]{\hyperlink{t2}{к списку объектов}}
+\fancyhead[LO]{\hyperlink{t1}{к содержанию}} 
+\fancyhead[CE]{текст-центр-четные} 
+\fancyfoot{}
+\newtheoremstyle{indented}{0 pt}{0 pt}{\itshape}{}{\bfseries}{. }{0 em}{ }
+
+%\geometry{verbose,a4paper,tmargin=2cm,bmargin=2cm,lmargin=2.5cm,rmargin=1.5cm}
+
+\title{Теория вероятностей. Конспект 2 сем.}
+\author{Мастера Конспектов\\ \\ (по материалам лекций Давыдова Ю. А.,\\ а также других источников)}
+\date{16 февраля 2021 г.}
+
+\theoremstyle{indented}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}{Лемма}
+
+\theoremstyle{definition} 
+\newtheorem{defn}{Определение}
+\newtheorem{exl}{Пример(ы)}
+
+\theoremstyle{remark} 
+\newtheorem{remark}{Примечание}
+\newtheorem{cons}{Следствие}
+\newtheorem{stat}{Утверждение}
+
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Tors}{Tors}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\Imf}{Im}
+\DeclareMathOperator{\cont}{cont}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\chard}{char}
+\DeclareMathOperator{\CC}{\mathbb{C}}
+\DeclareMathOperator{\ZZ}{\mathbb{Z}}
+\DeclareMathOperator{\RR}{\mathbb{R}}
+\DeclareMathOperator{\NN}{\mathbb{N}}
+\DeclareMathOperator{\PP}{\mathbb{P}}
+\DeclareMathOperator{\FF}{\mathcal{F}}
+\DeclareMathOperator{\Rho}{\mathcal{P}}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\adj}{adj}
+
+\begin{document}
+
+\newcommand{\resetexlcounters}{%
+  \setcounter{exl}{0}%
+} 
+
+\newcommand{\resetremarkcounters}{%
+  \setcounter{remark}{0}%
+} 
+
+\newcommand{\reseconscounters}{%
+  \setcounter{cons}{0}%
+} 
+
+\newcommand{\resetall}{%
+    \resetexlcounters
+    \resetremarkcounters
+    \reseconscounters%
+}
+
+\maketitle 
+
+\newpage
+
+\hypertarget{t1}{Некоторые} записи по теории вероятностей.
+\tableofcontents
+
+\newpage
+
+
+\section{Лекция 1.}
+
+Начинаем мы с самого базового - аксиоматики и введения определений.
+
+\begin{defn}
+    $\Omega$ - \textit{пространство элементарных событий} или \textit{множество элементарных исходов}, есть множество, состоящее из $\omega_i$, \textit{элементарных событий}. Нам важно лишь, чтобы это множество было непустым. $\FF\subseteq \Rho(\Omega)$ - некоторая совокупность подмножеств $\Omega$, есть \textit{множество событий}, элементы которого есть $A_i$ - события.
+\end{defn}
+
+\begin{defn}
+    $\PP$ - вероятность $A\Rightarrow \PP(A)$ - вероятность события $A$.
+\end{defn}
+
+Для вероятностей существует несколько аксиом: 
+
+\begin{itemize}
+    \item $0\leq \PP(a\leq 1)$ для любого события, 
+    \item $\PP(\Omega)=1$, 
+    \item для любого счётного набора попарно непересекающихся события $\{A_i\}_{i\in N}\subseteq\FF$ выполнена \textit{счётная аддитивность}:
+    \[
+        \PP\biggl( \bigsqcup_{n\in N} A_n\biggr)=\sum_{n\in N}\PP(A_n).
+    \]
+\end{itemize}
+
+Некоторые свойства вероятностей:
+
+\begin{itemize}
+    \item $A\subset B \Rightarrow \PP(A)\leq \PP(B)$;
+    \item $\PP(A)=1-\PP(A^c)$;
+    \item $\forall A, B \Rightarrow \PP(A\cup B)=\PP(A)+\PP(B)-\PP(A\cap B)$;
+    \item $\PP(\bigcup_n A_n)\leq \sum_n \PP(A_n)$.
+\end{itemize}
+
+Теперь перейдём к некоторым примерам вероятностных пространств:
+
+\begin{exl}
+
+    Пространство $(\Omega, \FF, \PP)$ \textit{дискретно}, если $\Omega$ не более, чем счётно. $\FF=\Rho(\Omega)$, элементы $\{\omega\}$ также считаем событиями.
+    \begin{stat}
+        Несколько предложений:
+
+        \begin{itemize}
+            \item Пусть $\PP$ - вероятность в $(\Omega, \FF, \PP)$. Тогда $\PP(A)=\sum_{\omega\in A}p_\omega$, где $p_\omega=\PP\{\omega\}$. При этом $p_\omega\geq 0$, $\sum_\omega p_\omega = 1$. 
+            \item Предположим, что $\{p_\omega\}_{\omega\in\Omega}$ такие, что выполнено последнее предложение предыдущего пункта, тогда ?
+        \end{itemize}
+    \end{stat}
+\end{exl}
+
+Начнём теперь разбираться с понятием \textit{условная вероятность}.
+
+\begin{exl}
+    Начнём с такого примера. Пусть у нас есть события $A, B$, причём их пересечение в вероятностном пространстве пусть. Тогда если исполнится $B$, то $A$ уже исполнится не может.
+\end{exl}
+
+\begin{defn}
+    \textit{Условная вероятность}: $\PP_B(A)=\frac{\PP(A\cap B)}{\PP(B)}$ (при $\PP(B)>0$).
+\end{defn}
+
+(тут два каких-то утверждения)
+
+\begin{stat}
+    Для условной вероятности выполнены аксиомы вероятности.
+\end{stat}
+
+А  теперь - несколько утверждений, которые касаютсся условной вероятности.
+
+\begin{stat}
+    $(B_n)$ - \textit{разбиение} $\Omega$ (дизъюнктный набор, который в объединении даёт всё множество). Тогда для любого $A$ $\PP(A)=\sum_k\PP(B_k)\PP_{B_k}(A)$. 
+\end{stat}
+
+\begin{proof}
+    \[
+        \PP(A)=\PP(A\cap \Omega)=\sum_n \PP(A\cap (\bigcup_n B_n)) = \PP(\bigcup_n (A\cap B_n))=\sum_n \PP(A\cap B_n)=\PP(B_n)\cdot \PP_{B_n}(A).
+    \]
+\end{proof}
+
+\begin{stat}
+    \textit{Формула Байеса}. Пусть мы знаем событие $A$, имеется разбиение $(B_n)$, тогда 
+    \[
+    \PP_A(B_k)=\frac{\PP(A\cap B_k)}{\PP(A)}=\frac{\PP(B_k)\PP_{B_k}(A)}{\sum_n\PP(B_n)\PP_{B_n}(A)}
+    \]
+\end{stat}
+
+\begin{stat}
+    \textit{Формула умножения}. -//-
+\end{stat}
+
+Перейдём к \textit{Независимости событий}. Начнём рассуждения с двух событий: $A$ и $B$. Если $\PP(B)=\PP_A(B)$, $\PP(A)=\PP_B(A)$, или, что равносильно им обоим $\PP(A\cap B)=\PP(A)\PP(B)$, то события называются \textit{независимыми}.\ 
+
+Пусть теперь имеется не два, а больше событий $\{A_q, \ldots, A_n\}$. Нельзя сказать, что нам хватает попарной независимости для независимости совокупной.
+
+\begin{exl}
+    (Пирамида Бернштейна). Рассмотрим тетраедр, у которого стороны покрашены таким образом: белый, синий, красный и флаг России. Рассматриваем события: $A_1$ - на выпавшем основании есть белый цвет, и так далее $A_2$ и $A_3$. Эти события попарно независмы, но не независимы в совокупности.
+    \[
+        \PP(A_i)=\frac{1}{2}, \: \PP(A_1\cap A_2)=\frac14=\frac12\cdot\frac12=\PP(A_1)\PP(A_2), 
+    \]
+    но тогда 
+    \[
+        \PP((A_1\cap A_2)\cap A_3)=\frac14\neq\frac18.
+    \]
+\end{exl}
+
+Таким образом, нужно ввести корректное определение.
+
+\begin{defn}
+    События $A_1, \dots, A_n$ независимы, если выполнено:
+    \begin{align*}
+        \PP(A_i\cap A_j)&=\PP(A_i)\PP(A_j), \: \forall i\neq j,  \\ 
+        \PP(A_i\cap A_j\cap A_k)&=\PP(A_i)\PP(A_j)\PP(A_k), \: \forall i\neq j\neq k,  \\
+        &\dots \\
+        \PP(\bigcup_1^n A_i)&=\prod_1^n \PP(A_i).
+    \end{align*}
+\end{defn}
+
+(какая-то теорема)
+
+\begin{defn}
+    \textit{Случайная величина} - это функция $X:\Omega\rightarrow R$. 
+\end{defn}
+
+\begin{exl}
+    Число выпавших решек на $n$ бросках.
+\end{exl}
+
+Теперь немного о \textit{распределении случайной величины}. Пусть имеется вероятностное пространство и случайная величина $X$. Нас интересует $\{\omega\vert X(\omega)\in B\}$, то есть, мы хотим исследовать попадания случайной величины в те или иные зоны на прямой. Такую вероятность можно рассматривать как вероятность от множества $B$, но это слишком сложно, поэтому продолжим на таких двух пунктах:
+
+\begin{itemize}
+    \item значения $X$, $X(\Omega)=\{a_1, \ldots\}$, $\{a_k\}$ - значение $X$, 
+    \item $A_k=\{\omega\vert X(\omega)=a_k\}$; $p_k=\PP(A_k)$, причём каждая $p_k\geq0$, а их сумма равна единице.
+\end{itemize}
+
+Тогда мы можем сделать вывод, что $\PP\{X\in B\}=\sum_{k\vert a_k\in B}p_k$, но левая часть есть $\PP\{\bigcup_{k\vert a_k\in B}\}$, что равно $S$
+
+\begin{exl}
+    Приведём примеры распределений:
+
+    \begin{itemize}
+        \item \textit{вырожденное}: $X(\omega)=a$ для любого $\omega$.
+    \end{itemize}
+
+    (ещё несколько примеров над одописать)
+\end{exl}
+
+\end{document}
