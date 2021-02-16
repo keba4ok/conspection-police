@@ -33,8 +33,8 @@
 
 %\geometry{verbose,a4paper,tmargin=2cm,bmargin=2cm,lmargin=2.5cm,rmargin=1.5cm}
 
-\title{Теория вероятностей. Конспект 2 сем.}
-\author{Мастера Конспектов\\ \\ (по материалам лекций Давыдова Ю. А.,\\ а также других источников)}
+\title{Матанализ. Конспект 2 сем.}
+\author{Мастера Конспектов\\ \\ (по материалам лекций Белова Ю. С.,\\ а также других источников)}
 \date{16 февраля 2021 г.}
 
 \theoremstyle{indented}
@@ -70,7 +70,7 @@
 \DeclareMathOperator{\rank}{rank}
 \DeclareMathOperator{\ord}{ord}
 \DeclareMathOperator{\adj}{adj}
-
+\DeclareMathOperator{\const}{const}
 \begin{document}
 
 \newcommand{\resetexlcounters}{%
@@ -103,6 +103,71 @@
 
 \section{Лекция 1.}
 
+В этом чеместре мы будем занимать анализом функций от многих переменных, то есть,  $f:\RR^n\rightarrow \RR^m$,  и если $m=1$, то такая функция называется функцией многих переменных. \ 
 
+\begin{defn}
+    \textit{Кривые в $\RR^n$} - непрерывное отображение $f:[a, b]\rightarrow \RR^n$.
+\end{defn}
 
+Основная проблема состоит в том, что образ может выглядеть очень и очень сложно, потому нам хотелось бы более точно понять, как всё это устроено. Потому начнём рассматривать \textit{спрямляемые кривые}, то есть, кривые с конечной длиной. Введём следующее определение: 
+
+\begin{defn}
+    \textit{Вариация функции} - $V_f([a, b])=\sup_{a=x_0\leq x_2\leq \ldots\leq x_n=b} \sum_{k=0}\vert f(x_{k+1})-f(x_k)\vert$. 
+\end{defn}
+
+$(x-y)$ - евклидово расстояние.
+
+\begin{stat}
+    Если $f:\RR\rightarrow \RR$ монотонна, то $V_f([a, b])=\vert f(a)-f(b)\vert $.
+\end{stat}
+
+\begin{stat}
+    $V_f([a, b])=0 \: \Leftrightarrow \: f=\const$.
+\end{stat}
+
+\begin{stat}
+    $V_{f+g}\leq V_f+V_g$.
+\end{stat}
+
+\begin{stat}
+    $V_f$ аддитивна на промежутке: $a\leq b\leq c$, тогда $V_f([a, c])=V_f([a, b])+V_f([b, c])$. 
+\end{stat}
+
+\begin{defn}
+    Вариация ограничена, если $V_f<\infty $ на $[a, b]$.
+\end{defn}
+
+\begin{lemma}\
+    
+    \begin{itemize} 
+        \item $\RR\rightarrow \RR$, $f_1$ и $f_2$ монотонны, тогда $f_1-f_2$ имеют ограниченную вариацию.
+        \item $f$ имеет ограниченную вариацию тогда и только тогда, когда $f=f_1-f_2$ на отрезке $[a, b]$, причём эти две функции монотонно возрастают.
+    \end{itemize}
+\end{lemma}
+
+\begin{proof}
+    Пусть у нас есть $f$, а также $V_f([a, b])<\infty$. Рассмотрим $\varphi(x)=V_f([a, x])$. $\varphi$ определа корректно, причём возрастает. $f=\varphi-(\varphi-f)$, скажем, что $(\varphi-f)=h$, тогда $h(x)\leq h(y)$ при $x\leq y$. Но это нетрудно показать, $\varphi(x)-f(x)\leq \varphi(y)-f(y)$ равносильно $f(y)-f(x)\leq \varphi(y-\varphi(x))=V_f([x, y])$.
+\end{proof}
+
+По сути, если понимать определение вариации геометрически, то это просто длина кривой на отрезке. Перейдём теперь к способам обхода кривой.\\
+
+\begin{lemma}
+    Пусть $g:[a, b]\rightarrow [c, d]$ - непрерывная биекция (тогда и монотонная). Тогда $V_f[c, d]=V_{f\circ g}([a,b])$.
+\end{lemma}
+
+\begin{proof}
+    Левая и правая части равны соответственно $\sup \sum_{k=0}^{n-1}\vert f(x_{k+1})-f(x_k)\vert$ и $\sup \sum_{k=0}^{n-1}\vert f(g(y_{k+1}))-f(g(y_k))\vert$. Это, очевидно, одно и то же.
+\end{proof}
+
+Теперь стоит задаться вопросом: а когда же это $V_f$ (или же, длину кривой) можно посчитать. Если $f$ - гладкая функция (гладкая покоординатно $f_k$). $f:=[a, b]\rightarrow \RR^n$, $f=(f_1, \ldots, f_n)$, $f_k:[a, b]\rightarrow \RR$. Тогда
+\[
+    V_f([a, b])=\int_a^b\sqrt{(f_1')^2(x)+\ldots+(f_n')^2(x)}\: dx.
+\]
+Рассмотрим
+\begin{eqnarray*}
+    \sup_{a=x_0, \ldots, x_n=b}\sum_{k=0}^{n-1}\sqrt{(f_1(x_{k+1})-f_1(x_k))^2+\ldots+f_n(x_{k+1})-f_n(x_k))^2} = \\ 
+    = \sum_{k=0}^{n-1}(x_k+1-x_k)\sqrt{f_1'^2(\xi_{1, k})+\ldots+f_n'^2(\xi_{n, k}))}
+\end{eqnarray*}
+
+Если $f_i$ непрерывна, то $f_i^2$ равномерно непрерывна. $f_i'^2(\xi_{i, k})\leq \min_{[x_k, x_{k+1}]}f_i'^2+\varepsilon^2$ (для достаточно мелких разбиений и любого эпсилон, большего нуля). Тогда можно получить верхнюю оценку: $\leq \sum_{k=0}^{n-1}(x_{k+1}-x_k)\sqrt{\sum_{l=1}^n \min_{[x_k]}(f_l'^2)}+\varepsilon \sqrt{n}(b-a)\leq \int_a^b\sqrt{\dots}+\varepsilon \sqrt{n}(b-a)$ (устремляем разбиение к бесконечно малому). А затем делаем аналогично снизу и получаем требуемое равенство.
 \end{document}
