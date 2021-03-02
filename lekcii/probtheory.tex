@@ -16,10 +16,10 @@
 \usepackage[usenames]{color}
 \hypersetup{
      colorlinks=true,
-     linkcolor=cyan,
-     filecolor=cyan,
-     citecolor=cyan,      
-     urlcolor=cyan,
+     linkcolor=magenta,
+     filecolor=,
+     citecolor=magenta,      
+     urlcolor=magenta,
      }
 \usepackage{fancyhdr}
 \pagestyle{fancy} 
@@ -114,7 +114,7 @@
 \end{defn}
 
 \begin{defn}
-    Вся же тройка $(\Omega, \FF, \PP)$ называется \hypertarget{n1}{\textcolor{cyan}{\textit{вероятностным пространством}}}.
+    Вся же тройка $(\Omega, \FF, \PP)$ называется \hypertarget{n1}{\textcolor{magenta}{\textit{вероятностным пространством}}}.
 \end{defn}
 
 Для вероятностей существует несколько аксиом: 
@@ -141,7 +141,7 @@
 
 \begin{exl}
 
-    Пространство $(\Omega, \FF, \PP)$ \hypertarget{n2}{\textcolor{cyan}{\textit{дискретно}}}, если $\Omega$ не более, чем счётно. $\FF=\Rho(\Omega)$, элементы $\{\omega\}$ также считаем событиями.
+    Пространство $(\Omega, \FF, \PP)$ \hypertarget{n2}{\textcolor{magenta}{\textit{дискретно}}}, если $\Omega$ не более, чем счётно. $\FF=\Rho(\Omega)$, элементы $\{\omega\}$ также считаем событиями.
     \begin{stat}
         Несколько предложений:
 
@@ -152,7 +152,7 @@
     \end{stat}
 \end{exl}
 
-Также, можно упомянуть про \hypertarget{n3}{\textcolor{cyan}{\textit{равновероятные исходы}}}, из названия понятно, что это. Если $\vert \Omega\vert <\infty$ и $p_\omega=p$ для любого $\omega$, тогда $\PP(A)=\frac{\vert A\vert}{\vert \omega \vert}$. \ 
+Также, можно упомянуть про \hypertarget{n3}{\textcolor{magenta}{\textit{равновероятные исходы}}}, из названия понятно, что это. Если $\vert \Omega\vert <\infty$ и $p_\omega=p$ для любого $\omega$, тогда $\PP(A)=\frac{\vert A\vert}{\vert \omega \vert}$. \ 
 
 Начнём теперь разбираться с понятием \textit{условная вероятность}.
 
@@ -161,7 +161,7 @@
 \end{exl}
 
 \begin{defn}
-    \hypertarget{n4}{\textcolor{cyan}{\textit{Условная вероятность}}}: $\PP_B(A)=\frac{\PP(A\cap B)}{\PP(B)}$ (при $\PP(B)>0$).
+    \hypertarget{n4}{\textcolor{magenta}{\textit{Условная вероятность}}}: $\PP_B(A)=\frac{\PP(A\cap B)}{\PP(B)}$ (при $\PP(B)>0$).
 \end{defn}
 
 \begin{stat}
@@ -181,14 +181,14 @@
 \end{proof}
 
 \begin{stat}
-    \hypertarget{n5}{\textcolor{cyan}{\textit{Формула Байеса}}}. Пусть мы знаем событие $A$, имеется разбиение $(B_n)$, тогда 
+    \hypertarget{n5}{\textcolor{magenta}{\textit{Формула Байеса}}}. Пусть мы знаем событие $A$, имеется разбиение $(B_n)$, тогда 
     \[
     \PP_A(B_k)=\frac{\PP(A\cap B_k)}{\PP(A)}=\frac{\PP(B_k)\PP_{B_k}(A)}{\sum_n\PP(B_n)\PP_{B_n}(A)}
     \]
 \end{stat}
 
 \begin{stat}
-    \hypertarget{n6}{\textcolor{cyan}{\textit{Формула умножения}}}. 
+    \hypertarget{n6}{\textcolor{magenta}{\textit{Формула умножения}}}. 
     \[
         \PP(\bigcap_1^n A_k)=\PP(A_1)\cdot \PP_{A_1}(A_2)\cdot\PP_{A_1\cap A_2}(A_3)\cdot\ldots
     \]
@@ -212,7 +212,7 @@
 Таким образом, нужно ввести корректное определение.
 
 \begin{defn}
-    События $A_1, \dots, A_n$ \hypertarget{n7}{\textcolor{cyan}{\textit{независимы}}}, если выполнено:
+    События $A_1, \dots, A_n$ \hypertarget{n7}{\textcolor{magenta}{\textit{независимы}}}, если выполнено:
     \begin{align*}
         \PP(A_i\cap A_j)&=\PP(A_i)\PP(A_j), \: \forall i\neq j,  \\ 
         \PP(A_i\cap A_j\cap A_k)&=\PP(A_i)\PP(A_j)\PP(A_k), \: \forall i\neq j\neq k,  \\
@@ -230,7 +230,7 @@
 \end{proof}
 
 \begin{defn}
-    \hypertarget{n8}{\textcolor{cyan}{\textit{Случайная величина}}} - это функция $X:\Omega\rightarrow R$. 
+    \hypertarget{n8}{\textcolor{magenta}{\textit{Случайная величина}}} - это функция $X:\Omega\rightarrow R$. 
 \end{defn}
 
 \begin{exl}
@@ -247,7 +247,7 @@
 Тогда мы можем сделать вывод, что $\PP\{X\in B\}=\sum_{k\vert a_k\in B}p_k$, так как левая часть есть $\PP\{\bigcup_{k\vert a_k\in B}\}$, что равно $\PP\{\bigcup_{k\vert a_k\in B}\{x=a_k\}\}=\sum_{k\vert a_k\in B}\PP\{x=a_k\}$, что уже и равно левой части.\
 
 \begin{defn}
-    Таки образом, совокупность последовательностей $\frac{\{a_k\}}{\{p_k\}}$ и называется \hypertarget{n9}{\textcolor{cyan}{\textit{распеределением случайной величины}}}. 
+    Таки образом, совокупность последовательностей $\frac{\{a_k\}}{\{p_k\}}$ и называется \hypertarget{n9}{\textcolor{magenta}{\textit{распеределением случайной величины}}}. 
 \end{defn}
 
 \begin{exl}
@@ -256,10 +256,98 @@
     \begin{itemize}
         \item \textit{вырожденное}: $X(\omega)=a$ для любого $\omega$.
         \item \textit{распределение Бернулли}: $B(1, p)$, $p\in[0,1]$, причём единица принимается с вероятностью $p$, $0$ - иначе.
-        \item \hypertarget{n10}{\textcolor{cyan}{\textit{биномиальное}}}: $B(n, p)$, $p\in[0,1]$, $X\sim B(n, p)$, если принимаются значения от $0$ до $n$, причём $\PP\{X=k\}=\PP_n(k)$ (просто обозначение), и равно $C_n^kp^k(1-p)^{n-k}$.
+        \item \hypertarget{n10}{\textcolor{magenta}{\textit{биномиальное}}}: $B(n, p)$, $p\in[0,1]$, $X\sim B(n, p)$, если принимаются значения от $0$ до $n$, причём $\PP\{X=k\}=\PP_n(k)$ (просто обозначение), и равно $C_n^kp^k(1-p)^{n-k}$.
     \end{itemize}
 
 \end{exl}
+
+\section{Лекция 2.}
+
+Приведём ещё несколько примеров распределений: 
+
+\begin{exl}
+    \begin{itemize}
+        \item \textit{геометрическое} $X = 1, 2, \ldots$, $p\in[0,1]$. $P\{X=k\}=(1-p)^{k-1}p$.
+        \item \textit{плацоновское} $X\sim \Rho(\alpha), \alpha>0$, $X=0, 1, \ldots$, $P\{X=k\}=\frac{\alpha^k}{k!}e^{-\alpha}$. 
+    \end{itemize}
+\end{exl}
+
+Независимость случайных величин.
+
+\begin{exl}
+    Пусть $X\sim \Rho(\alpha)$, $Y\sim \Rho(\beta)$ - независимы (плацоновские распределения). Найдём тогда распределение $X+Y$, $X+Y=0, 1, 2, \ldots$. 
+   
+    \begin{equation*}
+        \begin{aligned}
+            \PP\{X+Y=n\} & =\PP\{\sqcup_{k=0}^n\{X+Y=n, X=k\}\} =\sum_{k=0}^n\PP\{X+Y=n, X=k\}= \\ 
+             & = \sum_{k=0}^n\{X=k, Y=n-k\} =\sum_{k=0}^n\PP\{X=K\}\PP\{Y=n-k\}= \\ 
+             & = \sum_{k=0}^n\frac{\alpha^k}{k!}e^{-\alpha}\cdot \frac{\beta^{n-k}}{k(n-))!}e^{-\beta} = e^{-(\alpha+\beta)}\frac{1}{n!}\sum_{k=0}^n\frac{n!}{k!(n-k)!}\alpha^k\beta^{n-k}= \\ 
+             & = e^{-(\alpha+\beta)}\frac{1}{n!}(\alpha+\beta)^n =\frac{(\alpha+\beta)^n}{n!}(\alpha+\beta)^n=\frac{(\alpha+\beta)^n}{n!}e^{-(\alpha+\beta)}. 
+        \end{aligned}
+    \end{equation*}
+        
+
+    Таким образом, получаем вывод: $X+Y\sim\Rho(\alpha+\beta)$ - плацоновское распределение.
+\end{exl}
+
+Испытание Бернулли. 
+
+\begin{defn}
+    Рассмотрим последовательность $\varepsilon_k$ - независимых бернуллиевских величин (два исхода), $\varepsilon_k\sim B(1, p)$, 
+    \begin{equation*}
+        \varepsilon_k=
+        \begin{cases}
+            1, \: p \\ 
+            0, \: q=1-p
+        \end{cases}
+    \end{equation*}
+    $\{\varepsilon_k=1\}$ означает успех в каком-то испытании. То есть, \textit{испытание Бернулли} - последовательность из однотипных испытаний.
+\end{defn}
+
+$\nu_n$ - число успехов в $n$ испытаниях., что равно $\sum_{k=1}^n\varepsilon_k$. Покажем, что распределение биномиально. $\nu_n=0, 1, \ldots, n$.
+
+\begin{equation*} 
+    \begin{aligned}
+        C_n^kp^kq^{n-k} & =^?\PP\{\nu_n=l\}=\PP\{\omega\vert \text{ в цепочке }\varepsilon_1(\omega), \ldots, \varepsilon_n(\omega)\text{ в точности } k \text{единиц}\}= \\ 
+        & = \PP\{\sum_1^n\varepsilon_j=k\}=\sum_{\{i_1, \ldots, i_n\}| \text{ в } \bar{i} \: k \text{ единиц }}\PP\{\varepsilon_1= i_1, \ldots, \varepsilon_n=i_n\}= \\ 
+        & = \sum_{-//-}p^kq^{n-k}=C_n^k p^kq^{n-k}.
+    \end{aligned}
+\end{equation*} 
+
+Теперь встаёт вопрос: существует ли независимая бернуллиевская случайная величина. Пусть $\Omega=\{(i_1, i_2, \ldots, i_n)|i_k=0 \text{ или }1\}$; $|\Omega|=2^k$. $p_{\omega}= p^k(1-p)^{n-k}$ для $\omega=(i_1, \ldots, i_n)$, в которой ровно $k$ единиц. $\sum p_n=1$, $\varepsilon_k(\omega)=\varepsilon_k(i_1, \ldots, i_n)=i_k$ .\
+
+$P_n(k)=\PP\{\nu_n=k\}=C_n^kp^kq^{n-k}$ - можем ли мы как-то упростить это? \\
+
+\begin{theorem}
+    $n$ испынаний $\text{Б}$ с веростностями успеха $p=p_n$, $n\cdot p_n\rightarrow_{n\rightarrow \infty} \alpha$, тогда $\forall k\in \NN$ $P_n(k)\rightarrow \pi_k=\frac{\alpha^k}{k!}e^{-\alpha}$. 
+\end{theorem}
+
+\begin{proof}
+    \begin{equation*}
+        \begin{split}
+            P_n(k)=\frac{n!}{k!(n-k)!}p^kq^{n-k}=\frac{1}{k!}\frac{n(n-1)\ldots(n-k+1)}{n^k}(np^k)q^{n-k}= \\ 
+            = \frac{1}{k!}{(1-\frac{1}{n})\ldots(1-\frac{k-1}{n})}(np)^kq^{n-k}\sim\frac{\alpha^k}{k!}q^{n-k}
+        \end{split}
+    \end{equation*}
+
+    Если что, $k$ - константа. 
+
+    \begin{equation*}
+        \begin{split}
+            q^{n-k}=(1-p)^{n-k}=(1-\frac{n p_n}{n})^n(1-\frac{n p_n}{n})^{-k} \\ 
+            \sim (1-\frac{n p_n}{n})^n \sim e^{-n p_n} = e^{-\alpha}. 
+        \end{split}
+    \end{equation*}
+
+    В итоге, $P_n(k)\sim\frac{\alpha^k}{k!}e^{-\alpha}$. 
+
+\end{proof}
+
+А теперь - несколько слов о точности аппроксимации. Оценим $|P_n(k)-\pi_k|$. $\pi_k=\frac{(np)^k}{k!}e^{-np}$. \\
+
+\begin{theorem}
+    $\sum_{k=0}^\infty|P_n(k)-\pi_n|\leq 2np^2$.
+\end{theorem}
 
 \newpage
 
