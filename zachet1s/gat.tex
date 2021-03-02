@@ -1,0 +1,1922 @@
+\documentclass[a4paper,100pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[unicode, pdftex]{hyperref}
+\usepackage{cmap}
+\usepackage{mathtext}
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\usepackage[T2A]{fontenc}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}
+\usepackage{icomma}
+\usepackage{euscript}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage[usenames]{color}
+\hypersetup{
+     colorlinks=true,
+     linkcolor=magenta,
+     filecolor=magenta,
+     citecolor = black,      
+     urlcolor=cyan,
+     }
+\usepackage{fancyhdr}
+\pagestyle{fancy} 
+\fancyhead{} 
+\fancyhead[LE,RO]{\thepage} 
+\fancyhead[CO]{\hyperlink{t2}{к списку объектов}}
+\fancyhead[LO]{\hyperlink{t1}{к содержанию}} 
+\fancyhead[CE]{текст-центр-четные} 
+\fancyfoot{}
+\newtheoremstyle{indented}{0 pt}{0 pt}{\itshape}{}{\bfseries}{. }{0 em}{ }
+
+%\geometry{verbose,a4paper,tmargin=2cm,bmargin=2cm,lmargin=2.5cm,rmargin=1.5cm}
+\title{Геометрия и Топология}
+\author{Мастера конспектов}
+\date{14 января 2020 г.}
+
+\theoremstyle{indented}
+\newtheorem{theorem}{Теорема}
+
+\begin{document}
+
+\maketitle 
+
+\newpage
+
+\hypertarget{t1}{Честно говоря, ненависть} к этой вашей топологии просто невообразимая.
+\tableofcontents
+
+\newpage
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Метрические пространства, произведение метрических пространств, пространство $\mathbb{R}^n$.} \\
+
+Функция $d: X \times X \rightarrow \mathbb{R}_+ = \{x \in \mathbb{R} : x\geq 0\}$ называется \hypertarget{n1}{\textit{метрикой}} (или \textit{расстоянием}) 
+в множестве $X$, если \
+
+\medskip
+
+1. $d(x, y)=0 \Leftrightarrow x=y$; \\
+\indent
+2. $d(x, y)= d(y, x)$ для любых $x, y \in X$; \\
+\indent
+3. $d(x, y)\leq d(x, z)+d(z, y)$. \\
+
+Пара $(X, d)$, где $d$ - метрика в $X$, называется \hypertarget{n2}{\textit{метрическим пространством}}. \\
+
+\textbf{Примеры:}
+
+\begin{itemize}
+    \item Модуль разности на прямой;
+    \item Евклидова метрика;
+    \item $X=\mathbb{R}^n, d(x,y):=\text{max}_{i=0}^n|x_i-y_i|$
+\end{itemize}
+
+\begin{theorem}
+(Прямое произведение метрических пространств). Пусть $(X, d_X)$ и $(Y, d_Y)$ - метрические пространства. Тогда функция
+\[
+    d((x_1, y_1), (x_2, y_2))=\sqrt{d_X(x_1, x_2)^2+d_y(y_1, y_2)^2}
+\]
+задаёт метрику на $X\times Y$.
+\end{theorem}
+
+\begin{proof}
+1 и 2 аксиомы очевидны. Проверим выполнение третьей. Сделать это несложно, нужно всего лишь написать неравенство и дважды возвести в квадрат. Можно как-нибудь поиспользовать Коши или КБШ, на ваш вкус.
+\end{proof}
+
+\medskip
+
+Пространство $X=\mathbb{R}^n, x=(x_1, \dots, x_n), y=(y_1, \dots, y_n)$, на котором задана метрика
+
+\[
+    d(x, y)=\sqrt{(x_1-y_2)^2+\dots+(x_n-y_n)^2}
+\]
+
+
+(которая называется \textit{евклидовой}), есть $\mathbb{R}^n$.
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Шары и сферы. Открытые множества в метрическом пространстве. Объединения и пересечения открытых множеств.}
+    \begin{itemize}
+    \item Пусть $\left(X, d\right)$ --- метрическое пространство, $a \in X, r \in \mathbb R, r > 0.$
+    
+    Множества 
+    \[
+    \begin{aligned}
+        B_r(a) &= \{x \in X : d(a,x) < r\}, \\
+        \overline{B_r} (a) = D_r &(a) = \{x \in X: d(a,x) \leq r\}. \\
+    \end{aligned}
+    \]
+    называются, соответственно, открытым \hypertarget{n3}{шаром} (или просто шаром) и замкнутым шаром пространства $\left(X,d\right)$ с центром в точке $a$ и радиусом $r$.
+    \item Пусть $\left(X, d\right)$ --- метрическое пространство, $A \subseteq X$. Множество $A$ называется \hypertarget{n4}{открытым} в метрическом пространстве, если
+    \[
+        \forall a \in A \exists r > 0: B_r(a) \subseteq A.
+    \]
+    \textbf{Примеры:} \begin{itemize}
+        \item $\varnothing$, $X$ и $B_r(a)$ открыты в произвольном метрическом пространстве $X$.
+        \item В пространстве с дискретной метрикой любое множество открыто.
+    \end{itemize}
+    \item 
+    \begin{theorem}
+    
+    В произвольном метрическом пространстве $X$ 
+    \begin{enumerate}
+        \item объединение любого набора открытых множеств открыто;
+        \item пересечение конечного набора открытых множеств открыто.
+    \end{enumerate}
+    \end{theorem}
+    \begin{proof}
+    \
+    \begin{enumerate}
+        \item Пусть $\left\{U_i\right\}_{i \in I}$ --- семейство открытых множеств в $X$.
+        Хотим доказать, что $U = \bigcup_{i \in I}U_i$ --- открыто.
+        \[
+            x \in U \Rightarrow \exists j \in I : x \in U_j \Rightarrow \exists r > 0: B_r(x) \subseteq U_j \subseteq U.
+        \]
+        \item
+        Пусть семейство $\left\{U_i\right\}_{i=1}^n$ --- семейство открытых множеств в $X$.
+        Хотим доказать, что $U = \bigcap_{i=1}^n U_i$ --- открыто.
+        \[
+            \begin{aligned}
+        x \in U \Rightarrow \forall i&: x \in U_i \Rightarrow \exists r_i: B_{r_i} (x) \subseteq U_i; \\ 
+        r :&= min\{r_i\} \Rightarrow B_r \subseteq U.
+            \end{aligned}
+        \]
+    \end{enumerate}
+    \end{proof}
+    \end{itemize}
+
+
+
+  
+\section{Билет} \
+
+\medskip 
+
+\textbf{Топологические пространства. Замкнутые множества, их объединения и пересечения. Замкнутость канторова множества.}\\
+
+\textbf{Определение:} Пусть $X$ - \hypertarget{n5}{произвольное} множество, и множество $\Omega \subset \rho (X)$ обладает следующими свойствами:
+\begin{itemize}
+  \item $\emptyset, X \in \Omega$
+  \item Объединение любого набора множеств из $\Omega$ также лежит в $\Omega$
+  \item Пересечение любого конечного набора множеств из $\Omega$ также лежит в $\Omega$
+\end{itemize}
+В таком случае:
+\begin{itemize}
+ \item $\Omega$ - $\emph{топологическая структура}$ (или $\emph{топология}$) на $X$.
+ \item Множество $X$ с выделенной топологической структурой называется $\textit{топологическим пространством}$.
+ \item Элементы множества $\Omega$ называются $\emph{открытыми множествами}$ пространства $(X, \Omega)$.
+\end{itemize}
+\textbf{Определение:} Множество $F \subseteq X$ \hypertarget{n6}{называется} \textit{замкнутым} в $X$, если $X \backslash F$ открыто
+\\
+\begin{theorem}
+    В произвольном топологическом пространстве $X$:
+\begin{enumerate}
+    \item $\emptyset$ и $X$ замкнуты
+    \item Объединение любого конечного набора замкнутых множеств замкнуто
+    \item Пересечение любого набора замкнутых множеств замкнуто
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Замкнутость множеств их всех трёх пунктов проверяется по определению: 
+\begin{enumerate}
+    \item $\emptyset=X \backslash X$ и $X=X \backslash \emptyset$
+    \item $X \backslash \bigcap F_i = \bigcup (X \backslash F_i)$
+    \item $X \backslash \bigcup F_i = \bigcap (X \backslash F_i)$
+\end{enumerate}
+В пунктах (b) и (c) мы использовали формулы Де Моргана.
+\end{proof}
+
+\textbf{Примеры:} 
+\begin{itemize}
+ \item В дискретной топологии все множества замкнуты
+ \item В антидискретной топологии замкнуты только $\emptyset$ и $X$
+ \item В метрическом пространстве любое одноточечное множество замкнуто.
+ \begin{proof}
+    $X \backslash \{a\}=\bigcup_{b \in X \backslash \{a\}} B_{d(b, a)}(b)$ - открыто.
+ \end{proof}
+ \item В метрическом пространстве любой замкнутый шар замкнут
+ \begin{proof}
+    Для каждой точки $b \in X \backslash D_r(a)$ можно выбрать открытый шар $B_{d(b, a)-r}(b)$, который, во-первых, корректно определён (так как $b \notin D_r(a) \Rightarrow d(b, a) > r$), а во-вторых, не содержит точек из $D_r(a)$ (так как если $c \in B$ и $c \in D$, то $\Rightarrow d(c, b) < d(b, a)-r \Rightarrow d(c, a) \geq d(c, b) + d(b, a) > r$ и $ d(c, a) \leq r$, противоречие)
+ \end{proof}
+ \item Канторово множество замкнуто в стандартной топологи на $\mathbb{R}$
+ \begin{proof}
+    Следует из построения множества.
+ \end{proof}
+\end{itemize}
+
+\textbf{Утверждение-сюрприз от leon.tyumen: }Пусть $U$ открыто в $X$, а $V$ замкнуто. Тогда:
+\begin{itemize}
+    \item $U \textbackslash V$ открыто в $X$.
+    \begin{proof}
+     $U \textbackslash V = U \cap (X \textbackslash V)$
+    \end{proof}
+    \item $V \textbackslash U$ замкнуто в $X$.
+    \begin{proof}
+     $V \textbackslash U = V \cap (X \textbackslash U)$
+    \end{proof}
+\end{itemize}
+
+\section{Билет} \
+
+\medskip
+    
+\textbf{Внутренность, замыкание и граница множества: определение и свойства включения, объединения, пересечения.} \\
+
+Пусть $(X, \Omega)$ - топологическое пространство и $A\subseteq X$. \textit{Внутренностью} \hypertarget{n7}{множества} $A$ называется объединение всех открытых множество, содержащихся в $A$, т. е.:
+\[
+    \text{Int} A = \bigcup_{U\in \Omega, U\subseteq A} U.
+\]
+
+Свойства:
+\begin{itemize}
+    
+    \item $\text{Int} A $ - открытое множество;
+    \item $\text{Int} A \subseteq A$;
+    \item $B$ открыто, $B\subseteq A \Rightarrow B\subseteq \text{Int} A$;
+    \item $A = \text{Int}A \Leftrightarrow A$ открыто;
+    \item $\text{Int}(\text{Int} A)=\text{Int}A$;
+    \item $A \subseteq B \Rightarrow \text{Int} A \subseteq \text{Int} B$;
+    \item $\text{Int}(A\cap B) = \text{Int}A\cap\text{Int}B$; \\ 
+    \textit{Доказательство}:\\
+    $\subseteq: A\cap B\subseteq A \Rightarrow \text{Int} (A\cap B)\subseteq \text{Int}A \dots$; \\
+    $\supseteq: \text{Int}A\cap\text{Int} B \subseteq A\cap B \Rightarrow \text{Int}A\cap\text{Int}B \subseteq \text{Int}(A\cap B)$.
+    \item $\text{Int}(A\cup B)\supseteq \text{Int}A\cup\text{Int}B$; \\
+    \textit{Доказательство $\neq$}:\\
+    $X = \mathbb{R}, A = \mathbb{Q}, B=\mathbb{R}\backslash \mathbb{Q}$, \\
+    $\text{Int}A=\text{Int}B = \emptyset , \text{Int}(A\cup B) = \text{Int}\mathbb{R} = \mathbb{R}$
+
+
+\end{itemize}
+
+Пусть $(X, \Omega)$ - топологическое пространство и $A\subseteq X$. \textit{Замыканием} \hypertarget{n8}{множества} $A$ называется пересечение всех замкнутых множество, содержащих $A$, т. е.:
+\[
+    \text{Cl} A = \bigcap_{X\backslash V\in \Omega, V\supseteq A} V.
+\]
+
+Свойства:
+\begin{itemize}
+    
+    \item $\text{Cl}A$ - замкнутое множество;
+    \item $A\subseteq \text{Cl}A$;
+    \item $B$ замкнуто, $B\supseteq A \rightarrow B \supseteq \text{Cl}A$;
+    \item $A = \text{Cl}A \Leftrightarrow A$ замкнуто;
+    \item $\text{Cl}(\text{Cl}A)=\text{Cl}A$;
+    \item $A\subseteq B \rightarrow \text{Cl}A\subseteq \text{Cl}B$;
+    \item $\text{Cl}(A\cup B)=\text{Cl}A\cup \text{Cl}B$; \\ 
+    \textit{Доказательство}:\\
+    $\subseteq: \text{Cl}(A\cup B)\subseteq A\cup B, \text{причём наименьший}$; \\
+    $\supseteq: \text{Cl}(A\cup B)\subseteq \text{Cl}A$
+    \item $\text{Cl}(A\cap B)\subseteq \text{Cl}A\cap\text{Cl}B $ (на самом деле, даже $\neq$);
+    \item \textcolor{magenta}{$\text{Cl}A=X\backslash \text{Int}(X\backslash A)$}.
+
+\end{itemize}
+
+Пусть $(X, \Omega)$ - топологическое пространство и $A\subseteq X$. Тогда \textit{границей} \hypertarget{n9}{множества} $A$ называется разность его замыкания и внутренности: $\text{Fr}A = \text{Cl}A\backslash \text{Int}A$. \\
+
+Свойства:
+\begin{itemize}
+
+    \item $\text{Fr} A$ - замкнутое множество;
+    \item $\text{Fr} A = \text{Fr}(X\backslash A)$;
+    \item $A$ замкнуто $\Leftrightarrow A \supseteq \text{Fr} A$;
+    \item $A$ открыто $\Leftrightarrow A \cap \text{Fr} A = \emptyset$.
+
+\end{itemize}
+
+\section{Билет} \
+
+\medskip
+
+\textbf{ Расположение точки относительно множества: внутренние и граничные точки, точки прикосновения, предельные и изолированные точки. Внутренность, замыкание и граница множества: из каких точек они состоят.}
+\begin{itemize}
+    \item \hypertarget{n10}{Определения}($A$ - множество в топологическом пространстве):
+    \begin{enumerate}
+        \item \hypertarget{n11}{Окрестностью} точки топологического пространства называется любое открытое множество, содержащее эту точку.
+        \item Точка называется внутренней для $A$, если некоторая её окрестность содержится в $A$.
+        \item Точка называется точкой прикосновения для $A$, если любая её окрестность пересекается с $A$.
+        \item Точка называется граничной для $A$, если любая её окрестность пересекается с $A$ и с дополнением $A$
+        \item Точка называется изолированной для $A$, если она лежит в $A$ и некоторая её окрестность пересекается по $A$ ровно по этой точке.
+        \item Точка называется предельной для $A$, если любая её выколотая окрестность пересекается с $A$.
+    \end{enumerate}
+    \textcolor{magenta}{Примеры... :(}
+    
+    \item 
+    \begin{enumerate}
+        \item Внутренность множества есть множество его внутренних точек:
+            \begin{itemize}
+                \item $b$ --- внутр. точка для $A \Rightarrow \exists U_\varepsilon(b) \subseteq A \Rightarrow U_\varepsilon(b) \subseteq Int A  \Rightarrow b \in IntA$;
+                \item $b \in Int A \Rightarrow b \text{ лежит в $A$ вместе с окрестностью } IntA \Rightarrow b$ --- внутренняя точка для $A$. 
+            \end{itemize}
+        \item Замыкание множества есть множество его точек прикосновения:
+                $b$ --- точка прикосновения для $A \iff b \notin Int(X \setminus A) \iff b \in ClA$
+        \item Граница множества есть множество его граничных точек:
+        
+            $b$ --- граничная точка множества $A \iff (b \in ClA) \wedge (b \in Cl(X \setminus~ A)) \iff (b\in ClA) \wedge (b \notin IntA) \iff b \in FrA$.
+        \item Замыкание множества есть объединение множеств предельных и изолированных точек:
+        
+        $b \in ClA \iff b$ --- точка прикосновения $\iff$ любая окрестность $b$ пересекается с $A \iff$ либо любая выколотая окрестность $b$ пересекается с $A$, либо существует выколотая окрестность, не пересекающаяся с $A$(тогда $b \in A$)$\iff$ либо $b$ --- предельная точка, либо $b$ --- изолированная точка.     
+        \item Замыкание множества есть объединение граничных и внутренних точек:
+        
+        $b \in ClA \iff b$ --- точка прикосновения $\iff$ любая окрестность $b$ пересекается с $A \iff$ либо любая окрестность $b$ пересекается с $X \setminus A$, либо существует окрестность, которая не пересекается $X \setminus A \iff$ либо $b$ --- граничная точка, либо $b$ --- внутренняя точка.
+    \end{enumerate}
+\end{itemize}
+
+
+\section{Билет} \
+
+\medskip 
+
+\textbf{Cравнение метрик и топологий (грубее/тоньше). Липшицево эквивалентные метрики.}\\
+
+\textbf{Определение: } Топология $\Omega_1$ \textit{слабее (грубее)} \hypertarget{n12}{топологии} $\Omega_2$ на $X$, если $\Omega_1 \subseteq \Omega_2$. В этом случае топология $\Omega_2$ \textit{сильнее (тоньше)} топологии $\Omega_1$
+\\
+
+\textbf{Пример: } Из всех топологичских структур на $X$ антидискретная топология - самая грубая; дискретная топология - самая тонкая.
+\\
+\begin{theorem}
+ Топология метрики $d_1$ грубее топологии метрики $d_2$ $\Longleftrightarrow$ в любом шаре метрики $d_1$ содержится шар метрики $d_2$ с тем же центром
+\end{theorem}
+
+\begin{proof} 
+    $"\Rightarrow"$ шар $B_r^{d_1}(a)$ открыт в $d_2$ $\Rightarrow$ точка $a$ входит в $B_r^{d_2}(a)$ вместе с некоторой своей окрестностью $B_q^{d_2}(a)$ 
+$"\Leftarrow"$ $U$ открыто в $d_1$ $\Rightarrow$ $\forall a \in U \exists q>0 : B_q^{d_1}(a) \subseteq U \Rightarrow \exists r > 0 : B_r^{d_2}(a) \subseteq B_q^{d_1}(a) \subseteq U \Rightarrow U$ открыто в $d_2$ 
+\end{proof}
+
+\textbf{Следствие 1:} Пусть $d_1, d_2$ - две метрики на $X$. Если $d_1(a, b) \leq d_2(a, b)$ для любых $a, b \in X$, то топология $d_1$ грубее топологии $d_2$
+
+\begin{proof} $d_1 \leq d_2 \Rightarrow \forall r > 0 \forall a \in X B_r^{d_2}(a) \subseteq B_r^{d_1}(a) \Longleftrightarrow$ топология $d_1$ грубее топологии $d_2$
+\end{proof}
+
+\textbf{Определение:} Две метрики в одном множестве называются \hypertarget{n13}{эквивалентными}, если они порождают одну и ту же топологию.
+\\
+
+\textbf{Лемма: } Пусть $(X, d)$ - метрическое пространство. Тогда для любого $C>0$ функция $C \cdot d$ - тоже метрика, причём эквивалентная метрике $d$.
+
+\begin{proof} НУ ОЧЕВИДНО ЖЕ
+\end{proof}
+
+\textbf{Следствие 2:} Пусть $d_1, d_2$ - две метрики на $X$, причём для любых $a, b \in X$ выполнено $d_1(a, b) \leq Cd_2(a, b)$. Тогда топология $d_1$ грубее топологии $d_2$.
+
+\begin{proof} По лемме $d_2$ и $C \cdot d_2$ эквивалентны, а по следствию 1 $d_1$ грубее $C \cdot d_2$
+\end{proof}
+
+\textbf{Определение: } Метрики $d_1, d_2$ \hypertarget{n14}{называются} \textit{липшицево эквивалентными}, если существуют $c, C > 0$ такие, что для любых $a, b \in X$ $c \cdot d_2(a, b) \leq d_1(a, b) \leq C \cdot d_2(a, b)$
+\\
+\begin{theorem}
+Если метрики $d_1$ и $d_2$ липшицево эквивалентны, то они эквивалентны.
+\end{theorem}
+
+\begin{proof} Согласно следствию 2, каждая из метрик грубее другой $\Rightarrow$ они эквивалентны.
+\end{proof}
+ 
+\textbf{Упражнение:} Верно ли обратное утверждение?
+\\
+
+\textbf{Ответ на упражнение:} Нет.
+\\
+
+\textbf{Пример: } Три метрики на $\mathbb{R}^2$ - Евклидова, $\max\{|x_1-x_2|, |y_1-y_2|\}$ и $|x_1-x_2|+|y_1-y_2|$ эквивалентны (точки - это $(x_1, y_1)$ и $(x_2, y_2)$).
+
+\begin{proof} Нетрудно проверить, что $\max\{|x_1-x_2|, |y_1-y_2|\}<\sqrt{(x_1-x_2)^2+(y_1-y_2)^2} < 2 \cdot \max\{|x_1-x_2|, |y_1-y_2|\}$, поэтому первая и вторая метрики эквивалентны по предыдущей теореме. Аналогично, $\max\{|x_1-x_2|, |y_1-y_2|\}< |x_1-x_2|+|y_1-y_2| < 2 \cdot \max\{|x_1-x_2|, |y_1-y_2|\}$, поэтому вторая и третья метрики также эквивалентны.
+\end{proof}
+
+\textbf{Определение: } Топологическое пространство \hypertarget{n15}{называется} \textit{метризуемым}, если существует метрика, порождающая его топологию.
+\\
+
+\textbf{Примеры: } 
+\begin{itemize}
+    \item Дискретная топология порождается дискретной метрикой 
+    \item $X$ с антидискретной топологией неметризуемо при $|X|>1$
+    
+    \begin{proof} Пусть $a, b \in X$ ($a \neq b$), и $r=d(a, b)$. Тогда шар $B_r(a)$ открыт, непуст (так как $a \in B_r(a)$) и не совпадает со всем пространством (так как $b \notin B_r(a)$)
+    \end{proof}
+\end{itemize}
+
+\section{Билет} \
+
+\medskip
+
+\textbf{База топологии: два определения и их эквивалентность. Критерий базы}\\
+
+\textit{Базой} \hypertarget{n16}{топологии} $\Omega$ называется такой набор $\Sigma$ открытых множеств, что всякое открытое множество представимо в виде объединения множеств из $\Sigma$.
+
+\[
+    \Omega \supseteq \Sigma \text{ - база } \Leftrightarrow \forall U \in \Omega \exists \Lambda \subseteq \Sigma : U = \bigcup_{W\in \Lambda} W.
+\]
+
+\begin{theorem}
+    (Второе определение базы). Пусть $(X, \Omega)$ - топологическое пространстви и $\Sigma \subseteq \Omega$. $\Sigma$ - база топологии $\Omega$ $\Longleftrightarrow \forall U \in \Omega \forall a \in U \exists V_a \in \Sigma : a\in V_a \subseteq U$.
+\end{theorem}
+
+\begin{proof} Совсем немного формулок: \
+
+    \begin{itemize}
+        \item $\forall U\in \Omega$ и $\forall a\in U$. \\
+        $\Sigma - \text{база} \Rightarrow \exists \Lambda \subseteq \Sigma : U = \bigcup _{W\in \Lambda}W \Rightarrow \exists V_a \in \Lambda : a\in V_a$
+        \item $\forall U \in \Omega : U = \bigcup_{a\in U}V_a$.
+    \end{itemize}
+\end{proof}
+
+\begin{theorem}
+    (\hypertarget{n17}{Критерий} базы). Пусть $X$ - произвольное множество и $\Sigma = \{ A_i \}_{i\in I}$ - его покрытие. $\Sigma$ - база некоторой топологии $\Longleftrightarrow \forall A_s, A_m \in \Sigma \exists J_{s, m}\subseteq I:A_s\cap A_m = \bigcup_{j\in J_{s, m}}A_j$.
+\end{theorem}   
+
+\begin{proof}
+    Докажем факт в обе стороны: \ 
+    \textcolor{magenta}{$\Rightarrow$} По определению базы и открытости множеств $A_s \cap A_m$. \ 
+    \textcolor{magenta}{$\Leftarrow$} Пусть $\Omega$ - совокупность всевозможных объединений множеств из $\Sigma$. Докажем, что $\Omega $ - топология на $X$. \
+    \begin{itemize}
+        \item $\Sigma$ - покрытие для $X \Rightarrow X \in \Omega$;
+        \item объединение объединений есть объединение;
+        \item $U, V \in \Omega \Rightarrow U = \bigcup_{s\in S\subseteq I}A_s $ и $V = \bigcup_{m\in M\subseteq I} A_m$, 
+        \[
+            U\cap V = \bigcup_{s,m}(A_s\cap A_m) = \bigcup_{s,m}\biggl( \bigcup_{j\in J_{s,m}}A_j\biggr)\in \Omega.
+        \]
+    \end{itemize}
+
+\end{proof}    
+
+\section{Билет} \
+
+\textbf{База топологии в точке. Связь между базой топологии и базами в точках. Предбаза топологии, как из неё получается база.}\\
+    \begin{itemize}
+    \item 
+    Пусть $\left(X, \Omega\right)$ --- топологическое пространство, $a \in X$ и $\Lambda \subseteq \Omega. \Lambda$ называется базой топологии (базой окерестностей) в точке $a$, если:
+    \begin{enumerate}
+        \item $\forall U \in \Lambda: a \in U;$ 
+        \item $\forall U_\varepsilon (a) \exists V_a \in \Lambda: V_a \subseteq U_\varepsilon (a).$
+    \end{enumerate}
+    
+    \textit{Следствия}
+    
+    \begin{enumerate}
+        \item $\Sigma$ --- база топологии $\Rightarrow \forall a \in X \; \Sigma_a := \left\{ U \in \Sigma: a \in U \right\}$ --- база в точке $a$. 
+        \item Пусть $\left\{ \Sigma_a\right\}_{a \in X}$ --- семейство баз во всех точках. Тогда $\bigcup_{a \in X} \Sigma_a$ --- база топологии.
+    \end{enumerate}
+    
+    \textbf{Пример}
+    
+    Множество $\Sigma_a = \left\{B_r(a): r \in \mathbb R_+ \right\}$ является базой метрического пространства в точке а.
+    \item
+    Набор $\Delta$ открытых множеств топологического пространства $\left(X, \Omega \right)$ называется \textit{предбазой} \hypertarget{n18}{топологии}, если $\Omega$ --- наименьшая по включению топология, содержащая $\Delta$.
+    
+    \begin{theorem}
+        Любой набор $\Delta$ подмножеств множества $X$ является предбазой некоторой топологии на $X$.
+    \end{theorem}
+    \begin{proof}
+    
+         Очевидно, $\Delta$ будет предбазой \textit{топологии объединений конечных пересечений подмножеств $\Delta$} ($X \bigcup \left\{ \cup\{\cap_{i=1}^k W_i\}\right\}, W_i\in~ \Delta$).
+    \end{proof}
+    \textbf{Пример} (\textit{Следствие})
+    
+    База топологии является её предбазой.
+    \end{itemize}
+
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Топология подпространства. Свойства: открытость и замкнутость подмножеств, база индуцированной топологии, транзитивность, согласованность с метрическим случаем.}\\
+
+\textbf{Определение:} Пусть $(X, \Omega)$ - топологическое пространство, и $A \subseteq X$. Тогда совокупность $\Omega_A = \{U\cap A : U \in \Omega \}$ - топология на множестве $A$.
+
+\begin{proof} Просто проверка аксиом топологии.
+\end{proof}
+
+\textbf{Определение:} 
+\begin{itemize}
+    \item $\Omega_A$ - \textit{индуцированная топология}
+    \item $(A, \Omega_A)$ - \textit{подпространство} пространства $(X, \Omega)$.
+\end{itemize}
+\textbf{Свойства:}
+\begin{itemize}
+    \item Множества, открытые в подпространстве, не обязательно открыты в самом пространстве
+    \\
+    \textbf{Пример:} $X=\mathbb{R}, A=[0, 1]$. Тогда $[0, 1)$ открыто в $A$, но не в $X$.
+    
+    \item Открытые множества открытого подпространства открыты и во всём пространстве.
+    \begin{proof} $U$ открыто в $A \subseteq X$ $\Rightarrow \exists V \in \Omega : U=V \cap A$, т.е. открыто в $X$, как пересечение двух открытых множеств.
+    \end{proof}
+
+    \item Множества, замкнутые в подпространстве, не обязательно замкнуты в самом пространстве
+    \\
+    \\
+    \textbf{Пример:} $X=\mathbb{R}, A=(0, 1)$. Тогда $(0, \frac{1}{2}]=(0, 1) \backslash (\frac{1}{2}, 1)$ замкнуто в $A$, но не в $X$.
+    \item Замкнутые множества замкнутого подпространства замкнуты и во всём пространстве.
+    \begin{proof} $U$ замкнуто в $A \subseteq X$ $\Rightarrow \exists V \in \Omega : A \textbackslash U=V \cap A$, но тогда $X \textbackslash U = (X \textbackslash A) \cup V$ т.е. открыто в $X$, как объединение двух открытых множеств. Значит, $U$ замкнуто в $X$.
+    \end{proof}
+    \item \textbf{База индуцированной топологии:} Если $\Sigma$ - база топологии $\Omega$, то $\Sigma_A=\{U \cap A : U \in \Sigma\}$ - база топологии $\Omega_A$.
+    \begin{proof}
+    Просто проверка определения базы.
+    \end{proof}
+    \item \textbf{"Транзитивность" индуцированных топологий:} Пусть $X$ - топологическое пространство, и $B \subseteq A \subseteq X$. Тогда $(\Omega_A)_B=\Omega_B$
+    \begin{proof}
+    Так как $U \cap B = (U \cap A) \cap B$, то $\Omega_B \subseteq (\Omega_A)_B$. Покажем обратное. Пусть $U \in (\Omega_A)_B$. Это значит, что существует открытое в $A$ множество $V$ такое, что $U=B \cap V$. $V$ открыто в $A$ $\Rightarrow$ существует открытое в $X$ множество $W$ такое, что $V=X \cap W$. Но тогда $U=B \cap (X \cap W) = B \cap W$ $\Rightarrow$ $U$ открыто в $X$.
+    \end{proof}
+    \item \textbf{Связь с метрическим случаем:} Пусть $(X, d)$ - метрическое пространство, и $A \subseteq X$. Рассмотрим метричесоке пространство $(A, d_{|A})$, а также порождаемую его метрикой топологию $\Omega_A''$. Кроме того, рассмотрим топологичесоке пространство  $(X, \Omega)$, порождаемую метрикой $d$, и его сужение $(A, \Omega_A)$ на $A$. Тогда $\Omega_A=\Omega_A''$
+    \begin{proof}
+    $U \in \Omega_A'' \Longleftrightarrow U = \bigcup B_{r_i}^A(a_i) \Longleftrightarrow U \overset{a_i \in A}{=} A \cap \Big ( \bigcup B_{r_i}^X(a_i) \Big ) \overset{(!)}{\Longrightarrow} U=A \cap V \Longleftrightarrow U \in \Omega_A$. Таким образом, мы доказали одно вложение, и для полного счастья нам не хватает только равносильности в моменте $(!)$. Мы победим, если для данного $U$, открытого в $A$, сможем выбрать открытое $V \in X$ такое, что $U=V \cap A$, и $V$ представляется в виде объединения шаров из $X$ с центрами из $A$. Но действительно, поскольку $U$ открыто в $A$, существует какое-то $V' : U=V' \cap A$. Рассмотрим $V= \bigcup_{a_i \in V' \cap A} B_{r_i}^X(a_i)$, где $B_{r_i}^X(a_i)$ - шары, полностю содержащиеся в $X$ (они существуют в силу его открытости). Тогда $U=V \cap A$, $V$ открыто в $X$ и удовлетворяет условию, которое мы так от него ждали.
+    \end{proof}
+\end{itemize}
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Непрерывные отображения. Непрерывность композиции и сужения, замена области значений.}\\
+
+Пусть $X, Y$ - топологические пространства. Отображение $f: X \rightarrow Y$ называется \textit{непрерывным}, если прообраз любого открытого множества пространства $Y$ является открытым подмножеством пространства $X$.\\
+
+Также можно упомянуть, что отображение непрерывно тогда и только тогда, когда прообраз любого замкнутого множества замкнут. 
+
+\begin{proof}
+    $f^{-1}(Y\backslash U)=X\backslash f^{-1}(U)$.
+\end{proof}
+
+\begin{theorem}
+    (О композиции непрерывных). Композиция непрерывных отображений непрерывна.
+\end{theorem}
+
+\begin{proof}
+    Пусть $f:X\rightarrow Y$, $g:Y\rightarrow Z$ - непрерывны. Если $U\in \Omega_Z$, то $g^{-1}(U)\in \Omega_Y$, значит, $(g\circ f)^{-1}(U)=f^{-1}(g^{-1}(U))\in\Omega_X$.
+\end{proof}
+
+\begin{theorem}
+    (О сужении отображения). Пусть $Z$ - подпространство $X$ и $f: X\rightarrow Y$ непрерывно. Тогда $f|_Z:Z\rightarrow Y$ непрерывно.
+\end{theorem}
+
+\begin{proof}
+    $\text{in}_Z: Z\rightarrow X$ непрерывно, а также $f|_Z = f\circ \text{in}_Z$.
+\end{proof}
+
+\begin{theorem}
+    (Об изменении области значений). Пусть $Z$ - подпространство $Y$, $f:X\rightarrow Y$ - отображение и $f(X)\subseteq Z$. Пусть $\tilde{f}: X\rightarrow Z$, т. ч. $\tilde{f}(x)=f(x)$. Тогда $f$ непрерывная $\Longleftrightarrow$ $\tilde{f}$ непрерывна.
+\end{theorem}
+
+\begin{proof}
+    Докажем факт в обе стороны: \
+    \textcolor{magenta}{$\Leftarrow$} $f=\text{in}_Z\circ \tilde{f}$.\
+    \textcolor{magenta}{$\Rightarrow$} $\forall U \in \Omega_Z \exists W \in \Omega_Y : U=W\cup Z$. $\tilde{f}^{-1}(U) = f^{-1}(W)\in \Omega_X$.
+\end{proof}
+
+\section{Билет} \
+
+\textbf{Непрерывность в точке. Глобальная непрерывность эквивалентна непрерывности в каждой точке. Непрерывность и база окрестностей в точке.}
+    \begin{itemize}
+        \item Отображение $f: X \rightarrow Y$ называется непрерывным в точке $a \in X$, если
+        $\forall U_\varepsilon (f(a)) \; \exists V_\delta (a) : f(V_\delta (a)) \subseteq U_\varepsilon (f(a))$.
+        \textcolor{magenta}{Пример:( ...}
+        \begin{theorem}
+            Отображение $f: X \rightarrow Y$ непрерывно $\iff$ оно непрерывно в каждой точке пространства.
+        \end{theorem}
+        \textit{Доказательство:}
+    
+            \textcolor{magenta}{($\Rightarrow$)} Очевидно, $V = f^{-1} (U).$
+        
+            \textcolor{magenta}{($\Leftarrow$)}
+            Пусть $U \in \Omega_Y \Rightarrow \forall a \in f^{-1}(U) \; \exists V_{\varepsilon}(a) 
+            \subseteq f^{-1}(U) \Rightarrow a$ --- внутренняя точка $f^{-1}(U) \Rightarrow f^{-1}(U) \in \Omega_X$
+            
+            \qed
+            
+            \item 
+            \begin{theorem}
+                Пусть $X, Y$ --- топологические пространства, $a \in X, f~{: X \rightarrow Y}$ --- отображение, $\Sigma_a$ --- база окрестностей в точке $a$ и $\Lambda_{f(a)}$ --- база окрестностей в точке $f(a)$. Тогда $f$ непрерывно в точке $a \in X \iff \forall U \in \Lambda_{f(a)} \; \exists V_a \in \Sigma_a : f(V_a) \subseteq U.$
+            \end{theorem}
+            
+            \textit{Доказательство:} 
+            
+            \textcolor{magenta}{($\Rightarrow$)} $f$ непрерывно в точке $a \Rightarrow \left( \forall U \in \Lambda_{f(a)} \: \exists W_\varepsilon(a): f(W_\varepsilon(a)) \subseteq U) \right) \wedge \left( \exists V \in \Sigma_a: V \in W_\varepsilon(a)\right)$.
+            
+            \textcolor{magenta}{($\Leftarrow$)} $\left(\forall U_\varepsilon(f(a)) \exists U \in \Lambda_{f(a)}: U \subseteq U_\varepsilon(f(a))\right)\wedge\left(\exists V \in \Sigma_a : f(V) \subseteq U \subseteq U_\varepsilon(f(a))\right) $
+            
+            \qed
+    \end{itemize}
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Непрерывность в метрических пространствах $(\epsilon–\delta)$. Липшицевы отображения. Функции расстояния.}\\
+
+\textbf{Следствие из последней теоремы билета 11:} Пусть $X, Y$ - метрические пространства, $a \in X$, $f: X \rightarrow Y$ - отображение.
+\begin{itemize}
+    \item $f$ непрерывно в точке $a \in X$ $\Longleftrightarrow$ $\forall \epsilon > 0 \exists \delta > 0 : f(B_{\delta}(a)) \subseteq B_{\epsilon}(f(a))$
+    \item $f$ непрерывно в точке $a \in X$ $\Longleftrightarrow$ $\forall \epsilon > 0 \exists \delta > 0 : \forall x \in X d_X(x, a) < \delta \rightarrow d_Y(f(x), f(a)) < \epsilon$
+\end{itemize}
+\textbf{Определение:} Пусть $X, Y$ - метрические пространства. Отображение $f: X \rightarrow Y$ называется \textit{липшицевым}, если существует $C>0$ такое, что $d_Y(f(a), f(b)) \leq C \cdot d_X(a, b)$ для любых $a, b \in X$. Число $C$ называют \textit{константой Липшица} отображения $f$.
+\begin{theorem}
+Всякое липшицево отображение непрерывно
+\end{theorem}
+
+\begin{proof}
+Напрямую следет из $\epsilon$-$\delta$ определения непрерывности.
+\end{proof}
+\textbf{Примеры:}
+\begin{itemize}
+    \item Зафиксируем точку $x_0$ метрического пространства $(X, d)$. Тогда отображение $f: X \rightarrow \mathbb{R}$, заданное формулой $f(a)=d(x_0, a)$ 1-липшицево и, как следствие, непрерывно.
+    \begin{proof}
+    Отображение $f$ -  1-липшицево $\Longleftrightarrow$ для любых $a, b \in X$ $d(a, b) \geq |f(a)-f(b)| = |d(x_0, a)-d(x_0, b)|$, что верно по неравенству треугольника
+    \end{proof}
+    \item \textbf{Определение:} Пусть $A$ - непустое подмножество метрического пространства $(X, d)$. \textit{Расстоянием от точки $x \in X$ до множества $A$} называют число $\inf \{d(x, a) : a \in A \}$.
+    \\ Отображение $f: X \rightarrow R$, заданное формулой $f(x)=d(x, A)$, 1-липшицево и, как следствие, непрерывно.
+    \begin{proof}
+    $f$ - 1-липшицево $\Longleftrightarrow$ для любых $a, b \in X$ $d(a, b) \geq |f(a)-f(b)|=|d(a, A)-d(b, A)|$. Докажем неравенство $d(a, b) \geq d(b, A)-d(a, A)$, второе неравенство доказывается аналогично. Для любого $\epsilon > 0$ найдётся точка $z \in A$ такая, что $0<d(a, z)-d(a, A) < \epsilon$. Также можно заметить, что $d(b, A) \leq d(b, z)$. Тогда $d(b, A) \leq d(b, z) \leq d(b, a)+d(a, z) < d(b, a)+d(a, A)+\epsilon$ $\Longrightarrow$ $d(b, a) \geq d(b, A)-d(a, A)$.
+    \end{proof}
+    \item Метрика $d$ на множестве $X$ является $\sqrt{2}$-липшицевым и, как следствие, непрерывным отображением $f: X \times X \rightarrow \mathbb{R}$
+    \begin{proof}
+    Пусть $\widetilde{d}$ - стандартная метрика на $X \times X$. Пусть $(x, y)$ и $(a, b)$ - две точки из $X \times X$. Тогда по неравенству многоугольника (или просто два раза применённому неравенству треугольника) $|d(x, y)-d(a, b)| \leq d(x, a)+d(y, b) \leq \sqrt{2} \sqrt{d(x, a)^2+d(y, b)^2}=\sqrt{2} \widetilde{d}\big ((x, y), (a, b) \big)$
+    \end{proof}
+\end{itemize}
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Фундаментальные покрытия. Их применение для доказательства непрерывности функций. Фундаментальность открытых и конечных замкнутых покрытий.}\\
+
+Покрытие $\Gamma = \{A_i\}_{i\in I}$ топологического пространства $X$ называется \textit{фундаментальным}, если 
+\[
+    \forall U\subseteq X : (\forall A_i \in \Gamma, U\cap A_i \text{ открыто в } A_i) \Rightarrow (U \text{ открыто в } X).
+\] 
+
+\begin{theorem}
+    Пусть $X, Y$ - топологические пространства, $\Gamma = \{A_i\}_{i\in I}$ - фундаментальное покрытие $X$ и $f: X\rightarrow Y$ - отображение. Если $\forall A_i \in \Gamma$ сужение $f |_{A_i}$ непрерывно, то и само отображение $f$ непрерывно.
+\end{theorem}
+
+\begin{proof}
+    Хотим показать, что прообраз любого $V$, открытого в $Y$, открыт в $X$. Открытое в $A_i$ $(f|_{A_i})^{-1}(V)=f^{-1}(V)\cap A$, так как $f|_{A_i}$ непрерывна. Тогда $f^{-1}(V)\cap A_i$ открыто в $A_i$. Пусть $U = f^{-1}(V)\in X$, и для любого $i$ мы тогда знаем, что $U\cap A_i$ открыто в $A_i$. Тогда из фундаментальности, $U$ открыто в $X$.
+\end{proof}
+
+Покрытие топологического пространства называется:
+\begin{itemize}
+    \item \textit{открытым}, если оно стоит из открытых множеств;
+    \item \textit{замкнутым}, если оно состоит из замкнутых множеств;
+    \item \textit{локально конечным}, если каждая точка пространства обладает окрестностью, пересекающейся лишь с конечным числом элементов покрытия.
+\end{itemize}
+
+\begin{theorem}
+    Всякое открытое покрытие фундаментально.
+\end{theorem}
+
+\begin{proof}
+    \textrm(by lounres.) Пусть дано покрытие $\Gamma$ и $U \subseteq X$, что для всякого $A \in \Gamma$ множество $U \cap A$ открыто в $A$, а значит открыто в $X$. Тогда
+        \[
+            U = U \cap X = \bigcup_{A \in \Gamma} U \cap A
+        \]
+    есть объединение открытых множеств, а значит само открыто. Таким образом $\Gamma$ фундаментально.
+\end{proof}
+
+\begin{theorem}
+    Всякое конечное замкнутое покрытие фундаментально.
+\end{theorem}
+
+\begin{proof}
+    \textrm(by lounres.) Пусть дано покрытие $\Gamma$ и $U \subseteq X$, что для всякого $A \in \Gamma$ множество $U \cap A$ замкнуто в $A$, а значит замкнуто в $X$. Тогда
+        \[
+            U = U \cap X = \bigcup_{A \in \Gamma} U \cap A
+        \]
+    есть конечное объединение замкнутых множеств, а значит само замкнуто. Таким образом $\Gamma$ фундаментально.
+\end{proof}
+
+
+\section{Билет} \
+
+\textbf{Фундаментальность локально конечных замкнутых покрытий.}\\
+    
+    Покрытие называют \textit{\textcolor{black}{локально конечным}}, если каждая точка пространства обладает окрестностью, пересекающейся лишь с конечным числом элементов покрытия. 
+    
+    \textcolor{magenta}{Пример... :(}
+    
+    \begin{theorem}
+        Всякое локально конечное замкнутое покрытие фундаментально.
+    \end{theorem}
+    \textit{Доказательство:}
+    
+    Пусть $\left\{A_i\right\}$ --- локально конечное замкнутое покрытие. Хотим проверить его фундаментальность;
+        \begin{enumerate}
+            \item Пусть $U$ --- произвольное множество, такое что $U \cap A_i$ --- открытое в $A_i$.
+            \item В каждой точке $b$ пространства рассмотрим окрестность $U_b$, перескающуюся с конечным числом множеств покрытия(локальная конечность). Тогда $\left\{U_b\right\}$ --- открытое покрытие пространства $\Rightarrow$ оно фундаментально(13 билет). 
+            \item Зафиксируем $b$, тогда $\left\{U_b \cap A_i\right\}$ --- конечное замкнутое покрытие $U_b \Rightarrow \left\{U_b \cap A_i\right\}$ --- фундаментальное покрытие $U_b$(13 билет).
+        \end{enumerate}
+        
+            Покажем, что $\forall b \left((U \cap U_b) \cap (U_b \cap A_i)\right)$ --- открыто в $U_b \cap A_i \Rightarrow U \cap U_b$ --- открыто в $U_b$(фундаментальность из п.3) $\Rightarrow U$ --- открыто в пространстве(фундаментальность п.2).
+            
+            Действительно, $(U \cap U_b) \cap (U_b \cap A_i) = (U \cap A_i) \cap (U_b \cap A_i), U \cap A_i$ --- открытое в $A_i$(п.1) $\Rightarrow U \cap A_i = V \cap A_i$, где $V$ --- открытое во всём пространстве(определение открытого в подпространстве) $\Rightarrow(U \cap A_i) \cap (U_b \cap A_i) = (V \cap A_i) \cap (U_b \cap A_i) = V \cap (U_b \cap A_i)$ --- открытое в $U_b \cap A_i$
+    
+    \qed
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Топология прямого произведения (конечный случай). Тихоновская топология. Согласованность с метрическим случаем.}\\
+
+\begin{theorem}
+    ~
+    \begin{itemize}
+    \item Пусть $(X, \Omega_X)$ и $(Y, \Omega_Y)$ - топологические пространства. Тогда $\Sigma=\{U \times V : U \in \Omega_X, V \in \Omega_Y \}$ является базой топологии $\Omega_{X \times Y}$ на $X \times Y$
+    \item Если $\Sigma_X$ и $\Sigma_Y$ - базы топологий $(X, \Omega_X)$ и $(Y, \Omega_Y)$ соответственно, то $\Lambda=\{U \times V : U \in \Sigma_X, V \in \Sigma_Y \}$ является базой топологии на $X \times Y$
+    \end{itemize}
+    \end{theorem}
+    \begin{proof}
+    ~
+    \begin{itemize}
+    \item Воспользуемся критерием базы. Во-первых, $\Sigma$ - покрытие $X \times Y$, так как $X \times Y \in \Sigma$. Во-вторых, пересечение любых двух элементов из $\Sigma$ представляется в виде объединения нескольких (в данном случе одного) элементов из $\Sigma$: $(U_1 \times V_1) \cap (U_2 \times V_2) = (U_1 \cap U_2) \times (V_1 \cap V_2)$ ($U_1, U_2 \in \Omega_X$, $V_1, V_2 \in \Omega_Y$)
+    \item Аналогично предыдущему пункту доказываем, что $\Lambda$ - база некоторой топологии $\Omega_{X \times Y}'$ на $X \times Y$, причём $\Omega_{X \times Y} ' \subseteq \Omega_{X \times Y}$. Поэтому достаточно показать, что всякий элемент из $\Omega_{X \times Y}$ представляется в виде объединения элементов из $\Omega_{X \times Y}'$. Но это действительно так: Если $A \times B \in \Omega_{X \times Y}$, то $ A= \bigcup A_i (A_i \in \Sigma_X)$, $B= \bigcup B_j (B_j \in \Sigma_Y)$, и $A \times B = \bigcup (A_i \times B_j)$
+    \end{itemize}
+    \end{proof}
+    \textbf{Определение:} $X \times Y$ с описанной выше топологией называется \textit{произведением} топологических пространств $(X, \Omega_X)$ и $(Y, \Omega_Y)$, а сама топология называется \textit{стандартной}.
+    \\
+
+    \textbf{Обозначения:} 
+    \begin{itemize}
+        \item $X=\prod_{i \in I} X_i $ - произведение топологических пространств.
+        \item Элементами $X$ являются такие функции $x: I \rightarrow \bigcup_{i \in I} X_i$ что $x(i) \in X_i$
+        \item $p_i:  X \rightarrow X_i$ - координатная проекция, где $p_i(x)=x(i)$.
+    \end{itemize}
+    \textbf{ПРИМЕРЫ? КАКИЕ ПРИМЕРЫ? В ПРЕЗЕНТАЦИИ НЕ БЫЛО НИКАКИХ ПРИМЕРОВ! Ну при желании можно сказать, что можно задать топологию на $\mathbb{R}^2$ не как обычно, а через произвдеение топологий, и получить "топологию квадратиков" , а на самом деле это будет одно и то же (см, например, второе определение базы)}
+    \\
+
+    \textbf{Определение:} Пусть $\{(X_i, \Omega_i)\}_{i \in I}$ - семейство топологических пространств. \textit{Тихоновская топология} на $X=\prod_{i \in I} X_i$ задаётся предбазой, состоящей из всевозможных подмножеств вида $p_i^{-1}(U)$, где $i \in I$ и $U \in \Omega_i$\\
+
+    \begin{theorem}
+    Пусть $(X, d_x)$ и $(Y, d_y)$ - два метрических пространства. Метрики $d_x, d_y$ задают метрику на $X \times Y$, которая порождает топологию $\Omega_1$. Кроме того, метрики $d_x, d_y$ порождают топологии $\Omega_X, \Omega_Y$ на множествах $X, Y$ соответственно, которые в свою очередь образуют топологию $\Omega_2$ на $X \times Y$, Тогда $\Omega_1 = \Omega_2$.
+    \end{theorem}
+    \begin{proof}
+    Рассмотрим на $X \times Y$ метрику $\widetilde{d}$:
+    $\widetilde{d}\big((x, y), (a, b)\big)=\max\{d_X(x, a), d_Y(y, b)\}$. Легко проверить, что $\widetilde{d} \leq d \leq \sqrt{2} \widetilde{d}$ $\Rightarrow$ $\widetilde{d}$ и $d$ липшицево эквиваленты, а тогда она задают одну топологию. 
+    \\
+    
+    $\Sigma_1 = \{B_r^{\widetilde{d}}(x, y) : (x, y) \in X \times Y\}$ - база топологии $\Omega_1$. Заметим, что $B_r^{\widetilde{d}}(x, y) = B_r^{d_x}(x) \times B_r^{d_y}(y)$ и рассмотрим множество $\Sigma_2=\{B_r^{d_x}(x) \times B_r^{d_y}(y) : (x, y) \in X \times Y\}$. Докажем, что $\Sigma_2$ - база топологии $\Omega_2$. Попытаемся проверить второе определение базы, для этого рассмотрим произвольные $U \in \Sigma_2$ и $(x_0, y_0) \in U$ и попытаемся найти элемент $V \in \Sigma_2$ такой, что $(x_0, y_0) \in V \subseteq U$. Так как $(x_0, y_0) \in U$, то существуют открытые $U_x \in \Omega_X, U_y \in \Omega_Y$ такие, что $(x_0, y_0) \in U_x \times U_y \subseteq U$. Но тогда существуют шары $B_{r_x}^{d_x}(x_0) \subseteq U_x$ и $B_{r_y}^{d_y}(y_0) \subseteq U_y$, откуда следует, что $(x_0, y_0) \in V=B_r^{\widetilde{d}}(x_0, y_0) \in U$ ($r=max(r_x, r_y)$), что и требовалось.
+    \end{proof}
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Непрерывность и произведение: проекции, теорема о покоординатной непрерывности.}\\
+
+$X = \Pi_{i\in I}X_i$ - произвеиение топологических пространств.\\
+
+\begin{theorem}
+    Координатные проекции $p_i: X\rightarrow X_i$ непрерывны.
+\end{theorem}
+
+\begin{proof}
+    $\forall U$ открытого в $X_i$: $p_i^{-1}(U)$ - элемент предбазы Тихоновской топологии (по определению), следовательно открыт в $X$.
+\end{proof}
+
+\textbf{(Отображение в произведение двух)} Пусть $X$, $Y$, $Z$ – топологические пространства. Любое отображение $f: Z \to X \times Y$ имеет вид
+    \[
+        f(z) = (f_1(z), f_1(z)), \text{ для всех $z \in Z$},
+    \]
+где $f_1: Z \to X$, $f_2: Z \to Y$ - некоторые отображения, называемые \textit{компонентами} отображениями $f$. \\ 
+
+\textbf{(Отображение в произведение дохуя)} Пусть $Z$ и $\{X_i\}_{i \in I}$ -  топологические пространства. \textit{Компонентами} отображения $f: Z \to \prod_{i \in I} X_i$ называются отображения $f_i: Z \to X_i$, задаваемые формулами
+     \[
+        f_i := p_i \circ f
+    \]
+
+\begin{theorem}
+    (О покоординатной непрерывности). Пусть $Z$ и $\{X_i\}_{i\in I}$ - топологические пространства, $X = \Pi_{i\in I}X_i$ - тихоновское произведение. Тогда отображение $f: Z\rightarrow \Pi_{i\in I}X_i$ непрерывно, равносильно тому что каждая его компонента $f_i$ непрерывна.
+\end{theorem}
+
+\begin{proof} Докажем в обе стороны:\\
+
+    \textcolor{magenta}{$\Rightarrow$} $f_i = p_i \circ f$, при этом $p_i$ и $f$ непрерывны, следовательно, и $f_i$ непрерывна.\\
+
+    \textcolor{magenta}{$\Leftarrow$} Сначала для любого $U$ из предбазы $X$ существует такой индекс $i\in I$ и $V\in \Omega_i$ такой, что $U=p_i^{-1}(V)$. Тогда $f^{-1}(U)=f^{-1}(p_i^{-1}(V))=(p_i\circ f)^{-1}(U)= f_i^{-1}(V) $ - открытое, так как $f_i$ непрерывно. \\
+
+    $\forall W$ открытого в $X$, $W = \bigcup $ (конечных пересечений эл-в предбазы) (далее - $\bigcup_{fuck}$)\\
+
+    $f^{-1}(W)=f^{-1}(\bigcup_{fuck}) = \bigcup f^{-1}($конечных пересечений$)=\bigcup $ (конечных пересечений прообразов элементов предбазы)
+
+\end{proof}
+
+\textbf{Дополнительно от keba4ok:} Также для проверки на непрерывность $f: X \to Y$ достаточно проверить открытость $f^{-1}(U)$ для всякого $U$ из какой-либо базы или предбазы $Y$.
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Пример функции на плоскости, непрерывной по каждой координате, но разрывной.}\\
+    
+    Функция $: \mathbb R^2 \rightarrow \mathbb R$, заданная уравнением 
+    \[
+    f(x,y) = 
+    \begin{cases} 
+        \frac{2xy}{x^2+y^2}, &\text{если } (x,y) \neq (0,0); \\
+        0, &\text{если } x = y = 0.
+    \end{cases}
+    \]
+    Непрерывна по каждой координате, но разрывна в точке $(0,0)$.
+    \begin{proof}
+        Док-во непрерывности функции $f(x) = \frac{2cx}{x^2+c^2}$ полагаем, не представляет труда доказать студентам, получившим 5 за матанализ. А в точке $(0,0)$ функция разрывна, так как при $x = y \neq 0$ функция равна 1. 
+    \end{proof}
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Арифметические операции. Сумма, произведение, частное непрерывных функциий.}\\
+
+\begin{theorem}
+    Следующие функции являются непрерывными из $\mathbb{R}^2$ в $\mathbb{R}$ в стандартной метрике:
+    \begin{itemize}
+        \item f(x, y)=x+y
+        \item f(x, y)=xy
+    \end{itemize}
+    \end{theorem}
+    \begin{proof}
+    ~
+    \begin{itemize}
+    \item Положим $\delta = \frac{\epsilon}{2}$. Тогда $(x, y) \in B_{\delta}(x_0, y_0) \Rightarrow |x-x_0| < \delta$ и $|y-y_0|<\delta$, откуда получаем, что $|f(x, y)-f(x_0, y_0)|=|(x+y)-(x_0+y_0)| \leq |x-x_0|+|y-y_)| <2\delta = \epsilon$
+    \item Положим $\delta = \frac{\epsilon}{2\max\{|x_0|, |y_0|\}+1}$. Также пусть $x=x_0+a, y=y_0+b$, $|a|, |b| < \delta$. Тогда $|f(x, y)-f(x_0, y_0)|=|ay_0+bx_0+ab| < \delta |y_0| + \delta |x_0|+\delta^2 \leq \delta (2\max\{|x_0|, |y_0|\}+1) \leq \epsilon$
+    \end{itemize}
+    \end{proof}
+    \textbf{Следствие:} Пусть $X$ - топологическое пространство, и $f, g: X \rightarrow \mathbb{R}$ - непрерывные функции. Тогда функции $f+g$ и $fg$ также непрерывны.
+    \begin{proof}
+    Рассмотрим вспомогательную функцию $F: X \rightarrow \mathbb{R}^2$, действующую по правилу $F(x)=(f(x), g(x))$. Она непрерывна по каждой координате $\Rightarrow$ она непрерывна. Тогда $f+g=(x+y) \circ F$ - непрерывна как композиция непрерывных функций. Аналогично для функции $fg$.
+    \end{proof}
+    \textbf{Следствие:} Пусть $X$ - топологическое пространство, а функции $f, g: X \rightarrow \mathbb{R}$ непрерывны. Тогда функция $\frac{f}{g}$ непрерывна на своей области определения
+    \begin{proof}
+    Пусть $D=\{a \in X : g(a) \neq 0\}$ - область определения функции $\frac{f}{g}$ и подпространство в $X$. Тогда $g_{|D}$ - непрерывная функция на $D$ (так как $(g^{-1}_{|D}(U)=g^{-1}(U) \cap D$. Рассмотрим также непрерывную функцию $h: \mathbb{R} \textbackslash \{0\} \Rightarrow \mathbb{R}$, $h(x)=\frac{1}{x}$. Тогда $h \circ = \frac{1}{g}$ также непрерывна, и $\frac{f}{g}=f \cdot \frac{1}{g}$ тоже непрерывна на $D$.
+    \end{proof}
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Гомеоморфизм. Гомеоморфные интервалы на прямой, $S^n \backslash \{p\}$ и $\mathbb{R}^n$.}\\
+
+Пусть $X, Y$ - топологические пространства. Отображение $f: X \rightarrow Y $ называется \textit{гомеоморфизмом}, если 
+\begin{itemize}
+    \item $f$ - биекция;
+    \item $f$ - непрерывно;
+    \item $f^{-1}$ - непрерывно;
+\end{itemize}
+
+Говорят, что пространство $X$ \textit{гомеоморфно} пространству $Y$ ($X \simeq Y$), если существует гомеоморфизм $X \rightarrow Y$. \\
+
+\textbf{Дополнительно от keba4ok:} Гомеоморфность - отношение эквивалентности среди топологических пространств. \\
+
+\textcolor{magenta}{Примеры на прямой, плоскости и т.д....:(}
+
+
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Аксиомы счётности. Теорема Линделёфа.}\\
+    
+    \textbf{\textcolor{black}{Будем считать, что множество $X$ счётно, если существует инъекция $X \rightarrow \mathbb N$}} (всякое подмножество счётного - счётно).
+    
+    \begin{enumerate}
+        \item Топологическое пространство удовлетворяет \textit{\textcolor{magenta}{первой аксиоме счётности}}, если оно обладает счётными базами во всех своих точках.
+        \item Топологическое пространство удовлетворяет \textit{\textcolor{magenta}{второй аксиоме счётности}}, если оно имеет счётную базу.
+        \item Топологическое свойство называется \textit{\textcolor{black}{наследственным}}, если из того, что пространство $X$ обладает этим свойством, следует, что любое его подпространство тоже им обладает(аналогично про наследование при произведении).
+    \end{enumerate}
+    \textbf{Свойства:} 
+    \begin{enumerate}
+        \item $2AC \Rightarrow 1AC$:
+        
+        см. 8 билет
+        
+        \item Обратное неверно:
+        
+        $X$ --- несчётное множество с дискретной метрикой. Тогда в каждой точке есть счётная база - сама точка, но при этом счётной базы всего пространства нет --- каждый элемент должен входить в базу.
+        
+        \item Всякое метрическое пространство удовлетворяет $1AC$:
+        
+        Шары вида $B_{\frac{1}{n}}(a)$, где $n \in \mathbb N$ --- база в точке $a$.
+        
+        \item $2AC$ наследственна(в обоих смыслах):
+        \begin{itemize}
+            \item Пересечём базу с подмножеством --- получится счётная база подпространства.
+            \item Рассмотрим декартово произведение счётных баз --- получим счётную базу декартова произведения пространств. 
+        \end{itemize}
+    \end{enumerate}
+    
+    \begin{theorem}[Теорема Линделёфа]
+        Если пространство удовлетворяет $2AC$, то из всякого его открытого покрытия можно выделить счётное подпокрытие.
+    \end{theorem}
+    
+    \begin{proof}
+        
+        Пусть $\{U_i\}$ --- открытое покрытие $X$, a $\Sigma$ --- счётная база. Рассмотрим $\Lambda: = \{V \in \Sigma | \exists U_i: V \in U_i\}$. Заметим, что $\Lambda$ --- покрытие любого $U_i$(из определения базы) $\Rightarrow \Lambda$ --- покрытие $X$, тогда каждому $V \in \Lambda$ сопоставим произвольное $U_j$, в котором оно лежит. Тогда $\{U_j\}$ --- счётное покрытие X. 
+    \end{proof}
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Сепарабельные пространства. Сепарабельность и счетная база.}\\
+
+\textbf{Определение:} Подмножество $A$ топологического пространства $X$ называется \textit{всюду плотным}, если $\text{Cl}(A)=X$.
+\\
+
+\textbf{Переформулировка:} $A$ всюду плотно $\Longleftrightarrow$ любая точка из $X$ - точка прикосновения для $A$ $\Longleftrightarrow$ $\forall U \in \Omega \textbackslash \{\emptyset \} U \cap A \neq \emptyset$
+\\
+
+\textbf{Пример:} $\mathbb{Q}$ всюду плотно в $\mathbb{R}$.
+\\
+
+\textbf{Определение:} Топологическое пространство \textit{сепарабельно}, если оно содержит счётное всюду плотное множество.\\
+
+\begin{theorem}
+~
+\begin{itemize}
+    \item Если топологическое пространство удовлетворяет $2AC$, то оно сепарабельно.
+    \item Метрическое сепарабельное пространство удовлетворяет $2AC$.
+\end{itemize}
+\end{theorem}
+\begin{proof}
+~
+\begin{itemize}
+    \item $2AC \implies $ существует счётная база $\Sigma$. Из каждого множества $U \in \Sigma$ выберем одну точку. Множество $A$ выбранных точек счётно и всюду плотно (см. переформулировку всюду плотного множества).
+    \item Пусть $A$ - счётное всюду плотное множество. Рассмотрим $\Sigma=\{B_{\frac{1}{n}}(a) : a \in A, \in \mathbb{N}\}$, докажем, что это база. Проверим второе определение базы: выберем произвольное открытое $U$ и произвольную точку $X \in U$. Существует такое $k$, что $B_{\frac{1}{k}}(x) \subseteq U$. Но $B_{\frac{1}{2k}}(x) \cap A \neq \emptyset$, то есть содержит какую-то точку $a$. Тогда шар $B_{\frac{1}{2k}}(a) \subseteq B_{\frac{1}{k}}(x) \subseteq U$, и он открыт.
+\end{itemize}
+\end{proof}
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Аксиомы отделимости $T_1 - T_3$. Замкнутость диагонали в $X\times X$. Критерий регулярности.}\\
+
+Говорят, что топологическое пространство удовлетворяет \textcolor{magenta}{\textit{первой аксиоме отделимости}} $T_1$, если каждая из любых двух различных точек пространства обладает окрестностью, не содержащей другую из этих точек.\\
+
+Говорят, что топологическое пространство удовлетворяет \textcolor{magenta}{\textit{второй аксиоме отдельности}} $T_2$, если любые две различные точки пространства обладают непересекающимися окрестностями. Пространства, удовлетворяющий аксиоме $T_2$, называются \textit{хаусдорфовыми}.\\
+
+\begin{theorem}
+    (Замкнутость ёбаной диагонали). $X$ хаусдорфово равносильно тому, что $\{(a,a):a\in X\}$ замкнуто в $X\times X$.
+\end{theorem}
+
+\begin{proof}
+    (by lounres) \\
+
+    \textcolor{magenta}{$\Rightarrow$} Покажем, что $(X \times X) \setminus \Delta$ открыто. Пусть $(b, c) \notin \Delta$. Тогда по $T_2$ есть окрестности $U_b$ и $U_c$ точек $b$ и $c$ в $X$, что $U_b \cap U_c = \varnothing$. Следовательно $(U_b \times U_c) \cap \Delta = \varnothing$, тогда $U_b \times U_c$ --- окрестность $(b, c)$, лежащая в $(X \times X) \setminus \Delta$ как подмножество. \\
+
+    \textcolor{magenta}{$\Leftarrow$} Пусть $b$ и $c$ - различные точки $X$. Тогда $(b, c) \notin \Delta$. Поскольку $\Delta$ замкнуто, то $(X \times X) \setminus \Delta$ открыто. Поскольку $\{U \times V \mid U, V \in \Omega_X\}$ --- база $X \times X$, то есть некоторые открытые в $X$ множества $U$ и $V$, что
+        \[
+            (b, c) \in U \times V \subseteq (X \times X) \setminus \Delta.
+        \]
+            
+        Следовательно, $(U \times V) \cap \Delta = \varnothing$, а значит, $U \cap V = \varnothing$. При этом $b \in U$, а $c \in V$. Значит $U$ и $V$ --- непересекающиеся окрестности $b$ и $c$. Поскольку $b$ и $c$ случайны, то выполнена $T_2$. 
+\end{proof}
+
+Говорят, что топологическое пространство удовлетворяет \textcolor{magenta}{\textit{третьей аксиоме отделимости}} $T_3$, если в нём любое замкнутое множество илюбая не содержащаяся в этом множестве точка обладают непересекающимися окрестностями. Пространства, одновременно удовлетворяющие аксиомам $T_1$ и $T_3$, называются \textit{регулярными}.\\
+
+\begin{theorem}
+    (Критерий блядской регулярности). $X$ регулярно тогда и только тогда, когда удовлетворяет $T_1$ и $\forall a\in X $ любой окрестности $U_a$ существует окрестность $V_a$ такая, что $\text{Cl}V_a\subseteq U_a$.
+\end{theorem}
+
+\begin{proof}
+
+    (by lounres)\\
+
+    \textcolor{magenta}{$\Rightarrow$} Пусть $U_a$ --- некоторая окрестность некоторой точки $a$ в $X$. Тогда $X \setminus U_a$ замкнуто. По $T_3$ у $X \setminus U_a$ и $a$ есть непересекающиеся окрестности $W_a$ и $V_a$ соответственно. Тогда $X \setminus W_a$ замкнуто; при этом $W_a \supseteq X \setminus U_a$, следовательно $X \setminus W_a \subseteq U_a$; аналогично имеем, что $V_a \subseteq X \setminus W_a$. Следовательно
+        \[
+            \text{Cl}(V_a) \subseteq X \setminus W_a \subseteq U_a.
+        \]
+    
+    Таким образом мы нашли искомую окрестность $V_a$.\\
+
+    \textcolor{magenta}{$\Leftarrow$} Пусть даны замкнутое $F$ и точка $a$ вне него. Тогда $U_a := X \setminus F$ --- окрестность $a$. Тогда есть окрестность $V_a$ точки $a$, что $\text{Cl}(V_a) \subseteq U_a$. Следовательно $\text{Int}(X \setminus V_a) \supseteq X \setminus U_a = F$. Значит $\text{Int}(X \setminus V_a)$ и $V_a$ --- непересекающиеся окрестности $F$ и $a$.
+\end{proof}
+
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Аксиома отделимости $T_4$. Нормальномть метрических пространств.}\\
+        
+    Говорят, что топологическое пространство удовлетворяет \textit{\textcolor{magenta}{четвёртой аксиоме отделимости}}, если в нём любые два непересекающихся замкнутых множества обладают непересекающимися окрестностями. \\
+    
+    Пространство, удовлетворяющее аксиомам $T_1$ и $T_4$, назыывается \textit{\textcolor{black}{нормальным}}.\\
+    
+    \begin{theorem}
+        Всякое метрическое пространство нормально.
+    \end{theorem}
+    
+    \begin{proof}
+        Пусть $(X,d)$ --- метрическое пространство. В нём выполняется $T_1(r = \frac{d(x,y)}{2})$. Покажем $T_4$ --- пусть $A,B$ --- непересекающиеся замкнутые множества. $X \setminus B$ --- открытое и содержит $A \Rightarrow \forall a \in A \exists r_a: B_{r_a}(a) \subseteq X \setminus B \iff B_{r_a}(a) \cap B = \varnothing$. Аналогично для каждой точки $b$ из $B$ находим окрестность $B_{r_b}(b)$, не пересекающуюся с $A$. Рассмотрим $U = \bigcup B_{\frac{r_a}{2}}(a)$  и $V = \bigcup B_{\frac{r_b}2}(b)$. Допустим $z \in (U \cap V)$(иначе мы нашли две непересекающиеся окрестности, т.к. объединение открытых - открыто). $z \in (U \cap V) \Rightarrow \exists x \in A, y \in B: z \in (B_{\frac{r_x}2}(x) \cap B_{\frac{r_y}2}(y)) \Rightarrow d(x,y) \leq \frac{r_x}2 + \frac{r_y}2 \leq max(r_x,r_y) \Rightarrow (x\in B_{r_y}y) or (y \in B_{r_x}(x))$--- противоречие. 
+    \end{proof}
+    
+    \textbf{Дополнительно от artemi.sav:}
+    
+    $X$ --- нормально $\Rightarrow X$ --- регулярно $\Rightarrow X$ --- хаусдорфо $\Rightarrow X$ удовлетворяет $T_1$.
+    
+    Заметим, что из $T_1$ следует, что любая точка - замкнута, из чего следует, что каждое следующее условие ---  частный случай предыдущего (например, $X$ --- нормально, то есть удовлетворяет $T_4$ и $T_1$, вместо одного замкнутого множества в условии $T_4$ можем взять точку и получить $T_3$, то есть регулярность).
+
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Связность. Связные подмножества прямой.}\\
+
+\textbf{Определение:} Топологическое пространство \textit{связно}, если его нельзя разбить на два непустых открытых множества.
+\\
+
+\textbf{Примечание:} Когда говорят, что какое-то множество связно, то всегда имеют в виду, что множество лежит в топологическом пространстве (в каком именно- должно быть ясно из контекста) что с индуцированной этим включением топологией оно является связным пространством.\\
+
+\begin{theorem}
+Следующие утверждения эквивалентны связности пространства $X$:
+\begin{itemize}
+    \item $X$ нельзя разбить на два непустых замкнутых множества
+    \item Любое подмножество $X$, открытое и замкнутое одновременно, либо пусто, либо совпадает со всем $X$.
+    \item Не существует непрерывного сюръективного отображения из $X$ в пространство $\{0, 1\}$ с дискретной топологией.
+\end{itemize}
+\end{theorem}
+\begin{proof}
+~
+\begin{itemize}
+    \item $U$ и $V$ открыты в $X$ $\iff$ $V=X \textbackslash U$ и $U = X \textbackslash V$ замкнуты в $X$.
+    \item Если $U \subseteq X$ открыто и замкнуто одновременно, то $V=X \textbackslash U$ тоже открыто и замкнуто одновременно, причём $U \sqcup V = X$. Значит, либо $U$ путо или совпадает со всем $X$, либо $X$ несвязно.
+    \item Для произвольного сюръективного отображения $f$ рассмотрим $U=f^{-1}(0), V=f^{-1}(1)$. Заметим, что $U \sqcup V = X$. Так как $\{0\}$ и $\{1\}$ открыты, то открытость $U, V$ равносильна непрерывности $f$.
+\end{itemize}
+\end{proof}
+\textbf{Примеры:} 
+\begin{itemize}
+    \item Антидискретное пространство связно.
+    \item Дискретное пространство из $\geq 2$ точек несвязно.
+    \item $\mathbb{R} \backslash \{0\}$ несвязно.
+    \item $[0, 1] \cup [2, 3]$ несвязно.
+\end{itemize}
+\begin{theorem}
+Отрезок $[0, 1]$ связен.
+\end{theorem}
+\begin{proof}
+$X=[0, 1]$ - подпространство в $\mathbb{R}$. Предположим противное: $X=U \sqcup V$, $U $ и $V$ непусты и открыты. Не умаляя общности, пусть $0 \in U$. Тогда $0$ входит в $U$ с некоторой своей окрестностью $[0, a)$. Рассмотрим $t=\sup\{x: [0, x) \subseteq U\}$. Очевидно, что $t \in X$. Возможны два случая: $t \in U$ или $t \in V$. В первом случае $t$ входит в $U$ с некоторой своей окрестностью, и, так как $t < 1$, мы можем "чуть-чуть подвинуть" границу вправо, противоречие. Во втором же случае $t$ входит в $V$ с некоторой своей окрестностью, и мы получаем противоречие по аналогичной причине.
+\end{proof}
+\begin{theorem}
+Пусть $X \subseteq \mathbb{R}$. Следующие утверждения эквивалентны:
+\begin{itemize}
+    \item $X$ связно
+    \item $X$ выпукло (т.е. $\forall a < b \in X$ верно $[a, b] \subseteq X$)
+    \item $X$ есть интервал (в широком смысле), точка или пустое множество.
+\end{itemize}
+\end{theorem}
+\begin{proof}
+~
+\begin{itemize}
+    \item $ (1) \implies (2)$: Предположим противное: $X$ не выпукло. Тогда существуют $a < b < c$ такие, что $a, c \in X$ и $b \notin X$. Тогда $X=\big ((-\infty, b) \cap X \big) \sqcup \big ((b, \infty) \cap X \big)$. Оба множества непусты, так как первое содержит $a$, а второе - $c$. Противоречие со связностью $X$.
+    \\
+    \item $ (2) \implies (1)$: Предположим, $X=U \sqcup V$, $U$ и $V$ непусты и открыты в $X$. Выберем $a \in U$, $B \in V$. Не умаляя общности, $a < b$. Тогда отрезок $[a, b]$ разбивается на два непустых открытых в нём мнжожества - $[a, b] \cap U$ и $[a, b] \cap V$, что противоречит его связности.
+    \\
+    \item $ (2) \implies (3)$: Либо $X$ пусто (и всё хорошо), либо существует точка $a \in X$. Рассмотрим $l=\inf\{x : x \in X\}, r=\sup\{x : x \in X\}$. Либо $l=-\infty$, и тогда $(\infty, a] \subseteq X$, либо $l$ конечно, и тогда $[l, a] \subseteq X$ или $(l, a] \subseteq X$, и ничего левее не принадлежит. Аналогично с $r$. В любом случае получаем требуемое.
+    \\
+    \item $ (3) \implies (2)$: Очевидно.
+\end{itemize}
+\end{proof}
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Непрерывный образ связного пространства. Теорема о промежуточном значении.}\\
+
+\begin{theorem}
+    (Непрерывный обрах связного пространства связен). Если $f: X\rightarrow Y$ - непрерывное отображение и пространство $X$ связно, то и множество $f(X)$ связно.
+\end{theorem}
+
+\begin{proof}
+    От противного, пусть $f(X)$ несвязно. Тогда $f(X)=U\cup V$, $U\cap V = \emptyset$, где $U, V$ непусты и открыты.\\
+
+    Следовательно, мы имеем разбиение пространства $X$ на два непустых открытых множества - $f^{-1}(U)$ и $f^{-1}(V)$, что противоречит связности пространства $X$.
+\end{proof}
+
+\begin{theorem}
+    (О промежуточном значении). Если $f: X\rightarrow \mathbb{R}$ - непрерывное отображение, и пространство $X$ связно, тогда для любых $a, b\in f(X)$ множество $f(X)$ содержит все числа между $a$ и $b$.
+\end{theorem}
+
+\begin{proof}
+    $f(X)$ связно $\Rightarrow$ $f(X)$ выпукло $\Rightarrow$ $f(x)$ содержит $[a,b]$.
+\end{proof}
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Компоненты связности. Разбиение пространства на компоненты связности.}\\
+    
+    \textit{\textcolor{magenta}{Компонентой связности}} пространства $X$ называется всякое его максимальное по включению связное подмножество.\\
+    
+    \textbf{Лемма.} \textit{Объединение любого семейства попарно пересекающихся связных множеств связно.}
+    
+    \begin{proof}
+        Обозначим это семейство множеств за $\{A_i\}, Y:=\bigcup A_i$. Допустим $Y$ --- несвязно, тогда $Y = U \cup V$, где $U$ и $V$ --- открытые непересекающиеся множества. Заметим, что $\forall A_i: A_i \subseteq U \vee A_i \subseteq V$(иначе $A_i = (A_i\cap U)\cup(A_i \cap V)$, где $A_i \cap U$ и $A_i \cap V$ --- непустые открыте подмножества в $A_i$). Зафиксируем $A_0$, НУО $A_0 \subseteq V \Rightarrow \forall A_i (A_i \cap A_0 \neq \varnothing) \Rightarrow \forall A_i \subseteq V \Rightarrow U = \varnothing$, противоречие.
+    \end{proof}
+    
+    \begin{theorem}
+        \begin{enumerate}
+            \item Каждая точка пространства $X$ содержится в некоторой компоненте связности.
+            \item Различные компоненты связности пространства $X$ не пересекаются.
+        \end{enumerate}
+    \end{theorem}
+    
+    \begin{proof} \textcolor{white}{-}\\
+    \begin{enumerate}
+        \item Пусть $x \in X$. Тогда множество $A$ --- объединение всех связных множеств, содержащих $x$, является искомой компонентой связности(оно связно по лемме и наибольшее по включению по своему определению).
+        \item Пусть $U,V$ --- пересекающиеся компоненты связности, тогда $U \cup V$ --- связное множество(по лемме), содержащее $U$ и $V$, что противоречит определению компоненты связности.
+    \end{enumerate}
+    \end{proof}
+
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Свойства компонент связности, их замкнутость.}\\
+
+\textbf{Свойства компонент связности:}
+\begin{itemize}
+    \item Любое связное множество содержится в некоторой его компоненте связности.
+    \begin{proof}
+    Пусть $A$ - связное множество пространства $X$, а $C$ - такая его компонента свзяности, что $A \cap C \neq \emptyset$. Тогда $C'=A \cup C$ также связно. Значит, $A \subseteq C$, так как иначе получается противоречие с максимальностью $C$.
+    \end{proof}
+    \item Две точки содержатся в одной компоненте связности $\iff$ они содержатся в одном связном подмножестве.
+    \item Пространство несвязно $\iff$ оно имеет хотя бы две компоненты связности.
+\end{itemize}
+\textbf{Следствие:} Число компонент связности - топологический инвариант.
+\begin{proof}
+Предположим, $X \cong Y$. Докажем, что если $a, b$ лежат в одной компоненте связности $C$ множества $X$, то $f(a), f(b)$ лежат в одной компоненте связности множества $Y$. Действительно, предположим, $f(C)$ несвязно. Тогда $f(C)=U \sqcup V$, где $U, V$ непусты и открыты в $Y$. Тогда $C=f^{-1}(U) \sqcup f^{-1}(V)$, что противоречит его связности. Аналогично, свойство точек лежать в одном связном множестве сохраняется и при обратном преобразовании. Значит, любая компонента связности $C$ в $X$ перейдёт именно в компоненту связности $f(C)$ множества $Y$.
+\end{proof}
+\textbf{Лемма:} Замыкание связного множества связно.
+\begin{proof}
+Предположим противное: $\text{Cl}A=U\sqcup V$, где $U, V$ открыты в $\text{Cl}A$ и непусты. Тогда $A$ в силу связности целиком лежит либо в $U$, либо в $V$, не умаля общности в $U$. Но так как $V$ открыто, то $U$ замкнуто, и $A \subseteq U \subseteq \text{Cl}A $, откуда следует, что $U=\text{Cl}A$.
+\end{proof}
+\begin{theorem}
+Каждая компонента связности топологического пространства замкнутоа.
+\end{theorem}
+\begin{proof}
+Пусть $C \subseteq X$ -компонента связности. Тогда $ C \subseteq \text{Cl} C$, причём это вложение строгое, если $C$ не замкнуто. В этом случае получаем противоречие с максимальностью компоненты связности.
+\end{proof}
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Линейная связность. Непрерывный образ линейно связного множества. Компоненты линейной связности. Пространства с линейно связными окрестностями.}\\
+
+\textit{Путём} в топологическом пространства $X$ называется непрерывное отображение $\alpha: [0,1]\rightarrow X$. Началом пути $\alpha$ называется точка $\alpha(0)$, а концом - точка $\alpha(1)$. При этом говорят, что путь $\alpha$ соединяет эти дву точки.\\
+
+Топологическое пространство называется \textit{линейно связным}, если в нём любые две точки можно соединить путём.\\
+
+\begin{theorem}
+    (Линейная связность и непрерывность). Если $f: X\rightarrow Y$ - непрерывное отображение и пространство $X$ линейно связер, то и пространство $f(X)$ линейно связно.
+\end{theorem}
+
+\begin{proof}
+    Если $\alpha$ - путь, соединяющий точки $a,b\in X$, то $f\circ \alpha$ - путь, соединяющий точки $f(a),f(b)\in f(X)$.
+\end{proof}
+
+Вообще, получается, что \textit{соединимость путём} - отношение эквивалентности на множестве точек пространства. Доказать можно, но не хочется. Рефлексивность и симметричность очевидны, давайте проверим транзитивность.
+
+\begin{proof}
+
+    Если $\alpha$ - путь из $a$ в $b$, а $\beta$ - путь из $b$ в $c$, то 
+    $$
+        \gamma(t) = 
+            \begin{cases}
+    \alpha(2t), & \text{for } t\in[0,\frac12] \\
+    \beta(2t-1), & \text{for } t\in[\frac12,1]
+            \end{cases}
+    $$
+
+    Данный путь искомый, так как непрерывность $\gamma$ следует из фундаментальности покрытия $\{[0,\frac12],[\frac12,1]\}$ и непрерывности $\alpha(2t)$, $\beta(2t-1)$.
+
+\end{proof}
+
+\textit{Компонентой линейной связности} пространства $X$ называется класс эквивалентности отношения соединимости путём.\\
+
+\begin{theorem}
+    (Для понта от keba4ok:) Всякое линейное пространство связно.
+\end{theorem}
+\
+
+\textbf{Следствие:} компоненты линейной связности содержатся в компонентах связности.
+\\
+\begin{theorem}
+    (О точках со связной окрестностью). В топологическом пространстве, каждая точка которого имеет линейно связную окрестность,
+    \begin{itemize}
+        \item Компоненты линейной связности открыты;
+        \item Компоненты линейной связности совпадают с компонентами связности.
+    \end{itemize}
+\end{theorem}
+
+\begin{proof} \textcolor{white}{fuck}\
+
+    \begin{itemize}
+        \item Пусть $W$ - компонента линейной связности, $a\in W$ и $U$ - линейно связная окрестность точки $a$. Тогда $U\subseteq W$, влечёт открытость $W$.
+        \item Пусть $W_i, i\in I$ - компоненты линейной связности пространства. По предыдущему пункту, каждое $W_i$ открыто. Пусть $A$ - компонента связности. В силу связности, $A$ не может пересекать несколько разных 
+    \end{itemize}
+\end{proof}
+
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Линейная связность влечёт связность. Пример связного, но не линейно связного пространства.}\\
+    
+    \begin{theorem}
+        Всякое линейно связное пространство связно.
+    \end{theorem}
+    \begin{proof}
+        Фиксируем произвольную точку $a \in X$. Пусть $A$ --- её компонента связности. Т.к. пространство линейно связно, то $\forall b \in X \exists$ путь $\alpha_b$, соединяющий $a$ и $b$, путь --- связное множество(\textcolor{magenta}{почему-то подчёркнуто, надо чекнуть 8 лекцию/предыдущий билет}) $\Rightarrow b \in A$, т.к. объединение связных множеств связно(26 билет), а $A$ --- максимальное по включению связное множество $\Rightarrow A = X$ --- связно.
+    \end{proof}
+    \textbf{Следствие:} \textit{Компоненты линейной связности содержатся в компонентах связности.}\\
+    
+    \begin{theorem}
+        Множество $X = \left\{(x, cos\frac{1}{x}) \cup (0,0):x \in \mathbb R, x > 0\right\}$ связно, но не линейно связно.
+    \end{theorem}
+    
+    \begin{proof}
+        $A = \{(x,cos\frac{1}x):x \in \mathbb R, x > 0\}$. График $A$ линейно связен(как образ \textit{\textcolor{black}{непрерывного отображения}} f:(0,+$\infty)\rightarrow(x, cos\frac1x)$), значит связен. $X$ связно, так как $ClA = X$, а замыкание связного множества--- связно(27 билет). 
+        
+        Покажем, что $X$ не линейно связно --- от противного, пусть $\alpha :[0,1] \rightarrow X$ --- произвольный непрерывный путь, соединяющий $(0,0)$ и $(c,cos\frac1c)$. Рассмотрим множество $T =\{t \in [0,1]:\alpha(t) = (0,0)\}$.
+        
+        $T$ --- замкнуто в $[0,1]$, т.к. $T = \alpha^{-1}((0,0))$, а прообраз замкнутого(точка, очевидно, замкнута в $T$) --- замкнут.
+        
+        Докажем теперь, что $T$ --- открыто, тогда $T = [0,1]$(т.к. открытое и замкнутое одновременно подмножество связного пространства $[0,1]$, либо пустое, либо все простаранство), и тогда $\alpha([0,1]) = (0,0)$. 
+        
+        Действительно, из непрерывности $\alpha: \forall t_0 \in T, \varepsilon = 1, \exists \delta > 0: \alpha(B_\delta(t_0) \subseteq B_1((0,0))$. Покажем, что $B_\delta(t_0) \subseteq T.$ От противного, пусть $t_1 \in B_\delta(t_0): \alpha(t_1) \neq (0,0).$ Но $\alpha(t) = (x(t),y(t)), \text{где } x(t)$ и $y(t)$ непрерывны(16 билет). НУО $x(t_1) > 0$, тогда $x(t_0) = 0 \Rightarrow \exists t_2 \in [t_0,t_1]: x(t_2) = \frac1{2\pi n}$(кажется, была теорема о промежуточном значении при непрерывном отображении связного пространства в $\mathbb R$). А значит $t_2 \in B_\delta(t_0)$, но $\alpha(t_2) = (\frac1{2\pi n}) \notin B_1((0,0))$, противоречие. 
+    \end{proof}
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Негомеоморфоность разных видов интервалов, окружности и плоскости.}\\
+
+Следующие множества попарно негомеоморфны:
+\begin{enumerate}
+    \item $[0, 1]$
+    \item $[0, 1)$
+    \item $(0, 1)$
+    \item $S^1$
+    \item $\mathbb{R}$
+\end{enumerate}
+\begin{proof}
+Чтобы доказать, что эти пространства попарно негомеоморфны, достаточно заметить, что в п. (а) связность (линейная связность) не теряется при удалении двух крайних точек, в пп. (b) и (d) - только при удалении одной точки, в п. (c) - всегда теряется. А в п. (e) вообще можно удалить много точек без потери линейной связности.
+\\
+\end{proof}
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Компактные пространства. Компактность отрезка.}\\
+
+Топологическое пространство \textit{компактно}, если из любого его открытого покрытия можно выделить конечное подпокрытие.\\
+
+\textbf{Примеры:}\
+
+\begin{itemize}
+    \item Конечное пространство компактно;
+    \item Любое антидискретное пространство компактно;
+    \item Бесконечное дискретное пространство некомпактно;
+    \item $\mathbb{R}$ некомпактно.
+\end{itemize}
+
+\textbf{Замечание:} Когда говорят, что какое-то множество компактно, всегда имеют в виду, что это множество лежит в топологическом пространстве и что, будучи наделено индуцированной топологией, оно является компактным пространством.\\
+
+\begin{theorem}
+    (Лемма Гейне-Борела (нихуя себе, у неё есть название)). Отрезок $[0,1]$ компактен.
+\end{theorem}
+
+\begin{proof}
+    Докажем факт от противного, пусть $I=[0,1]$ некомпактен. Тогда имеется его открытое покрытие $\{U_i\}$, из которого нельзя выделить конечное подпокрытие.\\
+
+    Разделим $I$ пополам на два отрезка. Тогда один из них, обозначим его $I_1$, нельзя покрыть конечным числом множеств $U_i$. Далее продолжим так делить пополам, получим последовательность вложенных отрезков $I_n$, причём длина $I_n$ равна $2^{-n}$.\\
+
+    В силу аксиомы полноты найдётся точка $c\in\bigcup_{n=1}^{\infty} I_n$. Так как $c\in[0,1]$, то найдётся такое $U_j$, что $c\in U_j$. Очевидно, что при достаточно больших $n$ имеем $I_n\subseteq U_j$, что противоречит невозможности покрытия любого $I_n$ конечным числом множеств $U_i$.
+\end{proof}
+
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Замкнутое подмножество компакта компактно. Произведение компактов компактно.}\\
+    
+    \begin{theorem}
+        Пусть $X$ --- компактное пространство и $A$ --- его замкнутое подмножество. Тогда $A$ --- компактно.
+    \end{theorem}
+    
+    \begin{proof}
+        Пусть $\{U_i\}$ --- открытое покрытие $A$, тогда $\{U_i\} \cup (X \setminus A)$ --- открытое покрытие $X$, выделим конечное подпокрытие и уберём $X\setminus A$, получим конечное подпокрытие $A$.
+    \end{proof}
+    
+    \begin{theorem}
+        Пусть $X, Y$ --- компактные пространства. Тогда их произведение $X \times Y$ компактно.
+    \end{theorem}
+    
+    \begin{proof}
+        Пусть $W_i$ --- открытое покрытие, тогда представим его в виде объединения элементов базы, из них выберем конечное подпокрытие и для каждого выбранного множества базы рассмотрим какое-нибудь из исходных множеств, в котором оно содержалось.
+        
+        Поэтому достаточно рассмотреть покрытие, состоящее из элементов базы --- вида $U_i \times V_i$, где $U_i$ открыто в $X$, а $V_i$ открыто в $Y$. Т.к. $Y$ компактно, то для любого слоя $\{x\} \times Y$ можно выбрать конечное подпокрытие $U_{i_x} \times V_{i_x}$. Пусть $W_x = \bigcap U_{i_x}$, оно открыто в $X$, поэтому $\{W_x\}_{x \in X}$ --- открытое покрытие $X$, значит можно выбрать конечное подпокрытие, тогда выбранное для соответствующих слоев $\{x_i\} \times Y$ конечное покрытие будет являться искомым конечным покрытием произведения(рассмотрим произвольное $(x,y)$ --- находим в каком множестве покрытия $W_{x_i}$ лежит $x$, затем в каком множестве слоя $\{x_i\} \times Y$ лежит $y$ и соответствующее множество $U \times V$ будет содержать $(x,y)$).  
+    \end{proof}
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Компакт в хаусдорфовом пространстве замкнут. Хаусдорфов компакт нормален.}\\
+
+\begin{theorem}
+    Пусть $A \subseteq X$ - компакт в Хаусдорфовом пространстве $X$. Тогда $A$ замкнуто в $X$.
+    \end{theorem}
+    \begin{proof}
+    Пусть $b \in X \textbackslash A$ - произвольная точка. Покажем, что она внутренняя для $X \textbackslash A$. Для каждой точки $a \in A$ рассмотрим соответствующие ей непересекающиеся окрестности $U_a$ и $V_a$ точек $a$ и $b$ соответственно. Тогда $\{U_a\}_{a \in A}$ - покрытие $A$ открытыми множетвами. Так как $A$ компактно, из этого покрытия можно выбрать конечное подпокрытие $\{U_{a_j}\}$. Тогда $W=\bigcap V_{a_j}$ - искомая окрестность точки $b$, не пересекающаяся с $A$.
+    \end{proof}
+    \begin{theorem}
+     Если топологическое пространство $X$ Хаусдорфово и компактно, то оно нормально.
+    \end{theorem}
+    \begin{proof}
+     Докажем сначала, что $X$ регулярно. Пусть $A \subseteq X$ - замкнутое множество, и $b \in X \textbackslash A$. Заметим, что $A$ - также компакт (как замкнутое подмножество компакта). Вспомним конструкцию из доказательства предыдущей теоремы и дополнительно рассмотрим открытое множество $R=\bigcup U_{a_j}$. Оно не пересекается с $W$. Значит, выполнена аксиома $T_3$ ($T_1$ выполнена в силу Хаусдорфовости пространства).
+     \\
+
+     Докажем теперь, что $X$ нормально. Пусть $A, B \subseteq X$ - замкнутые множества (и, как следствие, компакты). Для каждой точки $b \in B$ рассмотрим соответствующие окрестности $R_b$ и $W_b$ множества $A$ и точки $b$ соотетственно. $\{W_b\}_{b \in B}$ - открытое покрытие $B$ $\implies$ можно выбрать конечное подпокрытие $\{W_{b_j}\}$. Тогда $\bigcup R_{b_j}$ и $\bigcup W_{b_j}$ - искомые окретности множеств $A$ и $B$ соответственно.
+    \end{proof}
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Компактные множества в $\mathbb{R}^n$.}\\
+
+Сейчас будут предварительные подготовки к последней теореме. Возможно, в их доказательство поверят наслово.\\
+
+\begin{theorem}
+    Компактное метрическое пространство ограничено.
+\end{theorem}
+
+\begin{proof} 
+    Зафиксируем произвольную точку $a\in X$ и рассмотрим открытое поерытие $X$ шарами $B_r(a), r>0$. В силу компактности $X$, выберем конечное подпокрытие $B_{r_1}(a), \dots, B_{t_k}(a)$. Пусть $r=\text{max}\{r_1,\dots,r_n\}$, тогда $X\subseteq B_r(a)$.
+\end{proof}
+
+\textbf{Следствие:} компактное множество в метрическом пространстве замкнуто и ограничено. \
+
+\begin{proof}
+    Метрическое пространство хаусдорфово, а компакт в хаусдорфовом пространстве замкнут.
+\end{proof}
+
+\begin{theorem}
+    Множество в $\mathbb{R}^n$ компактно тогда и только тогда, когда оно замкнуто и ограничено.
+\end{theorem}
+
+\begin{proof}
+    Доказываем в разные стороны поочерёдно:\\
+
+    \textcolor{magenta}{$\Rightarrow$}: Очевидно из последнего следствия.\
+    
+    \textcolor{magenta}{$\Leftarrow$}: Множество $A$ ограничено в $\mathbb{R}^n \Leftrightarrow A$ содержится в некотором кубе $[-a,a]^n$. Куб компактен, так как это произведение компактов. Тогда $A$ - замкнутое подмножество компакта $[-a,a]^n$ $\Rightarrow$ компакт.
+\end{proof}
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Компактность и центрированные наборы множеств. Их применение для доказательства непустоты пересечения замкнутых множеств.}\\
+    
+    Набор подмножеств множества $X$ \textit{\textcolor{black}{центрирован}}, если любой его конечный поднабор имеет непустое переечение.\\
+    
+    \textbf{Пример:} Набор $A_1 \supset A_2 \supset A_3 \supset \dots$ непустых вложенных множеств центрирован.\\
+    
+    \begin{theorem}
+        $X$ компактно $\iff$ любой центрированный набор замкнутых множеств в $X$ имеет непустое пересечение.
+    \end{theorem}
+    
+    \begin{proof}
+        Заметим, что $\{X \setminus A_i\}$ --- покрытие $X \iff \bigcap A_i = \varnothing$, т.к. $\bigcup (X \setminus A_i) = X \setminus \bigcap A_i.$
+        
+        \textcolor{magenta}{($\Rightarrow$)} От противного, пусть $\{A_i\}$ --- центрированный набор замкнутых множеств и $\bigcap A_i = \varnothing.$ Тогда $\{X \setminus A_i\}$ --- открытое покрытие $X$. Выберем из него конечное подпокрытие, тогда соответствующие $A_i$ имеют пустое пересечение, что противоречит центрированности.
+        
+        \textcolor{magenta}{($\Leftarrow$)} От противного, пусть $\{U_i\}$ --- открытое покрытие $X$, из которого нельзя выделить конечное подпокрытие. Тогда $\{X\setminus U_i\}$ --- центрированный набор замкнутых множеств. По предположению, $\bigcap (X \setminus U_i \neq \varnothing)$, что противоречит тому, что $\{U_i\}$ покрытие $X$. 
+    \end{proof}
+    
+    \textbf{Следствие:}
+    \textit{Пусть $X$ --- топологическое пространство, $\{A_i\}$ --- центрированный набор замкнутых множеств в $X$, хотя бы одно из которых компактно. Тогда их пересечение непусто.}
+    \begin{proof}
+        Пусть $A_0$ --- компактно, тогда $\{A_0 \cap A_i\}$ --- центрированный набор замкнутых подмножеств компакта $A_0$. По теореме, пересечение всех этих множеств непусто.
+    \end{proof}
+    
+    \textbf{Следствие:}
+    \textit{Пусть $X$ --- топологическое пространство, $\{A_i\}$ --- линейно упорядоченный по включению набор непустых замкнутых множеств в $X$, хотя бы одно из которых компактно. Тогда их пересечение непусто.}
+    
+    \begin{proof}
+        $\{A_i\}$ --- центрированный набор, значит из предыдущего следствия, их пересечение непусто.
+    \end{proof}
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Непрерывный образ компакта. Теорема Вейерштрасса. Непрерывная биекция компактного пространства на хаусдорфово.}\\
+
+\begin{theorem}
+    Если $f: X \rightarrow Y$ - непрерывное отображение, и $X$ компактно, то $Y$ тоже компактно.
+    \end{theorem}
+    \begin{proof}
+    Пусть $\{U_i\}$ - открытое покрытие $f(X)$. Так как $f$ непрерывно, то $\{f^{-1}(U_i)\}$ - открытое покрытие $X$.Так как $X$ компактно, можно выбрать конечное подпокрытие $\{f^{-1}(U_{i_k})\}$. Но тогда $\{U_{i_k}\}$ - конечное подпокрытие $f(X)$.
+    \end{proof}
+    \textbf{Следствие:} Компактность - топологическое свойство.\\
+
+    \begin{theorem}
+    Пусть функция $f: X \rightarrow \mathbb{R}$ непрерывна, и $X$ компактно. Тогда $f(x)$ достигает своего наибольшего и наименьшего значений.
+    \end{theorem}
+    \begin{proof}
+    $X$ - компактно, тогда и $f(X) \subseteq \mathbb{R}$ компактно, т.е. замкнуто и ограничено $\implies$ содержит свои $\sup$ и $\inf$
+    \end{proof}
+    \begin{theorem}
+    Пусть $f: X \rightarrow Y$ - непрерывная биекция из компактного пространства $X$ на Хаусдорфово пространство $Y$. Тогда $f^{-1}$ тоже непрерывно.
+    \end{theorem}
+    \begin{proof}
+    Нам надо показать, что если $A \subseteq X$ замкнуто в $X$, то $f(A)$ замкнуто в $Y$. Заметим, что $V$ компактно (как замкнутое подмножество компакта) $\implies$ $f(V)$ компактно(как непрерывный образ компакта) $\implies$ $f(V)$ замкнуто (так как любой компакт в хасдорфовом пространстве замкнут).
+    \end{proof}
+    \textbf{Определение:} Отображение $f: X \rightarrow Y$ называется \textit{вложением}, если $f$ - гомеоморфизм между $X$ и $f(X)$.
+    \\
+    \textbf{Следствие: }Если $f : X \rightarrow Y$ – непрерывная иньекция компактного пространства $X$ в хаусдорфово пространство $Y$ , то $f$ – вложение.
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Лемма Лебега. Равномерная непрерывность на компактах.}\\
+
+\begin{theorem}
+    (Лемма Лебега). Пусть $X$ - компактное метрическое пространство и $\{U_i\}$ - его открыто поерытие. Тогда существует такое $r>0$, что любой шар радиуса $r$ содержится в одном (согласно википедии, хотя бы) элементе покрытия.
+\end{theorem}
+\
+
+\textbf{Определение:} число $r$ называется \textit{числом Лебега} данного покрытия.\
+
+\begin{proof}
+    $\forall a\in X \exists r_a>0:$ шар $B_{r_a}$ содержится в одном из $U_i$. $\{B_{r_a\backslash 2}(a)\}_{a\in X}$ - открытое покрытие $X$, можно выбрать из него конечное подпокрытие и докажем, что в качестве числа Лебега $r$ подходит неименьший из радиусов шаров подпокрытия.\\
+
+    Берём $\forall B\in X$ - центр шара $B_r(b)$. Находим шар $B_{r_a\backslash 2}$ из подпокрытия, содержащий точку $b$. Тогда $B_r(b)\subseteq B_{r_a}(a)$, а $B_{r_a}(a)$ содержится в одном из $U_i$. 
+\end{proof}
+
+\textbf{Следствие:} (Лемма Лебега для отображений (это в билете не просят)). Пусть $X$ - компактное метрическое пространство, $Y$ - топологическое пространство, $f: X\rightarrow Y$ непрерывно и $\{U_i\}$ - открытое покрытие $Y$. Тогда $\exists r>0: \forall a\in X$ $f(B_r(a))$ содержится в одном из $U_i$.\
+
+\begin{proof}
+    Применим нормальную Лемму к покрытию $\{f^{-1}(U_i)\}$.
+\end{proof}
+
+Пусть $(X, d_X)$, $Y, d_Y$ - метрические пространства, тогда отображение $f: X\rightarrow Y$ \textit{равномерно непрерывно}, если $\forall \epsilon >0 \exists \delta >0: \forall a, b\in X$ $d_X(a,b)<\delta \rightarrow d_Y(f(a),f(b))<\epsilon$.\\
+
+\begin{theorem}
+    Если $X$ компактно, то любое непрерывное $f:X\rightarrow Y$ будет равномерно непрерывным.
+\end{theorem}
+
+\begin{proof}
+    Применим лемму Лебега для отображения $f$ и покрытия пространства $Y$ шарами радиуса $\epsilon \backslash 2$.
+\end{proof}
+
+
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Предел последовательности, секвенциальное замыкание. Первая АС и секвенциальное замыкание.}\\
+    
+    Пусть $\{a_n\}$ --- последовательность точек топологического пространства $X$. Точка $b \in X$ называется её \textit{\textcolor{magenta}{пределом}}, если $\forall U_\varepsilon(b) \exists N \in \mathbb N: a_n \in U_\varepsilon(b), \forall n > N.$
+    Если $b$ --- предел последовательности $\{a_n\}$, то говорят, что $\{a_n\}$ сходится к b($a_n \rightarrow b,\; b = lim \: a_n$).\\
+    
+    \textbf{Примеры:}
+    \begin{itemize}
+        \item Постоянная последовательность сходится;
+        \item Если $a_n \rightarrow b$, то любая её подпоследовательность сходится к b.
+        \item В антидискретном пространстве каждая его точка является пределом любой последовательности.
+    \end{itemize}
+    
+    Пусть $A$ --- подмножество топологического пространства $X$. Совокупность пределов всевозможных последовательностей точек множества $A$ называют \textit{\textcolor{magenta}{секвенциальным замыканием}} этого множетсва и обозначают $SClA$.\\
+    
+    \begin{theorem}
+        Если пространство $X$ удовлетворяет 1АС, то для любого $A \subseteq X$ верно $SClA = ClA$.
+    \end{theorem}
+    \begin{proof}
+        Пусть $b \in ClA$, $\{V_i\}_{i\in \mathbb N}$ --- счётная база в $b$. Тогда $U_k = \cap_{i=1}^k V_i$ --- убывающая база в $b$ ($U_1 \supseteq U_2 \supseteq U_3 \supseteq \dots$).
+        
+        $\forall n \in \mathbb N$ выбираем $a_n \in U_n \cap A.$ Тогда $a_n \rightarrow b.$(Рассмотрим произвольную окрестность $W$ точки $b$, существует $V_m$ из базы, такое что $V_m \subseteq W$, тогда $U_m \subseteq V_m \subseteq W$, значит начиная с индекса $m$, все $a_i$ лежат в этой окрестности). То есть $SClA \supseteq ClA$.
+        Обратное доказано в теореме из дополнения(см. ниже).
+     \end{proof}
+     \textbf{\textcolor{black}{Дополнительно от artemi.sav:}}\\
+     
+     \textbf{Теорема:} 
+     $SClA \subseteq ClA.$ \\
+     
+     \textit{Доказательство:} Предел последовательности точек из $A$ --- точка прикосновения(Любая окрестность пересекается с множеством).\\
+     
+     \textbf{Теорема:}
+     \textit{В хаусдорфом пространстве ни одна последовательность не может иметь больше одного предела.}\\
+     
+     \textit{Доказательство:} Действительно, пусть имеется два предела, тогда по хаусдорфости у них есть непересекающиеся окрестности, а по определению предела для каждой окрестности, начиная с какого-то момента, элементы последовательности лежат в ней. Противоречие.
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Полные метрические пространства. Полнота $\mathbb{R}^n$. Замкнутое подмножество полного пространства полно.}\\
+
+\textbf{Определение:} Последовательность точек $\{a_i\}_{i \in \mathbb{N}}$ в метрическом пространстве $(X, d)$ называется \textit{фундаментальной} (\textit{сходящейся в себе}, \textit{последовательностью Коши}), если: $\forall \epsilon > 0 \exists N \in \mathbb{N}: \forall m, k > N d(x_m, x_k) < \epsilon$
+\\
+
+\textbf{Свойства:}
+\begin{itemize}
+    \item Всякая сходящаяя последовательность фундаментальна
+    \item Всякая фундаментальная последовательность ограничена
+    \item Всякая фундаментальная последовательность, содержащая сходящуюся подпоследовательность, сходится.
+\end{itemize}
+\textbf{Определение:} Метрическое пространство называется \textit{полным}, если всякая его фндаментальная последовательность имеет предел.
+\\
+
+\textbf{Примеры:}
+\begin{itemize}
+    \item $\mathbb{R}$ полно  - было в анализе
+    \item $\mathbb{R} \textbackslash \{0\}$ не полно.
+    \begin{proof}
+    Возьмём последовательность, стремящуюся к нулю.
+    \end{proof}
+\end{itemize}
+\begin{theorem}
+$\mathbb{R}^n$ полно.
+\end{theorem}
+\begin{proof}
+Пусть $\{a_k\}$ - фундаментальная последовательность в $\mathbb{R}^n$. Тогда $a_i=(a_i^1,...a_i^n)$.
+Если $\{a_k\}$ фундаментальна в $\mathbb{R}^n$, то $\{a_k^j\}$ - фундаментальна в $\mathbb{R}$ для любого $1 \leq j \leq n$. Так как $\mathbb{R}$ полно, то $\{a_k^j\}$ сходится к $A^j$. Но тогда $\{a_k\}$ сходится к $A=(A^1,...A^n)$.
+\end{proof}
+\begin{theorem}
+Пусть $X$ - полное пространство, и $Y \subseteq X$ - замкнутое множество. Тогда $Y$ тоже полно.
+\end{theorem}
+\begin{proof}
+Пусть $\{a_n\}$ - фундаментальная последовательность в $Y$. Так как $X$ полно, эта последовательность имеет предел $b \in X$. $b$ - предельная точка для замкнутого $Y$ $\implies$ $b \in Y$.
+\end{proof}
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Теорема о вложенных шарах. Нигде не плотные множества. Теорема Бэра.}\\
+
+\begin{theorem}
+    Метрическое пространство является полным тогда и только тогда, когда любая убывающая последовательность его замкнутых шаров с радиусами, стремящимися к нулю, обладает непустым пересечением.
+\end{theorem}
+
+\begin{proof} \textcolor{white}{fuck}\\
+
+    \textcolor{magenta}{$\Rightarrow$} Пусть $D_{r_0} \supseteq D_{r_1} \supseteq \dots$ --- убывающая последовательность замкнутых шаров, причём $(r_n)_{n=0}^\infty \to 0$. В каждом $D_{r_n}$ выберем точку $a_n$. Поскольку $(r_n)_{n=0}^\infty \to 0$, то $(a_n)_{n=0}^\infty$ фундаментальна. Тогда по полноте $X$ следует, что у неё есть предел $a$. \\
+    
+    Заметим, что $a_k \in D_{r_n}$ для всяких $k \geqslant n \geqslant 0$, а $D_{r_n}$ замкнуто, значит $a \in D_{r_n}$. Таким образом $a \in \bigcap_{n=0}^\infty D_{r_n}$.\\
+
+    \textcolor{magenta}{$\Leftarrow$} Пусть $(a_n)_{n=0}^\infty$ - фундаментальная последовательность. Заметим, что для всякого $n \in \mathbb{N} \cup \{0\}$ есть $N_n \in \mathbb{N} \cup \{0\}$, что для всяких $k, l \geqslant N_n$ верно, что $d(a_k, a_l) \leqslant \frac{1}{2^n}$ и $N_{n+1} \geqslant N_n$. Значит $a_k \in D_{1/2^n}(a_{N_n})$ для всех $k \geqslant N_n$.\\
+        
+    Таким образом получим последовательность шаров $D_{1}(a_{N_0}) \supseteq D_{1/2}(a_{N_1}) \supseteq D_{1/4}(a_{N_2}) \supseteq \dots$. Тогда в их пересечении есть точка $a$. Несложно понять, что $a$ --- предел $(a_n)_{n=0}^\infty$.
+\end{proof}
+
+Пусть $X$ - топологическое пространство. Тогда множество $A \subset X$ называется \textit{нигде не плотным}, если $\text{Int Cl}A = \emptyset$.\\
+
+\textbf{Определение:} $\text{Ext} A=\text{Int}(X\backslash A)$.\\
+
+\textbf{Свойство:} $\text{Ext} A$ открыто и $X = \text{Int}A \sqcup \text{Fr} A \sqcup \text{Ext}A$.\\
+
+\textbf{Лемма нахуй не нужная в билете:} следующие утверждения эквивалентны:\
+
+\begin{itemize}
+    \item $A$ нигде не плотно;
+    \item $\text{Ext} A$ всюду плотно;
+    \item Любое непустое открытое $U \subset X$ содержит непустое открытое $V\subset U$, что $V\cap A = \emptyset$.
+\end{itemize}
+
+\begin{theorem}
+    (Теорема Бэра). Плотное пространство нельзя покрыть счётным набором нигде не плотных множеств.
+\end{theorem}
+
+\begin{proof}
+    Предположим противное. Пусть $\{A_i\}_{i=0}^\infty$ --- счётное покрытие $X$ нигде не плотными множествами.
+
+    Построим последовательность вложенных закрытых шаров $(D_n)_{n=0}^\infty$ с радиусами $(r_n)_{n=0}^\infty$ следующим образом. $D_0$ --- любой шар (ненулевого радиуса). Шар $D_{n+1}$ строится так. $\text{Int}(D_n) \cap \text{Ext}(A_n)$ непусто и открыто, значит содержит открытый шар $B$, а он содержит закрытый шар $D_{n+1}$ чей радиус $r_{n+1} \leqslant r_n/2$. Значит $D_{n+1} \subseteq D_n$ и $D_{n+1} \cap A_n = \varnothing$.
+        
+    Поскольку мы построили уменьшающуюся последовательность шаров, что их радиусы сходятся у нулю, то в их пересечении лежит некоторая точка $a$. Так как для всякого $n \in \mathbb{N} \cup \{0\}$ верно, что $a \in D_{n+1}$, то $a \notin A_n$, значит $a \notin \bigcup_{n=0}^\infty A_n = X$ --- противоречие.
+\end{proof}
+
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Секвенциальная компактность. Всякое компактное метрическое пространство секвенциально компактно. Компактность и 1АС влечёт секвенциальную компактность.}\\
+     
+     Говорят, что топологическое пространство \textit{\textcolor{black}{секвенциально компактно}}, если любая последовательность его точек содержит сходящуюся подпоследовательность.
+     
+     Точка $b$ называется \textit{\textcolor{black}{точкой накопления}} множества $A$, если любая её окрестность содержит бесконечне число точек этого множества.\\
+     
+     \textbf{Лемма:}
+     \textit{В компактном пространстве всякое бесконечное множество имеет точку накопления.}\\
+     
+     \textit{Доказательство:} Пусть $S \subset X$ --- бесконечное множество. От противного, пусть $\forall x \in X \exists$ окрестность $U_x$ точки $x: |U_x \cap S| < \infty$. Тогда $\{U_x\}_{x \in X}$ покрытие компактного $X \Rightarrow \exists$ конечное подпокрытие $U_{x_1}, U_{x_2}, \dots, U_{x_k}$, но тогда $S = \cup_{i = 1}^k(U_{x_i} \cap S)$ --- конечно, противоречие.\\
+     
+     \begin{theorem}
+         Всякое компактное метрическое пространство секвенциально компактно.
+     \end{theorem}
+     
+     \begin{proof}
+         Пусть $\{a_n\}$ --- последовательность в $X$. Выделим сходящуюся подпоследовательность:
+         
+         Если различных точек в последовательности конечно, то это очевидно. Пусть множество $\{a_i\}$ бесконечно. Тогда по лемме у него существует точка накопления $b$. Рассмотрим шары $B_\frac1k(b)$ и в каждом выберем элемент $a_{n_k}$ последовательности так, чтобы $n_k$ была возрастающей последовательностью(так как на каждом шаге мы отбрасываем конечный префикс последовательности, а в шаре лежит бесконечное количество элементов, то мы можем так сделать). Полученная подпоследовательность будет сходится к b.
+     \end{proof}
+     
+     \begin{theorem}{обобщение}
+         Если топологическое пространство компактно и удовлетворяет 1АС, то оно секвенциально компактно.
+     \end{theorem}
+     
+     \begin{proof}
+         Рассуждаем аналогично с предыдущим доказательством, только вместо шаров берём убывающую базу в точке $b$(см. билет 38).
+     \end{proof}
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Вполне ограниченность. Всякое секвенциально компактное метрическое пространство вполне ограничено и полно.}\\
+
+Пусть $(X, d)$ - метрическое пространство.
+\\
+
+\textbf{Определение:} Подмножество $A \subseteq X$ называется его $\epsilon$-сетью ($\epsilon > 0$), если $d(b, A) < \epsilon$ для любой точки $b \in X$.
+\\
+
+\textbf{Определение:} Пространство $X$ \textit{вполне ограничено}, если для любого $\epsilon > 0$ существует его конечная $\epsilon$-сеть.
+\\
+
+\textbf{Примеры:} 
+\begin{itemize}
+    \item $\mathbb{Z}$ - 1-сеть в $\mathbb{R}$.
+\end{itemize}
+\begin{theorem}
+Всякое секвенциально компактное метрическое пространство полно и вполне ограничено
+\end{theorem}
+\begin{proof}
+~
+\begin{itemize}
+    \item \textbf{Полнота:} Пусть $\{a_n\}$ - фундаментальная последовательность. Так как пространство секвенциально компактно, то можно выделить сходящуюся подпоследовательность $\{a_{n_k}\}$. А любая фундаментальная последовательность, имеющая сходяющуюя подпоследовательность, сходится.
+    \item \textbf{Вполне ограниченность: } Предположим, для какого-то $\epsilon > 0$ не существует конечной $\epsilon$-сети. Построим бесконечную последовательность $\{a_k\}$ так: в качестве $a_1$ возьмём произвольную точку из $X$, а на $i$-ом шаге будем брать такую точку $a_i$, что $d(a_j, a_i) \geq \epsilon \forall j < i$ (так сделать всегда можно, так как конечная сеть отсутствует). Но тогда из последовательности $\{a_k\}$ нельзя выделить сходящуюся подпоследовательность, так как расстояние между любыми двумя её элементами $\geq \epsilon=const$.
+\end{itemize}
+\end{proof}
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Всякое полное вполне ограниченное метрическое пространство компактно.}\\
+
+\begin{theorem}
+    Всякое полное вполне ограниченное метрическое пространствокомпактно.
+\end{theorem}
+
+\begin{proof}
+    От противного: пусть $\{U_1\}$ - открытое покрытие $X$, не имеющее конечного подпокрытия. Пусть $A_1$ - конечная 1-сеть. $\{D_1(a)\}_{a\in A_1}$ - конечное покрытие $X$. Тогда $\exists a_1 \in A_1: C_1 = D_1(a_1)$ не покрывается конечным числом $U_i$. Одно из них не покрывается конечным числом $U_i$. \
+
+    Пусть $A_2$ - конечная $1\over 2$ - сеть. Тогда короче возьмём $С_1$, пересечём его с конечным покрытием вокруг этой сети, и получим, что один из элементов разбиения не покрывается конечным числом $U_i$. Получаем $C_2$, и так далее строим убывающую последовательность замкнутых множеств, причём каждый элемент не покрывается конечным числом $U_i$ и их диаметр стремится к нулю.\
+    
+    По теореме о вложенных шарах, у них есть непустое пересечение, но тогда $\exists j: b\in U_j \Rightarrow  \exists \epsilon >0 : B_\epsilon(b)\subset U_j \Rightarrow \exists K: C_k \subset B_\epsilon (b)\subset U_j$. А это противоречие с тем, что $C_k$ не покроется конечным числом $U_i$.
+\end{proof}
+
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Всякое компактное метрическое пространство вполне ограничено и имеет счётную базу.}\\
+     
+     \begin{theorem}
+         Всякое компактное метрическое пространство вполне ограничено.
+     \end{theorem}
+     
+     \begin{proof}
+         Для произвольного $\varepsilon > 0$ выберем конечное подпокрытие из всех шаров радиуса $\varepsilon$ --- центры выбранных шаров будут образовывать искомую $\varepsilon$-сеть.
+     \end{proof}
+     
+     \textbf{Лемма:}
+     \textit{Всякое вполне ограниченное метрическое пространство имеет счётную базу.}
+     
+     \begin{proof}
+         Полагаем $\varepsilon_n = \frac1n, n \in \mathbb N, A_n$ --- конечная $\varepsilon_n$-сеть. Полагаем $A = \bigcup_{n\in \mathbb N} A_n.$
+         
+         $A$ --- счётно(счётное объединение конечных множеств), $A$ всюду плотно(в любом открытом есть шар $B_{\frac1n}(x)$, который пересекает $A_n$, а значит и $A$) $\Rightarrow X$ сепарабельно $\Rightarrow$ имеет счётную базу(21 билет).
+     \end{proof}
+     
+     \begin{theorem}
+         Всякое компактное метрическое пространство имеет счётную базу.
+     \end{theorem}
+     
+     \begin{proof}
+         Из предыдущей теоремы и леммы получаем, что всякое метрическое пространство вполне ограничено, а значит, имеет счётную базу.
+     \end{proof}
+
+\section{Билет} \
+
+\medskip
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Факторпространства, их топологические свойства. Частные случаи: стягивание подмножества в точку, приклеивание по отображению, фактор по действию группы. Пропускание отображения через фактор.}
+
+        (by lournes)\\
+
+\textit{Разбиение множества} - это его покрытие попарно непересекающимися подмножествами.\\
+
+\textit{Фактормножество} множества $X$ по его разбиению $S$ - это множество элементами которого являются подмножества $X$, составляющие разбиение $S$. Обозначение $X\backslash _S$.\\
+
+\begin{theorem}
+    (Топологические свойства факторпространств).
+    \begin{itemize}
+        \item Факторпространство связного пространства связно;
+        \item Факторпротсранство линейно связного пространства линейно связно;
+        \item Факторпространства сепарабельного пространства сепарабельно;
+        \item Факторпространство компактного пространства компактно.
+    \end{itemize}
+\end{theorem}
+
+\begin{proof}
+    В целом, тут всё, очевидно, сохраняется при непрерывных отображениях.
+\end{proof}
+
+
+    Частные случаи факторпространств.
+    \begin{enumerate}
+        \item \emph{Стягивание подмножества в точку.} Пусть $A \subseteq X$, тогда можно рассмотреть разбиение $S$, где $A$ стягивается в одну точку, а все остальные точки не трогаются.
+
+        \item
+        \begin{itemize}
+            \item \emph{Несвязное объединение.} Пусть $X$, $Y$ --- топологические пространства. Тогда их \emph{несвязное объединение} --- множество $X \sqcup Y$ с топологией, где всякое подмножество $U$ открыто тогда и только тогда, когда $U \cap X$ открыто в $X$ и $U \cap Y$ открыто в $Y$.
+            \item Аналогично можно рассматривать не только два пространство, а всякое семейство пространств. Если есть семейство топологических пространств $\Sigma$, то можно рассмотреть пространство $\bigsqcup_{X \in \Sigma} X$, где всякое подмножество $U$ открыто тогда и только тогда, когда $U \cap X$ открыто в $X$ для всех $X \in \Sigma$.
+            \item \emph{Приклеивание по отображению.} Пусть даны топологические пространства $X$, $Y$, множество $A \subseteq X$ и непрерывное отображение $f: A \to Y$. Рассмотрим факторпространства несвязного объединения $X \sqcup Y$, где стягиваются множества $\{b\} \cup f^{-1}(b)$ для каждого $b \in f(A)$, а остальные точки остаются как есть. Это пространство обозначается как $X \sqcup_f Y$.
+        \end{itemize}
+        
+            \textbf{Пример. }Если $X = Y = S^1$, $A = \{x\}$, где $x \in X$, а $f$ --- любое, то $X \sqcup_f Y$ --- ``восьмёрка'' (две окружности, склеенные по точке) со стандартной метрической топологией.
+        
+
+        \item \emph{Склеивание частей одного пространства.} Пусть даны топологическое пространство $X$, множество $A \subseteq X$ и непрерывная функция $f: A \to X$. Тогда можем рассмотреть разбиение $S$ на минимальные множества, что для всякого $a \in f(A)$ точка $a$ и элементы $f^{-1}(a)$ лежат в одном множестве; в случае, если $A \cap f(A) = \varnothing$ неодноточечеными множествами разбиения $S$ будут $\{a\} \cup f^{-1}(a)$ для каждого $a \in f(A)$. В таком случае $X/S$ есть склейка $X$ по функции $f$. Обозначение: $X/f$.\\
+        
+        \textbf{Пример. }
+            Пусть $X = [0; 1] \times [0; 1]$, $A = \{0\} \times [0; 1]$, $f: A \to X, (0, t) \mapsto (1, t)$. Тогда $X/f \simeq S^1 \times [0; 1]$ --- боковая поверхность цилиндра.
+        
+
+        \item \emph{Фактор по действию группы.} Пусть даны топологическое пространство $X$ и подгруппа $\Gamma$ группы $\text{Homeo}(X)$. Рассмотрим отношение эквивалентности $\sim$, где $x \sim y$ тогда и только тогда, когда $\exists g \in \Gamma:\; g(x) = y$. Тогда $X/{\sim}$ обозначается как $X/\Gamma$.\\
+        
+        \textbf{Пример. } 
+            Пусть $X = \mathbb{R}$, а $\Gamma = \{f: X \to X, x \mapsto x + a \mid a \in \mathbb{Z}\}$ (в таком случае $\Gamma \cong \mathbb{Z}^+$). Тогда $X/\Gamma \simeq S^1$.
+        
+    \end{enumerate}
+
+    \textbf{Пример. }
+    \begin{enumerate}
+        \item $[0; 1]/[\frac{1}{3}; \frac{2}{3}] \simeq [0; 1]$
+        \item Пространство $[0; 1]/(\frac{1}{3}; \frac{2}{3})$ не метризуемо и не хаусдорфово (в отличие от $[0; 1]$). В данном случае $[0; 1]/(\frac{1}{3}; \frac{2}{3}) = [0; \frac{1}{3}] \cup {b} \cup [\frac{2}{3}; 1]$, где $\{b\}$ само по себе открыто, а всякие окрестности $\frac{1}{3}$ и $\frac{2}{3}$ содержат $b$.
+    \end{enumerate}
+
+
+\begin{theorem}[о пропускании отображения через фактор]
+    Пусть даны топологические пространства $X$ и $Y$, отношение эквивалентности $\sim$ на $X$, каноническая проекция $p: X \to X/{\sim}$ и отображение $f: X \to Y$, что для всяких $x_1, x_2 \in X$ верно, что $x_1 \sim x_2 \rightarrow f(x_1) = f(x_2)$. Тогда
+    \begin{enumerate}
+        \item Существует единственное отображение $\overline{f}: X/{\sim} \to Y$, что $f = \overline{f} \circ p$.
+        \item $f$ непрерывно тогда и только тогда, когда $\overline{f}$ непрерывно.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}\ 
+    \begin{enumerate}
+        \item Заметим, что для всякого $T \in X/{\sim}$ верно, что:
+        \begin{itemize}
+            \item для каждого $x \in T$ значение $f(x)$ одно и то же;
+            \item для всякого $x \in T$ верно, что $f(x) = \overline{f}(p(x)) = \overline{f}(T)$.
+        \end{itemize}
+        Из этого следует, что для всякого $T \in X/{\sim}$ значение $\overline{f}$ определено строго единственным образом, значит $\overline{f}$ существует и единственно.
+        
+        \item
+        \begin{itemize}
+            \item[(\textcolor{magenta}{$\Leftarrow$})] Очевидно, поскольку тогда $f$ является композицией непрерывных отображение, а значит само непрерывно.
+            \item[(\textcolor{magenta}{$\Rightarrow$})] Пусть $U$ --- открытое множество в $Y$. Тогда $p^{-1}(\overline{f}^{-1}(U)) = f^{-1}(U)$ открыто в $X$. Следовательно $\overline{f}^{-1}(U)$ тоже открыто по определению топологии на $X/{\sim}$. Значит $\overline{f}$ непрерывно.
+        \end{itemize}
+    \end{enumerate}
+\end{proof}
+
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Хаусдорфовы факторпространства компактов(следствие пропускания отображения через фактор). $D^n/S^{n-1}$ гомеоморфно $S^n$.}\\
+     
+     \begin{theorem}
+         Пусть $X, Y$ --- топологические пространства, $X$ --- компакт, $Y$ --- Хаусдорфово( $T_2$). $f:X \rightarrow Y$ --- непрерывно и сюръективно. Рассмотрим $\sim$ по $X: x_1 \sim x_2 \iff f(x_1) = f(x_2)$. Тогда $Y \cong X_{/\sim}$.
+     \end{theorem}
+     
+     \begin{proof}
+         Хотим доказать, что $\overline f$ --- гомеоморфизм(см.пропускание отображения через фактор). 
+         
+         Докажем, что оно --- биекция: очевидно из определения $X_{/\sim}$ и $Y$(и там и там элементы --- классы эквивалентности). $\overline f$ --- непрерывно по теореме о пропускании.
+         
+         $X$ --- компакт $\Rightarrow X_{/\sim}$ --- компакт, а значит $\overline f$ действует из компакта в Хаусдорфово, значит это гомеоморфизм(36 билет).   
+     \end{proof}
+     
+     \begin{theorem}
+         $D^n/S^{n-1}$ гомеоморфно $S^n$.
+     \end{theorem}
+     
+     \begin{proof}
+         $X = [0,1]^n$ --- компакт(32 билет --- произведение компактов компакт), $Y = S^{n-1}$ --- Хаусдорфово(по определению, видимо). 
+         
+         $f:D_{\pi}^n \rightarrow S^n. f(x) = (\frac{x}{|x|}sin|x|, cos|x|), f(0) = (0,1) ;S^n \subset \mathbb R^{n+1} = \mathbb R^n \times \mathbb R$. Первая координата лежит в $\mathbb R^n$, вторая координата лежит в $\mathbb R$. Проверяется, что эта функция удовлетворяет условиям предыдущей теоремы и получаем искомое(\textcolor{red}{TBC...}).  
+     \end{proof}
+
+\section{Билет} \
+
+\medskip
+
+\section{Билет} \
+
+\medskip
+
+\textbf{Всякая связная замкнутая поверхность гомеоморфна поверхности, задаваемой канонической разверткой I или II типа.}\\
+
+\begin{proof}
+    Не хочу я это писать, картинки никак не передать
+\end{proof}
+
+
+\newpage
+
+\hypertarget{t2}{И в заключение...}
+
+
+
+\section{Пофамильный указатель всех мразей}
+
+\begin{multicols}{2}
+    [
+    Быстрый список для особо заебавшегося поиска.
+    ]
+
+    \hyperlink{n16}{база}\
+    
+    \hyperlink{n7}{внутренность}\
+
+    \hyperlink{n9}{граница}\
+
+    \hyperlink{n8}{замыкание}\
+
+    \hyperlink{n17}{критерий (базы)}\
+    
+    \hyperlink{n1}{метрика}\
+
+    \hyperlink{n6}{множество (замкнутое)}\
+
+    \hyperlink{n4}{множество (открытое)}\
+
+    \hyperlink{n11}{окрестность}\
+
+    \hyperlink{n18}{предбаза}\
+
+    \hyperlink{n2}{пространство (метрическое)}\
+
+    \hyperlink{n15}{пространство (метризуемое)}\
+
+    \hyperlink{n5}{топология}\
+
+    \hyperlink{n12}{топология (сильнее, слабее,...)}\
+
+    \hyperlink{n10}{точки (прикосновения, внутренние,...)}\
+
+    \hyperlink{n3}{шар}\
+
+    \hyperlink{n13}{эквивалентность}\
+
+    \hyperlink{n14}{эквивалентность (по липшицу)}\
+    
+
+    \end{multicols}
+
+
+\end{document}
