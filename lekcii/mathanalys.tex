@@ -72,6 +72,8 @@
 \DeclareMathOperator{\ord}{ord}
 \DeclareMathOperator{\adj}{adj}
 \DeclareMathOperator{\const}{const}
+\DeclareMathOperator{\grad}{grad}
+
 \begin{document}
 
 \newcommand{\resetexlcounters}{%
@@ -376,13 +378,106 @@ $(x-y)$ - евклидово расстояние.
         g(f(x))=g(y^0+A(x-x^0)+o(||x-x^0||)).
     \end{equation}
         
-    Также мы знаем, что $g$ гладкая, то есть, также представима в виде $g(y)=g(y^0)+B(y-y^0)+o(||y-y^0)$, тогда приняв аргумент правой части $(1)$ за $y$, получим продолжение тождества: 
+    Также мы знаем, что $g$ гладкая, то есть, также представима в виде $g(y)=g(y^0)+B(y-y^0)+o(||y-y^0||)$, тогда приняв аргумент правой части $(1)$ за $y$, получим продолжение тождества: 
     \begin{equation}
         \begin{split}
             g(y^0)+B(A(x-x^0)+o(||x-x^0||))+o(A(x-x^0)+o(||x-x^0||)) = \\ 
             g(y^0)+BA(x-x^0)+o(||x-x^0||).
         \end{split}
 \end{equation}
+\end{proof}
+
+Нам много чего хочется от анализа многих переменных, но тут всё, конечно, гораздо сложнее. Перейдём к \textit{частным производным}.
+
+\begin{remark}
+    $f:\RR^n\rightarrow \RR^m$ - гладкая в  $x^0$ тогда и только тогда, когда  при записи $(f_1(x_1, \ldots, x_n), \ldots, f_m(x_1, \ldots, x_n))$ $f_k$ - гладкая $\RR^n\rightarrow \RR$ для всех $k$ (можно написать доказательство). 
+\end{remark}  
+
+\begin{defn}
+    \textit{Частная производная}. Пусть имеется $f:\RR\rightarrow \RR$, $f(x_1, \ldots, x_n)$, $x^0=(x_1^0, \ldots, x_n^0)$. Тогда частная производная по $x_k $, $f(x_1^0, \ldots, x_{k-1}^0, x, x_{k+1}^0, \ldots, x_m^0)=g(x), g'(x_k^0)$. $\frac{\partial f}{\partial x_k}\bigg|_{x^0}:=g'(x_k^0)=\lim_{\varepsilon\rightarrow 0}\frac{f(\ldots, x_k^0+\varepsilon, \ldots)-f(\ldots)}{\varepsilon}$. 
+\end{defn}
+
+Рассмотрим теперь \textit{производную по направлению}. Пусть направление задаётся $e\in\RR^n$, $||e||=1$, $f$ - дифференцируема по направлению $e$, если $g(t)=f(x^0+te)$, $t\in\RR$ и существует $g'(0)$, то производная по направлению $e$ - $g'(0)=\lim_{t\rightarrow 0}\frac{f(x^0+te)-f(x^0)}{t}$.  
+
+\section{Лекция 4.}
+
+Введём несколько дополнительных терминологий. Пусть у нас есть отображение $f:\RR^n\rightarrow \RR^m$, $f=(f_1, \ldots, f_m)$, $\frac{\partial f_k}{\partial x_l}$, $1\leq k\leq m$, $1\leq l\leq n$, тогда \textit{матрица Якоби} выглядит как
+
+\begin{equation*}
+    \begin{matrix}
+    \end{matrix}
+\end{equation*}
+
+\begin{theorem}
+    Пусть у нас есть отображение $f:\RR^n\rightarrow \RR^m$, $V_{x_0}\rightarrow \RR^m$, причём существуют все частные производные в $V_{x^0}$ и они непрерывные в $x^0$. Тогда $f$ дифференцируема в точке $x^0$. 
+\end{theorem}
+
+\begin{proof}
+    Для начала, мы можем полагать, что $m=1$, так как можно доказывать, по сути, покомпонентно. Пусть $x^0=(x_1^0, x_2^0, x_3^0)$ (докажем для 3, потом обсудим общий случай), ну а $x=(x_1, x_2, x_3)$. Нас интересует $f(x_1, x_2, x_3)-f(x_1^0, x_2^0, x_3^0)$. Действуем стандартным образом, будем двигать координаты по одной (так как все сразу двигать не можем). Меняя по одной координате, представим разности из частных производных. Разность равна 
+    \[
+        f(x_1, x_2, x_3)-f(x_1^0, x_2, x_3)+f(x_1^0, x_2, x_3)-f(x_1^0, x_2^0, x_3^0)
+    \]
+    Разбивается в две подряд идещие разности, достаточно удобные, но последняя всё равно ''не айс'':
+    \[
+        f(x_1, x_2, x_3)-f(x_1^0, x_2, x_3)+f(x_1^0, x_2, x_3)-f(x_1^0, x_2^0, x_3)+f(x_1^0, x_2^0, x_3)-f(x_1^0, x_2^0, x_3^0)
+    \]
+    Теперь уже три удобные разности, так и запишем равенство далее:
+    \begin{equation*}
+        \begin{aligned}
+            &= \frac{\partial f}{\partial x_1}\bigg|_{(\xi_1, x_2, x_3)_{\xi\in [x_1^0, x_1]}}(x_1-x_1^0)+\frac{\partial f}{\partial x_2}\bigg|_{(x_1, \xi_2, x_3)}(x_2-x_2^0)+\frac{\partial f}{\partial x_3}\bigg|_{(x_1, x_2, \xi_3)}(x_3-x_3^0) = \\
+            &= \frac{\partial f}{\partial x_1}\bigg|_{(x_1^0, x_2^0, x_3^0)}(x_1-x_1^0)+\frac{\partial f}{\partial x_2}\bigg|_{(x_1^0, x_2^0, x_3^0)}(x_2-x_2^0)+\frac{\partial f}{\partial x_3}\bigg|_{(x_1^0, x_2^0, x_3^0)}(x_3-x_3^0) + \\
+            &+ \biggl(\frac{\partial f}{\partial x_1}\bigg| - \frac{\partial f}{\partial x_1}\biggr)(x_1-x_1^0)+\biggl(\frac{\partial f}{\partial x_2}\bigg| - \frac{\partial f}{\partial x_2}\biggr)(x_2-x_2^0)+\biggl(\frac{\partial f}{\partial x_3}\bigg| - \frac{\partial f}{\partial x_3}\biggr)(x_3-x_3^0)
+        \end{aligned}
+    \end{equation*}
+
+    Последние три слагаемых - остаток, $R(x)$, тогда  $\forall \varepsilon >0$, $\exists \delta$ $||x-x^0||<\delta$, $|R(x)|<\varepsilon ||x-x^0||$. 
+
+
+\end{proof}
+
+\begin{theorem}
+    Пусть $f:\RR^n\rightarrow \RR$, $f$ - гладкая на $G$ - открытое(???). Я нихуя не могу прочитать, что тут написано.
+\end{theorem}
+
+\begin{proof}
+    $\grad f = (\frac{\partial f}{\partial x_1} ,\ldots, \frac{\partial f}{\partial x_n})$, $f$ - локальный максимум $f$, $x^0$, $\frac{\partial f}{\partial x_k}\bigg|_{x_0}\neq 0$. 
+    \begin{equation*}
+        \begin{split}
+            (x_1^0, \ldots, x_{k-1}^0, x, x_{k+1}^0, \ldots, x_n^0)- (x_1^0,\ldots, x_m^0)= \\
+            \frac{\partial f}{\partial x_k}\bigg|_{x^0}(x_k-x_k^0)+o(|x_k-x_k^0|),
+        \end{split}
+    \end{equation*}
+    причём первое слагаемое не нуль.
+\end{proof} 
+ 
+Нам бы ещё хотелось иметь теорему об обратном отображении. \\
+
+\begin{theorem}
+    (Об обратном отображении). Пусть $f: G\rightarrow \RR^n$, $G$ - открыто в $\RR^n$, у $f$ есть гладкие частные производные (???), $f$ - в точке $x^0$ дифференцируема $A$, $A$ - (сука??????????). Тогда $V_{x^0}$ $\exists g $ - гладкая, (?????) $f(x^0)$, $g(f(x))=x$, $g$ - дифференцируема в $f(x^0)$ $\Rightarrow$ $A^{-1}$. 
+\end{theorem}
+
+\begin{proof}
+    $(f^{-1}(x))' = \frac{1}{f'(f^{-1}(x))}$ - вспомнили, а теперь - к доказательству. \ 
+
+    \textbf{Утв. 1.} $f$ - гладкая в окрестности точки $x^0$ с непрерывными частными производными, тогда $f$ липшицева, то есть, $|f(x)-f(y)|\leq C||x-y||$. Если мы зафиксируем точку $x$, то $|f(x)-f(y)|\leq(||A||+\varepsilon)||x-y||$ $\forall \varepsilon >0$, $A=A_x$. $||A_x||\leq\sum_{k=1}^n\bigg|\frac{\partial f}{\partial x_k}\bigg|_x\bigg|$. \ 
+
+    \textbf{Утв. 2.} Если к тому же $\Ker (A)=\{0\}$, то $f$ - билипшицево (в окрестности $x^0$), $C_2||x-y||\leq |f(x)-f(y)|\leq C_1||x-y||$. Докажем и его. $f(y)= f(x)+A_x(y-x)+o(||x-y||)$, тогда $||A_{x^0}z||\geq \varepsilon ||z||$, $\forall z\in \RR^n$, $||A_xz||$ - $A_xz= A_{x^0}z+(A_x-A_{x^0})z$. Первый элемент не меньше $\varepsilon ||z||$, а $||A_x-A_{x^0}||$ стремится к 0 в окрестности этой точки, тогда 
+    \[
+        |f(y)-f(x)|=|A_x(y-x)+o(||x-y||),
+    \]
+    но каждый из них можно ограничить снизу $\frac{\varepsilon}{2}||x-y||$. \ 
+
+    Тогда $f:\RR^n\rightarrow \RR^m$, $\Ker A= \{0\}$, тогда $n\leq m$. \ 
+
+    Итого, у нас есть отображение $f:f(x)=f(x^0)+A(x-x^0)+o(||x-x^0||)$. Рассмотрим шарик $B_r(x^0)=\{x:||x-x^0||<r\}$, $f(B_r(x^0))$, $f$ - биективна. Проверим, что он содержится в каком-то $B_{r'}(f(x^0))$. \ 
+
+    \textbf{Утв. 3.} В условиях теоремы для любого $r$ существует $r'$, $f(\overline{B_r(x^0)})\supset \overline{B_{r'}(f(x^0))}$. Для любого $y\in B_{r'}(f(x^0))$ $f(x)=y$, хотим найти $x$. $F(x)= ||f(x)-y||^2$, гладкая в окрестности $x^0$. Минимум этой функции где-то достигается (непрерывная на компакте). $F(x^0)= ||f(x^0)-y||^2\leq r'^2$, тогда минимум не может достигаться на границе, так как иначе $||x-x^0||=r$. Тогда с одной стороны $||f(x)-y||^2=||f(x)-f(x^0)+f(x^0)-y||^2$. $f$ билипшицева, поэтому разность первых двух можно оценить чнизу $\varepsilon||x-x^0||$, а разность последних двух можно ограничить сверху $r'^2$, то есть, вся эта вещь как минимум $r'^2$. \ 
+
+    Пусть $w$ - минимум $F(x)$ на $B_r(x^0)$, тогда $\grad F(w)=0$,  $=||f(x)-y||^2 = \sum_{k=1}^n(f_k(x)-y_k)^2$, 
+    \[
+        \frac{\partial F}{\partial x_l}\bigg|_w = \sum_{k=1}^n\frac{\partial f_k}{\partial x_l}\bigg|_w 2(f_k(x)-y_k), 
+    \]
+    Ну под конец не успел, слишком долго расшифровывать.
 \end{proof}
 
 \end{document}
