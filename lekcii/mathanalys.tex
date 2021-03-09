@@ -399,7 +399,7 @@ $(x-y)$ - евклидово расстояние.
 
 Рассмотрим теперь \textit{производную по направлению}. Пусть направление задаётся $e\in\RR^n$, $||e||=1$, $f$ - дифференцируема по направлению $e$, если $g(t)=f(x^0+te)$, $t\in\RR$ и существует $g'(0)$, то производная по направлению $e$ - $g'(0)=\lim_{t\rightarrow 0}\frac{f(x^0+te)-f(x^0)}{t}$.  
 
-\section{Лекция 4.}
+\section{Лекция 5.}
 
 Введём несколько дополнительных терминологий. Пусть у нас есть отображение $f:\RR^n\rightarrow \RR^m$, $f=(f_1, \ldots, f_m)$, $\frac{\partial f_k}{\partial x_l}$, $1\leq k\leq m$, $1\leq l\leq n$, тогда \textit{матрица Якоби} выглядит как
 
@@ -479,5 +479,55 @@ $(x-y)$ - евклидово расстояние.
     \]
     Ну под конец не успел, слишком долго расшифровывать.
 \end{proof}
+
+\section{Лекция 6.}
+
+(пропущено продолжения доказательства с прошлой лекции)\ 
+
+Попытаемся обобщить Формулу Тейлора для многих переменных. Для начала, разберёмся с тем, как дифференцировать композицию функций многих переменных. Пусть $f:\RR^n\rightarrow \RR^m$, $g:\RR^m\rightarrow \RR^k$, $f$ - гладкая в $x^0$, $g$ - гладкая в $f(x^0)$, тогда $g(f(x^0))$ - гладкая в $x^0$, дифференциал - $BA$. 
+
+\begin{exl}
+    $f:\RR^n\rightarrow \RR$, $f(x_1, \ldots, x_n)$, $g_k= g_k(x_1, \ldots, x_n)$ $(1\leq k\leq n)$, $g=(g_1, \ldots, g_n)$. Тогда $f(g_1(x_1, \ldots, x_n), \ldots, g_n(x_1, \ldots, x_n))=F(x_1, \ldots, x_n)$, и 
+    
+\begin{equation*}
+    \begin{aligned}
+            \frac{\partial F}{\partial x_1}\bigg|_{\tilde{x}} & = \lim_{\varepsilon \rightarrow 0}\frac{f(g_1(x_1+\varepsilon, \ldots), \ldots, g_n(x_1+\varepsilon, \ldots))- f(\ldots)}{\varepsilon} = \\
+            & = \lim_{\varepsilon\rightarrow 0}\frac{f(g_1(x_1, \ldots, m_n)+\varepsilon\frac{\partial g}{\partial x_1}+o(\varepsilon), \ldots)-f(g(\ldots), \ldots)}{\varepsilon} = \\ 
+            & = \lim\frac{\varepsilon\frac{\partial f}{\partial x_1}\bigg|_{g_1(x_1, \ldots, x_n)}\cdot\frac{\partial g}{\partial x_1}+\varepsilon\frac{\partial f}{\partial x_2}\frac{\partial g_2}{\partial x_1}+\ldots+\varepsilon\frac{\partial f}{\partial x_n}\frac{\partial g_n}{\partial x_1}+o(\varepsilon)}{\varepsilon} = \\ 
+            & = \sum_i \frac{\partial f}{\partial x_i}\frac{\partial g_i}{\partial x_1} =^? \sum_i \frac{\partial f}{\partial g_i}\frac{\partial g_i}{\partial x_1}
+    \end{aligned}
+\end{equation*}
+    $f=(\frac{\partial f}{\partial x_1}, \ldots, \frac{\partial f}{\partial x_n})$, $BA=\biggl(\sum_{k=1^n}^n\biggr)$
+\end{exl}
+
+\begin{exl}
+    $f(e^{x_1+x_2+x_3}, x_1-x_2+x_3, x_1x_3) = F(x_1, x_2, x_3)$. Тогда 
+    \[
+        \frac{\partial F}{\partial x_2}= \frac{\partial f}{\partial x_1}\cdot e^{x_1+x_2+x_3}+\frac{\partial f}{\partial x_2}(-1). 
+    \]
+\end{exl}
+
+Формула Лагранжа. Пусть $f:\RR^n\rightarrow \RR$, $(x_1, \ldots, x_n)$, $(y_1, \ldots, y_n)$, $f(y_1, \ldots, y_n)- f(x_1, \ldots, x_n)$. \ 
+
+Путь $x(t)= x+th$, $0\leq t\leq 1$, $h=y-x$ (покоординатно). Тогда $\varphi(t) := f(x+th)=f(x_1+t(y_1-x_1), \ldots, x_n+t(y_n-x_n))= f(x_1+th_1, \ldots, x_n+th_n)$, $f(y)-f(x)= \varphi(1)-\varphi(0)= \varphi'(\xi)$, $\xi\in\in[0, 1]$, 
+\[
+    \varphi'(t)= \frac{\partial f}{\partial x_1}\bigg|_{x(t)}(y_1-x_1)+\ldots+\frac{\partial f}{\partial x_n}\bigg|_{x(t)}(y_n-x_n)= (\grad f, y-x). 
+\]
+Таким образом, формула Лагранжа: $f(y)-f(x)=(\grad f|_\xi, y-x)$, $\xi\in[x, y]$. \ 
+
+Получим ещё одно крутое обобщение:
+\[
+    \varphi'(0)=\frac{\partial f}{\partial x_1}\bigg| (y_1-x_1)+\ldots +\frac{\partial f}{\partial x_n}\bigg|(y_n-x_n), 
+\]
+
+А теперь возьмём производную ещё раз. 
+\[
+    \varphi''(t)= (\varphi'(t))'= \sum_{k=1}^n\frac{\partial f}{\partial x_1 \partial x_k}(y_k-x_k)(?)=?
+\]
+
+(не закончено и плохо составлено)
+
+
+
 
 \end{document}
