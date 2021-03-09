@@ -1,0 +1,211 @@
+\documentclass[a4paper,100pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[unicode, pdftex]{hyperref}
+\usepackage{cmap}
+\usepackage{mathtext}
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\usepackage[T2A]{fontenc}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}
+\usepackage{icomma}
+\usepackage{euscript}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage[usenames]{color}
+\hypersetup{
+     colorlinks=true,
+     linkcolor=magenta,
+     filecolor=magenta,
+     citecolor=black,      
+     urlcolor=cyan,
+     }
+\usepackage{fancyhdr}
+\pagestyle{fancy} 
+\fancyhead{} 
+\fancyhead[LE,RO]{\thepage} 
+\fancyhead[CO]{\hyperlink{t2}{к списку объектов}}
+\fancyhead[LO]{\hyperlink{t1}{к содержанию}} 
+\fancyhead[CE]{текст-центр-четные} 
+\fancyfoot{}
+\newtheoremstyle{indented}{0 pt}{0 pt}{\itshape}{}{\bfseries}{. }{0 em}{ }
+
+%\geometry{verbose,a4paper,tmargin=2cm,bmargin=2cm,lmargin=2.5cm,rmargin=1.5cm}
+
+\title{Матлог. Основные записи}
+\author{Мастера конспектов}
+\date{22 января 2020 г.}
+
+\theoremstyle{indented}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}{Лемма}
+
+\theoremstyle{definition} 
+\newtheorem{defn}{Определение}
+\newtheorem{exl}{Пример(ы)}
+
+\theoremstyle{remark} 
+\newtheorem{remark}{Примечание}
+\newtheorem{cons}{Следствие}
+\newtheorem{exer}{Упражнение}
+
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\Imf}{Im}
+\DeclareMathOperator{\cont}{cont}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\chard}{char}
+\DeclareMathOperator{\CC}{\mathbb{C}}
+\DeclareMathOperator{\ZZ}{\mathbb{Z}}
+\DeclareMathOperator{\RR}{\mathbb{R}}
+\DeclareMathOperator{\NN}{\mathbb{N}}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\Prop}{Prop}
+\DeclareMathOperator{\LL}{\mathscr{L}}
+\DeclareMathOperator{\form}{Form}
+\DeclareMathOperator{\Sub}{Sub}
+
+\begin{document}
+
+\newcommand{\resetexlcounters}{%
+  \setcounter{exl}{0}%
+} 
+
+\newcommand{\resetremarkcounters}{%
+  \setcounter{remark}{0}%
+} 
+
+\newcommand{\reseconscounters}{%
+  \setcounter{cons}{0}%
+} 
+
+\newcommand{\resetall}{%
+    \resetexlcounters
+    \resetremarkcounters
+    \reseconscounters%
+}
+
+\maketitle 
+
+\newpage
+
+\hypertarget{t1}{Основные моменты}. 
+\tableofcontents
+
+\newpage
+
+\section{Лекция 1.}
+
+\begin{defn}
+  \textit{Конкатенация} - записали подряд два слова. ($A$ - алфавит, $A^*$ - слова).
+\end{defn}
+
+\begin{defn}
+  \textit{Подслово} - как есть, \textit{вхождение} - учитываем, где начинается подслово. Если подслово стоит в начале, то мы его и называем \textit{начало}, а обозначаем как $\psi \sqsubseteq \varphi$.
+\end{defn}
+
+\begin{defn}
+  $w[w'/u, k]$ - замена подслова $w'$ на $u$, начинающегося в позиции $k$.
+\end{defn}
+
+\begin{defn}
+  Фиксированное счётное множество $\Prop$ - \textit{пропозициональные переменные}. Язык $\LL$ классической пропозициональной логики состоит из переменных, а также символов $\rightarrow, \vee, \wedge, \neg$ и круглых скобочек.
+\end{defn}
+
+\begin{defn}
+  $\form$ (формулы) - наименьшее множество слов в алфавите, замкнутое относительно следующих порождающих правил:
+  \begin{itemize}
+    \item если $p\in \Prop$, то $p\in \form$; 
+    \item если $\{\varphi, \psi\}\subseteq \form$, то $(\varphi*\psi)\in \form$, где $*$ - любая из операций в определении выше (если отрицание, то отсительно одногой формулы, конечно).
+  \end{itemize}
+\end{defn}
+
+\begin{lemma}
+  Пусть $\{\varphi , \psi\}\subseteq \form$ таковы, что $\psi \sqsubseteq \varphi$. Тогда $\psi = \varphi$. 
+\end{lemma}
+
+\begin{proof}
+  По индукции по мощности большей формулы. База - переменная, очевидно. Иначе $\psi$ представляется в виде ''композиции'' единственным образом, тогда возьмём первую часть этой композиции и сравним с первой частью того, как $\varphi$ представляется в виде ''композиции''. По предположению индукции они должны совпасть, продолжение тривиально.
+\end{proof}
+
+\begin{lemma}
+  Каждую $\varphi \in \form \backslash \Prop$ можно единственным способом представить в виде $(\theta \rightarrow \chi)$, $(\theta \vee \chi)$, $(\theta \wedge \chi)$ или $\neg\theta$, где $\{\theta, \chi\}\subseteq \form$ (это я везде безграмотно называю \textit{композицией}). 
+\end{lemma}
+
+\begin{proof}
+  От противного по лемме 2.
+\end{proof}
+
+\begin{defn}
+  Для каждой $\varphi\in \form$ определим $\Sub(\varphi):=\{\psi\in \form|\psi \preccurlyeq \varphi\}$ - \textit{подформулы}.
+\end{defn}
+
+\begin{lemma}
+  Пусть $\varphi \in \form$. Тогда каждое вхождение $\neq$ или $($ является началом вхождения некоторой подформулы.
+\end{lemma}
+
+\begin{proof}
+  Возвратная индукция по длине формулы.
+\end{proof}
+
+\begin{lemma}
+  Множество подслов $\varphi$ - объединение множеств подслов элементов его композиции и его самого.
+\end{lemma}
+
+\begin{proof}
+  Из лемм выше.
+\end{proof}
+
+\begin{defn}
+  \textit{Оценка} ($v$) - произвольная функция из $\Prop$ в $\{0, 1\}$, которую можно расширить и до $\form$ ($v^*$) посредством применения операций к переменным. Если $v^*(\varphi)=1$, то порой пишут $v \Vdash \varphi$.
+\end{defn}
+
+\begin{defn}
+  Формулу называют \textit{выполнимой}, если $v \Vdash \varphi$ для некоторой оценки, и \textit{общезначимой} (тождественно истинной или тавтологией), если $v \Vdash \varphi$ для всех оценок.
+\end{defn}
+
+\begin{defn}
+  Формула \textit{семантически следует} из множества формул и записывается $\Gamma \vDash \varphi$, если для любой оценки $v$, любая формула из множества истина, то $\varphi$ истина.  \ 
+  
+  Формулы называют \textit{семантически эквивалентны}, и пишут $\varphi \equiv \psi$, если $\vDash \varphi \leftrightarrow \psi$. 
+\end{defn}
+
+
+\section{Лекция 2.}
+
+В Гильбертовском исчислении для классической пропозициональной логики используются следующие схемы аксиом (implication, conjunction, disjunction, negotiation): 
+
+\begin{itemize}
+  \item (I1). $\varphi\rightarrow (\psi\rightarrow \varphi)$;
+  \item (I2). $\varphi\rightarrow (\psi\rightarrow \chi)\rightarrow((\varphi\rightarrow \psi)\rightarrow (\varphi\rightarrow \chi))$; 
+  \item (C1). $\varphi \wedge \psi \rightarrow \varphi$; 
+  \item (C2). $\varphi \wedge \psi \rightarrow \psi$; 
+  \item (D1). $\varphi\rightarrow \varphi \vee\psi$;
+  \item (D2). $\psi\rightarrow \varphi \vee \psi$; 
+  \item (D3). $(\varphi\rightarrow \chi)\rightarrow((\psi\rightarrow \chi)\rightarrow (\varphi\vee\psi\rightarrow\chi))$;
+  \item (N1). $(\varphi\rightarrow \psi)\rightarrow((\varphi\rightarrow \neg \psi)\rightarrow \neg \varphi)$; 
+  \item (N2). $\neg\varphi \rightarrow (\varphi\rightarrow \psi)$; 
+  \item (N3). $\varphi \vee \neg \varphi$, 
+\end{itemize}
+
+а также, одно \textit{правило вывода}, которое называется \textit{modus ponents}:
+
+\begin{center}
+  \begin{tabular}{c c c c c}
+    $\varphi$ & & $\varphi$ & $\rightarrow$ & $\psi$ \\ 
+    \hline
+    & & $\psi$ & & 
+  \end{tabular}
+\end{center}
+
+
+
+
+
+\end{document}
