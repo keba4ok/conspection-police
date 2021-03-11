@@ -186,6 +186,7 @@
   \item (I2). $\varphi\rightarrow (\psi\rightarrow \chi)\rightarrow((\varphi\rightarrow \psi)\rightarrow (\varphi\rightarrow \chi))$; 
   \item (C1). $\varphi \wedge \psi \rightarrow \varphi$; 
   \item (C2). $\varphi \wedge \psi \rightarrow \psi$; 
+  \item (C3). $\varphi\rightarrow (\psi \rightarrow \varphi \wedge \psi)$;
   \item (D1). $\varphi\rightarrow \varphi \vee\psi$;
   \item (D2). $\psi\rightarrow \varphi \vee \psi$; 
   \item (D3). $(\varphi\rightarrow \chi)\rightarrow((\psi\rightarrow \chi)\rightarrow (\varphi\vee\psi\rightarrow\chi))$;
@@ -204,6 +205,87 @@
   \end{tabular}
 \end{center}
 
+\begin{defn}
+  Пусть $\Gamma \subseteq \form$, тогда \textit{выводом} из него в гильбертовском исчислении понимают конечную последовательность $\varphi_0, \ldots, \varphi_n$ ($n\in \NN$) элементов $\form$, что для каждого $i\in\{0, \ldots, n\}$ выполнено одно из следующиъ условий: 
+
+  \begin{itemize}
+    \item $\varphi_i$ - аксиома; 
+    \item $\varphi_i$ - элемент $\Gamma$; 
+    \item $\exists \{j, k\}\subseteq\{0, \ldots, i-1\}$ такие, что $\varphi_k$ есть $\varphi_j\rightarrow \varphi_i$. 
+  \end{itemize}
+  При этом, $\varphi_n$ - \textit{заключение}, а элементы $\Gamma$ - \textit{гипотезы}. Если $\varphi$ выводится из $\Gamma$, то пишут $\Gamma \vdash \varphi$. 
+\end{defn}
+
+Основные свойства $\vdash$:
+
+\begin{itemize}
+  \item монотонность; 
+  \item транзитивность;
+  \item компактность (если $\Gamma \vdash \varphi$, то $\Delta \vdash \varphi$ для некоторого конечного $\Delta \subseteq \Gamma$).
+\end{itemize}
+
+\begin{theorem}
+  (О дедукции). Для любых $\Gamma \cup \{\varphi, \psi\}\subseteq \form$, 
+  \[
+    \Gamma \cup \{\varphi\}\vdash \psi \Longleftrightarrow \Gamma \vdash \varphi \rightarrow \psi. 
+  \]
+\end{theorem}
+
+\begin{proof}
+  В одну правую сторону очевидно, в обратную - по индукции по $i\in\{0, 1, \ldots, n\}$ показываем, что $\Gamma\vdash \varphi\rightarrow \psi_i$, там три случая, и все, кроме одного, тривиальны.
+\end{proof}
+
+Введём обозначения: $\top:= p\rightarrow p$ и $\perp := \neg \top$, где $p$ - фиксированная пропозициональная переменная.
+
+\begin{cons}
+  Для любых $\Gamma\cup \{\varphi\}\subseteq \form$, 
+  \[
+    \Gamma \vdash \varphi \Longleftrightarrow \vdash \bigwedge_{i=1}^n \psi_i\rightarrow \varphi
+  \]
+  для некоторых $\{\varphi_1, \ldots, \varphi_n\}\subseteq \Gamma$.
+\end{cons}
+
+\begin{proof}
+  Влево - очевидно, вправо - очевидно и применяется теорема о дедукции.
+\end{proof}
+
+\begin{lemma}
+  Всякая аксиома гильбертовского исчисления для классической пропозициональной логики общезначима.
+\end{lemma}\ 
+
+
+\begin{theorem}
+  Для любых $\Gamma \cup \{\varphi\}\subseteq \form$, 
+  \[
+    \Gamma \vdash \varphi \Longrightarrow \Gamma \vDash \varphi. 
+  \]
+\end{theorem}
+
+\begin{proof}
+  Фиксируем вывод $\varphi_0, \ldots, \varphi_n = \varphi$. Затем рассматриваем произаольную оценку $v$ такую что $v\Vdash \psi$ для всех $\psi \in \Gamma$ и покажем по индукции по $i\in\{0, \ldots, n\}$, что $v\Vdash \varphi_i$.
+\end{proof}
+
+\begin{defn}
+  $\Gamma \subseteq \form$ называется \textit{простой теорией}, если оно обладает следующими свойствами:
+
+  \begin{itemize}
+    \item $\Gamma \neq \form$; 
+    \item $\{\varphi \in \form |\Gamma \vdash \varphi\}\subseteq \Gamma$; 
+    \item для любого $\varphi \vee \psi \in \Gamma$ верно $\varphi \in \Gamma$ или $\psi \in \Gamma$. 
+  \end{itemize}
+\end{defn}
+
+\begin{lemma}
+  Пусть $\Gamma$ - простая теория, тогда для любых её элементов можно переписать действия над ними в рамках принадлежности к теории.
+\end{lemma}\
+
+\begin{lemma}
+  (О расширении. a.k.a. Линденбаума). Пусть $\Gamma \cup \{\varphi \}\subseteq \form$ таковы, что $\Gamma \nvdash \varphi$. Тогда существует простая теория $\Gamma'\supseteq \Gamma$ такая, что $\Gamma' \nvdash \varphi$.
+\end{lemma}
+
+\begin{proof}
+  Рекурсивно докидываем к $\Gamma$ элементы $\form$ (их счётно).
+\end{proof}
 
 
 
