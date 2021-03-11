@@ -527,7 +527,63 @@ $(x-y)$ - евклидово расстояние.
 
 (не закончено и плохо составлено)
 
+\section{Лекция 7.}
 
+\begin{stat}
+    Пусть $f:G\subset \RR^2\rightarrow \RR$, $f=f(x, y)$. $(x_0, y_0)\in G$, $\frac{\partial f}{\partial x \partial y}$ и $\frac{\partial^2 f}{\partial y \partial x}$ - существуют в окрестности точки. Тогда $\frac{\partial f}{\partial x \partial y}(x_0, y_0)=\frac{\partial^2 f}{\partial y \partial x}(x_0, y_9)$. 
+\end{stat}
 
+\begin{proof}
+    Составим на плоскости прямоугольник со стороной $\varepsilon $ в положительные стороны от изначальной точки, расставим в шахматном порядке в углах плюсы и минусы, в изначальной точке - плюс. \ 
+
+    Рассмотрим теперь разностную сумма: $f(x_0, y_0)+f(x_0+\varepsilon_1, y_0+\varepsilon_2)-f(x_0+\varepsilon_1, y_0)- f(x_0, y_0+\varepsilon_2)= \Phi$. Введём некоторые вспомогательные функции: $F_1(y)=f(x_0+\varepsilon_1, y)-f(x_o, y)$, тогда $\Phi=-F_1(y_0+)+F_1(y_0+\varepsilon_2)= \varepsilon_2F_1'(\xi_1)$, $\xi\in[y_0, y_0+\xi_1]$. $F_1'=\frac{\partial f}{\partial y}(x_0+\varepsilon_1, y)-\frac{\partial f}{\partial y}(x_0, y)= \varepsilon_1\frac{\partial}{\partial x}\biggl(\frac{\partial f}{\partial y}(\xi_2)\biggr)$, а это равно $\varepsilon_1\varepsilon_2\cdot\frac{\partial f}{\partial x\partial y}(\xi_1, \xi_2)$, $\xi_1, \xi_2$ лежат в прямоугольничке. \ 
+
+    Теперь рассмотрим то же самое, только введём $F_2(x)=f(x, y_0+\varepsilon_2)-f(x, y_0)$, опять поприменяем теорему Лагранжа, и получим $\varepsilon_1\varepsilon_2\frac{\partial^2 f}{\partial x \partial y}(\xi_1, \xi_2)=\varepsilon_1\varepsilon_2\frac{\partial^2 f}{\partial y \partial y}(\eta_1, \eta_2)$, а теперь воспользуемся непрерывностью производной, устремим к изначальной точке и получим требуемое.
+\end{proof}
+
+\begin{remark}
+    Менять можно любые частные производные в функциях от многих переменных (фиксируем остальные и меняем по лемме).
+\end{remark}
+
+Перейдём, наконец, к формуле Тейлора для многих переменных. Выглядит она сложно, но идея простая: у нас есть некоторый центр - точка $x\in\RR^n$ и ещё она точка $y\in\RR^n$, мы тогда пойдём по прямой от второй точки к центра, напишем естественную параметрицазия $x(t)=x+t(y-x)$, $0\leq t\leq 1$, $h=(y-x)$. Введём тогда функцию $\varphi(t)=f(x+th)$, попробуем написать для $\varphi$ обычную формулу Тейлора и подставим $h$. \ 
+
+$\varphi'(t)=(\grad f, h)=\sum_{k=1}^n\frac{\partial f}{\partial x_k}(x+th)\cdot h_k$. Запишем теперь вторую производную: $\varphi''(t)=\sum_{1\leq k, l\leq n}\frac{\partial ^2 f}{\partial x_k\partial x_l}(x+th)h_kh_l$, и, в итоге, 
+\[
+    \varphi^{(s)}(t)=\sum_{1\leq k_1, \ldots, k_s\leq n}\frac{\partial^s f}{\partial x_{k_1}\ldots \partial x_{k_s}}h_{k_1}\dots h_{k_s} = \biggl(\frac{\partial}{\partial x_1}h_1+\ldots+\frac{\partial}{\partial x_n}h_n\biggr)^s f(x+th). 
+\]
+
+В общем и целом, для написания формулы Тейлора уже всё готово. Остслось вспомнить, как она устроена от одной переменной. $\varphi(\tau)=\varphi(0)+\frac{\varphi'(0)}{1!}\tau+\ldots+\frac{\varphi^m(0)}{m!}\tau^m+R_m(\tau, f)$, тогда если $\tau\equiv 1$, то 
+\[
+    \varphi(1)=\sum_{k-0}^m\frac{\varphi^{(k)}(0)}{k!}+R_m(1, f). 
+\]
+
+Рассмотрим теперь остаток: $R_m(\tau, \varphi)=?$ (остаток надо дописать).\\
+
+\begin{theorem}
+    Пусть $f$ имеет частные производные до $(m+1)$-ой в некоторой окрестности точки $x$, $h=y-x$, тогда $f(y)=f(x)+\sum_{k=1}^n\frac{\partial f}{\partial x_k}(x)h_k+\frac{1}{2!}\sum_{1\leq k_1, k_2\leq n}\frac{\partial ^2 f}{\partial x_{k_1}\partial x_{k_2}}(x)h_{k_1}h_{k_2}+\ldots+\int_0^1\frac{(\ldots)(x+th)}{m!}(1-t)^m dt$, также можно написать в форме Лагранжа или Пеано.
+\end{theorem}
+
+\begin{defn}
+    $f:G\subset \RR^n\rightarrow \RR$, имеет локальный минимум в точке $x^0$, если $f(y)\geq f(x^0)$, $\forall y\in V_{x^0}$. Аналогично и максимум.
+\end{defn}
+
+\begin{defn}
+    Экстремум: $f:\RR^n\rightarrow \RR$ (дописать надо).
+\end{defn}
+
+\begin{theorem}
+    Если квадратичная форма $\sum_{1\leq k, l\leq n}\frac{\partial^2 f}{\partial x_k \partial x_l}(x^0)h_kh_l$, $\grad (x^0)=0$ определена положительно, то локальный минимум, если определена отрицательно, то локальный максимум.
+\end{theorem}\
+
+Рассмотрим квадратную матрицу 
+\[
+    A = \{a_{k, l}\}_{1\leq k, l \leq n},
+\]    
+    
+$Q(x)=\sum_{1\leq k, l \leq n}a_{k l}x_k x_l$,  $x=(x_1, \ldots, x_n)$. $Q(x)=(x_1, \ldots, x_n)A(x_1\ldots x_n)^T$.\\
+
+\begin{theorem}
+    (Критерий Сильвестра). Пусть у нас имеется матрица $Q$, $n\times n$, тогда $Q$ положительно определена тогда и только тогда, когда все угловые определители (два на главной диагонали и квадрат с ними, 4 элемента) не меньше нуля.
+\end{theorem}
 
 \end{document}
