@@ -34,7 +34,7 @@
 %\geometry{verbose,a4paper,tmargin=2cm,bmargin=2cm,lmargin=2.5cm,rmargin=1.5cm}
 
 \title{Матлог. Основные записи}
-\author{Мастера конспектов}
+\author{Мастера конспектов \\ на основе лекций С. О. Сперанского}
 \date{22 января 2020 г.}
 
 \theoremstyle{indented}
@@ -76,13 +76,21 @@
 \DeclareMathOperator{\adj}{adj}
 \DeclareMathOperator{\Prop}{Prop}
 \DeclareMathOperator{\LL}{\mathscr{L}}
+\DeclareMathOperator{\KK}{\mathscr{K}}
 \DeclareMathOperator{\form}{Form}
-\DeclareMathOperator{\Sub}{Sub}
 \DeclareMathOperator{\Pred}{Pred}
 \DeclareMathOperator{\Func}{Func}
 \DeclareMathOperator{\Const}{Const}
 \DeclareMathOperator{\arity}{arity}
 \DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Term}{Term}
+\DeclareMathOperator{\sub}{sub}
+\DeclareMathOperator{\Sub}{Sub}
+\DeclareMathOperator{\Atom}{Atom}
+\DeclareMathOperator{\FV}{FV}
+\DeclareMathOperator{\Sent}{Sent}
+\DeclareMathOperator{\Th}{Th}
 \DeclareMathOperator{\GA}{\mathfrak{A}}
 \DeclareMathOperator{\GB}{\mathfrak{B}}
 \DeclareMathOperator{\GC}{\mathfrak{C}}
@@ -406,9 +414,189 @@
   \textit{Автоморфизм} - изоморфизм на себя. $\Aut(\GA)$ - множество всех автоморфизмов $\GA$. 
 \end{defn}
 
+\section{Лекция 4.} 
 
+\begin{defn}
+  \[
+    \Var:=\{v_0, v_1, v_2, \ldots \}
+  \]
+  есть фиксированное на всю жизнь счётное множество \textit{предметных переменных} или просто \textit{переменных}.
+\end{defn}
 
+\begin{defn}
+  \textit{Язык} $\LL_\sigma$ кванторной классической логики над сигнатурой $\sigma$ состоит из элементов $\Pred_\sigma \cup \Func_\sigma \cup \Const_\sigma \cup \Var$, а также \textit{символов связок}, \textit{символов кванторов} и \textit{вспомогательных символов}.
+\end{defn}
 
+\begin{defn}
+  $\Term_\sigma$ - наименьшее множество слов в алфавите $\LL_\sigma$, замкнутое относительно следующих порождающих правил: 
+  
+  \begin{itemize}
+    \item если $x\in \Var$, то $x\in \Term_\sigma$; 
+    \item если $c\in \Const_\sigma$, то $c\in \Term_\sigma$; 
+    \item если $f\in \Func_\sigma$, $\arity_\sigma (f)=n$ и $\{t_1, \ldots, t_n\}\subseteq \Term_\sigma$, то 
+    \[
+      (t_1, \ldots, t_n)\in \Term_\sigma.
+    \]
+  \end{itemize}
+
+  Элементы $\Term_\sigma$ называют \textit{$\sigma$-термами}.
+\end{defn}
+
+\begin{defn}
+  $\Form_\sigma$ - наименьшее множество слов в алфавите $\LL_\sigma$, замкнутое относительно следующих порождающих правил:
+
+  \begin{itemize}
+    \item если $P\in \Pred$, $\arity_\sigma(P)=n$ и $\{t_1, \ldots, t_n\}\subseteq \Term_\sigma$, то 
+    \[
+      P(t_1, \ldots, t_n)\in \form_\sigma; 
+    \]
+    \item если $\{\Phi, \Psi\}\subseteq \form_\sigma$, то 
+    \[
+      \{(\Phi\ra \Psi), (\Phi\vee \Psi), (\Phi\wedge \Psi), \neg \Phi \} \subseteq \form_\sigma; 
+    \]
+    \item если $\Phi \in \form_\sigma$ и $x \in \Var$, то
+    \[
+      \{\forall x \: \Phi, \exists x \: \Phi\} \subseteq \form_\sigma.
+    \]
+  \end{itemize}
+
+  Элементы которого называются \textit{$\sigma$-формулами}. Атомарными формулами называются формулы, которые не содержат ни символов связок, ни символов кванторов. Их множество - $\Atom_\sigma$. 
+\end{defn}
+
+\begin{remark}
+  Для понимания, кажется, $\Term$ - выражения с переменными, константами, действиями и т.д., а вот $\form$ - сравнения выражений (в частности), логические утверждения, кванторные.
+\end{remark}
+
+\begin{defn}
+  Для любых $t\in \Term_\sigma$ и $\Phi\in \form_\sigma$ определим 
+
+  \begin{equation*}
+    \begin{aligned}
+      \sub(t) & := \{s \in \Term_\sigma | s\preccurlyeq t\}, \\
+      \Sub(\Phi) & := \{\Psi \in \form_\sigma | \Psi\preccurlyeq \Phi\}, 
+    \end{aligned}
+  \end{equation*}
+
+  которые называются соответственно \textit{подтермами} и \textit{подформулами}.
+\end{defn}
+
+\begin{lemma}
+  Пусть $\{t, s\}\subseteq \Term_\sigma$ таковы, что $t\sqsubseteq s$. Тогда $t=s$. 
+\end{lemma} \
+
+\begin{lemma}
+  (О единственности представления термов). Всякий $t\in \Term_\sigma \backslash (\Var\cup\Const_\sigma)$ можно единственным образом представить в виде $f(t_1, \ldots, t_n)$, где $f\in \Func_\sigma$, $\arity_\sigma(f)=n$ и $\{t_1, \ldots, t_n\}\subseteq \Term_\sigma$. 
+\end{lemma} \
+
+\begin{lemma}
+  Пусть $t\in \Term_\sigma$ и $f\in \Func_\sigma$. Тогда всякое вхождение $f$ в $t$ является началом вхождения некоторого подтерма.
+\end{lemma} \
+
+\begin{lemma}
+  (О подтермах). Пусть $t\in\Term_\sigma$. 
+
+  \begin{itemize}
+    \item если $t\in \Var \cup \Const_\sigma$, то $\sub(t)=\{t\}$;
+    \item если $t=f(t_1, \ldots, t_n)$, где $f\in \Func_\sigma$, $\arity_\sigma(f)=n$ и $\{t_1, \ldots, t_n\}\subseteq \Term_\sigma$, то 
+    \[
+      \sub(t)=\sub(t_1)\cup\ldots\cup \sub(t_n)\cup \{ t \}. 
+    \]
+  \end{itemize}
+\end{lemma} \ 
+
+\begin{lemma}
+  (О единственности представления атомов). Всякий $\Phi \in \Atom$ можно единственными образом представить в виде $P(t_1, \ldots, t_n)$, где $P\in \Pred_\sigma$, $\arity_\sigma(P)=n$ и $\{t_1, \ldots, t_n\}\subseteq \Term_\sigma$. 
+\end{lemma} \ 
+
+\begin{lemma}
+  Пусть $\{\Phi, \Psi\}\subseteq \form_\sigma$ таковы, что $\Phi \sqsubseteq \Psi$. Тогда $\Phi = \Psi$. 
+\end{lemma} \ 
+
+\begin{lemma}
+  (О единственности представления формул). Всякую $\Phi\in \form_\sigma \backslash \Atom_\sigma$ можно единственным образом представить в виде комбинации формул (одной или двух) и символов связок или символов кванторов.
+\end{lemma} \ 
+
+\begin{lemma}
+  Пусть $\Phi\in \form_\sigma$. Тогда всякое вхождение $\neg$, $($, $\forall$ или $\exists$ в $\Phi$ является началом вхождения некоторой подформулы.
+\end{lemma} \ 
+
+\begin{lemma}
+  Пусть $\Phi \in \form_\sigma$. 
+
+  \begin{itemize}
+    \item Если $\Phi \in \Atom_\sigma$, то $\Sub (\Phi)=\{ \Phi\}$;
+    \item Если $\Phi = (\Theta \circ \Omega)$, где $\{\Theta, \Omega\}\subseteq \form_\sigma$ и $\circ \in \{\ra, \wedge, \vee\}$, то 
+    \[
+      \Sub(\Phi)=\Sub(\Theta)\cup \Sub(\Omega)\cup \{\Phi\};
+    \]
+    \item Если $\Phi=\neg \Theta$, где $\Theta \in \form_\sigma$, или $\Phi=Q\times \Theta$, где $x\in \Var$, $\Theta \in \form_\sigma$ и $Q\in \{\forall, \exists\}$, то 
+    \[
+      \Sub(\Phi)= \Sub(\Theta)\cup \{\Phi\}. 
+    \]
+  \end{itemize}
+\end{lemma}
+
+\begin{defn}
+  Пусть $\Phi \in \form_\sigma$, $x\in \Var$ и $Q\in \{\forall, \exists\}$. Тогда каждое вхождение $Qx$ в $\Phi$ является началом вхождения некоторой подформулы, причём последнее определяется однозначно; его называют \textit{областью действия} данного вхождения $Qx$. Вхождение $x$ в $\Phi$ называется \textit{связанным}, если оно входит в область действия какого-нибудь вхождения $\forall x$ или $\exists x$, и \textit{свободным} иначе. Далее, говорят, что $x$ является \textit{свободной переменной} в $\Phi$, если у $x$ есть хотя бы одно свободное вхождение в $\Phi$. \ 
+
+  Скажем, что $\FV(\Phi)$ - множество $z\in \Var$ таких, что у $z$ имеется хотя бы одно свободное вхождение в $\Phi$. Интуитивно, элементы этого множества играют роль параметров $\Phi$, а запись $\Phi(x_1, \ldots, x_l)$ указывает на то, что $FV(\Phi)\subseteq \{x_1, \ldots, x_l\}$. 
+\end{defn}
+
+\begin{defn}
+  \[
+    \Sent_\sigma := \{\Phi \in \form_\sigma | \FV (\Phi)=\emptyset\}/ 
+  \]
+  Элементы которого называют \textit{$\sigma$-предложениями}. Они могут выступать в качестве \textit{нелог. аксиом}.
+\end{defn}
+
+\begin{defn}
+  $t$ называем \textit{свободным для подстановки} вместо $x$ в $\Phi$, если ни одно из свободных вхождений $x$ в $\Phi$ не находится в области действия квантора по переменной из $t$. 
+\end{defn}
+
+\begin{defn}
+  \textit{Означивание переменных} - функции из $\Var$ в $A$. Каждое означивание $v$ в $\GA$ можно расширить до $\overline{v}:\Term_\sigma \ra A$ естественным образом: 
+
+  \begin{equation*}
+    \begin{aligned}
+      \overline{v}(x) & := v(x); \\ 
+      \overline{v}(c) & := c^{\GA}; \\
+      \overline{v}(f(t_1, \ldots, t_n)) & := f^{\GA}(\overline{v}(t_1), \ldots, \overline{v}(t_n)).
+    \end{aligned}
+  \end{equation*}
+
+  А через $v^x_a$  ($x$ - переменная, $a$ - элемент$A$) будет обозначаться особенное означивание такое, что оно равно $v^x_a(y)=a$, если $y=x$ и $v(y)$ - иначе.
+\end{defn}
+
+\begin{defn}
+  Определим $\GA \Vdash \Phi[v]$ индукцией по построению $\Phi$. Короче, надо просто расписать все логические связки и кванторы, что они означают. Когда эта вещь выполнена, мы будем говорить, что $\Phi$ \textit{истинно} в $\GA$ при $v$. 
+\end{defn}
+
+\begin{defn}
+  Пусть $\Gamma \subseteq \Sent_\sigma$. Поворят, что $\GA$ \textit{является моделью} $\Gamma$ и пишут $\GA \Vdash \Gamma$, если $\GA \Vdash \Phi$ для всех $\Phi\in \Gamma$. 
+\end{defn}
+
+\begin{theorem}
+  Пусть $\xi$ - изоморфизм из $\GA$ на $\GB$. Тогда для каждой $\sigma$-формулы $\Phi$ и любого означивания $v$ в $\GA$, 
+  \[
+    \GA \Vdash \Phi[v] \Llra \GB \Phi[v\circ \xi]. 
+  \]
+\end{theorem}
+
+\begin{proof}
+  Примем $\mu:=v\circ \xi$, заметим, что $\overline{\mu}(t) = \xi (\overline{v}(t))$, а потом провернём индукции по построению $\Phi$. 
+\end{proof}
+
+\begin{defn}
+  Для произвольного класса $\KK$ $\sigma$-структур Предположим
+  \[
+    \Th(\KK):=\{\Phi\in \Sent_\sigma |\GA \Vdash \Phi \text{ для всех }\GA \in \KK\}.
+  \]
+  Говорят, что $\GA$ и $\GB$ \textit{элементарно эквивалентны}, если $\Th(\GA)=\Th(\GB)$. 
+\end{defn}
+
+\begin{cons}
+  Изоморфные структуры элементарно эквивалентны.
+\end{cons}
 
 
 \end{document}
