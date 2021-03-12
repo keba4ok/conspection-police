@@ -49,7 +49,15 @@
 \newtheorem{remark}{Примечание}
 \newtheorem{cons}{Следствие}
 \newtheorem{exer}{Упражнение}
+\newtheorem{stat}{Утверждение}
 
+\DeclareMathOperator{\la}{\leftarrow}
+\DeclareMathOperator{\ra}{\rightarrow}
+\DeclareMathOperator{\lra}{\leftrightarrow}
+\DeclareMathOperator{\La}{\Leftarrow}
+\DeclareMathOperator{\Ra}{\Rightarrow}
+\DeclareMathOperator{\Lra}{\Leftrightarrow}
+\DeclareMathOperator{\Llra}{\Longleftrightarrow}
 \DeclareMathOperator{\Ker}{Ker}
 \DeclareMathOperator{\Frac}{Frac}
 \DeclareMathOperator{\Imf}{Im}
@@ -70,6 +78,15 @@
 \DeclareMathOperator{\LL}{\mathscr{L}}
 \DeclareMathOperator{\form}{Form}
 \DeclareMathOperator{\Sub}{Sub}
+\DeclareMathOperator{\Pred}{Pred}
+\DeclareMathOperator{\Func}{Func}
+\DeclareMathOperator{\Const}{Const}
+\DeclareMathOperator{\arity}{arity}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\GA}{\mathfrak{A}}
+\DeclareMathOperator{\GB}{\mathfrak{B}}
+\DeclareMathOperator{\GC}{\mathfrak{C}}
+\DeclareMathOperator{\GD}{\mathfrak{D}}
 
 \begin{document}
 
@@ -255,7 +272,7 @@
 
 
 \begin{theorem}
-  Для любых $\Gamma \cup \{\varphi\}\subseteq \form$, 
+  (О корректности). Для любых $\Gamma \cup \{\varphi\}\subseteq \form$, 
   \[
     \Gamma \vdash \varphi \Longrightarrow \Gamma \vDash \varphi. 
   \]
@@ -286,6 +303,110 @@
 \begin{proof}
   Рекурсивно докидываем к $\Gamma$ элементы $\form$ (их счётно).
 \end{proof}
+
+\section{Лекция 3.}
+
+Для каждой простой теории $\Gamma$ определим оценку $v_\Gamma$ по правилу $v_\Gamma(p):=1$, если $p\in \Gamma$ и 0 иначе. \\
+
+\begin{lemma}
+  Пусть $\Gamma$ - простая теория. Тогда для любой $\varphi \in \form$, 
+  \[
+    v_\Gamma \Vdash \varphi \Longleftrightarrow \varphi \in \Gamma
+  \]
+\end{lemma}
+
+\begin{proof}
+  Индукция по построению $\varphi$, используя лемму 6.
+\end{proof}
+
+\begin{theorem}
+  (О сильной полноте $\vdash$). Для любых $\Gamma\cup \{\varphi\}\subseteq \form$, 
+  \[
+    \Gamma \vdash \varphi \Llra \Gamma \vDash \varphi. 
+  \]
+  В частности, $\Gamma \nvdash \perp$ если и только если $\Gamma \nvDash \perp$, а значит, $\Gamma$ непротиворечиво если и только если $\Gamma$ выполнимо.
+\end{theorem}
+
+\begin{proof}
+  Вправо - теорема о корректности, влево - от противного, рассматриваем $\Gamma'$, как в лемме 7.
+\end{proof}
+
+\begin{theorem}
+  (О слабой полноте $\vdash$). Для любой $\varphi \in \form$, 
+  \[
+    \vdash \varphi \Llra \vDash \varphi
+  \]
+  то есть, выводимость из пустого равносильна обзезначимости,
+\end{theorem}\ 
+
+\begin{theorem}
+  (О компактности $\vDash$). Для любых $\Gamma \cup \{\varphi\}\subseteq \form$, 
+  \[
+    \Gamma \vDash \varphi \Llra \Delta \vDash \varphi
+  \]
+  для некоторого конечного $\Delta \subseteq \Gamma$. В частности, $\Gamma \nvDash \perp$ тогда и только тогда, когда $\Delta \nvDash \perp$ для всех конечных $\Delta \subseteq \Gamma$, а значит, $\Gamma$ выполнимо тогда и только тогда, когда всякое конечное подмножество $\Gamma $ выполнимо.
+\end{theorem}
+
+\begin{stat}
+  Слабая полнота $\vdash$ плюс компактность $\vDash$ равно сильная полнота $\vdash$. 
+\end{stat}
+
+\begin{defn}
+  \textit{Сигнатура} - четвёрка вида 
+  \[
+    \sigma = \langle \Pred_\sigma, \Func_\sigma, \Const_\sigma, \arity_\sigma \rangle,
+  \]
+  где первые три - попарно непересекающиеся множества, а последнее - функция из $\Pred_\sigma \cup \Func_\sigma$ в $\NN\backslash \{0\}$. 
+\end{defn}
+
+\begin{defn}
+  \textit{$\sigma$-структура} - пара вида 
+  \[
+    \GA = \langle A, I_{\GA}\rangle, 
+  \]
+  где $A$ - непустое множество, а $I_{\GA}$ - функция с областью определения $\Pred_\sigma \cup \Func_\sigma \cup \Const_\sigma$, такая что:
+
+  \begin{itemize}
+    \item для любого $n$-местного $P\in \Pred_\sigma$ верно $I_{\GA}(P)\subseteq A^n$; 
+    \item для любого $m$-местного $f\in \Func_\sigma$ верно $I_{\GA}(f):A^m\ra A$; 
+    \item для любого $c\in\Const_\sigma$ верно $I_{\GA}(c)\in A$. 
+  \end{itemize}
+
+  При этом, $A$ - носитель, а $I_{\GA}$ - интерпретация $\sigma$ в $\GA$. 
+\end{defn}
+
+\begin{defn}
+  Пусть $\GA$ b $\GB$ - две $\sigma$-структуры. Говорят, что $\xi: A\ra B$ есть \textit{гомоморфизм} из $\GA$ в $\GB$, если выполнены следующие условия:
+
+  \begin{itemize}
+    \item для любого $n$-местного предиката и всех $(a_1, \ldots, a_n)\in A^n$, 
+    \[
+      (a_1, \ldots, a_n)\in P^{\GA} \Ra (\xi(a_1), \ldots, \xi(a_n)) \in P^{\GB}; 
+    \]
+    \item для любого $m$-местного функционала и всех $(a_1, \ldots, a_m)\in A^m$, 
+    \[
+      \xi(f^{\GA}(a_1, \ldots, a_m))=f^{\GB}(\xi(a_1), \ldots, \xi(a_m)); 
+    \]
+    \item для любой константы, 
+    \[
+      \xi(c^{\GA})=c^{\GB}.
+    \]
+  \end{itemize}
+\end{defn}
+
+\begin{defn}
+  Инъективный гомоморфизм называют \textit{сложением}, если выполнено усиление первого пункта, где следствие заменяется на равносильность.
+\end{defn}
+
+\begin{defn}
+  Сюръективное вложение называют \textit{изоморфизмом} и пишут $\GA \simeq \GB$, если они изоморфны, т.е. между ними существует изоморфизм.
+\end{defn}
+
+\begin{defn}
+  \textit{Автоморфизм} - изоморфизм на себя. $\Aut(\GA)$ - множество всех автоморфизмов $\GA$. 
+\end{defn}
+
+
 
 
 
