@@ -91,6 +91,8 @@
 \DeclareMathOperator{\FV}{FV}
 \DeclareMathOperator{\Sent}{Sent}
 \DeclareMathOperator{\Th}{Th}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Eq}{Eq}
 \DeclareMathOperator{\GA}{\mathfrak{A}}
 \DeclareMathOperator{\GB}{\mathfrak{B}}
 \DeclareMathOperator{\GC}{\mathfrak{C}}
@@ -597,6 +599,113 @@
 \begin{cons}
   Изоморфные структуры элементарно эквивалентны.
 \end{cons}
+
+\section{Лекция 5.}
+
+\begin{defn}
+  $S\subseteq A^l$ называется \textit{определимым в $\GA$}, если существует $\sigma$-формула $\Phi(x_1, \ldots, x_l)$ такая, что 
+  \[
+    S=\{\vec{a}\in A^l|\GA\Vdash \Phi[\vec{a}]\}; 
+  \]
+  в этом случае говорят, что \textit{$\Phi$ определяет $S$ в $\GA$}. 
+\end{defn}
+
+\begin{defn}
+  $\supp(n)$ - множество всех простых делителей $n\in \NN$. 
+\end{defn}
+
+\begin{stat}
+  Пусть $S$ определимо в $\GA$. Тогда для любого $\xi\in \Aut(\GA)$, 
+  \[
+    \xi[S]\subseteq S, 
+  \]
+  то есть, $S$ замкнуто относительно автоморфизмов $\GA$. 
+\end{stat}
+
+\begin{stat}
+  $\sigma$-структуру $\GA$ называют \textit{нормальной}, если $=$ интерпретируется в $\GA$ как настоящее равенство, то есть, $=^{\GA}$ совпадает с $\id_A$.
+\end{stat}
+
+\begin{defn}
+  $\Eq_\sigma$ - множество состоящее из $\sigma$-предложений
+
+  \begin{itemize}
+    \item $\forall x \: x=x$; 
+    \item $\forall x \forall y (x=y\ra y=x)$; 
+    \item $\forall x \forall y \forall z (x=y \wedge y=z \ra x=z)$;
+  \end{itemize}
+  а также всех $\sigma$-предложений видов 
+
+  \begin{itemize}
+    \item $\forall x_1 \forall y_1 \ldots \forall x_n \forall y_n (\vec{x}=\vec{y}\ra (P(\vec{x})\leftrightarrow P(\vec{y})))$; 
+    \item $\forall x_1 \forall y_1 \ldots \forall x_m \forall y_m (\vec{x}=\vec{y}\ra f(\vec{x}) = f(\vec{y}))$, 
+  \end{itemize}
+  где $P\in \Pred_\sigma$ и $f\in \Func_\sigma$, причём $\arity_\sigma(P)=n$ и $\arity_\sigma(f)=m$. Под \textit{аксиомами равенства для $\sigma$} понимают элементы $\Eq_\sigma$. 
+\end{defn}
+
+\begin{defn}
+  Обозначим за $\GA'$ нормальную $\sigma$-структуру с носителем $A_{/=^{\GA}}$ такую, что мы заменяем константы и функционалы $\GA$ (произвольная модель $\Eq_\sigma$) на их классы эквивалентности по равенству, и оставляем все предикаты.
+\end{defn}
+
+\begin{theorem}
+  Для любых $\sigma$-формул $\Phi$ и означивания $v$ в $\GA$ 
+  \[
+    \GA \Vdash \Phi[v] \Llra \GA'\Vdash \Phi[v'], 
+  \]
+  где $v'$ отображает каждую $x\in \Var$ в $[v(x)]$. 
+\end{theorem}
+
+\begin{proof}
+  Для начала, как в ещё одном недавнем доказательстве заметим, что для всех $t\in \Term_\sigma$, 
+  \[
+    \overline{v}'=[\overline{v}(t)],
+  \]
+  что несложно доказывается индукцией по построению $t$, а затем опять же, индукция по постоению самой $\Phi$. 
+\end{proof}
+
+\begin{cons}
+  Для каждого $\Gamma\subseteq \Sent_\sigma$ следующие условия эквивалентны: 
+
+  \begin{itemize}
+    \item у $\Gamma$ есть нормальная модель; 
+    \item у $\Gamma \cup \Eq_\sigma$ есть модель.
+  \end{itemize}
+\end{cons}
+
+\begin{defn}
+  $\sigma$-формулу $\Phi$ называют 
+
+  \begin{itemize}
+    \item \textit{выполнимой}, если $\GA \Vdash \Phi[v]$ для некоторых $\GA$ и $v$; 
+    \item \textit{общезначимой}, если $\GA\Vdash \Phi[v]$ для всех $\GA$ и $v$. 
+  \end{itemize}
+\end{defn}
+
+\begin{defn}
+  Пусть $\Phi \in \form_\sigma$ и $x_1, \ldots, x_l$ - в точности все элементы $\FV(\Phi)$ в порядке их появления в $\Phi$. Определим тогда \textit{универсальное замыкание} $\tilde{\forall}$ - $\forall x_1 \ldots \forall x_l \Phi$ и \textit{экзистенциальное замыкание} $\tilde{\exists}$ аналогично.
+\end{defn}
+
+\begin{defn}
+  Пусть $\Gamma \subseteq \Sent_\sigma$ и $\Phi \in \form_\sigma$. Говорят, что \textit{$\Phi$ семантически следует из $\Gamma$}, и пишут $\Gamma \vDash \Phi$, если для любой $\GA$, 
+  \[
+    \GA \Vdash \Gamma \Longrightarrow \GA \Vdash \tilde{\forall}\Phi. 
+  \]
+  Если выполнено $\vDash \Phi \leftrightarrow \Psi$, то такие формулы называют \textit{семантически эквивалентными} и пишут $\Phi \equiv \Psi$. 
+\end{defn}
+
+\begin{defn}
+  $\sigma$-формула $\Phi$ называется \textit{бескванторной}, если в ней нет кванторов.
+\end{defn}
+
+\begin{defn}
+  Под \textit{пренексными нормальными формами} понимаются $\sigma$-формулы вида 
+  \[
+    Q_1 x_1 \ldots Q_l x_l \Psi,
+  \]
+  где $Q_i$ - кванторы, $x_i$ - переменные и $\Psi$ бескванторная.
+\end{defn}
+
+
 
 
 \end{document}
