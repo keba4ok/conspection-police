@@ -1,0 +1,215 @@
+\documentclass[a4paper,100pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[unicode, pdftex]{hyperref}
+\usepackage{cmap}
+\usepackage{mathtext}
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\usepackage[T2A]{fontenc}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}
+\usepackage{icomma}
+\usepackage{euscript}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage[usenames]{color}
+\hypersetup{
+     colorlinks=true,
+     linkcolor=magenta,
+     filecolor=magenta,
+     citecolor=black,      
+     urlcolor=cyan,
+     }
+\usepackage{fancyhdr}
+\pagestyle{fancy} 
+\fancyhead{} 
+\fancyhead[LE,RO]{\thepage} 
+\fancyhead[CO]{\hyperlink{t2}{к списку объектов}}
+\fancyhead[LO]{\hyperlink{t1}{к содержанию}} 
+\fancyhead[CE]{текст-центр-четные} 
+\fancyfoot{}
+\newtheoremstyle{indented}{0 pt}{0 pt}{\itshape}{}{\bfseries}{. }{0 em}{ }
+
+%\geometry{verbose,a4paper,tmargin=2cm,bmargin=2cm,lmargin=2.5cm,rmargin=1.5cm}
+
+\title{Матосновы алгоритмов}
+\author{Мастера конспектов \\ на основе лекций А. С. Охотина и А. В. Тискина}
+\date{22 января 2020 г.}
+
+\theoremstyle{indented}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}{Лемма}
+\newtheorem{alg}{Алгоритм}
+
+\theoremstyle{definition} 
+\newtheorem{defn}{Определение}
+\newtheorem{exl}{Пример(ы)}
+\newtheorem{prob}{Задача}
+
+\theoremstyle{remark} 
+\newtheorem{remark}{Примечание}
+\newtheorem{cons}{Следствие}
+\newtheorem{exer}{Упражнение}
+\newtheorem{stat}{Утверждение}
+
+\DeclareMathOperator{\la}{\leftarrow}
+\DeclareMathOperator{\ra}{\rightarrow}
+\DeclareMathOperator{\lra}{\leftrightarrow}
+\DeclareMathOperator{\La}{\Leftarrow}
+\DeclareMathOperator{\Ra}{\Rightarrow}
+\DeclareMathOperator{\Lra}{\Leftrightarrow}
+\DeclareMathOperator{\Llra}{\Longleftrightarrow}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\Imf}{Im}
+\DeclareMathOperator{\cont}{cont}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\chard}{char}
+\DeclareMathOperator{\CC}{\mathbb{C}}
+\DeclareMathOperator{\ZZ}{\mathbb{Z}}
+\DeclareMathOperator{\RR}{\mathbb{R}}
+\DeclareMathOperator{\NN}{\mathbb{N}}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\Prop}{Prop}
+\DeclareMathOperator{\LL}{\mathscr{L}}
+\DeclareMathOperator{\KK}{\mathscr{K}}
+\DeclareMathOperator{\form}{Form}
+\DeclareMathOperator{\Pred}{Pred}
+\DeclareMathOperator{\Func}{Func}
+\DeclareMathOperator{\Const}{Const}
+\DeclareMathOperator{\arity}{arity}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Term}{Term}
+\DeclareMathOperator{\sub}{sub}
+\DeclareMathOperator{\Sub}{Sub}
+\DeclareMathOperator{\Atom}{Atom}
+\DeclareMathOperator{\FV}{FV}
+\DeclareMathOperator{\Sent}{Sent}
+\DeclareMathOperator{\Th}{Th}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Eq}{Eq}
+\DeclareMathOperator{\GA}{\mathfrak{A}}
+\DeclareMathOperator{\GB}{\mathfrak{B}}
+\DeclareMathOperator{\GC}{\mathfrak{C}}
+\DeclareMathOperator{\GD}{\mathfrak{D}}
+
+\begin{document}
+
+\newcommand{\resetexlcounters}{%
+  \setcounter{exl}{0}%
+} 
+
+\newcommand{\resetremarkcounters}{%
+  \setcounter{remark}{0}%
+} 
+
+\newcommand{\reseconscounters}{%
+  \setcounter{cons}{0}%
+} 
+
+\newcommand{\resetall}{%
+    \resetexlcounters
+    \resetremarkcounters
+    \reseconscounters%
+}
+
+\maketitle 
+
+\newpage
+
+\hypertarget{t1}{Основные моменты}. 
+\tableofcontents
+
+\newpage
+
+\section{Лекция 1.}
+
+\subsection{Быстрая сортировка.}
+
+\begin{alg}
+    \textit{Быстрая сортировка.} Выбираем \textit{опорный элемент}, с которым сравниваем все остальные элементы (на это уходит линейное время). Затем рекурсивно работаем с тем, что справа от него и слева от него.
+\end{alg} \ 
+
+\begin{theorem}
+    Если все элементы массива различны и опопрный элемент выбирается случайно, то среднее время работы алгоритма - $\Theta(n\log n)$.
+\end{theorem}
+
+\begin{proof}
+    Время работы пропорционально числу сравнениий между элементами. Расматриваем два элемента $y_i$ и $y_j$, $i<j$, тогда они сравниваются только, если выбран один из них в качестве опорного. Если будет выбран какой-то $y_k$, $i<k<j$, то они никогда больше не будут сравнены, если что-то на отрезке не между ними - плевать, относительно отрезка между ними ничего не поменялось. Тогда среднее количество сравнений между этими элементами: 
+    \[
+        \frac{2}{j-i+1}. 
+    \]
+    Тогда всего среднее количество сравнений: 
+    \[
+        \sum_{i=1}^{n-1}\sum_{j=i+1}^n \frac{2}{j-i+1} = \sum_{i=1}^{n-1}\sum_{k=1}^{n-1} \frac{2}{k+1}= O(n\log n).
+    \]
+    Последняя оценка получается из
+    \[
+        \sum_{k=1}^n\frac{1}{k} \approx \int_1^n \frac{1}{x}dx = \ln n. 
+    \]
+\end{proof}
+
+\subsection{Сортировка кучей.}
+
+\begin{alg}
+    \textit{Сортировка кучей}. Для начала, мы строим дерево: записываем по порядочку все вершины так, что у вершины $x_i$ потомки - $x_{2i}$ и $x_{2i+1}$. Затем начинаем на все вершины, кроме висячих смотреть и делать вот что: если она меньше потомка, то поменяем с ним (если меньше обоих, то с меньшим). Так доведём её до куда сможем, и продолжим рпссмотрение для оставшихся невисячих вершин (в изначальном дереве). Так сверху окажется наименьшая вершина, вынесем её, затем - по индукции.
+\end{alg}
+
+\begin{stat}
+    Работает за $O(n\log n)$ (построение дерева - $O(\log n)$, вынесение вершин - $O(n)$), можно разогнать оценку до $2n$. 
+\end{stat}
+
+\subsection{Скорость сортировки.} 
+ 
+\begin{theorem}
+    Всякий алгоритм сортировки, основанный на сравнении, требует $\Omega (n\log n)$ операций сравнения.
+\end{theorem}
+
+\begin{proof}
+    Построим дерево того, как мы спускаемся к определению последовательности, его высота ограничивается $\log_2n!$, оценим факториал $\biggl(\frac{n}{e}\biggr)^n<n!<n^n$, а после - оценим через это логарифм $n\log_2n - O(n)$. 
+\end{proof}
+
+\begin{alg}
+    \textit{Сортировка подсчётом}. Если у нас есть массив из конечного обозримого количества типов элементов, можно сначала посчитать количество первого, затем количество второго, и так далее. Время работы - $O(n+k)$, где $k$ - количество типов, $n$ - количество переменных.
+\end{alg} \ 
+
+\begin{alg}
+    \textit{Поразрядная сортировка.} Сортируем числа сначала по первому разряду, затем по второму, и так далее\dots Время работы: $O(l(n+k))$, где сравниваются строки длины $l$, алфавит из $k$ символов.
+\end{alg}
+
+\subsection{Нахождение $i$-го по величине элемента массива.} 
+
+\begin{alg}
+    \textit{Нахождение $i$-го элемента}. Делим массив на пятёрки подряд идущих элементов (возможно, последняя пятёрка будет неполной). Теперь в каждой пятёрке выделяем медианы, и смотрим на медиану медиан. Сделаем её опорным элементом и как в быстрой сортировке, раскидаем всё по сторонам. Если этот элемент под номером $i$, то мы его нашли, иначе - действуем рекурсивно с одной из сторон. Время работы - линейное.
+\end{alg}
+
+\subsection{Метод динамического программирования.}
+
+\begin{prob}
+    Имеется стержень длины $n$. Продав стержень длины $i$, можно выручить $p_i$ денежных единиц. Как выгоднее всего распилить имеющийся стержень?
+\end{prob}
+
+\begin{alg}
+    Начинаем с первого, и делаем полный перебор. Говнище
+\end{alg} \ 
+
+\begin{alg}
+    \textit{Жадный алгоритм.} Отпиливаем самый дорогой кусок, затем опять самый дорогой из возможных, и так далее. Не самый оптимальный.
+\end{alg} \ 
+
+\begin{alg}
+    \textit{Метод динамического программрования.} Суть этого метода такова. Пусть на каждом шаге надо сделать выбор (принять решение). Известно, что какой-то выбор приводит к оптимальному результату. Этому выбору соответствует некий набор подзадач. Тогда сперва находятся ответы для всех подзадач данной задачи, возникающих при различном выборе, после чего, имея все эти ответы перед глазами, можно будет в каждом случае сделать наилучший выбор.
+\end{alg}
+
+\begin{exl}
+    Пусть стержень длины 0 не стоит нисколько. Для $j$ от 1 до $n$ пока не найдено никаких способов продать стержень, для всякой длины отрезаемого куска, сложим его цену с выручкой за остаток. Если так можно выручить больше известного, то цена стержня длины $j$ улучшается, и так рекурсивно мы дойдём до получения цены за весь стержень. 
+\end{exl}
+
+\end{document}
