@@ -705,7 +705,169 @@
   где $Q_i$ - кванторы, $x_i$ - переменные и $\Psi$ бескванторная.
 \end{defn}
 
+\section{Лекция 6.}
 
+Сейчас будет Гильбертовское исчисление для кванторной логики. В моём понимании, это как некоторый апдейт пропозициональной, во многом они схожи, достаточно только взглянуть на \textit{схемы аксиом}:
 
+\begin{itemize}
+  \item (I1). $\Phi\rightarrow (\Psi\rightarrow \Phi)$;
+  \item (I2). $\Phi\rightarrow (\Psi\rightarrow \Theta)\rightarrow((\Phi\rightarrow \Psi)\rightarrow (\Phi\rightarrow \Theta))$; 
+  \item (C1). $\Phi \wedge \Psi \rightarrow \Phi$; 
+  \item (C2). $\Phi \wedge \Psi \rightarrow \Psi$; 
+  \item (C3). $\Phi\rightarrow (\Psi \rightarrow \Phi \wedge \Psi)$;
+  \item (D1). $\Phi\rightarrow \Phi \vee\Psi$;
+  \item (D2). $\Psi\rightarrow \Phi \vee \Psi$; 
+  \item (D3). $(\Phi\rightarrow \Theta)\rightarrow((\Psi\rightarrow \Theta)\rightarrow (\Phi\vee\Psi\rightarrow\Theta))$;
+  \item (N1). $(\Phi\rightarrow \Psi)\rightarrow((\Phi\rightarrow \neg \Psi)\rightarrow \neg \Phi)$; 
+  \item (N2). $\neg\Phi \rightarrow (\Phi\rightarrow \Psi)$; 
+  \item (N3). $\Phi \vee \neg \Phi$;
+  \item (Q1). $\forall x \Phi \rightarrow \Phi(x/t)$, где $t$ свободен для $x$ в $\Phi$;
+  \item (Q2). $\Phi(x/t)\rightarrow \exists x \Phi$, где $t$ свободен для $x$ в $\Phi$. 
+\end{itemize}
+
+\begin{remark}
+  В случаях, когда $=$ содержится в $\Pred_\sigma$, элементы $\Eq_\sigma$ также будут считаться аксиомами нашего исчисления.
+\end{remark}
+
+Также имеется \textit{modus ponens} (MP):
+
+\begin{center}
+  \begin{tabular}{c c c c c}
+    $\Phi$ & & $\Phi$ & $\rightarrow$ & $\Psi$ \\ 
+    \hline
+    & & $\Psi$ & & 
+  \end{tabular}
+\end{center}
+
+И два новых ''кванторных'' правила вывода:
+
+\begin{center}
+  \begin{tabular}{c c c}
+    $\Psi$ & $\rightarrow$ & $\Phi$ \\ 
+    \hline
+    $\Psi$ & $\rightarrow$ & $\forall x \Phi$
+  \end{tabular}
+  (BR1)\: \:\: \: и \: \: \: \:
+  \begin{tabular}{c c c}
+    $\Phi$ & $\rightarrow$ & $\Psi$ \\ 
+    \hline
+    $\exists x \Phi$ & $\rightarrow$ & $\Psi$ 
+  \end{tabular}
+  (BR2), 
+\end{center}
+
+где $x \notin \FV(\Psi)$, и они традиционно называются \textit{правилами Бернайса}.
+
+\begin{defn}
+  \textit{Вывод} - опять-таки, конечная последовательность $\Phi_0, \ldots, \Phi_n$ элементов $\form_\sigma$ такую, что для каждого $i$ от 0 до $n$ выполнено одно из следующих условий:
+
+  \begin{itemize}
+    \item $\Phi_i$ - аксиома; 
+    \item $\Phi_i$ - элемент $\Gamma$; 
+    \item $\Phi_i$ полулчается из некоторых предшествующих по (MP);
+    \item $\Phi_i$ получается из некоторой предшествующей по (BRi). 
+  \end{itemize}
+
+  $\Phi_n$ - \textit{заключение}, а элементы $\Gamma$ - \textit{гипотезы}. Пишут $\Gamma \vdash \Phi$, если существует вывод из $\Gamma$ с заключением $\Phi$. 
+\end{defn}
+
+\begin{defn}
+  $\Phi$ \textit{опровержима} в $\Gamma$, если $\Gamma \vdash \neg \Phi$; \ 
+  $\Phi$ \textit{независма} от $\Gamma$, если $\Gamma \nvdash \Phi$ и $\Gamma \nvdash \neg \Phi$. 
+\end{defn}
+
+Основные свойства $\vdash$ - опять:
+
+\begin{itemize}
+  \item монотонность (если $\Gamma \subseteq \Delta$ и $\Gamma \vdash \Phi$, то $\Delta \vdash \Phi$); 
+  \item транзитивность (если $\Delta \vdash \Psi$ для всех $\Psi \in \Gamma$, и $\Gamma \vdash \Phi$, то $\Delta \vdash \Phi$);
+  \item компактность (если $\Gamma \vdash \Phi$, то $\Delta \vdash \Phi$ для некоторого конечного $\Delta \subseteq \Gamma$).
+\end{itemize}
+
+\begin{defn}
+  Пусть $\xi: \Prop \rightarrow \form_\sigma$. Для всякой пропозицональной формулы $\varphi$ обозначим $\xi \varphi$ - результат замены (всех вхождений) каждой $p\in \Prop$ в $\varphi$ на $\xi(p)$. 
+\end{defn}
+
+\begin{stat}
+  Пусть $\xi: \Prop \ra \form_\sigma$ и $\vdash \varphi$ (в пропозициональном исчислении). Тогда $\vdash \xi\varphi$ (уже в кванторном исчислении).
+\end{stat}
+
+\begin{proof}
+  Фиксируем вывод $\varphi_0, \ldots, \varphi_n = \varphi$, а затем рассмотрим $\xi\varphi_0, \ldots, \xi\varphi_n = \xi\varphi$, и нетрудно показать, что это также вывод, там только аксиомы и $MP$. 
+\end{proof}
+
+\begin{cons}
+  Пусть $\xi: \Prop \ra \form_\sigma$ и $\vDash \varphi$ (в смысле пропозициональной логики). Тогда $\vdash \xi \varphi$. 
+\end{cons}
+
+\begin{proof}
+  В силу теоремы о (слабой) полноте для пропозиционального исчисления мы имеем $\vdash \varphi$, а потому $\vdash \xi \varphi$. 
+\end{proof}
+
+\begin{stat}
+  Для любых $\Gamma \subseteq \Sent_\sigma$, $\Phi \in \form_\sigma$ и $x\in \Var$. 
+  \[
+    \Gamma \vdash \Phi \Longleftrightarrow \Gamma \vdash \forall x \Phi. 
+  \]
+\end{stat}
+
+\begin{proof}
+  В правую сторону: пусть $\Gamma \vdash \Phi$. Значит, $\Gamma \vdash \top \ra \Phi$. Применяем BR1, получаем $\Gamma \vdash \top \ra \forall x \Phi$. Таким образрм, $\Gamma \vdash \forall x \Phi$. \ 
+
+  В обратную: пусть $\Gamma \vdash \forall x \Phi$. Используем аксиому $\forall x \Phi \ra \Phi$ (Q1), откуда легко получаем $\Gamma \vdash \Phi$. 
+\end{proof}
+
+\begin{remark}
+  Таким образом, мы получили \textit{правило обобщения} (GR):
+
+  \begin{center}
+    \begin{tabular}{c}
+      $\Phi$ \\ 
+      \hline
+      $\forall x \Phi$ 
+    \end{tabular}
+  \end{center}
+\end{remark}
+
+\begin{cons}
+  Для любых $\Gamma \subseteq \Sent_\sigma$ и $\Phi \in \form_\sigma$, 
+  \[
+    \Gamma \vdash \Phi \Llra \Gamma \vdash \tilde{\forall} \Phi.
+  \]
+\end{cons}
+
+\begin{theorem}
+  (О дедукции). Для любых $\Gamma \cup \{\Phi\}\subseteq \Sent_\sigma$ и $\Psi \in \form_\sigma$. 
+  \[
+    \Gamma \cup \{ \Phi \} \vdash \Psi \Llra \Gamma \vdash \Phi \ra \Psi. 
+  \]
+\end{theorem}
+
+\begin{proof}
+  В левую сторону очевидно, в правую точно так же, как и в изначальной теореме о дедукции, разве что надо рассмотреть новые случаи BR1 и BR2. 
+\end{proof}
+
+\begin{cons}
+  Для любых $\Gamma \subseteq \Sent_\sigma$ и $\Phi \in \form_\sigma$,  
+  \[
+    \Gamma \vdash \Phi \Longleftrightarrow \vdash \bigwedge_{i=1}^n \Psi_i\rightarrow \Phi
+  \]
+  для некоторых $\{\Psi_1, \ldots, \Psi_n\}\subseteq \Gamma$.
+\end{cons} \
+
+\begin{lemma}
+  Пусть $\xi: \Prop \ra \form_\sigma$ и $\vDash \varphi$ (в смысле пропозициональной логики). Тогда $\vDash \xi \varphi$. 
+\end{lemma} \
+
+\begin{lemma}
+  Пусть $\Phi$ - аксиома кванторного исчисления. Тогда $\vDash \Phi$. 
+\end{lemma} \
+
+\begin{theorem}
+  (О корректности). Для любых $\Gamma \subseteq \Sent_\sigma$ и $\Phi \in \form_\sigma$, 
+  \[
+    \Gamma \vdash \Phi \Longrightarrow \Gamma \vDash \Phi. 
+  \]
+\end{theorem}
 
 \end{document}
