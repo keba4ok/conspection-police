@@ -1,0 +1,215 @@
+\documentclass[a4paper,100pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[unicode, pdftex]{hyperref}
+\usepackage{cmap}
+\usepackage{mathtext}
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\usepackage[T2A]{fontenc}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}
+\usepackage{icomma}
+\usepackage{euscript}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage[usenames]{color}
+\hypersetup{
+     colorlinks=true,
+     linkcolor=magenta,
+     filecolor=green,
+     citecolor=black,      
+     urlcolor=cyan,
+     }
+\usepackage{fancyhdr}
+\pagestyle{fancy} 
+\fancyhead{} 
+\fancyhead[CO]{\hyperlink{t2}{к списку объектов}}
+\fancyhead[LO]{\hyperlink{t1}{к содержанию}} 
+\fancyfoot{}
+\newtheoremstyle{indented}{0 pt}{0 pt}{\itshape}{}{\bfseries}{. }{0 em}{ }
+
+%\geometry{verbose,a4paper,tmargin=2cm,bmargin=2cm,lmargin=2.5cm,rmargin=1.5cm}
+
+\title{Геометрия и топология. Факты 2 сем.}
+\author{Кабашный Иван (@keba4ok)\\ \\ (по материалам лекций Фоминых Е. А.,\\ практик, а также других источников)}
+\date{26 марта 2021 г.}
+
+\theoremstyle{indented}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}{Лемма}
+
+\theoremstyle{definition} 
+\newtheorem{defn}{Определение}
+\newtheorem{exl}{Пример(ы)}
+
+\theoremstyle{remark} 
+\newtheorem{remark}{Примечание}
+\newtheorem{cons}{Следствие}
+\newtheorem{stat}{Утверждение}
+
+\DeclareMathOperator{\la}{\leftarrow}
+\DeclareMathOperator{\ra}{\rightarrow}
+\DeclareMathOperator{\lra}{\leftrightarrow}
+\DeclareMathOperator{\La}{\Leftarrow}
+\DeclareMathOperator{\Ra}{\Rightarrow}
+\DeclareMathOperator{\Lra}{\Leftrightarrow}
+\DeclareMathOperator{\Llra}{\Longleftrightarrow}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Tors}{Tors}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\Imf}{Im}
+\DeclareMathOperator{\Real}{Re}
+\DeclareMathOperator{\cont}{cont}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\chard}{char}
+\DeclareMathOperator{\CC}{\mathbb{C}}
+\DeclareMathOperator{\ZZ}{\mathbb{Z}}
+\DeclareMathOperator{\RR}{\mathbb{R}}
+\DeclareMathOperator{\NN}{\mathbb{N}}
+\DeclareMathOperator{\PP}{\mathbb{P}}
+\DeclareMathOperator{\FF}{\mathcal{F}}
+\DeclareMathOperator{\Rho}{\mathcal{P}}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\const}{const}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Aff}{Aff}
+
+\begin{document}
+
+\newcommand{\resetexlcounters}{%
+  \setcounter{exl}{0}%
+} 
+
+\newcommand{\resetremarkcounters}{%
+  \setcounter{remark}{0}%
+} 
+
+\newcommand{\reseconscounters}{%
+  \setcounter{cons}{0}%
+} 
+
+\newcommand{\resetall}{%
+    \resetexlcounters
+    \resetremarkcounters
+    \reseconscounters%
+}
+
+\maketitle 
+
+\newpage
+
+\hypertarget{t1}{Основные} (по моему мнению) факты по топологии.
+\tableofcontents
+
+\newpage
+
+
+\section{Аффинные пространства.}
+
+\subsection{Начальные определения и свойства.}
+
+\begin{defn}
+    \textit{Аффинное пространство} - тройка $(X, \vec{X}, +)$, состоящая из непустого множества \textit{точек}, векторного пространства над $\RR$ (\textit{присоединённое}) и операцией $+:X\times \vec{X}\ra X$ \textit{откладывания вектора}. \ 
+
+    Налагаемые условия - для любых точек $x, y\in X$ существует единственный вектор $v\in \vec{X}$ такой, что $x+v=y$ ($\vec{xy}$), а также ассоциативность откладывания вектора.
+\end{defn}
+
+\begin{defn}
+    \textit{Начало отсчёта} аффинного пространства - произвольная фиксированная точка $o\in X$. 
+\end{defn}
+
+\begin{lemma}
+    Начало отсчёта $o\in X$ задаёт биекцию $\varphi_o: X\ra \vec{X}$ по правилу:
+    \[
+        \varphi_o(x)=\vec{ox} \: \forall x \in X. 
+    \]
+    Такая биекция называется \textit{векторизацией} аффинного пространства.
+\end{lemma}
+
+\begin{defn}
+    \textit{Линейная комбинация} $\sum t_i p_i$ точек с коэффициентами относительно начала отсчёта $o\in X$ - вектор $v = \sum t_i \vec{op_i}$, или точка $p=o+v$. Комбинация называется \textit{барицентрической}, если сумма коэффициентов равна единице, и \textit{сбалансированной}, если сумма коэффициентов равна нулю.
+\end{defn}
+
+\begin{theorem}
+    Барицентрическая комбинация точек - точка, не зависящая от начала отсчёта. Сбалансированная комбинация точек - вектор, не зависящий от начала отсчёта.
+\end{theorem}
+
+\subsection{Материальные точки.}
+
+\begin{defn}
+    Пусть $x$ — некоторая точка аффинного пространства и $m$ — ненулевое число. \textit{Материальной точкой} $(x,m)$ называется пара: точка $x$ с вещественным числом $m$, причем число m называется \textit{массой} материальной точки $(x,m)$, а точка $x$ — носителем этой материальной точки.
+\end{defn}
+
+\begin{defn}
+    \textit{Центром масс} системы материальных точек $(x_i, m_i)$ называется такая точка $z$ (притом единственная), для которой имеет место равенство
+    \[
+        m_1 \cdot \vec{zx_1} + \ldots + m_n \cdot \vec{zx_n} = 0. 
+    \]
+\end{defn}
+
+\subsection{Аффинные подпространства и оболочки.}
+
+\begin{defn}
+    Множество $Y\subset X$ - \textit{аффинное подпространство}, если существуют такие линейное подпространство $V\subset \vec{X}$ и точка $p\in Y$, что $Y=p+V$. $V$ называется\textit{направлением} $Y$. Определение подпространства не зависит от выбора точки в нём.
+\end{defn}
+
+\begin{defn}
+    \textit{Размерность} $\dim X$ афинного пространства есть размерность его присоединённого векторного пространства.
+\end{defn}
+
+\begin{defn}
+    \textit{Параллельный перенос} на вектор $v\in \vec{X}$ - отображение $T_v:X\ra X$, заданное равенством $T_v(x)=x+v$. 
+\end{defn}
+
+\begin{defn}
+    Аффинные подпространства одинаковой размерности \textit{параллельны}, если их направления совпадают.
+\end{defn}
+
+\begin{defn}
+    \textit{Прямая} - аффинное подпространство размерности 1, \textit{гиперплоскость} в $X$ - аффинное подпространство размерности $\sim X - 1$. 
+\end{defn}
+
+\begin{stat}
+    Две различные гиперплоскости не пересекаются тогда и только тогда, когда они параллельны.
+\end{stat}
+
+\begin{defn}
+    \textit{Суммой аффинных подпространств} называется наименьшее аффинное подпространство, их содержащее.
+\end{defn}
+
+\begin{theorem}
+    Пересечение любого набора аффинных подпространств - либо пустое мноежство, либо аффинное подпространство.
+\end{theorem}
+
+\begin{defn}
+    \textit{Аффинная оболочка} $\Aff{A}$ непустого множества $A\subset X$ - пересечение всех аффинных подпространств, содержащих $A$. Как следствие, это - наименьшее аффинное подпространство, содержащее $A$. 
+\end{defn}
+
+\begin{theorem}
+    $\Aff(A)$ - множество всех барицентрических комбинаций точек из $A$. 
+\end{theorem}
+
+\begin{defn}
+    Точки $p_1, \ldots, p_k$ \textit{аффинно зависимы}, если существуют такие коэффициенты $t_i \in \RR$, не все равные нулю, что $\sum t_i = 0$ и $\sum t_ip_i = 0$. Если такой комбинации нет, то точки \textit{аффинно независимы}.
+\end{defn}
+
+\begin{theorem}
+    (Переформулировки аффинной независимости.) Для $p_1, \ldots, p_k \in X$ следующие свойства эквивалентны: 
+
+    \begin{itemize}
+        \item они аффинно независимы; 
+        \item векторы $p_1 p_i$, $i\in \{2, 3, \ldots, k\}$, линейно независимы; 
+        \item $\dim \Aff (p_1, \ldots, p_k)=k-1$; 
+        \item каждая точка из $\Aff(p_1, \ldots, p_k)$ единственным образом представляется в виде барицентрической комбинации $p_i$. 
+    \end{itemize}
+\end{theorem}
+
+
+
+\end{document}
