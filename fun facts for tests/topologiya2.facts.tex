@@ -24,6 +24,7 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy} 
 \fancyhead{} 
+\fancyhead[LE,RO]{\thepage} 
 \fancyhead[CO]{\hyperlink{t2}{к списку объектов}}
 \fancyhead[LO]{\hyperlink{t1}{к содержанию}} 
 \fancyfoot{}
@@ -79,6 +80,9 @@
 \DeclareMathOperator{\const}{const}
 \DeclareMathOperator{\grad}{grad}
 \DeclareMathOperator{\Aff}{Aff}
+\DeclareMathOperator{\Lin}{Lin}
+\DeclareMathOperator{\Prf}{Pr}
+\DeclareMathOperator{\Iso}{Iso}
 
 \begin{document}
 
@@ -104,7 +108,7 @@
 
 \newpage
 
-\hypertarget{t1}{Основные} (по моему мнению) факты по топологии.
+\hypertarget{t1}{Основные} (по моему мнению) определения и факты из топологии (на самом деле, почти всё, что можно).
 \tableofcontents
 
 \newpage
@@ -317,6 +321,367 @@
     Данное определение инвариантно относительно выбора карты, а само отношение сохраняется при проективных преобразованиях.
 \end{stat}
 
+\subsection{Проективные отображения.}
+
+\begin{lemma}
+    Пусть $V, W$ - векторные пространства и $L:V\ra W$ - инъективное линейное отображение. Тогда существует единственное отображение $F:\PP(V) \ra \PP(W)$ такое, что 
+    \[
+        P_W\circ L = F \circ P_V, 
+    \]
+    где $P_V$, $P_W$ - проекции из $V \backslash \{0\}$ и $W \backslash \{0\}$ в $\PP(V)$ и $\PP(W)$ соответственно.
+\end{lemma}
+
+\begin{defn}
+    Отображение $F$ из леммы выше называется \textit{\textcolor{magenta}{\hypertarget{s42}{проективизацией}}} $L$, и обозначается как $F=\PP(L)$. 
+\end{defn}
+
+\begin{defn}
+    Отображение из $\PP(V)$ в $\PP(W)$ - \textit{\textcolor{magenta}{\hypertarget{s43}{проективное}}}, если оно является проективизацией некоторого линейного $L:V\ra W$. 
+\end{defn}
+
+\begin{stat}
+    Проективное отображение переводит проективные подпространства (в том числе, всё пространство) в проективные пространства той же размерности.
+\end{stat}
+
+\begin{theorem}
+    Пусть $X, Y$ - аффинные пространства, $\hat{X}$, $\hat{Y}$ - их проектиыне пополнения, $F: X\ra Y$ - инъективное аффинное отображение. Тогда существует единственное проективное отображение $\hat{F}: \hat{X} \ra \hat{Y}:\hat{F}|_X = F$. Причём оно переводит бескоречно удалённые в бесконечно удалённые.
+\end{theorem}
+
+\begin{defn}
+    Пусть $H_1, H_2 \subset X$ - гиперплоскости ($X$ - проективное), $p \in X \backslash (H_1 \cup H_2)$. \textit{\textcolor{magenta}{\hypertarget{s44}{Центральная проекция}}} $H_1$ и $H_2$ с центром $p$ - проективное отображение $F:H_1 \ra H_2$, определяемое так: пусть $x\in H_1$, тогда $F(x)$ - точка пересечения прямой $(px)$ и гиперплоскости $H_2$.
+\end{defn}
+
+\begin{defn}
+    Пусть $X = \PP(V)$ - проективное пространство, размерности $n$. \textit{\textcolor{magenta}{\hypertarget{s45}{Проективный базис}}} $X$ - набор из $n+2$ точек, никакие $n+1$ из которых не лежат в одной проективной гиперплоскости.
+\end{defn}
+
+\begin{lemma}
+    Можно выбрать такие векторы $v_1, \ldots, v_{n+2}\in V\backslash \{0\}$, порождающие проективный базис $p_1, \ldots, p_{n+2}$, что $v_{n+2}=\sum_{i=1}^{n+1}v_i$. 
+\end{lemma} \
+
+\begin{theorem}
+    Пусть $X, Y$ - проективные пространства, размерностей $n$, $p_1, \ldots, p_{n+2}\in X$ и $q_1, \ldots, q_{n+2}\in Y$ - проективные базисы. Тогда существует единственное проективное отображение $F: X\ra Y$ такое, что $F(p_i)=q_i$ для всех $i$. 
+\end{theorem}
+
+\begin{remark}
+    Проективное преобразование прямой с бесконечно удалёнными точками имеет вид 
+    \[
+        [x:y]\mapsto [ax+by:cx+dy], 
+    \]
+    где $a, b, c, d\in \RR$, $ad-bc \neq 0$. Для $\hat{\RR}$ это - дробно-линейная функция
+    \[
+        f(x)=\frac{ax+b}{cx+d}. 
+    \]
+\end{remark}
+
+\subsection{Проективные и аффинные теоремы.}
+
+\begin{theorem}
+    (\textit{\textcolor{magenta}{\hypertarget{s46}{Теорема Паппа (аффинная)}}}). Пусть $X$ - аффинная плоскость, $l$, $l'$ - рразличные прямые в $X$. $x, y, z\in l$, $x', y', z'\in l'$ - различные точки, отличные от $l \cap l'$. Тогда из $(xy')||(x'y)$, $(yz')||(y'z)$ следует, что $(xz')||(x'z)$. 
+\end{theorem} \ 
+
+\begin{theorem}
+    (\textit{\textcolor{magenta}{\hypertarget{s47}{Теорема Паппа (проективная)}}}). Пусть $\PP(E)$ - проективная плоскость, $l, l'$ - различные прямые в $\PP(E)$, $a, b, c\in l$, $a', b', c'\in l'$ - различные точки, отличные от $l \cap l'$. Тогда три точки - $\gamma = (ab')\cap(a'b)$, $\alpha=(bc')\cap (b'c)$ и $\beta = (ac')\cap (a'c)$ лежат на одной прямой.
+\end{theorem}
+
+\begin{defn}
+    \textit{\textcolor{magenta}{\hypertarget{s48}{Треугольник}}} - тройка точек (\textit{\textcolor{magenta}{\hypertarget{s49}{вершин}}}), не лежащих на одной прямой. \textit{\textcolor{magenta}{\hypertarget{s50}{Стороны}}} треугольника - прямые, содержащие пары вершин.
+\end{defn}
+
+\begin{theorem}
+    (\textit{\textcolor{magenta}{\hypertarget{s51}{Теорема Дезарга (аффинная)}}}). Пусть $\triangle abc$ и $\triangle a'b'c'$ - треугольники на аффинной плоскости, и их вершины и стороны все различны. Если прямые $(aa')$, $(bb')$ и $(cc')$ пересекаются в одной точке или параллельны, и $(ab)||(a'b')$, $(bc)||(b'c')$, то $(ac)||(a'c')$. 
+\end{theorem} \ 
+
+\begin{theorem}
+    (\textit{\textcolor{magenta}{\hypertarget{s52}{Теорема Дезарга (проективная)}}}). Пусть $\triangle abc$ и $\triangle a'b'c'$ - треугольники на проективной плоскости, и их вершины и стороны все различны. Если прямые $(aa')$, $(bb')$ и $(cc')$ пересекаются в одной точке, то три точки $\gamma = (ab)\cap (a'b')$, $\alpha = (bc)\cap (b'c')$ и $\beta = (ac)\cap (a'c')$ лежат на одной прямой.
+\end{theorem}
+
+\section{Евклидовы пространства.}
+
+\subsection{Начальные определения и свойства.} 
+
+\begin{defn}
+    \textit{\textcolor{magenta}{\hypertarget{s53}{Скалярное произведение}}} на векторном пространстве $X$ - функция 
+    \[
+        \langle \cdot, \cdot \rangle: X\times X \ra \RR, 
+    \]
+    удовлетворяющая условиям симметричности, линейности по каждому аргументу и неотрицательности $\langle x, x \rangle$ (равно нулю только при $x=0$). \ 
+
+    \textit{\textcolor{magenta}{\hypertarget{s54}{Евклидово протранство}}} - векторное пространство с заданным на нём скалярным произведением.
+\end{defn}
+
+\begin{defn}
+    \textit{\textcolor{magenta}{\hypertarget{s55}{Длина}}} (норма) вектора $x \in X$ - $|x|=\sqrt{\langle x, x \rangle}$, \textit{\textcolor{magenta}{\hypertarget{s56}{расстояние}}} между $x, y\in X$ - $d(x, y)=|x-y|$.
+\end{defn}
+
+\begin{theorem}
+    (\textit{\textcolor{magenta}{\hypertarget{s57}{Неравенство КБШ}}}). Для любых $x, y \in X$, 
+    \[
+        |\langle x, y \rangle|\leq |x|\cdot|y|. 
+    \]
+    Причём неравенство обращается в равенство тогда и только тогда, когда $x$ и $y$ линейно зависимы.
+\end{theorem}
+
+\begin{cons}
+    Для любых $x, y\in X$ $|x+y|\leq |x|+|y|$, причём равенство выполняется тогда и только тогда, когда один из векторов равен нулю или они сонаправленны.
+\end{cons}
+
+\begin{cons}
+    Для любых $x, y, z\in X$, $d(x, z)\leq d(x, y)+d(y, z)$, причём равенство выполняется тогда и только тогда, когда векторы $x-y$ и $y-z$ сонаправлены или один из них равен нулю.
+\end{cons}
+
+\begin{defn}
+    Пусть $X$ - евклидово пространство. \textit{\textcolor{magenta}{\hypertarget{s58}{Угол}}} между ненулевыми векторами $x$ и $y$ - это $\angle (x, y) = \arccos \frac{\langle x, y \rangle}{|x|\cdot |y|}$.
+\end{defn}
+
+\begin{theorem}
+    (\textit{\textcolor{magenta}{\hypertarget{s59}{Теорема косинусов}}}). 
+    \[
+        |x-y|^2 = |x|^2+|y|^2-2|x|\cdot |y| \cos \angle (x, y).
+    \]
+\end{theorem} \ 
+
+\begin{theorem}
+    (\textit{\textcolor{magenta}{\hypertarget{s60}{Неравенство треугольника для углов}}}). Для любых ненулевых $x, y, z\in X$, 
+    \[
+        \angle(x, z)\leq \angle (x, y)+ \angle (y, z). 
+    \]
+\end{theorem}
+
+\begin{cons}
+    Для любых ненулевых $x, y, z\in X$, 
+    \[
+        \angle(x, y)+\angle(y, z)+\angle(z, x)\leq 2\pi. 
+    \]
+\end{cons}
+
+\subsection{Ортогональность.}
+
+\begin{defn}
+    Векторы $x, y\in X$ \textit{\textcolor{magenta}{\hypertarget{s61}{ортогональны}}}, если $\langle x, y \rangle = 0$. Обозначается как $x\perp y$. 
+\end{defn}
+
+\begin{theorem}
+    (\textit{\textcolor{magenta}{\hypertarget{s62}{Теорема Пифагора}}}). Если $x \perp y$, то $|x+y|^2=|x|^2+|y|^2$. 
+\end{theorem}
+
+\begin{cons}
+    Если векторы $v_1, \ldots, v_n$ попарно ортогональны, то 
+    \[
+        |v_1+\ldots+v_n|^2=|v_1|^2+\ldots+|v_n|^2. 
+    \]
+\end{cons}
+
+\begin{defn}
+    \textit{\textcolor{magenta}{\hypertarget{s63}{Ортонормированный}}} набор векторов - такой, в котором каждые два вектора ортогональны и все имеют длину 1.
+\end{defn}
+
+\begin{theorem}
+    Пусть $v_1, \ldots, v_n$ - ортонормированный набор, $x=\sum \alpha_i v_i$, $y=\sum \beta_i v_i$ $(\alpha_i, \beta_i \in \RR)$. Тогда $\langle x, y \rangle = \sum \alpha_i \beta_i$, а $|x|^2=\sum a_i^2$. 
+\end{theorem} \
+
+\begin{theorem}
+    Любой ортонормированный набор линейно независим.
+\end{theorem} \
+
+\begin{theorem}
+    (\textit{\textcolor{magenta}{\hypertarget{s64}{Об ортогонализации по Граму-Шмидту}}}). Для любого линейно-независимого набора векторов $v_1, \ldots, v_n$ существует единственный ортонормированный набор $e_1, \ldots, e_n$ такой, что для каждого $k\in \{1, \ldots, n\}$ $\Lin (e_1, \ldots, e_k)=\Lin(v_1, \ldots, v_k)$ и $\langle v_k, e_k \rangle > 0$. 
+\end{theorem}
+
+\begin{cons}
+    Пусть $X$ - конечномерное евклидово пространство. Тогда в $X$ существует ортонормаированный базис, и любой ортонормаированный набор можно дополнить до ортономированного базиса.
+\end{cons}
+
+\subsection{Изоморфизмы.}
+
+\begin{defn}
+    Евклидовы пространства $X$ и $Y$ \textit{\textcolor{magenta}{\hypertarget{s65}{изоморфны}}}, если существует линейная биекция $f:X\ra Y$, сохраняющая скалярное произведение: 
+    \[
+        \langle f(v), f(w) \rangle_Y = \langle v, w \rangle_X
+    \]
+    для любых $v, w\in X$. Такое $f$ называется \textit{\textcolor{magenta}{\hypertarget{s66}{изоморфизмом}}} (евклидовых пространств).
+\end{defn}
+
+\begin{theorem}
+    Пусть $X, Y$ - конечномерные евклидовы пространства одинаковой размерности. Тогда $X$ и $Y$ изоморфны.
+\end{theorem}
+
+\begin{cons}
+    Любое евклидово пространство размерности $n$ изоморфно $\RR^n$. 
+\end{cons}
+
+\subsection{Продолжение ортогональности.}
+
+\begin{defn}
+    Пусть $X$ - евклидово пространство, $A$ - его подмножество. \textit{\textcolor{magenta}{\hypertarget{s67}{Ортогональное дополнение}}} множества $A$ это - 
+    \[
+        A^{\perp}=\{x\in X: \forall v\in A \: \langle x, v \rangle = 0\}. 
+    \]
+\end{defn}
+
+\begin{stat}
+    Ортогональное дополнение - линейное пространсто. Если $A\subset B$, то $B^{\perp} \subset A^{\perp}$. Наконец, $A^{\perp} = \Lin(A)^{\perp}$. 
+\end{stat}
+
+\begin{theorem}
+    Пусть $X$ - конечномерное евклидово пространство, $V\subset X$ - линейное подпространство. Тогда $X= V \oplus V^{\perp}$, и $(V^{\perp})^{\perp}=V$.
+\end{theorem}
+
+\begin{defn}
+    \textit{\textcolor{magenta}{\hypertarget{s68}{Ортогональная проекция}}} $x$ на $V$ ($\Prf_V(x)$) - такой вектор $y\in V$, что $x-y\in V^{\perp}$. 
+\end{defn}
+
+\begin{defn}
+    \textit{\textcolor{magenta}{\hypertarget{s69}{Нормаль}}} линейной гиперплоскости $H$ - любой ненулевой вектор $v\in H^{\perp}$. 
+\end{defn}
+
+\begin{theorem}
+    (\textit{\textcolor{magenta}{\hypertarget{s70}{Конечномерная теорема Рисса}}}). Пусть $X$ - конечномерное евклидово пространство, $L:X\ra \RR$ - линейное отображение. Тогда существует единственный вектор $v\in X$ такой, что $L(x)=\langle v, x \rangle$ для всех $x\in X$. 
+\end{theorem} \
+
+\begin{theorem}
+    Любая линейная гиперплоскость имеет вид $\ker L$, где $L:X\ra \RR$ - линейное отображение, $L\neq 0$. Также, $L$ определена однозначно с точностью домножения на константу.
+\end{theorem} \ 
+
+\begin{theorem}
+    (\textit{\textcolor{magenta}{\hypertarget{s71}{Расстояние до гиперплоскости}}}). Пусть $x=v^{\perp}$. Тогда расстояние от $x$ до $H$ равно 
+    \[
+        d(x, H)=\frac{|\langle v, x \rangle|}{|v|}, 
+    \]
+    или в координатах, где $a_1, \ldots, a_n$ - координаты $v$, 
+    \[
+        d(x, H)=\frac{|a_1x_1+\ldots+a_n x_n|}{\sqrt{a_1^2+\ldots+a_n^2}}.
+    \]
+\end{theorem}
+
+\begin{defn}
+    \textit{\textcolor{magenta}{\hypertarget{s72}{Изометрическое отображение}}} $X$ в $Y$ (евклидовы пространства) - линейное отображение, сохраняющее скалярное произведение. \textit{\textcolor{magenta}{\hypertarget{s73}{Ортогональное преобразование}}} пространства $X$ - изометрическое отображение из $X$ в себя.
+\end{defn}
+
+\begin{defn}
+    \textit{\textcolor{magenta}{\hypertarget{s74}{Ортогональная группа}}} порядка $n$ - группа ортогональных преобразований $\RR^n$. Обозначается как $O(n)$. 
+\end{defn}
+
+\begin{stat}
+    Линейное отображение изометрическое тогда и только тогда, когда оно сохраняет длины векторов. Или же, линейное отображение изометрическое тогда и только тогда, когда оно переводит какой-нибудь ортонормаированный базис в ортонормированный набор.
+\end{stat}
+
+\subsection{Немного о матрицах отображений.}
+
+\begin{theorem}
+    Пусть $f:X\ra Y$ линейно, $A$ - его матрица в ортономированных базисах $X$ и $Y$. Тогда $f$ изометрическое тогда и только тогда, когда $A^TA=E$. 
+\end{theorem}
+
+\begin{cons}
+    При совпадении размерностей, это равносильно тому, что $AA^T=E$ или $A^T=A^{-1}$.
+\end{cons}
+
+\begin{defn}
+    \textit{\textcolor{magenta}{\hypertarget{s75}{Ортогональная матрица}}} - квадратная матрица $A$, для которой $A^TA=AA^T=E$. 
+\end{defn}
+
+\begin{theorem}
+    Если $A$ - ортонормаированная матрица, то $\det A = \pm 1$. 
+\end{theorem}
+
+\begin{defn}
+    \textit{\textcolor{magenta}{\hypertarget{s76}{Специальная ортогональная группа}}} $SO(n)$ - группа ортогональных преобразований с определителем 1.
+\end{defn}
+
+\subsection{Много какой-то хуйни.}
+
+\begin{defn}
+    \textit{\textcolor{magenta}{\hypertarget{s77}{Инвариантное подпространство}}} линейного отображения $f: X\ra X$ - линейное подпространство $Y\subset X$ такое, что $f(Y)\subset Y$. 
+\end{defn}
+
+\begin{stat}
+    Если $V$ - инварантное подпространство ортогонального преобразования, то $V^{\perp}$ - тоже инвариантное.
+\end{stat}
+
+\begin{theorem}
+    Пусть $f:X\ra X$ - ортогональное преобразование. Тогда существует разложение $X$ в ортогональную прямую сумму
+    \[
+        X=X_+ \oplus X_- \oplus \Pi_1 \oplus \ldots \oplus \Pi_m \: \: (m\geq 0)
+    \]
+    инвариантных подпространств таких, что $f|_{X_+}=\id$, $f|_{X_-}=-\id$, а $\dim \Pi_i=2$, $f|_{\Pi_i}$ - поворот.
+\end{theorem}
+
+\begin{defn}
+    Два базиса \textit{\textcolor{magenta}{\hypertarget{s78}{одинаково ориентированы}}}, если матрица перехода между ними имеет положительный определитель.
+\end{defn}
+
+\begin{remark}
+    Одинаковая ориентированность базисов - отношение эквивалентности. Классов эквивалентности ровно два (кроме случая нулевой размерности).
+\end{remark}
+
+\begin{defn}
+    \textit{\textcolor{magenta}{\hypertarget{s79}{Ориентированное векторное пространство}}} - векторное пространство, в котором выделен один их двух классов одинаково ориентированных базисов. Выделенные базисы - \textit{\textcolor{magenta}{\hypertarget{s80}{положительно ориентированные}}} (положительные), остальные - \textit{\textcolor{magenta}{\hypertarget{s81}{отрицательно ориентированные}}} (отрицательные).
+\end{defn}
+
+\begin{defn}
+    Пусть $X$ - ориентированное евклидово пространство размерности $n$, $v_1, \ldots, v_n \in X$. \textit{\textcolor{magenta}{\hypertarget{s82}{Смешанное произведение}}} $v_1, \ldots, v_n$ - определитель матрицы из координат $v_i$ в произвольном положительном ортонормированном базисе. Обозначается как $[v_1, \ldots, v_n]$. 
+\end{defn}
+
+\begin{theorem}
+    Определение корректно, то есть, не зависит от выбора базиса.
+\end{theorem}
+
+\begin{defn}
+    Пусть $X$ - трёхмерное ориентированное евклидово пространство, $u, v\in X$. Их \textit{\textcolor{magenta}{\hypertarget{s83}{векторное произведение}}} - такой (единственный по лемме Рисса) вектор $h\in X$, что $\langle h, x\rangle = [u, v, x]$ для любого $x\in X$. Обозначается как $h=u\times v$. 
+\end{defn}
+
+\begin{theorem}
+    Пусть $u, v$ линейно независимы. Тогда 
+    
+    \begin{itemize}
+        \item $u\times v$ - вектор, ортогональный $u$ и $v$; 
+        \item $u, v, u\times v$ - положительный базис; 
+        \item $|u\times v|$ равно площади параллелограмма, образованного векторами $u$ и $v$. 
+    \end{itemize}
+\end{theorem} \ 
+
+\begin{theorem}
+    Пусть $e_1, e_2, e_3$ - положительный ортонормированный базис, $x=x_1e_1+x_2e_2+x_3e_3$, $y=y_1e_1+y_2e_2+y_3e_3$. Тогда 
+    \[
+        x\times y = (x_2y_3-x_3y_2)e_1+(x_3y_1-x_1y_3)e_2+(x_1y_2-x2y_1)e_3, 
+    \]
+    или в псевдо-матричной записи:
+    \begin{equation*}
+        x\times y = 
+        \begin{vmatrix}
+            x_1 & x_2 & x_3 \\
+            y_1 & y_2 & y_3 \\
+            e_1 & e_2 & e_3 
+        \end{vmatrix}
+    \end{equation*}
+\end{theorem}
+
+\subsection{Движения евклидова аффинного пространства.}
+
+\begin{defn}
+    \textit{\textcolor{magenta}{\hypertarget{s84}{Евклидово аффинное пространство}}} - аффинное пространство $X$ с заданным на $\vec{X}$ скалярным произведением. \textit{\textcolor{magenta}{\hypertarget{s85}{Расстояние}}} в таком пространстве: $d(x, y)=|x-y|$. 
+\end{defn}
+
+\begin{defn}
+    \textit{\textcolor{magenta}{\hypertarget{s86}{Движение}}} евклидова аффинного пространства $X$ - биекция из $X$ в $X$, сохраняющая расстояния. Группа движений обозначается как $\Iso(X)$.
+\end{defn}
+
+\begin{theorem}
+    Любое движение - аффинное преобразование, линейная часть которого - ортогональное преобразование, и обратно.
+\end{theorem} \
+
+\begin{lemma}
+    Пусть $X$ - аффинное пространство, $F:X\ra X$ - аффинное отображение, и его линейная часть не имеет неподвижных ненулевых векторов, то есть, $\vec{F}(v)\neq v$ для всех $v\in \vec{X}\backslash \{0\}$. Тогда $F$ имеет неподвижную точку. 
+\end{lemma}
+
+\begin{cons}
+    Если линейная часть движения плоскости - поворот на ненулевой угол, то и само движение - поворот на этот угол относительно некоторой точки.
+\end{cons}
+
+\begin{cons}
+    Композиция поворотов - поворот или параллельный перенос.
+\end{cons}
+
 \newpage
 
 \section{Указатель.}
@@ -350,12 +715,30 @@
     \hyperlink{s39}{бесконечно удалённая гп} \
     
     \hyperlink{s6}{векторизация (ап)} \ 
+
+    \hyperlink{s83}{векторное произведение} \ 
+
+    \hyperlink{s49}{вершина} \ 
     
     \hyperlink{s19}{гиперплоскость} \ 
     
     \hyperlink{s29}{гомотетия} \ 
 
+    \hyperlink{s86}{движение} \ 
+
     \hyperlink{s41}{двойное отношение} \
+
+    \hyperlink{s54}{евклидово пространство} \ 
+
+    \hyperlink{s84}{евклидово ап} \ 
+
+    \hyperlink{s72}{изометрическое отображение} \ 
+
+    \hyperlink{s65}{изоморфность (еп)} \ 
+
+    \hyperlink{s66}{изоморфизм (еп)} \ 
+
+    \hyperlink{s77}{инвариантное подпространство} \ 
 
     \hyperlink{s40}{карта} \
     
@@ -372,40 +755,112 @@
     \hyperlink{s14}{направление афинного п/п} \ 
     
     \hyperlink{s5}{начало отсчёта (ап)} \ 
+
+    \hyperlink{s57}{неравенство КБШ} \ 
+
+    \hyperlink{s60}{неравенство тр-ка для углов} \ 
+
+    \hyperlink{s55}{норма} \ 
+
+    \hyperlink{s69}{нормаль} \ 
+
+    \hyperlink{s78}{одинаковая ориентированность} \ 
     
     \hyperlink{s36}{однородные координаты} \ 
+
+    \hyperlink{s79}{ориентированное вп} \ 
+
+    \hyperlink{s74}{ортогональная группа} \ 
+
+    \hyperlink{s75}{ортогональная матрица} \ 
+
+    \hyperlink{s68}{ортогональная проекция} \ 
+
+    \hyperlink{s67}{ортогональное дополнение} \ 
+
+    \hyperlink{s73}{ортогональное прообразование} \ 
+
+    \hyperlink{s61}{ортогональные векторы} \ 
+
+    \hyperlink{s63}{ортонормированный набор векторов} \ 
     
     \hyperlink{s31}{основная теорема аг} \ 
     
     \hyperlink{s4}{откладывание вектора} \ 
+
+    \hyperlink{s81}{отр. ориент. базис} \ 
     
     \hyperlink{s17}{параллельные (ап/п)} \ 
     
     \hyperlink{s16}{параллельный перенос} \ 
+
+    \hyperlink{s80}{положит. ориент. базис} \ 
     
     \hyperlink{s3}{присоединённое (вп)} \ 
     
-    \hyperlink{s33}{проективизация} \ 
+    \hyperlink{s33}{проективизация(1)} \
+    
+    \hyperlink{s42}{проективизация(2)} \ 
+
+    \hyperlink{s43}{проективное отображение} \ 
     
     \hyperlink{s35}{проективное подпространство} \ 
     
     \hyperlink{s37}{проективное пополнение} \ 
     
     \hyperlink{s32}{проективное пространство} \ 
+
+    \hyperlink{s45}{проективный базис} \ 
     
     \hyperlink{s18}{прямая} \ 
     
     \hyperlink{s15}{размерность (ап)} \ 
     
     \hyperlink{s34}{размерность (пп)} \ 
+
+    \hyperlink{s56}{расстояние (еп)} \ 
+
+    \hyperlink{s85}{расстояние (еап)} \ 
+
+    \hyperlink{s71}{расстояние до гиперплоскости} \ 
     
     \hyperlink{s9}{сбалансированная лк} \ 
+
+    \hyperlink{s82}{смешанное произведение} \ 
+
+    \hyperlink{s53}{скалярное произведение} \ 
+
+    \hyperlink{s76}{спец. ортогональная группа} \ 
+
+    \hyperlink{s50}{сторона} \ 
     
     \hyperlink{s20}{сумма (ап/п)} \ 
+
+    \hyperlink{s51}{теорема Дезарга (а)} \
+    
+    \hyperlink{s52}{теорема Дезарга (п)} \ 
+
+    \hyperlink{s59}{теорема косинусов} \ 
+
+    \hyperlink{s64}{теорема об ортогонализации} \ 
+
+    \hyperlink{s46}{теорема Паппа (а)} \
+    
+    \hyperlink{s47}{теорема Паппа (п)} \ 
+
+    \hyperlink{s62}{теорема Пифагора} \ 
+
+    \hyperlink{s70}{теорема Рисса} \ 
     
     \hyperlink{s2}{точка} \ 
+
+    \hyperlink{s48}{треугольник} \ 
+
+    \hyperlink{s58}{угол} \ 
     
     \hyperlink{s12}{центр масс} \ 
+
+    \hyperlink{s44}{центральная проекция} \ 
 
 \end{multicols}
 
