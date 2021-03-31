@@ -1,0 +1,280 @@
+\documentclass[a4paper,100pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[unicode, pdftex]{hyperref}
+\usepackage{cmap}
+\usepackage{mathtext}
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\usepackage[T2A]{fontenc}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}
+\usepackage{icomma}
+\usepackage{euscript}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage[usenames]{color}
+\hypersetup{
+     colorlinks=true,
+     linkcolor=magenta,
+     filecolor=green,
+     citecolor=black,      
+     urlcolor=cyan,
+     }
+\usepackage{fancyhdr}
+\pagestyle{fancy} 
+\fancyhead{} 
+\fancyhead[LE,RO]{\thepage} 
+\fancyhead[CO]{\hyperlink{t2}{к списку объектов}}
+\fancyhead[LO]{\hyperlink{t1}{к содержанию}} 
+\fancyhead[CE]{текст-центр-четные} 
+\fancyfoot{}
+\newtheoremstyle{indented}{0 pt}{0 pt}{\itshape}{}{\bfseries}{. }{0 em}{ }
+
+%\geometry{verbose,a4paper,tmargin=2cm,bmargin=2cm,lmargin=2.5cm,rmargin=1.5cm}
+
+\title{Первая контрольная 2 сем.}
+\author{Кабашный Иван (@keba4ok)\\ \\ (по материалам лекций Белова Ю. С.,\\ а также других источников)}
+\date{31 марта 2021 г.}
+
+\theoremstyle{indented}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}{Лемма}
+
+\theoremstyle{definition} 
+\newtheorem{defn}{Определение}
+\newtheorem{exl}{Пример(ы)}
+
+\theoremstyle{remark} 
+\newtheorem{remark}{Примечание}
+\newtheorem{cons}{Следствие}
+\newtheorem{stat}{Утверждение}
+
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Tors}{Tors}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\Imf}{Im}
+\DeclareMathOperator{\Real}{Re}
+\DeclareMathOperator{\cont}{cont}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\chard}{char}
+\DeclareMathOperator{\CC}{\mathbb{C}}
+\DeclareMathOperator{\ZZ}{\mathbb{Z}}
+\DeclareMathOperator{\RR}{\mathbb{R}}
+\DeclareMathOperator{\NN}{\mathbb{N}}
+\DeclareMathOperator{\PP}{\mathbb{P}}
+\DeclareMathOperator{\FF}{\mathcal{F}}
+\DeclareMathOperator{\Rho}{\mathcal{P}}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\const}{const}
+\DeclareMathOperator{\grad}{grad}
+
+\begin{document}
+
+\newcommand{\resetexlcounters}{%
+  \setcounter{exl}{0}%
+} 
+
+\newcommand{\resetremarkcounters}{%
+  \setcounter{remark}{0}%
+} 
+
+\newcommand{\reseconscounters}{%
+  \setcounter{cons}{0}%
+} 
+
+\newcommand{\resetall}{%
+    \resetexlcounters
+    \resetremarkcounters
+    \reseconscounters%
+}
+
+\maketitle 
+
+\newpage
+
+\hypertarget{t1}{Темы} задач. Кстати, конкретно про асимптотику суммы тут ничего нет, там всё-таки как-то трудно пером общий случай описать, ну и про определённые интегралы - тоже пусто, из фактов только таблица первообразных и интегрирование по частям, думаю уж, упустить можно. Пока есть время - можете предложить, что стоит добавить помимо всего, что есть.
+\tableofcontents
+
+\newpage
+
+\section{Несобственный интеграл. \\
+Равномерная сходимость интегралов.}
+
+\begin{defn}
+    Пусть функция $x \mapsto f(x)$ определена на промежутке $[a, \omega)$ (где $\omega$ может быть действительным числом или $+\infty$) и интегрируема на любом промежутке $[a, b]$, содержащемся в этом промежутке. Величина 
+    \[
+        \int_a^\omega f(x)dx:=\lim_{b \rightarrow \omega} \int_a^b f(x)dx, 
+    \] 
+    если указанный предел существует, называется \textit{несобственным интегралом} от функции $f$ по промежутку $[a, \omega)$. Если указанный предел существует, то говорят, что интеграл \textit{сходится}, и \textit{расходится} в противном случае.
+\end{defn}
+
+\begin{stat}
+    (Критерий Коши сходимости несобственного интеграла). Если функция $x\mapsto f(x)$ определена на промежутке $[a, \omega)$ и интегрируема на любом отрезке $[a, b]$, лежащем внутри, то интеграл $\int_a^\omega f(x)dx$ сходится тогда и только тогда, когда для любого $\varepsilon>0$ можно указать $B\in [a, \omega)$ так, что при юлбых $b_1, b_2\in [a, \omega)$ таких, что $B<b_1, b_2$ имеет место соотношение 
+    \[
+        \bigg| \int_{b_1}^{b_2}f(x)dx\bigg| < \varepsilon. 
+    \]
+\end{stat}
+
+\begin{defn}
+    Про несобственный интеграл $\int_a^\omega f(x)dx$ говорят, что он \textit{сходится абсолютно}, если сходится интеграл $\int_a^\omega |f|(x)dx$. 
+\end{defn}
+
+\begin{remark}
+    Нетрудно заметить, что если интеграл сходится абсолютно, то он сходится.
+\end{remark} 
+
+\begin{stat}
+    Если функция $f$ удовлетворяет условиям первого определения и неотрицательна на $[a, \omega)$, то несобственный интеграл существует в том и только том случае, когда функция 
+    \[
+        \mathcal{F}(b)=\int_a^b f(x) dx
+    \]
+    ограничена на $[a, \omega)$.
+\end{stat}
+
+\begin{theorem}
+    (Теорема сравнения). Пусть функции $f(x)$ и $g(x)$ определены на промежутке $[a, \omega)$ и интегрируемы на любом его отрезке. Если на данном промежутке выполнено $0\leq f(x) \leq g(x)$, то из сходимости интеграла по $g$ следует сходимость интеграла по $f$, и наоборот. 
+\end{theorem}
+
+\begin{remark}
+    Если к функциям из теоремы выше можно добавить такое условие: существуют две положительные константы $c_1$, $c_2$, что $c_1f(x)\leq g(x)\leq c_2 f(x)$, то с учётом линейности несобственного интеграла, можно заключит, что интегралы по функциям $f$ и $g$ сходятся или расходятся одновременно.
+\end{remark}
+
+\begin{defn}
+    Если несобственный интеграл сходится, но не абсолютно, то говорят, что он \textit{сходится условно}.
+\end{defn}
+
+\begin{stat}
+    (Признак Абеля-Дирихле сходимости интеграла). Пусть $x\mapsto f(x)$, $x\mapsto g(x)$ - функции, определённые на промежутке $[a, \omega)$ и интегрируемые на любом его отрезке. Пусть $g$ - монотонная функция. \ 
+
+    Тогда для сходимости несобственного интеграла
+    \[
+        \int_a^\omega (f\cdot g)(x)dx
+    \]
+    достаточно, чтобы выполнилась либо пара условий
+
+    \begin{itemize}
+        \item интеграл $\int_a^\omega f(x)dx$ сходится;
+        \item функция $g$ ограничена на $[a, \omega)$,
+    \end{itemize}
+
+    либо пара условий
+
+    \begin{itemize}
+        \item функция $\mathcal{F}=\int_a^b f(x)dx$ ограничена на $[a, \omega)$; 
+        \item функция $g(x)$ стремится к нулю при $x\rightarrow \omega$, $x\in [a, \omega)$.
+    \end{itemize}
+\end{stat}
+
+\begin{defn}
+    Несобственный параметрический интеграл $\int_a^\omega f(x, \alpha)dx$ называется \textit{равномерно сходящимся} на множестве $E$, если
+    \[
+        \forall \varepsilon >0 \: \exists t\in (a, \omega) \: \forall \xi \in [t, \omega) \: \forall \alpha \in E \mapsto \bigg| \int_\xi^\omega f(x, \alpha)dx\bigg|<\varepsilon.
+    \]
+\end{defn}
+
+\begin{theorem}
+    (Признак Вейерштрасса). Если подынтегральная функция в параметрическом интеграле может быть ограничена функцией одной переменной сверху, и интеграл от данной функции сходится, то и изначальный интеграл сходится.
+\end{theorem} \
+
+\begin{theorem}
+    (Признак Дирихле). Достаточное условие равномерной сходимости интеграла вида $\int_a^{+\infty}f(x)g(x)dx$. Если выполнены следующие условия: 
+
+    \begin{itemize}
+        \item первообразная $f(x)$ ограничена; 
+        \item $g(x)$ дифференцируема, больше нуля, её производная отрицательна; 
+        \item $\lim_{x\rightarrow +\infty} g(x)=0$. 
+    \end{itemize}
+
+    Тогда $\int_a^{+\infty}f(x)g(x)dx$ сходится.
+\end{theorem} \ 
+
+\begin{theorem}
+    (Критерий Коши). Параметрический интеграл сходится тогда и только тогда, когда выполнено следующее условие:
+    \[
+        \forall \varepsilon >0 \: \exists t\in (a, \omega): \: \forall \xi_1, \xi_2 \in [t, \omega) \: \forall \alpha \in E \mapsto \bigg| \int_{\xi_1}^{\xi_2} f(x, \alpha)dx\bigg|<\varepsilon.
+    \]
+\end{theorem}
+
+\section{Кривые.}
+
+\begin{defn}
+    \textit{Кривые в $\RR^n$} - непрерывное отображение $f:[a, b]\rightarrow \RR^n$.
+\end{defn}
+
+\begin{stat}
+    (Длина кривой). Если непрерывная кривая $\gamma$ задана параметрически: $x_1=f_1(t)$, $x_2=f_2(t)$, \dots, то можно найти её длину:
+    \[
+        \int_a^b\sqrt{(f_1')^2(x)+\ldots+(f_n')^2(x)}dx. 
+    \]
+    Естественно, все $f_i$ должны быть дифференцируемы на нужном промежутке.
+\end{stat}
+
+\begin{remark}
+    Ну а площадь - сам бог велел использовать интегралы (наверное).
+\end{remark}
+
+\section{Многомерные функции.}
+
+\begin{defn}
+    $f$ \textit{дифференцируема} в точке $(x_1, \ldots, x_m)$, если $f(y)=f(x)+L(y-x)+o(||x-y||)$, где $L$ - линейное отображение $\RR^m\rightarrow \RR$, причём однородное, то есть, $L(0)=0$.
+\end{defn}
+
+\begin{defn}
+    Это линейное отображение $L$ называется \textit{дифференциалом} в точке $x$.
+\end{defn}
+
+\begin{defn}
+    \textit{Частная производная}. Пусть имеется $f:\RR\rightarrow \RR$, $f(x_1, \ldots, x_n)$, $x^0=(x_1^0, \ldots, x_n^0)$. Тогда частная производная по $x_k $, $f(x_1^0, \ldots, x_{k-1}^0, x, x_{k+1}^0, \ldots, x_m^0)=g(x), g'(x_k^0)$. $\frac{\partial f}{\partial x_k}\bigg|_{x^0}:=g'(x_k^0)=\lim_{\varepsilon\rightarrow 0}\frac{f(\ldots, x_k^0+\varepsilon, \ldots)-f(\ldots)}{\varepsilon}$. 
+\end{defn}
+
+\begin{defn}
+    \textit{Производная по направлению}. Пусть направление задаётся $e\in\RR^n$, $||e||=1$, $f$ - дифференцируема по направлению $e$, если $g(t)=f(x^0+te)$, $t\in\RR$ и существует $g'(0)$, то производная по направлению $e$ - $g'(0)=\lim_{t\rightarrow 0}\frac{f(x^0+te)-f(x^0)}{t}$. 
+\end{defn}
+
+\begin{theorem}
+    $f: G\rightarrow \RR^m$, $G\subset \RR^n$ - открытое, $f$ - гладкая в окрестности $x^0$ (верхние индексы), $y^0=f(x^0)$, $g:V_{f(x^0)}\rightarrow \RR^k$, гладкая в $f(x^0)$, для $f$ и $g$ существуют линейные операторы $A$ ($x_0)$ и $B$ ($f(x_0)$). Тогда $g(f(x))$ - гладкое отображение в $x_0$ с линейным оператором $BA:\RR^n\rightarrow \RR^k$. 
+\end{theorem} \
+
+\begin{theorem}
+    Пусть у нас есть отображение $f:\RR^n\rightarrow \RR^m$, $V_{x_0}\rightarrow \RR^m$, причём существуют все частные производные в $V_{x^0}$ и они непрерывные в $x^0$. Тогда $f$ дифференцируема в точке $x^0$. 
+\end{theorem} \ 
+
+\begin{theorem}
+    Пусть $f:\RR^n\rightarrow \RR$, $f$ - гладкая на $G$ - открытое множестве, причём частные производные сущуствуют и непрерывны в каждой точке (условно говоря, $f$ гладкая). Предположим, что точка $x^0$ - локальный максимум или минимум. Тогда $\grad f|_{x^0}\equiv 0$.
+\end{theorem} \
+
+\begin{theorem}
+    Если функция $E\rightarrow \RR$, определённая на множестве $E\subset \RR^m$, дифференцируема во внутренней точке $x\in E$ этого множества, то в этой точке функция имеет все частные производные по каждой переменной и дифференциал функции однозначно определяется этими частными производными в виде
+    \[
+      df(x)h=\frac{\partial f}{\partial x_1}(x)h_1+\ldots+\frac{\partial f}{\partial x_m}(x)h_m. 
+    \]
+\end{theorem}
+
+\section{Дифференцирование.}
+
+\begin{theorem}
+    Если отображение $f_1: E \rightarrow \RR^n$, $f_2:E \rightarrow \RR^n$, определённые на множестве $E\subset \RR^m$, дифференцируемы в точке $x\in E$, то их линейная комбинация также является дифференцируемым в этой точке отображением, причём имеет место равенство
+    \[
+        (\lambda_1 f_1 + \lambda_2 f_2)'(x) = (\lambda_1 f_1'+\lambda_2 f_2')(x). 
+    \]
+\end{theorem}
+
+\begin{remark}
+    Про произведени и частное - тоже точно так же, как и в случае с одномерными функциями.
+\end{remark}
+
+\begin{defn}
+    Пусть $x\in \RR^m$. Через $T\RR_x^m$ обозначим совокупность векторов, приложенных к точке $x\in \RR^m$. Это векторное пространство называют \textit{касательным пространством} к $\RR^m$ в точке $x$. 
+\end{defn}
+
+\begin{theorem}
+    (Дифференцирование композиции). Если отображение $f: X \rightarrow Y$ множества $x\subset \RR^m$ в множество $y\subset \RR^n$ дифференцируемо в точке $x\in X$, а отображение $g: Y \rightarrow \RR^k$ дифференцируемо в точке $y=f(x)\in Y$, то композиция $g\circ f: X \rightarrow \RR^k$ этих отображений дифференцируема в точке $x$, причём дифференциал $d(g\circ f): T\RR_x^m \rightarrow T\RR_{g(f(x))}^k$ композиции равен композиции дифференциалов.
+\end{theorem}
+
+\end{document}
