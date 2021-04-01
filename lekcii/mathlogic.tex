@@ -19,7 +19,7 @@
      linkcolor=magenta,
      filecolor=magenta,
      citecolor=black,      
-     urlcolor=cyan,
+     urlcolor=magenta,
      }
 \usepackage{fancyhdr}
 \pagestyle{fancy} 
@@ -141,6 +141,10 @@
   $w[w'/u, k]$ - замена подслова $w'$ на $u$, начинающегося в позиции $k$.
 \end{defn}
 
+\hrulefill
+
+\texttt{\hypertarget{b1}{\textcolor{magenta}{Начало 1 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_1.pdf}{1 лекция, страница 6}} 
+
 \begin{defn}
   Фиксированное счётное множество $\Prop$ - \textit{пропозициональные переменные}. Язык $\LL$ классической пропозициональной логики состоит из переменных, а также символов $\rightarrow, \vee, \wedge, \neg$ и круглых скобочек.
 \end{defn}
@@ -161,13 +165,25 @@
   По индукции по мощности большей формулы. База - переменная, очевидно. Иначе $\psi$ представляется в виде ''композиции'' единственным образом, тогда возьмём первую часть этой композиции и сравним с первой частью того, как $\varphi$ представляется в виде ''композиции''. По предположению индукции они должны совпасть, продолжение тривиально.
 \end{proof}
 
+\texttt{\textcolor{magenta}{Конец 1 билета.}} 
+
+\hrulefill
+
+\texttt{\hypertarget{b2}{\textcolor{magenta}{Начало 2 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_1.pdf}{1 лекция, страница 10}} \\
+
 \begin{lemma}
   Каждую $\varphi \in \form \backslash \Prop$ можно единственным способом представить в виде $(\theta \rightarrow \chi)$, $(\theta \vee \chi)$, $(\theta \wedge \chi)$ или $\neg\theta$, где $\{\theta, \chi\}\subseteq \form$ (это я везде безграмотно называю \textit{композицией}). 
 \end{lemma}
 
 \begin{proof}
-  От противного по лемме 2.
+  Ясно, что представление существует. А вот доказательство единственности - от противного по лемме 1.
 \end{proof}
+
+\texttt{\textcolor{magenta}{Конец 2 билета.}}
+
+\hrulefill
+
+\texttt{\hypertarget{b3}{\textcolor{magenta}{Начало 3 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_1.pdf}{1 лекция, страница 11}} \
 
 \begin{defn}
   Для каждой $\varphi\in \form$ определим $\Sub(\varphi):=\{\psi\in \form|\psi \preccurlyeq \varphi\}$ - \textit{подформулы}.
@@ -181,6 +197,10 @@
   Возвратная индукция по длине формулы.
 \end{proof}
 
+\texttt{\textcolor{magenta}{Конец 3 билета.}} 
+
+\hrulefill
+
 \begin{lemma}
   Множество подслов $\varphi$ - объединение множеств подслов элементов его композиции и его самого.
 \end{lemma}
@@ -189,13 +209,25 @@
   Из лемм выше.
 \end{proof}
 
+\hrulefill
+
+\texttt{\hypertarget{b4}{\textcolor{magenta}{Начало 4 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_1.pdf}{1 лекция, страница 13}} \
+
 \begin{defn}
   \textit{Оценка} ($v$) - произвольная функция из $\Prop$ в $\{0, 1\}$, которую можно расширить и до $\form$ ($v^*$) посредством применения операций к переменным. Если $v^*(\varphi)=1$, то порой пишут $v \Vdash \varphi$.
 \end{defn}
 
+\texttt{\textcolor{magenta}{Конец 4 билета.}} 
+
+\hrulefill
+
 \begin{defn}
   Формулу называют \textit{выполнимой}, если $v \Vdash \varphi$ для некоторой оценки, и \textit{общезначимой} (тождественно истинной или тавтологией), если $v \Vdash \varphi$ для всех оценок.
 \end{defn}
+
+\hrulefill
+
+\texttt{\hypertarget{b6}{\textcolor{magenta}{Начало 6 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_1.pdf}{1 лекция, страница 16}} \
 
 \begin{defn}
   Формула \textit{семантически следует} из множества формул и записывается $\Gamma \vDash \varphi$, если для любой оценки $v$, любая формула из множества истина, то $\varphi$ истина.  \ 
@@ -203,8 +235,16 @@
   Формулы называют \textit{семантически эквивалентны}, и пишут $\varphi \equiv \psi$, если $\vDash \varphi \leftrightarrow \psi$. 
 \end{defn}
 
+\texttt{\textcolor{magenta}{Конец 6 билета.}} 
+
+\hrulefill
+
 
 \section{Лекция 2.}
+
+\hrulefill
+
+\texttt{\hypertarget{b7}{\textcolor{magenta}{Начало 7 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_2.pdf}{2 лекция, страница 2}} \\
 
 В Гильбертовском исчислении для классической пропозициональной логики используются следующие схемы аксиом (implication, conjunction, disjunction, negotiation): 
 
@@ -232,6 +272,12 @@
   \end{tabular}
 \end{center}
 
+\texttt{\textcolor{magenta}{Конец 7 билета.}} 
+
+\hrulefill
+
+\texttt{\hypertarget{b8}{\textcolor{magenta}{Начало 8 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_2.pdf}{2 лекция, страница 3}} 
+
 \begin{defn}
   Пусть $\Gamma \subseteq \form$, тогда \textit{выводом} из него в гильбертовском исчислении понимают конечную последовательность $\varphi_0, \ldots, \varphi_n$ ($n\in \NN$) элементов $\form$, что для каждого $i\in\{0, \ldots, n\}$ выполнено одно из следующиъ условий: 
 
@@ -251,6 +297,12 @@
   \item компактность (если $\Gamma \vdash \varphi$, то $\Delta \vdash \varphi$ для некоторого конечного $\Delta \subseteq \Gamma$).
 \end{itemize}
 
+\texttt{\textcolor{magenta}{Конец 8 билета.}} 
+
+\hrulefill
+
+\texttt{\hypertarget{b11}{\textcolor{magenta}{Начало 11 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_2.pdf}{2 лекция, страница 9}} \\
+
 \begin{theorem}
   (О дедукции). Для любых $\Gamma \cup \{\varphi, \psi\}\subseteq \form$, 
   \[
@@ -261,6 +313,10 @@
 \begin{proof}
   В одну правую сторону очевидно, в обратную - по индукции по $i\in\{0, 1, \ldots, n\}$ показываем, что $\Gamma\vdash \varphi\rightarrow \psi_i$, там три случая, и все, кроме одного, тривиальны.
 \end{proof}
+
+\texttt{\textcolor{magenta}{Конец 11 билета.}} 
+
+\hrulefill
 
 Введём обозначения: $\top:= p\rightarrow p$ и $\perp := \neg \top$, где $p$ - фиксированная пропозициональная переменная.
 
@@ -280,6 +336,9 @@
   Всякая аксиома гильбертовского исчисления для классической пропозициональной логики общезначима.
 \end{lemma}\ 
 
+\hrulefill
+
+\texttt{\hypertarget{b12}{\textcolor{magenta}{Начало 12 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_2.pdf}{2 лекция, страница 15}} \\
 
 \begin{theorem}
   (О корректности). Для любых $\Gamma \cup \{\varphi\}\subseteq \form$, 
@@ -292,6 +351,12 @@
   Фиксируем вывод $\varphi_0, \ldots, \varphi_n = \varphi$. Затем рассматриваем произаольную оценку $v$ такую что $v\Vdash \psi$ для всех $\psi \in \Gamma$ и покажем по индукции по $i\in\{0, \ldots, n\}$, что $v\Vdash \varphi_i$.
 \end{proof}
 
+\texttt{\textcolor{magenta}{Конец 12 билета.}} 
+
+\hrulefill
+
+\texttt{\hypertarget{b14}{\textcolor{magenta}{Начало 14 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_2.pdf}{2 лекция, страница 17}} 
+
 \begin{defn}
   $\Gamma \subseteq \form$ называется \textit{простой теорией}, если оно обладает следующими свойствами:
 
@@ -301,6 +366,13 @@
     \item для любого $\varphi \vee \psi \in \Gamma$ верно $\varphi \in \Gamma$ или $\psi \in \Gamma$. 
   \end{itemize}
 \end{defn}
+
+\texttt{Про эквивалентные определения см. в \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides-more_pcl.pdf}{доп. материалах с практик, страница 4}} \\ 
+
+\texttt{\textcolor{magenta}{Конец 14 билета.}} 
+
+\hrulefill
+
 
 \begin{lemma}
   Пусть $\Gamma$ - простая теория, тогда для любых её элементов можно переписать действия над ними в рамках принадлежности к теории.
@@ -869,5 +941,49 @@
     \Gamma \vdash \Phi \Longrightarrow \Gamma \vDash \Phi. 
   \]
 \end{theorem}
+
+\newpage
+
+\section{Билеты.}
+
+Начало и конец обозначены в конспекте, чтобы я тыщу раз из документа в документ не копировал, и для общей полноты материала (вдруг чего спросят вне вопросов). \\
+
+1. \hyperlink{b1}{Что такое формула в PCL? Покажите, что если $\psi$ является началом $\varphi$, то $\psi = \varphi$.} \\ 
+
+2. \hyperlink{b2}{Сформулируйте и докажите утверждение о единственности представления формул в PCL.} \\
+
+3. \hyperlink{b3}{Сформулируйте и докажите основное утверждение о подформулах в PCL.} \\
+
+4. \hyperlink{b4}{Опишите семантику для PCL.} \\
+
+5. %\hyperlink{b5}
+{Что такое гомоморфизм? Изоморфизм? Автоморфизм?} \\
+
+6. \hyperlink{b6}{Определите семантическое следование и эквивалентность в PCL. Опшите алгоритм приведения формул в PCL к д.н.ф. (без построения их таблиц истинности)} \\ 
+
+7. \hyperlink{b7}{Опишите гильбертовское исчисление для PCL.} \\
+
+8. \hyperlink{b8}{Сформулируйте и докажите основные свойства $\vdash$ в PCL.} \\
+
+9. %\hyperlink{b9}
+{Покажите, что $\vdash p \ra p$ и $\{p\wedge q\}\ra q \wedge p$.} \
+
+\texttt{См. \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_2.pdf}{2 лекция, страница 7}}\\
+
+10. %\hyperlink{b10}
+{Покажите, что $\{\neg p \ra q, \neg p \ra \neq q\} \vdash p$.} \\
+
+11. \hyperlink{b11}{Сфорулируйте и докажите теорему дедукции для $\vdash$ в PCL (считая известным $\vdash p \ra p$).} \\
+
+12. \hyperlink{b12}{Сфорулируйте и докажите теорему о корректности $\vdash$ в PCL.} \\
+
+13. %\hyperlink{b13}
+{Какие множества формул называются противоречивыми в PCL? Сформулируйте и докажите утверждение об эквивалентных определениях простоты в PCL.} \
+
+\texttt{См. \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides-more_pcl.pdf}{Доп. материал с практик, страница 2}} \\
+
+14. \hyperlink{b14}{Что такое простая теория в PCL? Сформулируйте и докажите утверждение об эквивалентных определениях простоты в PCL.} \\
+
+
 
 \end{document}
