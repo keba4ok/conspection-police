@@ -34,8 +34,8 @@
 %\geometry{verbose,a4paper,tmargin=2cm,bmargin=2cm,lmargin=2.5cm,rmargin=1.5cm}
 
 \title{Матлог. Основные записи}
-\author{Кабашный Иван (@keba4ok) \\ на основе лекций С. О. Сперанского}
-\date{22 января 2020 г.}
+\author{Кабашный Иван (@keba4ok) \\ на основе лекций С. О. Сперанского. \\ Отдельное спасибо Г. Марарескулу \\ за предоставленные решения с выводами}
+\date{1 апреля 2021 г.}
 
 \theoremstyle{indented}
 \newtheorem{theorem}{Теорема}
@@ -193,7 +193,7 @@
 \end{defn}
 
 \begin{lemma}
-  Пусть $\varphi \in \form$. Тогда каждое вхождение $\neq$ или $($ является началом вхождения некоторой подформулы.
+  Пусть $\varphi \in \form$. Тогда каждое вхождение $\neg$ или $($ является началом вхождения некоторой подформулы.
 \end{lemma}
 
 \begin{proof}
@@ -301,6 +301,23 @@
 \end{itemize}
 
 \texttt{\textcolor{magenta}{Конец 8 билета.}} 
+
+\hrulefill
+
+\texttt{\hypertarget{b10}{\textcolor{magenta}{Начало 10 билета.}}} 
+
+\begin{align*}
+  (H1 &) \: \neg\phi\to\psi\\
+  (H2 &) \: \neg\phi\to\neg\psi\\
+  \\
+  (N1 &) \: (\neg\phi\to\psi)\to((\neg\phi\to\neg\psi)\to\neg\neg\phi)\\
+  (1, 3 &) \: (\neg\phi\to\neg\psi)\to\neg\neg\phi\\
+  (2, 4 &) \: \neg\neg\phi\\
+  (T &) \: \neg\neg\phi\to\phi\\
+  (5, 6 &) \: \phi
+\end{align*}
+
+\texttt{\textcolor{magenta}{Конец 10 билета.}} 
 
 \hrulefill
 
@@ -1230,8 +1247,7 @@
 
 \texttt{См. \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_2.pdf}{2 лекция, страница 7}}\\
 
-10. %\hyperlink{b10}
-{Покажите, что $\{\neg p \ra q, \neg p \ra \neq q\} \vdash p$.} \\
+10. \hyperlink{b10}{Покажите, что $\{\neg p \ra q, \neg p \ra \neg q\} \vdash p$.} \\
 
 11. \hyperlink{b11}{Сфорулируйте и докажите теорему дедукции для $\vdash$ в PCL (считая известным $\vdash p \ra p$).} \\
 
@@ -1271,12 +1287,16 @@
 23. %\hyperlink{b23}
 {Выведите $\neg(p \wedge q)\ra \neg p \vee \neg q$ в исчислении естественной дедукции для PCL.} \\ 
 
+\texttt{См. что-то из \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides-natural_deduction.pdf}{доп. материалов}} \\ 
+
 24. \hyperlink{b24}{Что такое сигнатура? Что такое структура данной сигнатуры $\sigma$.} \\ 
 
 25. \hyperlink{b25}{Что такое гомоморфизм? Вложение? Изоморфизм? Автоморфизм?} \\
 
 26. %\hyperlink{b26}
 {Сколько автоморфизмов у $\langle \NN; < \rangle$? А у $\langle \QQ; <\rangle$? (Разумеется, ответы следует обосновать)} \\
+
+\texttt{Идеи решения:} для рациональных - континуум, верхняя оценка - просто количество биекций, пример - каждый отрезок от $k$ дл $k+1$ соединяем на графике ломаной с одним из двух рациональных коэффициентов. Для натуральных - естественно, счётное множество, так как по одному элементу всё однозначно задаётся. \\ 
 
 27. \hyperlink{b27}{Что такое терм? Покажите, что если терм $t$ является началом терма $s$, то $t=s$.} \\ 
 
@@ -1299,6 +1319,8 @@
 36. %\hyperlink{b36}
 {Покажите, что $\{p^n| p\in \PP \: и \: n \in \NN\}$ определимо в $\langle \NN; \perp \rangle$, где $\perp$ интерпретируется как отношение взаимной простоты.} \\
 
+\texttt{Идея решения:} сначала задать простые, а затем через общих делителей перейти к степеням. \\
+
 37. %\hyperlink{b37}
 {Покажите, что функция умножения на $\NN$ определима в $\langle \NN; =; \text{Sq}; + \rangle$, где $\text{Sq}$ интерпретируется как одноместный предикат ''быть квадратом''.} \\
 
@@ -1306,6 +1328,8 @@
 
 39. %\hyperlink{b39}
 {Покажите, что любая биекция из $\PP$ на $\PP$ может быть единственным образом расширена до автоморфизма $\langle \NN; | \rangle$.} \\
+
+\texttt{Идея решения:} рассмотрим биекцию на простых. Она расширяется до биекции на натуральных единственным образом. \\
 
 40. \hyperlink{b40}{Что понимается под аксиомами равенства для $\sigma$, то есть, что такое $\Eq_\sigma$?} \\ 
 
@@ -1342,14 +1366,53 @@
 50. %\hyperlink{b50}
 {Выведите $\neg \forall x \Phi \leftrightarrow \exists x \neg \Phi$ в гильбертовском исчислении для QCL (при этом можно пользоваться пропозициональными тавтологиями).} \\ 
 
+\texttt{Идеи решения:}
+\begin{align*}
+  & \neg \Phi \to \exists x \neg \Phi\\
+  & \neg \exists x \neg \Phi \to \Phi\\
+  & \neg \exists x \neg \Phi \to \forall x \Phi\\
+  & \neg \forall x \Phi \to \exists x \neg \Phi 
+  \end{align*}
+
+  \begin{align*}
+    & \forall x \Phi\to \Phi\\
+    & \neg \Phi \to \neg \forall x \Phi\\
+    & \exists x \neg \Phi \to \neg \forall x \Phi\\
+  \end{align*}
+
 51. %\hyperlink{b51}
 {Выведите $\forall x (\Phi \vee \Psi) \leftrightarrow (\forall x \Phi \vee \Psi)$, где $x \notin \FV (\Psi)$, в гильбертовском исчислении для QCL.} \\ 
+
+\texttt{Идеи решения:}
+\begin{align*}
+  & \forall x \Phi \wedge \Psi\to\forall x \Phi\\
+  & \forall x \Phi \wedge \Psi\to\Psi\\
+  & \forall x \Phi \to \Phi\\
+  & \forall x \Phi \wedge \Psi\to \Phi \wedge \Psi\\
+  & \forall x \Phi \wedge \Psi\to \forall x (\Phi \wedge \Psi)\\
+  \end{align*}
+  \begin{align*}
+    & \forall x(\Phi\wedge \Psi)\to\Phi\wedge \Psi\\
+    & \forall x(\Phi\wedge \Psi)\to \Phi\\
+    & \forall x(\Phi\wedge \Psi)\to \forall\Phi\\
+    & \forall x(\Phi\wedge \Psi)\to \forall\Phi\wedge \Psi\\
+  \end{align*}
 
 52. %\hyperlink{b52}
 {Выведите $\exists y \forall x \Psi \ra \forall x \exists y \Phi$ в гильбертовском исчислении для QCL. Покажите, что обратная импликация в общем случае невыводима в QCL.} \\ 
 
+\texttt{Идеи решения:}
+
+\begin{align*}
+  & \Phi\to \exists x \Phi\\
+  & \forall y \Phi\to \Phi\\
+  & \forall y \Phi\to \exists x\Phi\\
+  & \exists x\forall y \Phi\to \exists x\Phi\\
+  & \exists x\forall y \Phi\to \forall y \exists x\Phi\\
+\end{align*}
+
 53. %\hyperlink{b53}
-{Опишите алгоритм приведения формул в QCL к п.н.ф. (???)} \\ 
+{Опишите алгоритм приведения формул в QCL к п.н.ф. (пренексной нормальной форме)} \\ 
 
 54. \hyperlink{b54}{Сформулируйте и докажите теорему дедукции для $\vdash$ в QCL (при этом можнопользоваться доказательством теоремы дедукции для $\vdash$ в PCL).} \\
 
@@ -1357,7 +1420,7 @@
 {Покажите, что правила Бернайса сохраняют общезначимость.} \\ 
 
 56. %\hyperlink{b56}
-{Что такое обогащение? Объединение?} \\ 
+{Что такое обогащение? Обеднение?} \\ 
 
 \texttt{См \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_7.pdf}{лекцию 7, страницу 9}} \\
 
@@ -1374,6 +1437,8 @@
 62. %\hyperlink{b62}
 {Покажите, что $|\form_\sigma|=\max \{|\Pred_\sigma|, |\Func_\sigma|, |\Const_\sigma|, \aleph_0\} = \max\{|\sigma|, \aleph_0\}=|\Sent_\sigma|$.} \\
 
+\texttt{Идея решения:} рассматриваем последовательности из элементов этих множеств. \\ 
+
 63. \hyperlink{b63}{Покажите, что если у $\Gamma \subseteq \Sent_\sigma$ есть бесконечная модель, то для каждого кардинала $\kappa \geq |\Sent_\sigma|$ у $\Gamma$ есть модель мощности $\kappa$.} \\
 
 \texttt{С этого момента я порядком подзаебался, и поэтому пока что только указания, где в презентации про аксиоматизируемость это всё находится.} \\
@@ -1388,11 +1453,9 @@
 
 66. Будет ли аксиоматизируем или конечно аксиоматизируем класс всех делимых абелевых групп? \\ 
 
-\texttt{???} \\ 
+\texttt{Идея решения:} Аксиоматизируем, но не конечно аксиоматизируем. Можете перейти в презентацию и практически повторить предыдещуу доказательство перед этим фактом. \\ 
 
 67. Пусть $\GA$ - модель $\Th(\GN)$. Покажите, что $\lambda n.[\underline{n}^{\GA}]$ вкладывает $\GN$ в $\GA$. \\ 
-
-\texttt{???} \\ 
 
 68. Есть ли у $\Th(\GN)$ счётные нестандартные модели? (ответ следует обосновать) \\ 
 
