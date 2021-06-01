@@ -19,13 +19,13 @@
      linkcolor=magenta,
      filecolor=magenta,
      citecolor=black,      
-     urlcolor=cyan,
+     urlcolor=magenta,
      }
 \usepackage{fancyhdr}
 \pagestyle{fancy} 
 \fancyhead{} 
 \fancyhead[LE,RO]{\thepage} 
-\fancyhead[CO]{\hyperlink{t2}{к списку объектов}}
+\fancyhead[CO]{\hyperlink{t2}{к билетам}}
 \fancyhead[LO]{\hyperlink{t1}{к содержанию}} 
 \fancyhead[CE]{текст-центр-четные} 
 \fancyfoot{}
@@ -34,8 +34,8 @@
 %\geometry{verbose,a4paper,tmargin=2cm,bmargin=2cm,lmargin=2.5cm,rmargin=1.5cm}
 
 \title{Матлог. Основные записи}
-\author{Кабашный Иван (@keba4ok) \\ на основе лекций С. О. Сперанского}
-\date{22 января 2020 г.}
+\author{Кабашный Иван (@keba4ok) \\ на основе лекций С. О. Сперанского. \\ Отдельное спасибо Г. Марарескулу \\ за предоставленные решения с выводами}
+\date{1 апреля 2021 г.}
 
 \theoremstyle{indented}
 \newtheorem{theorem}{Теорема}
@@ -70,6 +70,8 @@
 \DeclareMathOperator{\ZZ}{\mathbb{Z}}
 \DeclareMathOperator{\RR}{\mathbb{R}}
 \DeclareMathOperator{\NN}{\mathbb{N}}
+\DeclareMathOperator{\QQ}{\mathbb{Q}}
+\DeclareMathOperator{\PP}{\mathbb{P}}
 \DeclareMathOperator{\codim}{codim}
 \DeclareMathOperator{\rank}{rank}
 \DeclareMathOperator{\ord}{ord}
@@ -97,6 +99,7 @@
 \DeclareMathOperator{\GB}{\mathfrak{B}}
 \DeclareMathOperator{\GC}{\mathfrak{C}}
 \DeclareMathOperator{\GD}{\mathfrak{D}}
+\DeclareMathOperator{\GN}{\mathfrak{N}}
 
 \begin{document}
 
@@ -141,6 +144,10 @@
   $w[w'/u, k]$ - замена подслова $w'$ на $u$, начинающегося в позиции $k$.
 \end{defn}
 
+\hrulefill
+
+\texttt{\hypertarget{b1}{\textcolor{magenta}{Начало 1 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_1.pdf}{1 лекция, страница 6}} 
+
 \begin{defn}
   Фиксированное счётное множество $\Prop$ - \textit{пропозициональные переменные}. Язык $\LL$ классической пропозициональной логики состоит из переменных, а также символов $\rightarrow, \vee, \wedge, \neg$ и круглых скобочек.
 \end{defn}
@@ -161,25 +168,41 @@
   По индукции по мощности большей формулы. База - переменная, очевидно. Иначе $\psi$ представляется в виде ''композиции'' единственным образом, тогда возьмём первую часть этой композиции и сравним с первой частью того, как $\varphi$ представляется в виде ''композиции''. По предположению индукции они должны совпасть, продолжение тривиально.
 \end{proof}
 
+\texttt{\textcolor{magenta}{Конец 1 билета.}} 
+
+\hrulefill
+
+\texttt{\hypertarget{b2}{\textcolor{magenta}{Начало 2 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_1.pdf}{1 лекция, страница 10}} \\
+
 \begin{lemma}
   Каждую $\varphi \in \form \backslash \Prop$ можно единственным способом представить в виде $(\theta \rightarrow \chi)$, $(\theta \vee \chi)$, $(\theta \wedge \chi)$ или $\neg\theta$, где $\{\theta, \chi\}\subseteq \form$ (это я везде безграмотно называю \textit{композицией}). 
 \end{lemma}
 
 \begin{proof}
-  От противного по лемме 2.
+  Ясно, что представление существует. А вот доказательство единственности - от противного по лемме 1.
 \end{proof}
+
+\texttt{\textcolor{magenta}{Конец 2 билета.}}
+
+\hrulefill
+
+\texttt{\hypertarget{b3}{\textcolor{magenta}{Начало 3 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_1.pdf}{1 лекция, страница 11}} \
 
 \begin{defn}
   Для каждой $\varphi\in \form$ определим $\Sub(\varphi):=\{\psi\in \form|\psi \preccurlyeq \varphi\}$ - \textit{подформулы}.
 \end{defn}
 
 \begin{lemma}
-  Пусть $\varphi \in \form$. Тогда каждое вхождение $\neq$ или $($ является началом вхождения некоторой подформулы.
+  Пусть $\varphi \in \form$. Тогда каждое вхождение $\neg$ или $($ является началом вхождения некоторой подформулы.
 \end{lemma}
 
 \begin{proof}
   Возвратная индукция по длине формулы.
 \end{proof}
+
+\texttt{\textcolor{magenta}{Конец 3 билета.}} 
+
+\hrulefill
 
 \begin{lemma}
   Множество подслов $\varphi$ - объединение множеств подслов элементов его композиции и его самого.
@@ -189,13 +212,25 @@
   Из лемм выше.
 \end{proof}
 
+\hrulefill
+
+\texttt{\hypertarget{b4}{\textcolor{magenta}{Начало 4 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_1.pdf}{1 лекция, страница 13}} \
+
 \begin{defn}
   \textit{Оценка} ($v$) - произвольная функция из $\Prop$ в $\{0, 1\}$, которую можно расширить и до $\form$ ($v^*$) посредством применения операций к переменным. Если $v^*(\varphi)=1$, то порой пишут $v \Vdash \varphi$.
 \end{defn}
 
+\texttt{\textcolor{magenta}{Конец 4 билета.}} 
+
+\hrulefill
+
 \begin{defn}
   Формулу называют \textit{выполнимой}, если $v \Vdash \varphi$ для некоторой оценки, и \textit{общезначимой} (тождественно истинной или тавтологией), если $v \Vdash \varphi$ для всех оценок.
 \end{defn}
+
+\hrulefill
+
+\texttt{\hypertarget{b6}{\textcolor{magenta}{Начало 6 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_1.pdf}{1 лекция, страница 16}} \
 
 \begin{defn}
   Формула \textit{семантически следует} из множества формул и записывается $\Gamma \vDash \varphi$, если для любой оценки $v$, любая формула из множества истина, то $\varphi$ истина.  \ 
@@ -203,8 +238,16 @@
   Формулы называют \textit{семантически эквивалентны}, и пишут $\varphi \equiv \psi$, если $\vDash \varphi \leftrightarrow \psi$. 
 \end{defn}
 
+\texttt{\textcolor{magenta}{Конец 6 билета.}} 
+
+\hrulefill
+
 
 \section{Лекция 2.}
+
+\hrulefill
+
+\texttt{\hypertarget{b7}{\textcolor{magenta}{Начало 7 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_2.pdf}{2 лекция, страница 2}} \\
 
 В Гильбертовском исчислении для классической пропозициональной логики используются следующие схемы аксиом (implication, conjunction, disjunction, negotiation): 
 
@@ -232,6 +275,12 @@
   \end{tabular}
 \end{center}
 
+\texttt{\textcolor{magenta}{Конец 7 билета.}} 
+
+\hrulefill
+
+\texttt{\hypertarget{b8}{\textcolor{magenta}{Начало 8 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_2.pdf}{2 лекция, страница 3}} 
+
 \begin{defn}
   Пусть $\Gamma \subseteq \form$, тогда \textit{выводом} из него в гильбертовском исчислении понимают конечную последовательность $\varphi_0, \ldots, \varphi_n$ ($n\in \NN$) элементов $\form$, что для каждого $i\in\{0, \ldots, n\}$ выполнено одно из следующиъ условий: 
 
@@ -251,6 +300,29 @@
   \item компактность (если $\Gamma \vdash \varphi$, то $\Delta \vdash \varphi$ для некоторого конечного $\Delta \subseteq \Gamma$).
 \end{itemize}
 
+\texttt{\textcolor{magenta}{Конец 8 билета.}} 
+
+\hrulefill
+
+\texttt{\hypertarget{b10}{\textcolor{magenta}{Начало 10 билета.}}} 
+
+\begin{align*}
+  (H1 &) \: \neg\phi\to\psi\\
+  (H2 &) \: \neg\phi\to\neg\psi\\
+  \\
+  (N1 &) \: (\neg\phi\to\psi)\to((\neg\phi\to\neg\psi)\to\neg\neg\phi)\\
+  (1, 3 &) \: (\neg\phi\to\neg\psi)\to\neg\neg\phi\\
+  (2, 4 &) \: \neg\neg\phi\\
+  (T &) \: \neg\neg\phi\to\phi\\
+  (5, 6 &) \: \phi
+\end{align*}
+
+\texttt{\textcolor{magenta}{Конец 10 билета.}} 
+
+\hrulefill
+
+\texttt{\hypertarget{b11}{\textcolor{magenta}{Начало 11 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_2.pdf}{2 лекция, страница 9}} \\
+
 \begin{theorem}
   (О дедукции). Для любых $\Gamma \cup \{\varphi, \psi\}\subseteq \form$, 
   \[
@@ -261,6 +333,10 @@
 \begin{proof}
   В одну правую сторону очевидно, в обратную - по индукции по $i\in\{0, 1, \ldots, n\}$ показываем, что $\Gamma\vdash \varphi\rightarrow \psi_i$, там три случая, и все, кроме одного, тривиальны.
 \end{proof}
+
+\texttt{\textcolor{magenta}{Конец 11 билета.}} 
+
+\hrulefill
 
 Введём обозначения: $\top:= p\rightarrow p$ и $\perp := \neg \top$, где $p$ - фиксированная пропозициональная переменная.
 
@@ -280,6 +356,9 @@
   Всякая аксиома гильбертовского исчисления для классической пропозициональной логики общезначима.
 \end{lemma}\ 
 
+\hrulefill
+
+\texttt{\hypertarget{b12}{\textcolor{magenta}{Начало 12 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_2.pdf}{2 лекция, страница 15}} \\
 
 \begin{theorem}
   (О корректности). Для любых $\Gamma \cup \{\varphi\}\subseteq \form$, 
@@ -292,6 +371,12 @@
   Фиксируем вывод $\varphi_0, \ldots, \varphi_n = \varphi$. Затем рассматриваем произаольную оценку $v$ такую что $v\Vdash \psi$ для всех $\psi \in \Gamma$ и покажем по индукции по $i\in\{0, \ldots, n\}$, что $v\Vdash \varphi_i$.
 \end{proof}
 
+\texttt{\textcolor{magenta}{Конец 12 билета.}} 
+
+\hrulefill
+
+\texttt{\hypertarget{b14}{\textcolor{magenta}{Начало 14 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_2.pdf}{2 лекция, страница 17}} 
+
 \begin{defn}
   $\Gamma \subseteq \form$ называется \textit{простой теорией}, если оно обладает следующими свойствами:
 
@@ -302,9 +387,23 @@
   \end{itemize}
 \end{defn}
 
+\texttt{Про эквивалентные определения см. в \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides-more_pcl.pdf}{доп. материалах с практик, страница 4}} \\ 
+
+\texttt{\textcolor{magenta}{Конец 14 билета.}} 
+
+\hrulefill
+
+\texttt{\hypertarget{b15}{\textcolor{magenta}{Начало 15 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_2.pdf}{2 лекция, страница 17}} \\
+
 \begin{lemma}
   Пусть $\Gamma$ - простая теория, тогда для любых её элементов можно переписать действия над ними в рамках принадлежности к теории.
 \end{lemma}\
+
+\texttt{\textcolor{magenta}{Конец 15 билета.}} 
+
+\hrulefill
+
+\texttt{\hypertarget{b16}{\textcolor{magenta}{Начало 16 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_2.pdf}{2 лекция, страница 20}} \\
 
 \begin{lemma}
   (О расширении. a.k.a. Линденбаума). Пусть $\Gamma \cup \{\varphi \}\subseteq \form$ таковы, что $\Gamma \nvdash \varphi$. Тогда существует простая теория $\Gamma'\supseteq \Gamma$ такая, что $\Gamma' \nvdash \varphi$.
@@ -313,6 +412,10 @@
 \begin{proof}
   Рекурсивно докидываем к $\Gamma$ элементы $\form$ (их счётно).
 \end{proof}
+
+\texttt{\textcolor{magenta}{Конец 16 билета.}} 
+
+\hrulefill
 
 \section{Лекция 3.}
 
@@ -329,6 +432,10 @@
   Индукция по построению $\varphi$, используя лемму 6.
 \end{proof}
 
+\hrulefill
+
+\texttt{\hypertarget{b18}{\textcolor{magenta}{Начало 18 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_3.pdf}{3 лекция, страница 4}} \\
+
 \begin{theorem}
   (О сильной полноте $\vdash$). Для любых $\Gamma\cup \{\varphi\}\subseteq \form$, 
   \[
@@ -341,6 +448,10 @@
   Вправо - теорема о корректности, влево - от противного, рассматриваем $\Gamma'$, как в лемме 7.
 \end{proof}
 
+\texttt{\textcolor{magenta}{Конец 18 билета.}} 
+
+\hrulefill
+
 \begin{theorem}
   (О слабой полноте $\vdash$). Для любой $\varphi \in \form$, 
   \[
@@ -348,6 +459,10 @@
   \]
   то есть, выводимость из пустого равносильна обзезначимости,
 \end{theorem}\ 
+
+\hrulefill
+
+\texttt{\hypertarget{b19}{\textcolor{magenta}{Начало 19 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_3.pdf}{3 лекция, страница 5}} \\
 
 \begin{theorem}
   (О компактности $\vDash$). Для любых $\Gamma \cup \{\varphi\}\subseteq \form$, 
@@ -357,9 +472,21 @@
   для некоторого конечного $\Delta \subseteq \Gamma$. В частности, $\Gamma \nvDash \perp$ тогда и только тогда, когда $\Delta \nvDash \perp$ для всех конечных $\Delta \subseteq \Gamma$, а значит, $\Gamma$ выполнимо тогда и только тогда, когда всякое конечное подмножество $\Gamma $ выполнимо.
 \end{theorem}
 
+\begin{remark}
+  Нормальные доказательства и переформулировки не найдены.
+\end{remark}
+
+\texttt{\textcolor{magenta}{Конец 19 билета.}} 
+
+\hrulefill
+
 \begin{stat}
   Слабая полнота $\vdash$ плюс компактность $\vDash$ равно сильная полнота $\vdash$. 
 \end{stat}
+
+\hrulefill
+
+\texttt{\hypertarget{b24}{\textcolor{magenta}{Начало 24 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_3.pdf}{3 лекция, страница 6}} \\
 
 \begin{defn}
   \textit{Сигнатура} - четвёрка вида 
@@ -385,6 +512,12 @@
   При этом, $A$ - носитель, а $I_{\GA}$ - интерпретация $\sigma$ в $\GA$. 
 \end{defn}
 
+\texttt{\textcolor{magenta}{Конец 24 билета.}} 
+
+\hrulefill
+
+\texttt{\hypertarget{b25}{\textcolor{magenta}{Начало 25 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_3.pdf}{3 лекция, страница 14}} 
+
 \begin{defn}
   Пусть $\GA$ b $\GB$ - две $\sigma$-структуры. Говорят, что $\xi: A\ra B$ есть \textit{гомоморфизм} из $\GA$ в $\GB$, если выполнены следующие условия:
 
@@ -405,7 +538,7 @@
 \end{defn}
 
 \begin{defn}
-  Инъективный гомоморфизм называют \textit{сложением}, если выполнено усиление первого пункта, где следствие заменяется на равносильность.
+  Инъективный гомоморфизм называют \textit{вложением}, если выполнено усиление первого пункта, где следствие заменяется на равносильность.
 \end{defn}
 
 \begin{defn}
@@ -416,7 +549,15 @@
   \textit{Автоморфизм} - изоморфизм на себя. $\Aut(\GA)$ - множество всех автоморфизмов $\GA$. 
 \end{defn}
 
+\texttt{\textcolor{magenta}{Конец 25 билета.}} 
+
+\hrulefill
+
 \section{Лекция 4.} 
+
+\hrulefill
+
+\texttt{\hypertarget{b27}{\textcolor{magenta}{Начало 27 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_4.pdf}{4 лекция, страница 2}} 
 
 \begin{defn}
   \[
@@ -444,8 +585,14 @@
   Элементы $\Term_\sigma$ называют \textit{$\sigma$-термами}.
 \end{defn}
 
+\hrulefill
+
+\texttt{\hypertarget{b30}{\textcolor{magenta}{Начало 30 билета [да, он посередине другого, а вторая часть ещё дальше].}}} \ 
+
+\texttt{Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_4.pdf}{4 лекция, страница 4}} 
+
 \begin{defn}
-  $\Form_\sigma$ - наименьшее множество слов в алфавите $\LL_\sigma$, замкнутое относительно следующих порождающих правил:
+  $\form_\sigma$ - наименьшее множество слов в алфавите $\LL_\sigma$, замкнутое относительно следующих порождающих правил:
 
   \begin{itemize}
     \item если $P\in \Pred$, $\arity_\sigma(P)=n$ и $\{t_1, \ldots, t_n\}\subseteq \Term_\sigma$, то 
@@ -486,13 +633,27 @@
   Пусть $\{t, s\}\subseteq \Term_\sigma$ таковы, что $t\sqsubseteq s$. Тогда $t=s$. 
 \end{lemma} \
 
+\texttt{\textcolor{magenta}{Конец 27 билета.}} 
+
+\hrulefill
+
+\texttt{\hypertarget{b28}{\textcolor{magenta}{Начало 28 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_4.pdf}{4 лекция, страница 5}} \\
+
 \begin{lemma}
   (О единственности представления термов). Всякий $t\in \Term_\sigma \backslash (\Var\cup\Const_\sigma)$ можно единственным образом представить в виде $f(t_1, \ldots, t_n)$, где $f\in \Func_\sigma$, $\arity_\sigma(f)=n$ и $\{t_1, \ldots, t_n\}\subseteq \Term_\sigma$. 
 \end{lemma} \
 
+\texttt{\textcolor{magenta}{Конец 28 билета.}} 
+
+\hrulefill
+
 \begin{lemma}
   Пусть $t\in \Term_\sigma$ и $f\in \Func_\sigma$. Тогда всякое вхождение $f$ в $t$ является началом вхождения некоторого подтерма.
-\end{lemma} \
+\end{lemma} 
+
+\hrulefill
+
+\texttt{\hypertarget{b29}{\textcolor{magenta}{Начало 29 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_4.pdf}{4 лекция, страница 6}} \\
 
 \begin{lemma}
   (О подтермах). Пусть $t\in\Term_\sigma$. 
@@ -505,6 +666,10 @@
     \]
   \end{itemize}
 \end{lemma} \ 
+
+\texttt{\textcolor{magenta}{Конец 29 билета.}} 
+
+\hrulefill
 
 \begin{lemma}
   (О единственности представления атомов). Всякий $\Phi \in \Atom$ можно единственными образом представить в виде $P(t_1, \ldots, t_n)$, где $P\in \Pred_\sigma$, $\arity_\sigma(P)=n$ и $\{t_1, \ldots, t_n\}\subseteq \Term_\sigma$. 
@@ -551,9 +716,21 @@
   Элементы которого называют \textit{$\sigma$-предложениями}. Они могут выступать в качестве \textit{нелог. аксиом}.
 \end{defn}
 
+\texttt{\textcolor{magenta}{Конец 30 билета.}} 
+
+\hrulefill
+
+\texttt{\hypertarget{b31}{\textcolor{magenta}{Начало 31 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_4.pdf}{4 лекция, страница 13}} 
+
 \begin{defn}
   $t$ называем \textit{свободным для подстановки} вместо $x$ в $\Phi$, если ни одно из свободных вхождений $x$ в $\Phi$ не находится в области действия квантора по переменной из $t$. 
 \end{defn}
+
+\texttt{\textcolor{magenta}{Конец 31 билета.}} 
+
+\hrulefill
+
+\texttt{\hypertarget{b32}{\textcolor{magenta}{Начало 32 билета.}} Подробнее [лучше сразу туда]: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_4.pdf}{4 лекция, страница 16}} 
 
 \begin{defn}
   \textit{Означивание переменных} - функции из $\Var$ в $A$. Каждое означивание $v$ в $\GA$ можно расширить до $\overline{v}:\Term_\sigma \ra A$ естественным образом: 
@@ -577,6 +754,12 @@
   Пусть $\Gamma \subseteq \Sent_\sigma$. Поворят, что $\GA$ \textit{является моделью} $\Gamma$ и пишут $\GA \Vdash \Gamma$, если $\GA \Vdash \Phi$ для всех $\Phi\in \Gamma$. 
 \end{defn}
 
+\texttt{\textcolor{magenta}{Конец 32 билета.}} 
+
+\hrulefill
+
+\texttt{\hypertarget{b33}{\textcolor{magenta}{Начало 33 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_4.pdf}{4 лекция, страница 19}} \\
+
 \begin{theorem}
   Пусть $\xi$ - изоморфизм из $\GA$ на $\GB$. Тогда для каждой $\sigma$-формулы $\Phi$ и любого означивания $v$ в $\GA$, 
   \[
@@ -588,6 +771,12 @@
   Примем $\mu:=v\circ \xi$, заметим, что $\overline{\mu}(t) = \xi (\overline{v}(t))$, а потом провернём индукции по построению $\Phi$. 
 \end{proof}
 
+\texttt{\textcolor{magenta}{Конец 33 билета.}} 
+
+\hrulefill
+
+\texttt{\hypertarget{b34}{\textcolor{magenta}{Начало 34 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_4.pdf}{4 лекция, страница 23}} \\
+
 \begin{defn}
   Для произвольного класса $\KK$ $\sigma$-структур Предположим
   \[
@@ -596,11 +785,19 @@
   Говорят, что $\GA$ и $\GB$ \textit{элементарно эквивалентны}, если $\Th(\GA)=\Th(\GB)$. 
 \end{defn}
 
+\texttt{\textcolor{magenta}{Конец 34 билета.}} 
+
+\hrulefill
+
 \begin{cons}
   Изоморфные структуры элементарно эквивалентны.
 \end{cons}
 
 \section{Лекция 5.}
+
+\hrulefill
+
+\texttt{\hypertarget{b35}{\textcolor{magenta}{Начало 35 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_5.pdf}{5 лекция, страница 2}} \\
 
 \begin{defn}
   $S\subseteq A^l$ называется \textit{определимым в $\GA$}, если существует $\sigma$-формула $\Phi(x_1, \ldots, x_l)$ такая, что 
@@ -610,9 +807,21 @@
   в этом случае говорят, что \textit{$\Phi$ определяет $S$ в $\GA$}. 
 \end{defn}
 
+\begin{remark}
+  Задача с практики пока что отсутствует.
+\end{remark}
+
+\texttt{\textcolor{magenta}{Конец 35 билета.}} 
+
+\hrulefill
+
 \begin{defn}
   $\supp(n)$ - множество всех простых делителей $n\in \NN$. 
 \end{defn}
+
+\hrulefill
+
+\texttt{\hypertarget{b38}{\textcolor{magenta}{Начало 38 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_5.pdf}{5 лекция, страница 9}} 
 
 \begin{stat}
   Пусть $S$ определимо в $\GA$. Тогда для любого $\xi\in \Aut(\GA)$, 
@@ -622,9 +831,17 @@
   то есть, $S$ замкнуто относительно автоморфизмов $\GA$. 
 \end{stat}
 
-\begin{stat}
+\texttt{\textcolor{magenta}{Конец 38 билета.}} 
+
+\hrulefill
+
+\begin{defn}
   $\sigma$-структуру $\GA$ называют \textit{нормальной}, если $=$ интерпретируется в $\GA$ как настоящее равенство, то есть, $=^{\GA}$ совпадает с $\id_A$.
-\end{stat}
+\end{defn}
+
+\hrulefill
+
+\texttt{\hypertarget{b40}{\textcolor{magenta}{Начало 40 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_5.pdf}{5 лекция, страница 13}} 
 
 \begin{defn}
   $\Eq_\sigma$ - множество состоящее из $\sigma$-предложений
@@ -642,6 +859,10 @@
   \end{itemize}
   где $P\in \Pred_\sigma$ и $f\in \Func_\sigma$, причём $\arity_\sigma(P)=n$ и $\arity_\sigma(f)=m$. Под \textit{аксиомами равенства для $\sigma$} понимают элементы $\Eq_\sigma$. 
 \end{defn}
+
+\texttt{\textcolor{magenta}{Конец 40 билета.}} 
+
+\hrulefill
 
 \begin{defn}
   Обозначим за $\GA'$ нормальную $\sigma$-структуру с носителем $A_{/=^{\GA}}$ такую, что мы заменяем константы и функционалы $\GA$ (произвольная модель $\Eq_\sigma$) на их классы эквивалентности по равенству, и оставляем все предикаты.
@@ -709,6 +930,10 @@
 
 Сейчас будет Гильбертовское исчисление для кванторной логики. В моём понимании, это как некоторый апдейт пропозициональной, во многом они схожи, достаточно только взглянуть на \textit{схемы аксиом}:
 
+\hrulefill
+
+\texttt{\hypertarget{b49}{\textcolor{magenta}{Начало 49 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_6.pdf}{6 лекция, страница 2}} 
+
 \begin{itemize}
   \item (I1). $\Phi\rightarrow (\Psi\rightarrow \Phi)$;
   \item (I2). $\Phi\rightarrow (\Psi\rightarrow \Theta)\rightarrow((\Phi\rightarrow \Psi)\rightarrow (\Phi\rightarrow \Theta))$; 
@@ -756,7 +981,11 @@
   (BR2), 
 \end{center}
 
-где $x \notin \FV(\Psi)$, и они традиционно называются \textit{правилами Бернайса}.
+где $x \notin \FV(\Psi)$, и они традиционно называются \textit{правилами Бернайса}. \\
+
+\texttt{\textcolor{magenta}{Конец 49 билета.}} 
+
+\hrulefill
 
 \begin{defn}
   \textit{Вывод} - опять-таки, конечная последовательность $\Phi_0, \ldots, \Phi_n$ элементов $\form_\sigma$ такую, что для каждого $i$ от 0 до $n$ выполнено одно из следующих условий:
@@ -836,6 +1065,10 @@
   \]
 \end{cons}
 
+\hrulefill
+
+\texttt{\hypertarget{b54}{\textcolor{magenta}{Начало 54 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_6.pdf}{6 лекция, страница 16}} 
+
 \begin{theorem}
   (О дедукции). Для любых $\Gamma \cup \{\Phi\}\subseteq \Sent_\sigma$ и $\Psi \in \form_\sigma$. 
   \[
@@ -846,6 +1079,10 @@
 \begin{proof}
   В левую сторону очевидно, в правую точно так же, как и в изначальной теореме о дедукции, разве что надо рассмотреть новые случаи BR1 и BR2. 
 \end{proof}
+
+\texttt{\textcolor{magenta}{Конец 54 билета.}} 
+
+\hrulefill
 
 \begin{cons}
   Для любых $\Gamma \subseteq \Sent_\sigma$ и $\Phi \in \form_\sigma$,  
@@ -869,5 +1106,367 @@
     \Gamma \vdash \Phi \Longrightarrow \Gamma \vDash \Phi. 
   \]
 \end{theorem}
+
+\section{Билетные вопросы из 7,8 лекций.}
+
+Раз уж оттуда не очень много рассматривается в рамках зачёта, напишу пока что только то, что важно по мнению Станислава Олеговича (будет время - докину и остальное). 
+
+\hrulefill
+
+\texttt{\hypertarget{b57}{\textcolor{magenta}{Начало 57 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_7.pdf}{7 лекция, страница 17}} \\
+
+\begin{theorem}
+  (О компактности $\vDash$, a.k.a. локальная т. Гёделя-Мальцева). Для любых $\Gamma \subseteq \Sent_\sigma$ и $\Phi \in \form_\sigma$, 
+  \[
+    \Gamma \vDash \Phi \Llra \Delta \vDash \Phi
+  \]
+  для некоторого конечного $\Delta \subseteq \Gamma$. В частности, $\Gamma \nvDash \perp$, если и только если $\Delta \nvDash \perp$ для всех конечных $\Delta \subseteq \Gamma$, а значит, $\Gamma$ выполнимо если и только если всякое конечное подмножество $\Gamma$ выполнимо.
+\end{theorem}
+
+\begin{remark}
+  Переформулировка пока что не найдена.
+\end{remark}
+
+\texttt{\textcolor{magenta}{Конец 57 билета.}} 
+
+\hrulefill
+
+\texttt{\hypertarget{b58}{\textcolor{magenta}{Начало 58 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_7.pdf}{7 лекция, страница 18}} 
+
+\begin{stat}
+  Пусть у $\Gamma \subseteq \Sent_\sigma$ есть модели сколь угодно большой конечной мощности. Тогда у $\Gamma$ есть бесконечная модель.
+\end{stat}
+
+\begin{proof}
+  Не умаляя общности считаем, что в множестве предикатов содержится $=$. Для каждого $n \in \NN \backslash \{0, 1\}$ положим 
+  \[
+    \Phi_n := \exists x_1 \ldots \exists x_n \bigwedge_{i=1}^{n-1}\bigwedge_{j=i+1}^n \neg x_i = x_j.
+  \]
+  Очевидно, что для любой $\sigma$-структуры $GA$, 
+  \[
+    \GA \Vdash \Phi_n \Longleftrightarrow |A|\geq n.
+  \]
+  Пусть $\Gamma \subseteq \Sent_\sigma$ удовлетворяет условию предложения. Рассмотрим 
+  \[
+    \Gamma' := \Gamma \cup \{\Phi_n | n\in \NN \backslash \{0, 1\}\}.
+  \]
+  Разумеется, $\Gamma'$ локально выполнимо. Значит, оно выполнимо, то есть, у $\Gamma'$ есть модель $\GA$. Поскольку в $\GA$ истинны все $\Phi_n$, то $A$ бесконечно.
+\end{proof}
+
+\texttt{\textcolor{magenta}{Конец 58 билета.}} 
+
+\hrulefill
+
+\texttt{\hypertarget{b59}{\textcolor{magenta}{Начало 59 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_8.pdf}{8 лекция, страница 2}} 
+
+\begin{defn}
+  Пусть $\GA$ и $\GB$ - $\sigma$-структуры. Говорят, что $\GA$ является \textit{подструктурой} $\GB$, а $\GB$ - \textit{расширением} $\GA$, и пишут $\GA \leq \GB$, если $A \subseteq B$ и $\id_A$ является вложением $\GA$ в $\GB$. 
+\end{defn}
+
+\begin{remark}
+  Пока что не найдено, всякая ли подструктура поля является полем.
+\end{remark}
+
+\texttt{\textcolor{magenta}{Конец 59 билета.}} 
+
+\hrulefill
+
+\texttt{\hypertarget{b60}{\textcolor{magenta}{Начало 60 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_8.pdf}{8 лекция, страница 4}} 
+
+\begin{defn}
+  $\GA$ является \textit{элементарной подструктурой} $\GB$, а $\GB$ - \textit{элементарным расширением} $\GA$, и пишут $\GA \preccurlyeq \GB$, если $\GA \leq \GB$ и для любых $\Phi(x_1, \ldots, x_k)\in \form_\sigma$ и $(a_1, \ldots, a_k)\in A^k$, 
+  \[
+    \GA \Vdash \Phi[\vec{x}/\vec{a}] \Llra \GB \Vdash \Phi[\vec{x}/\vec{a}].
+  \]
+\end{defn}
+
+\begin{theorem}
+  (Теорема Лёвингейма-Сколема, о понижении мощности). У каждой $\sigma$-структуры есть элементарная подструктура мощности $\leq |\form_\sigma|$. 
+\end{theorem} \
+
+\texttt{\textcolor{magenta}{Конец 60 билета.}} 
+
+\hrulefill
+
+\texttt{\hypertarget{b61}{\textcolor{magenta}{Начало 61 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_8.pdf}{8 лекция, страница 4}} 
+
+\begin{proof}
+  Тут всё, что было в презентации на 5 страниц и есть по сути план, так что переходите по ссылке выше.
+\end{proof}
+
+\texttt{\textcolor{magenta}{Конец 61 билета.}} 
+
+\hrulefill
+
+\texttt{\hypertarget{b63}{\textcolor{magenta}{Начало 63 билета.}} Подробнее: \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_8.pdf}{8 лекция, страница 10}} 
+
+\begin{cons}
+  (Следствие из теоремы Л-С). Для всякого $\Gamma \subseteq \Sent_\sigma$ слудующие условия эквивалентны:
+
+  \begin{itemize}
+    \item у $\Gamma$ есть бесконечная модель; 
+    \item для каждого кардинала $\kappa \geq |\Sent_\sigma|$ у $\Gamma$ есть модель мощности $\kappa$. 
+  \end{itemize}
+\end{cons}
+
+\begin{proof}
+  Красиво дополняем до $\sigma_S$, с подробностями по ссылке выше.
+\end{proof}
+
+\texttt{\textcolor{magenta}{Конец 63 билета.}} 
+
+\hrulefill
+
+
+
+\newpage
+
+\section{Билеты.}
+
+\hypertarget{t2}{Начало и конец} обозначены в конспекте, чтобы я тыщу раз из документа в документ не копировал, и для общей полноты материала (вдруг чего спросят вне вопросов). \\
+
+1. \hyperlink{b1}{Что такое формула в PCL? Покажите, что если $\psi$ является началом $\varphi$, то $\psi = \varphi$.} \\ 
+
+2. \hyperlink{b2}{Сформулируйте и докажите утверждение о единственности представления формул в PCL.} \\
+
+3. \hyperlink{b3}{Сформулируйте и докажите основное утверждение о подформулах в PCL.} \\
+
+4. \hyperlink{b4}{Опишите семантику для PCL.} \\
+
+5. %\hyperlink{b5}
+{Что такое гомоморфизм? Изоморфизм? Автоморфизм?} \\
+
+6. \hyperlink{b6}{Определите семантическое следование и эквивалентность в PCL. Опшите алгоритм приведения формул в PCL к д.н.ф. (без построения их таблиц истинности)} \\ 
+
+7. \hyperlink{b7}{Опишите гильбертовское исчисление для PCL.} \\
+
+8. \hyperlink{b8}{Сформулируйте и докажите основные свойства $\vdash$ в PCL.} \\
+
+9. %\hyperlink{b9}
+{Покажите, что $\vdash p \ra p$ и $\{p\wedge q\}\ra q \wedge p$.} \
+
+\texttt{См. \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_2.pdf}{2 лекция, страница 7}}\\
+
+10. \hyperlink{b10}{Покажите, что $\{\neg p \ra q, \neg p \ra \neg q\} \vdash p$.} \\
+
+11. \hyperlink{b11}{Сфорулируйте и докажите теорему дедукции для $\vdash$ в PCL (считая известным $\vdash p \ra p$).} \\
+
+12. \hyperlink{b12}{Сфорулируйте и докажите теорему о корректности $\vdash$ в PCL.} \\
+
+13. %\hyperlink{b13}
+{Какие множества формул называются противоречивыми в PCL? Сформулируйте и докажите утверждение об эквивалентных определениях простоты в PCL.} \
+
+\texttt{См. \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides-more_pcl.pdf}{Доп. материал с практик, страница 2}} \\
+
+14. \hyperlink{b14}{Что такое простая теория в PCL? Сформулируйте и докажите утверждение об эквивалентных определениях простоты в PCL.} \\
+
+15. \hyperlink{b15}{Сформулируйте и докажите лемму о свойствах простых теорий (в PCL).} \\
+
+16. \hyperlink{b16}{Сформулируйте и докажите (счётную версию) леммы о расширении (в PCL).} \\
+
+17. %\hyperlink{b17}
+{Приведите альтернативное доказательство леммы о расширении (в PCL), в котором вместо рекурсии используется лемма Цорна.} \ 
+
+\texttt{См. \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides-more_pcl.pdf}{доп. материалы с практик, страница 6}} \\
+
+18. \hyperlink{b18}{Сформулируйте и докужите теорему о сильной полноте $\vdash$ в PCL (тут можно пользоваться леммой о свойствах простых теорий).} \\
+
+19. \hyperlink{b19}{Сформулируйте теорему о компактности $\vDash$ в PCL; переформулируйте её в терминах выполнимости (с обоснованием).} \\ 
+
+20. %\hyperlink{b20}
+{Приведите альтернативное доказательство теоремы о компактности $\vDash$ в PCL; тут считается известной теорема Тихонова.} \ 
+
+\texttt{См. \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides-more_pcl.pdf}{доп. материалы с практик, страница 9}} \\ 
+
+21. %\hyperlink{b21}
+{Выведите $((p \vee q) \vee r) \ra (p \vee (q \vee r))$ в исчислении естественной дедукции для PCL.} \\ 
+
+22. %\hyperlink{b22}
+{Выведите $\neg(p \vee q)\ra \neg p \wedge \neg q$ в исчислении естественной дедукции для PCL.} \\ 
+
+23. %\hyperlink{b23}
+{Выведите $\neg(p \wedge q)\ra \neg p \vee \neg q$ в исчислении естественной дедукции для PCL.} \\ 
+
+\texttt{См. что-то из \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides-natural_deduction.pdf}{доп. материалов}} \\ 
+
+24. \hyperlink{b24}{Что такое сигнатура? Что такое структура данной сигнатуры $\sigma$.} \\ 
+
+25. \hyperlink{b25}{Что такое гомоморфизм? Вложение? Изоморфизм? Автоморфизм?} \\
+
+26. %\hyperlink{b26}
+{Сколько автоморфизмов у $\langle \NN; < \rangle$? А у $\langle \QQ; <\rangle$? (Разумеется, ответы следует обосновать)} \\
+
+\texttt{Идеи решения:} для рациональных - континуум, верхняя оценка - просто количество биекций, пример - каждый отрезок от $k$ дл $k+1$ соединяем на графике ломаной с одним из двух рациональных коэффициентов. Для натуральных - естественно, счётное множество, так как по одному элементу всё однозначно задаётся. \\ 
+
+27. \hyperlink{b27}{Что такое терм? Покажите, что если терм $t$ является началом терма $s$, то $t=s$.} \\ 
+
+28. \hyperlink{b28}{Сформулируйте и докажите утверждение о единственности представления термов.} \\ 
+
+29. \hyperlink{b29}{Сформулируйте и докажите основное утверждение о подтермах.} \\ 
+
+30. \hyperlink{b30}{Что такое формула в QCL? Какие вхождения переменной в формулу (в QCL) называются связанными, а какие - свободными? Какие формулы называются предложениями?} \\
+
+31. \hyperlink{b31}{$t$ называется свободным для (подстановки вместо) $x$ в $\Phi$, если\dots} \\
+
+32. \hyperlink{b32}{Опишите семантику для QCL.} \\ 
+
+33. \hyperlink{b33}{Сформулируйте и докажите утверждение о сохранении истинности при изоморфизме.} \\ 
+
+34. \hyperlink{b34}{Что такое $\Th(\KK)$ и $\Th(\GA)$? Что такое элементарная эквивалентность?} \\ 
+
+35. \hyperlink{b35}{$S \subseteq A^l$ называется определимым в $\GA$, если \dots Покажите, что $\PP$ определимо в $\langle \NN; | \rangle$, где $|$ интерпретируется как отношение делимости.} \\ 
+
+36. %\hyperlink{b36}
+{Покажите, что $\{p^n| p\in \PP \: и \: n \in \NN\}$ определимо в $\langle \NN; \perp \rangle$, где $\perp$ интерпретируется как отношение взаимной простоты.} \\
+
+\texttt{Идея решения:} сначала задать простые, а затем через общих делителей перейти к степеням. \\
+
+37. %\hyperlink{b37}
+{Покажите, что функция умножения на $\NN$ определима в $\langle \NN; =; \text{Sq}; + \rangle$, где $\text{Sq}$ интерпретируется как одноместный предикат ''быть квадратом''.} \\
+
+38. \hyperlink{b38}{Что такое ''метод автоморфизмов''? Приведите примеры его применения.} \\
+
+39. %\hyperlink{b39}
+{Покажите, что любая биекция из $\PP$ на $\PP$ может быть единственным образом расширена до автоморфизма $\langle \NN; | \rangle$.} \\
+
+\texttt{Идея решения:} рассмотрим биекцию на простых. Она расширяется до биекции на натуральных единственным образом. \\
+
+40. \hyperlink{b40}{Что понимается под аксиомами равенства для $\sigma$, то есть, что такое $\Eq_\sigma$?} \\ 
+
+41. %\hyperlink{b41}
+{Сформулируйте и докажите утверждение о ''теориях с равенством''.} \\ 
+
+42. %\hyperlink{b42}
+{Что такое конгруэнция?} \\ 
+
+43. %\hyperlink{b43}
+{Дайте альтернативное описание конгруэнций в теории групп.} \\ 
+
+44. %\hyperlink{b44}
+{Дайте альтернативное описание конгруэнций в теории колец.} \\ 
+
+\texttt{См. билеты 42-44 в \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/exercises.pdf}{материалах практики, страница 7}} \\ 
+
+45. %\hyperlink{b45}
+{Пусть $\sigma$ состоит только из одноместных предикатных символов. Покажите, что если у $\sigma$-предложения $\Phi$ есть модель, то у него есть модель мощности не более $2^n$, где $n$ - число предикатных символов в $\Phi$.} \\ 
+
+46. %\hyperlink{b46}
+{Что такое конечный спектр предложения? Конечный спектр? Покажите, что если $S_1$ и $S_2$ - конечные спектры, то $S_1 \cap S_2$ и $S_1 \cup S_2$ - также конечные спектры.} \\ 
+
+\texttt{См. \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/exercises.pdf}{материалы с практик, страница 8}} \\ 
+
+47. %\hyperlink{b47}
+{Покажите, что $\{3 \cdot n | n \in \NN \: и \: n \neq 0\}$ является конечным спектром.} \\
+
+48. %\hyperlink{b48}
+{Покажите, что $\{n^2 | n \in \NN \: и \: n \neq 0\}$ является конечным спектром.} \\
+
+49. \hyperlink{b49}{Опишите кванторные аксиомы и правила гильбертовского исчисления для QCL.} \\
+
+50. %\hyperlink{b50}
+{Выведите $\neg \forall x \Phi \leftrightarrow \exists x \neg \Phi$ в гильбертовском исчислении для QCL (при этом можно пользоваться пропозициональными тавтологиями).} \\ 
+
+\texttt{Идеи решения:}
+\begin{align*}
+  & \neg \Phi \to \exists x \neg \Phi\\
+  & \neg \exists x \neg \Phi \to \Phi\\
+  & \neg \exists x \neg \Phi \to \forall x \Phi\\
+  & \neg \forall x \Phi \to \exists x \neg \Phi 
+  \end{align*}
+
+  \begin{align*}
+    & \forall x \Phi\to \Phi\\
+    & \neg \Phi \to \neg \forall x \Phi\\
+    & \exists x \neg \Phi \to \neg \forall x \Phi\\
+  \end{align*}
+
+51. %\hyperlink{b51}
+{Выведите $\forall x (\Phi \vee \Psi) \leftrightarrow (\forall x \Phi \vee \Psi)$, где $x \notin \FV (\Psi)$, в гильбертовском исчислении для QCL.} \\ 
+
+\texttt{Идеи решения:}
+\begin{align*}
+  & \forall x \Phi \wedge \Psi\to\forall x \Phi\\
+  & \forall x \Phi \wedge \Psi\to\Psi\\
+  & \forall x \Phi \to \Phi\\
+  & \forall x \Phi \wedge \Psi\to \Phi \wedge \Psi\\
+  & \forall x \Phi \wedge \Psi\to \forall x (\Phi \wedge \Psi)\\
+  \end{align*}
+  \begin{align*}
+    & \forall x(\Phi\wedge \Psi)\to\Phi\wedge \Psi\\
+    & \forall x(\Phi\wedge \Psi)\to \Phi\\
+    & \forall x(\Phi\wedge \Psi)\to \forall\Phi\\
+    & \forall x(\Phi\wedge \Psi)\to \forall\Phi\wedge \Psi\\
+  \end{align*}
+
+52. %\hyperlink{b52}
+{Выведите $\exists y \forall x \Psi \ra \forall x \exists y \Phi$ в гильбертовском исчислении для QCL. Покажите, что обратная импликация в общем случае невыводима в QCL.} \\ 
+
+\texttt{Идеи решения:}
+
+\begin{align*}
+  & \Phi\to \exists x \Phi\\
+  & \forall y \Phi\to \Phi\\
+  & \forall y \Phi\to \exists x\Phi\\
+  & \exists x\forall y \Phi\to \exists x\Phi\\
+  & \exists x\forall y \Phi\to \forall y \exists x\Phi\\
+\end{align*}
+
+53. %\hyperlink{b53}
+{Опишите алгоритм приведения формул в QCL к п.н.ф. (пренексной нормальной форме)} \\ 
+
+54. \hyperlink{b54}{Сформулируйте и докажите теорему дедукции для $\vdash$ в QCL (при этом можнопользоваться доказательством теоремы дедукции для $\vdash$ в PCL).} \\
+
+55. %\hyperlink{b55}
+{Покажите, что правила Бернайса сохраняют общезначимость.} \\ 
+
+56. %\hyperlink{b56}
+{Что такое обогащение? Обеднение?} \\ 
+
+\texttt{См \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides_7.pdf}{лекцию 7, страницу 9}} \\
+
+57. \hyperlink{b57}{Сформулируйте теорему о компактности $\vDash$ в QCL; переформулируйте её в терминах выполнимости (с обоснованием).} \\
+
+58. \hyperlink{b58}{Верно ли, что если у множества предложений есть сколь угодно большие конечные модели, то у него есть также бесконечные модели? (ответ следует обосновать)} \\
+
+59. \hyperlink{b59}{Что такое подструктура? Всякая ли подструктура поля является полем?} \\
+
+60. \hyperlink{b60}{Что такое элементарная подструктура? Сформулируйте теорему Лёвингейма-Сколема о понижении мощности.} \\ 
+
+61. \hyperlink{b61}{Приведите схему доказательства теорема Лёвингейма-Сколема о понижении мощности.} \\
+
+62. %\hyperlink{b62}
+{Покажите, что $|\form_\sigma|=\max \{|\Pred_\sigma|, |\Func_\sigma|, |\Const_\sigma|, \aleph_0\} = \max\{|\sigma|, \aleph_0\}=|\Sent_\sigma|$.} \\
+
+\texttt{Идея решения:} рассматриваем последовательности из элементов этих множеств. \\ 
+
+63. \hyperlink{b63}{Покажите, что если у $\Gamma \subseteq \Sent_\sigma$ есть бесконечная модель, то для каждого кардинала $\kappa \geq |\Sent_\sigma|$ у $\Gamma$ есть модель мощности $\kappa$.} \\
+
+\texttt{С этого момента я порядком подзаебался, и поэтому пока что только указания, где в презентации про аксиоматизируемость это всё находится.} \\
+
+64. Какие классы структур называются (конечно) аксиоматизируемыми? Аксиоматизируем ли класс всех конечных полей, например? \\ 
+
+\texttt{См. \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides-axiomatisability.pdf}{доп. материал с практик, со страницы 4 по страницу 7}} \\
+
+65. Сформулируйте и докажите простейший критерий аксиоматизируемости. \\ 
+
+\texttt{См. \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides-axiomatisability.pdf}{доп. материал с практик, страница 6}} \\
+
+66. Будет ли аксиоматизируем или конечно аксиоматизируем класс всех делимых абелевых групп? \\ 
+
+\texttt{Идея решения:} Аксиоматизируем, но не конечно аксиоматизируем. Можете перейти в презентацию и практически повторить предыдещуу доказательство перед этим фактом. \\ 
+
+67. Пусть $\GA$ - модель $\Th(\GN)$. Покажите, что $\lambda n.[\underline{n}^{\GA}]$ вкладывает $\GN$ в $\GA$. \\ 
+
+68. Есть ли у $\Th(\GN)$ счётные нестандартные модели? (ответ следует обосновать) \\ 
+
+\texttt{См. \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides-axiomatisability.pdf}{доп. материал с практик, страница 22}} \\
+
+69. Пусть $\GA$ - модель $\Th(\GN)$. Покажите, что в $\GA$ всякий нестандартный элемент (если таковой существует) больше всех стандартных. \\ 
+
+\texttt{См. \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides-axiomatisability.pdf}{доп. материал с практик, страница 24}} \\
+
+70. Пусть $\GA$ - модель $\Th(\GN)$. Чему равносильно $\GA \simeq \GN$? (ответ следует обосновать) \\
+
+\texttt{См. \href{http://www.mi-ras.ru/~speranski/courses/logic-1-2021-spring/slides-axiomatisability.pdf}{доп. материал с практик, страница 26}} \\
 
 \end{document}
