@@ -373,8 +373,8 @@ $\nu_n$ - число успехов в $n$ испытаниях., что рав�
 
 $P_n(k)=\PP\{\nu_n=k\}=C_n^kp^kq^{n-k}$ - можем ли мы как-то упростить это? \\
 
-\begin{theorem}
-  $n$ испынаний Бернулли с веростностями успеха $p=p_n$, $n\cdot p_n\rightarrow_{n\rightarrow \infty} \alpha$, тогда $\forall k\in \NN$ $P_n(k)\rightarrow \pi_k=\frac{\alpha^k}{k!}e^{-\alpha}$. 
+\begin{theorem}[Пуассоновская аппроксимация]
+  Пусть проводятся $n$ испынаний Бернулли с веростностями успеха $p=p_n$, $n\cdot p_n\rightarrow_{n\rightarrow \infty} \alpha$, тогда $\forall k\in \NN$ $P_n(k)\rightarrow \pi_k=\frac{\alpha^k}{k!}e^{-\alpha}$. 
 \end{theorem}
 
 \begin{proof}
@@ -401,8 +401,77 @@ $P_n(k)=\PP\{\nu_n=k\}=C_n^kp^kq^{n-k}$ - можем ли мы как-то уп�
 А теперь - несколько слов о точности аппроксимации. Оценим $|P_n(k)-\pi_k|$. $\pi_k=\frac{(np)^k}{k!}e^{-np}$. \\
 
 \begin{theorem}
+<<<<<<< HEAD
   $\sum_{k=0}^\infty|P_n(k)-\pi_k|\leq 2np^2$.
+=======
+  Если $X \sim B(n, p)$, $Y \sim \mathcal{P}$, то $\forall A \subset \RR$, $|\PP\{X \in A\} - \PP \{ Y \in A \}|\leq 2np^2$.
+>>>>>>> improvements
 \end{theorem}
+\begin{proof}
+    (Более наглядно его можно посмотреть с самого начала третьей лекции, от 02.03.2021.)\\
+    Построим пространство $\Omega$ с такими с.в. $\varepsilon_1, \dots, \varepsilon_n, \eta_1, \dots, \eta_n$, чтобы:\\
+    они были независимы;\\
+    $\varepsilon_k \sim B(1, p)$, $\eta_k \sim \mathcal{P}$;\\
+    $\PP\{\varepsilon_k \ne \eta_k\} \le p$.\\
+    Это сделаем так:
+
+    \underline{Шаг 1.} При $n = 1$. \\
+        $\Omega_1 := \NN$, вероятности состояний: \\
+        $q_1(1) := 1-p, q_1(2) := \pi_0 - (1-p), q_1(k) := \pi_{k-2} \text{ при } k>2$, где $\pi_k = \frac{p^k}{k!}e^{-p}$\\
+        $\varepsilon_1(1) = 0, \; \varepsilon_1(k) = 1 \text{ при } k > 2$, \\
+        $\eta_1(1) := 0, \eta_1(2) := 0, \; \eta_1(3) := 1, \; \eta_1(4) := 2, \dots, \eta_1(k) := k - 2$\\
+        Проверяем, что всё хорошо: сумма вероятностей равна 1, так как $q_1 + q_2 = \pi_0$, а $\sum_k \pi_k = 1$; $\PP \{\varepsilon_1 = 0 \} = q_0 = 1 - p$, то есть действительно $\varepsilon_1 \sim B(1, p)$; $\PP\{\eta_1 = 0 \} = q_0 + q_1 = \pi_0$, $\PP\{\eta_1 = k \} = q_{k+2} = \pi_k$, то есть действительно $\eta_1 \sim \mathcal{P}$;\\
+        $\PP\{\varepsilon_1 \neq \eta_1\} = 1 - q_1 - q_3 = 1 - (1 - p) - pe^{-p} = p(1 + e^{-p}) \le p^2$.
+
+    \underline{Шаг 2.} Получаем много переменных $\varepsilon_k$ и $\eta_k$.\\
+        Сделаем копии нашего $\Omega_1$ вместе с вероятностями и переменными, назовём их $\Omega_1, \Omega_2, \dots, \Omega_n$; $\varepsilon_k, \eta_k$. И рассмотрим пространство --- прямое произведение омег:
+        \begin{equation*}
+          \Omega = \Omega_1 \times \Omega_2 \times \dots \times \Omega_n
+        \end{equation*}
+        Тогда вероятность состояния $\overline{\omega} = (\omega_1, \dots, \omega_n)$ равна $p_{\overline{\omega}} = p_{\omega_1} \cdot \dots \cdot p_{\omega_n}$, 
+        случайные величины определяются так: $\tilde \varepsilon_k (\overline{\omega}) = \varepsilon_k(\omega_k)$, $\tilde \eta_k$ --- анологично. Упражнение: доказать, что для этих случайных величин всё хорошо, и они независимы. \\
+        Замечание: $\PP_k \{ S_n \ne S \} = \PP \{ S_n \ne S \}$, док-во см. на \underline{38:40} в лекции.
+
+    \underline{Шаг 3.}
+        Обозначим $S_n = \tilde \varepsilon_1 + \tilde \varepsilon_2 + \dots + \tilde \varepsilon_n$, $S_n \sim B(n, p)$, 
+        $S = \tilde \eta_1 + \tilde \eta_2 + \dots + \tilde \eta_n$, $S \sim \mathcal(P)(np).$
+        Тогда легко проверить, что 
+        \begin{equation*}
+          \PP\{ S_n \neq S \} \le 
+          \PP \{ \cup_k \{ \tilde \epsilon_k \ne \tilde \eta_k \} \} \le 
+          \sum_{k=1}^n \PP\{ \tilde \epsilon_k \ne \tilde \eta_k \} 
+          \le np^2
+        \end{equation*}
+        И, наконец, 
+        \begin{equation*}
+          \begin{split}
+            \PP \{ S_n \in B\} =  \PP \{ S_n \in B, S_n = S\} +  \PP \{ S_n \in B, S_n \ne S\} \le \\
+            \PP \{ S_n \ne S\} +  \PP \{ S_n \in B, S_n = S\}\\
+            \le np^2 +  \PP \{ S \in B\}
+          \end{split}
+        \end{equation*}
+        Аналогично 
+        \begin{equation*}
+          \PP \{ S \in B\} \le np^2 +  \PP \{ S_n \in B\}
+        \end{equation*}
+        Откуда 
+        $|\PP\{X \in B\} - \PP \{ Y \in B \}|\leq 2np^2$, ч.т.д.
+        % TODO: finish this
+\end{proof}
+
+\begin{cons}
+  $\sum_{k=0}^\infty|P_n(k)-\pi_n|\leq 2np^2 = O(\frac{1}{n})$.
+\end{cons}
+\begin{proof}
+  Обозначим за $B_+ = \{k| P_n(k) - p_k \ge 0 \}$, а за $B_- = B_+^c$. Тогда 
+  \begin{equation*}
+      \begin{split}
+          \sum_{k=0}^\infty \left| P_n(k)-\pi_n \right| = 
+          \sum_{k \in B_+} (P_n(k)-\pi_n) + \sum_{k \in B_-} (\pi_n - P_n(k)) = \\
+          \left( \PP \{ S_n \in B_+\} - \PP \{S \in B_+ \} \right) + \left(\PP \{ S \in B_-\} - \PP \{S_n \in B_- \}\right) \le 2p^2n
+      \end{split}
+  \end{equation*}
+\end{proof}
 
 \subsection{Математическое ожидание и его свойства. Формула перемножения математических ожиданий для независимых величин. Примеры вычисления математического ожидания для \ldots} 
 
