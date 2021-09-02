@@ -1,0 +1,220 @@
+\documentclass[a4paper]{article}
+
+%plastikovye pakety
+
+\usepackage[12pt]{extsizes}
+\usepackage[utf8]{inputenc}
+\usepackage[unicode, pdftex]{hyperref}
+\usepackage{cmap}
+\usepackage{mathtext}
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\usepackage[T2A]{fontenc}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}
+\usepackage{icomma}
+\usepackage{euscript}
+\usepackage{mathrsfs}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[left=2cm,right=2cm,
+    top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+\usepackage[normalem]{ulem}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\makeindex
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+%\usepackage[usenames]{color}
+\hypersetup{
+     colorlinks=true,
+     linkcolor=magenta,
+     filecolor=magenta,
+     citecolor=black,      
+     urlcolor=magenta,
+     }
+\usepackage{fancyhdr}
+\pagestyle{fancy} 
+\fancyhead{} 
+\fancyhead[LE,RO]{\thepage} 
+\fancyhead[CO]{\hyperlink{uk}{к списку объектов}}
+\fancyhead[LO]{\hyperlink{sod}{к содержанию}} 
+\fancyfoot{}
+\newtheoremstyle{indented}{0 pt}{0 pt}{\itshape}{}{\bfseries}{. }{0 em}{ }
+
+\renewcommand\thesection{}
+\renewcommand\thesubsection{}
+
+%\geometry{verbose,a4paper,tmargin=2cm,bmargin=2cm,lmargin=2.5cm,rmargin=1.5cm}
+
+\title{Типичный ёбаный шаблон}
+\author{Кабашный Иван (@keba4ok) \\ 
+    на основе хуйни}
+\date{01 ноября 2002г.}
+
+
+%envirnoments
+    \theoremstyle{indented}
+    \newtheorem{theorem}{Теорема}
+    \newtheorem{lemma}{Лемма}
+    \newtheorem{alg}{Алгоритм}
+
+    \theoremstyle{definition} 
+    \newtheorem{defn}{Определение}
+    \newtheorem{exl}{Пример(ы)}
+    \newtheorem{prob}{Задача}
+
+    \theoremstyle{remark} 
+    \newtheorem{remark}{Примечание}
+    \newtheorem{cons}{Следствие}
+    \newtheorem{exer}{Упражнение}
+    \newtheorem{stat}{Утверждение}
+%esli ne hochetsa numeracii - nuzhno prisunut' zvezdochku-pezsochku
+
+\definecolor{coralpink}{rgb}{0.97, 0.51, 0.47}
+
+%declarations
+        %arrows_shorten
+            \DeclareMathOperator{\la}{\leftarrow}
+            \DeclareMathOperator{\ra}{\rightarrow}
+            \DeclareMathOperator{\lra}{\leftrightarrow}
+            \DeclareMathOperator{\llra}{\longleftrightarrow}
+            \DeclareMathOperator{\La}{\Leftarrow}
+            \DeclareMathOperator{\Ra}{\Rightarrow}
+            \DeclareMathOperator{\Lra}{\Leftrightarrow}
+            \DeclareMathOperator{\Llra}{\Longleftrightarrow}
+
+        %letters_different
+            \DeclareMathOperator{\CC}{\mathbb{C}}
+            \DeclareMathOperator{\ZZ}{\mathbb{Z}}
+            \DeclareMathOperator{\RR}{\mathbb{R}}
+            \DeclareMathOperator{\NN}{\mathbb{N}}
+            \DeclareMathOperator{\HH}{\mathbb{H}}
+            \DeclareMathOperator{\LL}{\mathscr{L}}
+            \DeclareMathOperator{\KK}{\mathscr{K}}
+            \DeclareMathOperator{\GA}{\mathfrak{A}}
+            \DeclareMathOperator{\GB}{\mathfrak{B}}
+            \DeclareMathOperator{\GC}{\mathfrak{C}}
+            \DeclareMathOperator{\GD}{\mathfrak{D}}
+            \DeclareMathOperator{\GN}{\mathfrak{N}}
+            \DeclareMathOperator{\Rho}{\mathcal{P}}
+            \DeclareMathOperator{\FF}{\mathcal{F}}
+
+        %common_shit
+            \DeclareMathOperator{\Ker}{Ker}
+            \DeclareMathOperator{\Frac}{Frac}
+            \DeclareMathOperator{\Imf}{Im}
+            \DeclareMathOperator{\cont}{cont}
+            \DeclareMathOperator{\id}{id}
+            \DeclareMathOperator{\ev}{ev}
+            \DeclareMathOperator{\lcm}{lcm}
+            \DeclareMathOperator{\chard}{char}
+            \DeclareMathOperator{\codim}{codim}
+            \DeclareMathOperator{\rank}{rank}
+            \DeclareMathOperator{\ord}{ord}
+            \DeclareMathOperator{\End}{End}
+            \DeclareMathOperator{\Ann}{Ann}
+            \DeclareMathOperator{\Real}{Re}
+            \DeclareMathOperator{\Res}{Res}
+            \DeclareMathOperator{\Rad}{Rad}
+            \DeclareMathOperator{\disc}{disc}
+            \DeclareMathOperator{\rk}{rk}
+            \DeclareMathOperator{\const}{const}
+            \DeclareMathOperator{\grad}{grad}
+            \DeclareMathOperator{\Aff}{Aff}
+            \DeclareMathOperator{\Lin}{Lin}
+            \DeclareMathOperator{\Prf}{Pr}
+            \DeclareMathOperator{\Iso}{Iso}
+
+        %specific_shit
+            \DeclareMathOperator{\Tors}{Tors}
+            \DeclareMathOperator{\form}{Form}
+            \DeclareMathOperator{\Pred}{Pred}
+            \DeclareMathOperator{\Func}{Func}
+            \DeclareMathOperator{\Const}{Const}
+            \DeclareMathOperator{\arity}{arity}
+            \DeclareMathOperator{\Aut}{Aut}
+            \DeclareMathOperator{\Var}{Var}
+            \DeclareMathOperator{\Term}{Term}
+            \DeclareMathOperator{\sub}{sub}
+            \DeclareMathOperator{\Sub}{Sub}
+            \DeclareMathOperator{\Atom}{Atom}
+            \DeclareMathOperator{\FV}{FV}
+            \DeclareMathOperator{\Sent}{Sent}
+            \DeclareMathOperator{\Th}{Th}
+            \DeclareMathOperator{\supp}{supp}
+            \DeclareMathOperator{\Eq}{Eq}
+            \DeclareMathOperator{\Prop}{Prop}
+
+
+%env_shortens_from_hirsh            
+    \newcommand{\bex}{\begin{example}\rm}
+    \newcommand{\eex}{\end{example}}
+    \newcommand{\ba}{\begin{algorithm}\rm}
+    \newcommand{\ea}{\end{algorithm}}
+    \newcommand{\bea}{\begin{eqnarray*}}
+    \newcommand{\eea}{\end{eqnarray*}}
+    \newcommand{\be}{\begin{eqnarray}}
+    \newcommand{\ee}{\end{eqnarray}}
+    \newcommand{\abs}[1]{\lvert#1\rvert}
+        \newcommand{\bp}{\begin{prob}}
+        \newcommand{\ep}{\end{prob}}
+
+    
+\begin{document}
+%ya_ebanutyi
+\newcommand{\resetexlcounters}{%
+  \setcounter{exl}{0}%
+} 
+\newcommand{\resetremarkcounters}{%
+  \setcounter{remark}{0}%
+} 
+\newcommand{\reseconscounters}{%
+  \setcounter{cons}{0}%
+} 
+\newcommand{\resetall}{%
+    \resetexlcounters
+    \resetremarkcounters
+    \reseconscounters%
+}
+
+\newcommand{\cursed}[1]{\textit{\textcolor{coralpink}{#1}}}
+\newcommand{\de}[3][2]{\index{#2}{\textbf{\textcolor{coralpink}{#3}}}}
+\newcommand{\re}[3][2]{\hypertarget{#2}{\textbf{\textcolor{coralpink}{#3}}}}
+\newcommand{\se}[3][2]{\index{#2}{\textit{\textcolor{coralpink}{#3}}}}
+
+\maketitle 
+
+\newpage
+
+\hypertarget{sod}
+\tableofcontents
+
+\newpage
+
+%main_content
+
+
+
+%ukazatel'. chto ne vidno blyat'?
+
+\newpage
+
+
+
+\hypertarget{dex}
+    \printindex
+
+
+%staryi_variant
+%\hypertarget{uk}{Основные понятия.}
+
+%\begin{multicols}{2}
+%    \hyperlink{}{} \ 
+%\end{multicols}
+
+
+
+%novyi_variant
+
+
+\end{document}
