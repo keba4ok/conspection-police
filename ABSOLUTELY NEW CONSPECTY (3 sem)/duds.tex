@@ -25,10 +25,10 @@
 %\usepackage[usenames]{color}
 \hypersetup{
      colorlinks=true,
-     linkcolor=brilliantrose,
-     filecolor=brilliantrose,
+     linkcolor=magenta,
+     filecolor=magenta,
      citecolor=black,      
-     urlcolor=brilliantrose,
+     urlcolor=magenta,
      }
 \usepackage{fancyhdr}
 \pagestyle{fancy} 
@@ -46,7 +46,7 @@
 
 \title{Дифференциальные уравнения \\ 
 и динамические системы}
-\author{Алёшин Артём \\ 
+\author{Алешин Артем \\ 
     на основе лекций Пилюгина С. Ю. \\
     под редакцией @keba4ok}
 \date{5 сентября 2021.}
@@ -186,69 +186,52 @@
 \newpage
 
 \subsection{Литература}
-
 \begin{itemize}
     \item В. И. Арнольд Обыкновенные дифференциальные уравнения
     
     \item Ю. Н. Бибиков Общий курс дифференциальных уравнения
     \item С. Ю. Пилюгин Пространства динамических систем
 \end{itemize}   
-
 \begin{defn}
   \se{Дифференциальное уравнение}{Дифференциальное уравнение} -- уравнение от неизвествной фукции $y(x)$, где $x \in \RR $ -- независимая переменная, вида
     \[f(x,y,y',\ldots,y^{(n)}) = 0\]
 \end{defn}
-
 \section{Дифференциальные уравнения 1-го порядка, разрешенные относительно производной}
-
 \begin{defn}
   \se{Дифференциальное уравнение!1-го порядка}{Дифференциальное уравнение 1-го порядка}, разрешенное относительно производной -- уравнение вида $y' = f(x,y), f \in C(G)$, где $G$ -- область (открытое связное множество) в $\RR_{x,y}^2$
 \end{defn}
-
 \begin{defn}
   $y : (a,b) \to \RR$ -- \se{Решение дифференциального уравнения}{решение} на $(a,b)$, если  
-
   \begin{itemize}
     \item $y$ -- дифференцируема;
     \item $(x,(y(x)) \in G, x \in (a,b)$;
     \item $y'(x) \equiv f(x,y(x))$ на $(a,b)$.
   \end{itemize} 
-
 \end{defn}
-
 \begin{exl} \ 
-
   \begin{itemize}
-    \item $y' = ky, k > 0 G = \RR^2$;
+    \item $y' = ky, k > 0, \  G = \RR^2$;
     \item $\forall c \in \RR \  y(x) = ce^{kx}$ -- решение на $\RR$.
   \end{itemize}
 \end{exl}
-
 \begin{defn}
   \se{Интегральная кривая}{Интегральная кривая} -- график решения.
 \end{defn}
-
 \subsection{Задача Коши}
-
 \begin{defn}
 $y(x)$ -- решение \se{Задача Коши}{задачи Коши} с начальным условем $(x_0,y_0)$, если
-
 \begin{itemize}
     \item $y(x)$ -- решение дифференциального уравнения на $(a,b)$;
     \item $y(x_0) = y_0$.
 \end{itemize}
 \end{defn}
-
 \subsection{Единственность}
 \begin{defn}
   $(x_0,y_0)$ -- \se{Точка единственности}{точка единственности} для задачи Коши, если $\forall y_1, y_2$ -- решения $\exists (\alpha, \beta) \ni x_0: y_1|_{(\alpha,\beta)} = y_2|_{(\alpha,\beta)}$.
 \end{defn}
-
 \begin{exl}
   \[y' = 3 \sqrt[3]{y^2}\]
-
   Если $(x_0,y_0) = 0$, то возможны следующие решения:
-
   \begin{itemize}
   \item \[y_1 = 0\]
   \item \[y_2 = \begin{cases}
@@ -262,40 +245,26 @@ $y(x)$ -- решение \se{Задача Коши}{задачи Коши} с н
   \end{itemize}
   Точка $(0,0)$ не является точкой единственности, но при этом $(1,1)$ уже будет точкой единственности
 \end{exl}
-
 \subsection{Поле направлений}
-
 \begin{defn}
   Из уравнения $y' = f(x,y)$ мы можем вычислить \se{Коэффициент наклона}{коэффициент наклона} в каждой точке $(x,y)$
   \[k = y'(x) = f(x,y)\]
   Если в каждой точке $(x,y)$ области $G$ провести отрезок с угловым коэффициентом равным $f(x,y)$, то получится \se{Поле направлений}{поле направлений}. Любая интегральная кривая в каждой своей точке касается соответствующего отрезка.
 \end{defn}
-
 \subsection{Основные теоремы}
-
 \begin{theorem}[\cursed{О существовании}]
-
   Если $y' = f(x,y), \ f \in C(G)$, то $\forall (x_0,y_0) \in G \ \exists $ решение задачи Коши с начальными данными $(x_0,y_0)$
-
   $G$ называется \se{Область!существования}{областью существования}.
-
 \end{theorem} \ 
-
 \begin{theorem}[\cursed{О единственности}]
-
   Если $y' = f(x,y), \ f, \frac{\partial f}{\partial y} \in C(G)$, то $\forall (x_0,y_0) \in G \ \exists $ единственное решение задачи Коши с начальными данными $(x_0,y_0)$
-
   $G$ называется \se{Область!единственности}{областью единственности}.
 \end{theorem}
-
 \section{Интегрируемые типы дифференциальных уравнений 1-го порядка}
-
 \begin{exl}
   $y' = f(x)$ -- из анализа знаем, что единнственным решение при данном условии $(x_0,y_0)$ будет \[y(x) = y_0 + \int_{x_0}^xf(t)dt\]
 \end{exl}
-
 \subsection{Интеграл}
-
 Пусть $H \subset G$ -- область
 \begin{defn}
   Функция $U \in C^1(H,\mathbb{R})$ называется \se{Интеграл уравнения}{интегралом уравнения} $y' = f(x,y)$ в $H$, если выполнены следующие условия:
@@ -304,9 +273,7 @@ $y(x)$ -- решение \se{Задача Коши}{задачи Коши} с н
   \item если $y(x), x \in (a,b)$ -- решение с $(x,y(x)) \in H$, то $U(x,y(x)) = \const$.
   \end{itemize}
 \end{defn}
-
 \begin{theorem}[Напоминание \cursed{теоремы о неявной функции}]
-
   \[F : H \subset \mathbb{R}^2 \to \mathbb{R}, F \in C^1  \]
   Если
   \begin{itemize}
@@ -315,38 +282,26 @@ $y(x)$ -- решение \se{Задача Коши}{задачи Коши} с н
     \item
       \[ \frac{\partial F}{\partial y}\bigg|_{(x_0,y_0)} \not  = 0\]
   \end{itemize}
-
   тогда $\exists I, J$ -- открытые интервалы $x_0 \in I, y_0 \in J$, $\exists z(x) \in C^1(I)$ такая, что
   \begin{itemize}
   \item $z(x_0) = y_0$;
   \item $F(x,y) = 0 \leftrightarrow y = z(x)$ при $(x,y) \in I \times J$.
   \end{itemize}
 \end{theorem} \ 
-
 \begin{theorem}[\se{Теорема!об интеграле для дифференциальных уравнений первого порядка}{Об интеграле для дифференциальных уравнений первого порядка}]
-
   Пусть $U$ -- интеграл $y' = f(x,y)$ в $H \subset G$. Тогда $\forall (x_0,y_0) \in H \ \exists H_0 \subset H, H_0 = I \times J \ni (x_0,y_0)$ и $\exists y(x) \in C^1(I)$ такая что:
-
   \begin{itemize}
     \item $y(x)$ -- решение задачи Коши с начальными данными $(x_0,y_0)$
     \item $(x,y) \in  H$ и $U(x,y) = U(x_0,y_0) \Rightarrow y = y(x)$
   \end{itemize}
-
 \end{theorem}
-
 \begin{proof} \ 
-
   Фиксируем произвольную точку $(x_0,y_0)$. Рассмотрим $F(x,y) = U(x,y) - U(x_0,y_0)$.
-
   $F$ удовлетворяет условию теоремы о неявной функции, так как $\frac{\partial F}{\partial y} = \frac{\partial U}{\partial y} \not  = 0$, поэтому существуют $I_0, J_0 \ I_0 \times J_0 \subset H$ и $\exists y(x) \in  C^1(I_0), \ y(x_0) = y_0$.
-
   По теореме существования $\exists $ решение $z(x)$ задачи Коши с начальными условиями $(x_0,y_0)$ на некотором промежутке $I \ni x_0$ такое что $(x,z(x)) \in I_0 \times J_0$.
-
   Тогда по определению интеграла $U(x,z(x)) = \const$ $\Rightarrow F(x,z(x)) = 0 \Rightarrow z(x) = y(x)$.
 \end{proof}
-
 \subsection{Дифференциальные уравнения с разделяющимися переменными}
-
 \begin{equation*}
   \begin{aligned}
     & y' = m(x) \cdot n(y) \\
@@ -360,44 +315,264 @@ $y(x)$ -- решение \se{Задача Коши}{задачи Коши} с н
   
   Проверяется подставнкой
 \item $I \subset (\alpha, \beta), n(y) \not  = 0$ при $y \in  I$
-
   Подсказка:
-
   Рассмотрим $y(x) : (x,y(x)) \in (a,b) \times I$ и отличную от $0$
-
   $y' = m(x) n(y)$, на $n(y)$ можно поделить
-
   \[\frac{y'}{n(y(x))} = m(x), \:
   \int\limits_{x_0}^x\frac{y'(t)dt}{n(y(t))} = \int\limits_{x_0}^x m(t) dt. \]
-
-
     Замена $z = y(t)$
-
   \[\int\limits_{y(x_0)}^{y(x)}\frac{dz}{n(z)} = \int\limits_{x_0}^x m(t) dt,
   \]
-
  
-    Обозначим за $N(y)$ и $M(x)$ некоторые первообразные $\frac{1}{n(y)}$ и $m(x)$ соответственно
+  Обозначим за $N(y)$ и $M(x)$ некоторые первообразные $\frac{1}{n(y)}$ и $m(x)$ соответственно
+  \begin{equation*}
+    \begin{aligned}
+      N(y(x)) - N(y(x_0)) & = M(x) - M(x_0)\\
+      U(x,y) :& = N(y) - M(x).
+    \end{aligned}
+  \end{equation*}
+  Если $y(x)$ -- решение, то $U(x,y(x)) = N(y(x_0)) - M(x_0)$
+  \[\frac{\partial U}{\partial y} = \frac{1}{n(y)} \not  = 0. \]
+  
+\end{itemize}
+Это была некоторая эвристика для того, чтобы найти формулу для интеграла.
+  
+Сформулируем некоторое утверждение, которое позволит нам проверять, является ли  $U$ интегралом.
 
-\begin{equation*}
-  \begin{aligned}
-    N(y(x)) - N(y(x_0)) & = M(x) - M(x_0)\\
-    U(x,y) :& = N(y) - M(x).
+\begin{stat}
+  (\cursed{Критерий интеграла})
+
+  $U$ -- интеграл для уравнения $y' = f(x,y)$ $\Longleftrightarrow$
+  \begin{itemize}
+  \item \[\frac{\partial U}{\partial y} \not = 0\]
+  \item \[\frac{\partial U}{\partial x} + \frac{\partial U}{\partial y} \cdot f \equiv 0\]
+  \end{itemize}
+\end{stat}
+
+\begin{proof}
+  Если $y(x)$ -- решение, то $U(x,y(x)) = \const$
+
+  \[\frac{dU}{dy} \equiv 0
+  \]
+
+  \[\frac{d}{dy} U(x,y(x)) = \frac{\partial U}{\partial x}(x, y(x))  + \frac{\partial U}{\partial y} \cdot y'(x) =  \frac{\partial U}{\partial x} + \frac{\partial U}{\partial y} \cdot f \equiv 0
+  \]
+\end{proof}
+
+
+Применяя это утверждение к нашему уравнению $y' = m(x)n(y)$ и $U = N(y) - M(x)$ имеем:
+
+\begin{equation}
+  \begin{gathered}
+    \frac{d}{dx} U = \frac{d}{dx} (N(y) - M(x)) = -m(x) + \frac{1}{n(y)} \cdot m(x)n(y) \equiv 0
+  \end{gathered}
+\end{equation}
+
+\section{Замена переменных}
+
+\begin{exl}
+  \begin{enumerate}
+  \item $y' = f(ax +by)$
+    
+    Новая независимая переменная -- $x$
+
+    Новая искомая функция -- $v = ax+by$
+
+    \[\frac{dv}{dx} = a+by' = a + bf(v)\]
+
+  \item $y' = m(x) n(y)$,  Пусть $n(y) \neq 0 $
+
+    Новая переменная -- $x$
+
+    Новая функция -- $v = N(y)$
+
+    \[\frac{dv}{dx} = \frac{1}{n(y(x))} \cdot y'(x) = m(x)\]
+    
+    Все сводится к уравнению, решение которого мы уже умеем находить
+    \[\frac{dv}{dx} = m(x)\]
+    
+
+
+  \end{enumerate}
+\end{exl}
+
+
+\subsection{Линейное дифференциальное уравнение первого порядка}
+
+\[y' = p(x) y + q(x), \ p,q \in C((a,b))\]
+
+$f(x,y)$ определена на $G = (a,b) \times \mathbb{R} $, $f$ и $\frac{\partial f}{\partial y}$ непрерывны на $G$, поэтому $G$ -- область существования и единственности.
+
+
+\begin{enumerate}
+\item Для начала научимся решать \se{Однородное линейное уравнени}{однородное линенйное уравнение} ($q \equiv 0$)
+
+  \[y' = p(x) y\]
+
+  Есть решение $y \equiv 0, x \in (a,b)$
+
+
+  Если $y > 0$, то
+
+  \[U = \int \frac{dy}{y} - \int p(x) dx = \log (y) - \int p(x) dx = \log(C)
+  \]
+
+  \[y = c e^{\int p(x) dx}\]
+
+  Для $y < 0$ то же самое
+
+
+\item \se{Метод вариации произвольной переменной}{Метод вариации произвольной переменной} (Лагранж)
+
+  Воспользуемся заменой переменной:
+
+  Новая независимая переменная -- $x$
+
+  Новая функция -- $v(x)$
+
+  Будем искать решение $y(x)$ в виде $y(x) = v(x) e^{\int_{}^{}p(x) dx}$
+  \begin{equation*}
+    \begin{aligned}
+      y'  & = v' e^{\int_{}^{}p(x) dx} + v \cdot p(x) e^{\int_{}^{}p(x) dx} \\
+      p(x)y + q(x) & =  p(x) v(x) e^{\int_{}^{}p(x) dx} + q(x) \\
+      v' \cdot e^{\int p(x) dx} & = q(x) \\
+      v'& = q(x) \cdot e^{-\int p(x) dx} \\
+      v  &= \int q(x) e^{-\int p(x) dx} dx \\
+      y & = e^{\int p(x) dx} (\int q(x) e^{-\int p(x) dx} dx)
   \end{aligned}
 \end{equation*}
 
+Заметим, что первообразная для $p(x)$ берется одна и та же
 
-Если $y(x)$ -- решение, то $U(x,y(x)) = N(y(x_0)) - M(x_0)$
+Для задачи Коши с начальным условием $(x_0,y_0)$ имеем
 
-  \[\frac{\partial U}{\partial y} = \frac{1}{n(y)} \not  = 0. \]
 
-Поэтому $U(x,y)$ -- интеграл.
+\[y  = e^{\int_{x_0}^x p(t) dt} (y_0 + \int\limits_{x_0}^x q(s) e^{-\int_{x_0}^x p(t) dt} ds)\]
+
+\end{enumerate}
+
+\subsection{Уравнения, сводящиеся к линейным}
+
+\se{Уравнение Бернулли}{Уравнение Бернулли} $y' = p(x)y + q(x) y^m, m = \const$
+
+Исключения -- $m = 0, m = 1$, так как тогда это будет обычное линейное уравнение
+
+Если $m > 0$, то есть решение $y \equiv 0$
+
+Если $y \neq 0$, то возпользуемся заменой переменных
+$v = y^{1-m}$
+
+\begin{equation*}
+  \begin{aligned}
+    \frac{y'}{y^m}& = p(x) y^{1-m} + q(x)\\
+    v'& = (1-m) y' y^{-m} \\
+    \frac{v'}{(1-m)} & = p(x) v + q(x)
+  \end{aligned}
+\end{equation*}
+
+Получилось линейное уравнение, которое мы уже умеем решать.
+
+\se{Уравнение Рикатти}{Уравнение Рикатти}
+\[y' = ay^2 + bx^{\alpha}, ab \neq 0 \]
+
+Бернулли показал, что при $\alpha = \frac{4k}{2k-1}, k \in \mathbb{Z}$ это уравнение имеет решения.
+
+Луивилль(1841) доказал, что если $\alpha$ -- не число Бернулли и $\alpha \neq 2$, то уравнение Рикатти не интегрируемо.
+
+\subsection{Дифференциальные уравнения первого порядка в симметричной форме}
+
+\se{Уравнение Пфаффа}{Уравнение Пфаффа}
+\[m(x,y) dx + n(x,y) dy = 0\]
+
+\begin{defn}
+  \se{Дифференциальная 1-форма}{Дифференциальная 1-форма}
+
+  \[F = m(x,y) dx + n(x,y) dy, m,n \in C^1(G), m^2 + n^2 \neq 0\]
+
+\end{defn}
+
+\begin{defn}
+  \se{Интегральная кривая дифференциальной формы}{Интегральная кривая дифференциальной формы} $F$ -- гладкая кривая $\gamma(t) = (\gamma_1(t), \gamma_2(t)), t \in (a,b)$
+
+  \[m(\gamma(t)) \dot \gamma_1(t) + n(\gamma(t)) \dot \gamma_2(t) = 0 \text{ на } (a,b)
+  \]
+\end{defn}
+
+\begin{remark}
+  Кривая называется гладкой, если $\exists $ непрерывные $\dot \gamma_1, \dot \gamma_2$ и $(\dot \gamma_1, \dot \gamma_2) \neq 0$
+\end{remark}
+
+
+\cursed{Связь уравнения Пфаффа с обыкновенным дифференциальным уравнением}
+
+Пусть $\gamma(t) = (\gamma_1(t), \gamma_2(t))$ -- интегральная кривая $F$
+
+Выберем $t_0 \in (a,b)$, пусть $\dot \gamma_1(t_0) \neq 0$
+
+Тогда $\exists (\alpha, \beta) \ni t_0: \dot \gamma_1(t)|_{(\alpha, \beta)} \neq 0$
+
+Положим $x = \gamma_1(t)$
+
+Так как $\dot \gamma_1$ -- непрерывна и не обращается в ноль на $(\alpha, \beta)$,  то существует обратная функция.
+
+Тогда $x = \gamma_1(t) \Longleftrightarrow t = \gamma_1^{-1}(x)$
+
+Положим $y = \gamma_2(\gamma_1^{-1})$
+
+Дифференциальное уравнение для $y$:
+
+\[\frac{dy}{dx} = \dot \gamma_2(t) \cdot \frac{d}{dx} (\gamma_1^{-1}(x)) = \frac{\dot \gamma_2(t)}{\dot \gamma_1(\gamma_1^{-1}(x)} = \frac{\dot \gamma_2(t)}{\dot \gamma_1(t)}
+\]
+
+$\gamma$ была интегральной кривой формы $F$, то есть выполнялось равенство:
+
+\[m(\gamma(t)) \dot \gamma_1(t) + n(\gamma(t)) \dot \gamma_2(t) = 0\]
+
+Тогда понятно, что
+\[\frac{dy}{dx} = \frac{\dot \gamma_2(t)}{\dot \gamma_1(t)}  = - \frac{m(\gamma(t))}{n(\gamma(t))} = - \frac{m(x,y)}{n(x,y)}\]
+
+Мы получили, что если у нас есть интегральная кривая $\gamma$ уравнения $F = 0$, то в локальных координатах они решают уравнение $y' = \frac{m(x,y)}{n(x,y)}$
+
+Значит  интегральные кривые уравнения Пфаффа $m dx + n dy = 0$ локально совпадают с интегральными кривыми уравнения $y' = \frac{m(x,y)}{n(x,y)}$
+
+Верно и обратное: пусть $y(x)$ -- решение уравнения $y' = - \frac{m}{n}, n(x,y(x)) \neq =$
+
+Как тогда получить из этого уравнения интегральную кривую уравнения Пфаффа?
+
+Берем $\gamma_1(t) = x, \gamma_2(t) = y(x)$
+
+\[ \dot \gamma_1(t) = 1, \dot \gamma_2(t) = \frac{dy}{dt} = \frac{dy}{dx} = - \frac{m(x,y)}{n(x,y)} = - \frac{m(\gamma(t))}{n(\gamma(t))}\]
+
+Мы получили интегральную кривую уравнения Пфаффа.
+
+Вывод: $F = m dx + n dy = 0$  -- запись совокупности двух обыкновенных дифференциальных уравнений:
+
+\begin{equation*}
+  \left[
+    \begin{gathered}
+      \frac{dy}{dx} = - \frac{m}{n}\\
+      \frac{dx}{dy} = - \frac{n}{m}
+    \end{gathered}
+  \right.
+\end{equation*}
   
-\end{itemize}
   
+\section{Уравнение в полных дифференциалах}
+
+\begin{defn}
+  Форма $F$ -- \se{Точная форма}{точная}, если $\exists U \in C^2(\mathbb{R}_{x,y}^2)$
+  \[F = \frac{\partial U}{\partial x} dx + \frac{\partial U}{\partial y} dy  \]
+
+  Если $F$ -- точная, то $F = 0$ называется \se{Уравнение полных дифференциалов}{уравнением полных дифференциалов}
+\end{defn}
+
+\begin{theorem}
+  Если $F$ -- точная, то в окрестности произвольной точки $(x_0,y_0) \in G$ $U$ -- интеграл одного из уравнений:
+  \[\frac{dy}{dx} = - \frac{m}{n} \text{ или } \frac{dx}{dx} = - \frac{n}{m}  \]
+\end{theorem}
+
 \newpage
 \hypertarget{dex}
-    \printindex
-
+    \printindex  
 
 \end{document}
