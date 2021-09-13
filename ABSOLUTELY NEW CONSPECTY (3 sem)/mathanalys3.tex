@@ -1,0 +1,378 @@
+\documentclass[a4paper]{article}
+
+%plastikovye pakety
+
+\usepackage[12pt]{extsizes}
+\usepackage[utf8]{inputenc}
+\usepackage[unicode, pdftex]{hyperref}
+\usepackage{cmap}
+\usepackage{mathtext}
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\usepackage[T2A]{fontenc}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}
+\usepackage{icomma}
+\usepackage{euscript}
+\usepackage{mathrsfs}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[left=2cm,right=2cm,
+    top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+\usepackage[normalem]{ulem}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\makeindex
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+%\usepackage[usenames]{color}
+\hypersetup{
+     colorlinks=true,
+     linkcolor=coralpink,
+     filecolor=coralpink,
+     citecolor=black,      
+     urlcolor=coralpink,
+     }
+\usepackage{fancyhdr}
+\pagestyle{fancy} 
+\fancyhead{} 
+\fancyhead[LE,RO]{\thepage} 
+\fancyhead[CO]{\hyperlink{uk}{к списку объектов}}
+\fancyhead[LO]{\hyperlink{sod}{к содержанию}} 
+\fancyfoot{}
+\newtheoremstyle{indented}{0 pt}{0 pt}{\itshape}{}{\bfseries}{. }{0 em}{ }
+
+\renewcommand\thesection{}
+\renewcommand\thesubsection{}
+
+%\geometry{verbose,a4paper,tmargin=2cm,bmargin=2cm,lmargin=2.5cm,rmargin=1.5cm}
+
+\title{Конспект лекций по матанализу}
+\author{Горбунов Леонид \\ 
+ при участии и редакторстве @keba4ok \\ 
+    на основе лекций Любарского Ю. И.}
+\date{13 сентября 2021г.}
+
+
+%envirnoments
+    \theoremstyle{indented}
+    \newtheorem{theorem}{Теорема}
+    \newtheorem{lemma}{Лемма}
+    \newtheorem{alg}{Алгоритм}
+
+    \theoremstyle{definition} 
+    \newtheorem{defn}{Определение}
+    \newtheorem{exl}{Пример(ы)}
+    \newtheorem{prob}{Задача}
+
+    \theoremstyle{remark} 
+    \newtheorem{remark}{Примечание}
+    \newtheorem{cons}{Следствие}
+    \newtheorem{exer}{Упражнение}
+    \newtheorem{stat}{Утверждение}
+%esli ne hochetsa numeracii - nuzhno prisunut' zvezdochku-pezsochku
+
+\definecolor{coralpink}{rgb}{0.19, 0.55, 0.91}
+
+%declarations
+        %arrows_shorten
+            \DeclareMathOperator{\la}{\leftarrow}
+            \DeclareMathOperator{\ra}{\rightarrow}
+            \DeclareMathOperator{\lra}{\leftrightarrow}
+            \DeclareMathOperator{\llra}{\longleftrightarrow}
+            \DeclareMathOperator{\La}{\Leftarrow}
+            \DeclareMathOperator{\Ra}{\Rightarrow}
+            \DeclareMathOperator{\Lra}{\Leftrightarrow}
+            \DeclareMathOperator{\Llra}{\Longleftrightarrow}
+
+        %letters_different
+            \DeclareMathOperator{\CC}{\mathbb{C}}
+            \DeclareMathOperator{\ZZ}{\mathbb{Z}}
+            \DeclareMathOperator{\RR}{\mathbb{R}}
+            \DeclareMathOperator{\NN}{\mathbb{N}}
+            \DeclareMathOperator{\HH}{\mathbb{H}}
+            \DeclareMathOperator{\LL}{\mathscr{L}}
+            \DeclareMathOperator{\KK}{\mathscr{K}}
+            \DeclareMathOperator{\GA}{\mathfrak{A}}
+            \DeclareMathOperator{\GB}{\mathfrak{B}}
+            \DeclareMathOperator{\GC}{\mathfrak{C}}
+            \DeclareMathOperator{\GD}{\mathfrak{D}}
+            \DeclareMathOperator{\GN}{\mathfrak{N}}
+            \DeclareMathOperator{\Rho}{\mathcal{P}}
+            \DeclareMathOperator{\FF}{\mathcal{F}}
+
+        %common_shit
+            \DeclareMathOperator{\Ker}{Ker}
+            \DeclareMathOperator{\Frac}{Frac}
+            \DeclareMathOperator{\Imf}{Im}
+            \DeclareMathOperator{\cont}{cont}
+            \DeclareMathOperator{\id}{id}
+            \DeclareMathOperator{\ev}{ev}
+            \DeclareMathOperator{\lcm}{lcm}
+            \DeclareMathOperator{\chard}{char}
+            \DeclareMathOperator{\codim}{codim}
+            \DeclareMathOperator{\rank}{rank}
+            \DeclareMathOperator{\ord}{ord}
+            \DeclareMathOperator{\End}{End}
+            \DeclareMathOperator{\Ann}{Ann}
+            \DeclareMathOperator{\Real}{Re}
+            \DeclareMathOperator{\Res}{Res}
+            \DeclareMathOperator{\Rad}{Rad}
+            \DeclareMathOperator{\disc}{disc}
+            \DeclareMathOperator{\rk}{rk}
+            \DeclareMathOperator{\const}{const}
+            \DeclareMathOperator{\grad}{grad}
+            \DeclareMathOperator{\Aff}{Aff}
+            \DeclareMathOperator{\Lin}{Lin}
+            \DeclareMathOperator{\Prf}{Pr}
+            \DeclareMathOperator{\Iso}{Iso}
+
+        %specific_shit
+            \DeclareMathOperator{\Tors}{Tors}
+            \DeclareMathOperator{\form}{Form}
+            \DeclareMathOperator{\Pred}{Pred}
+            \DeclareMathOperator{\Func}{Func}
+            \DeclareMathOperator{\Const}{Const}
+            \DeclareMathOperator{\arity}{arity}
+            \DeclareMathOperator{\Aut}{Aut}
+            \DeclareMathOperator{\Var}{Var}
+            \DeclareMathOperator{\Term}{Term}
+            \DeclareMathOperator{\sub}{sub}
+            \DeclareMathOperator{\Sub}{Sub}
+            \DeclareMathOperator{\Atom}{Atom}
+            \DeclareMathOperator{\FV}{FV}
+            \DeclareMathOperator{\Sent}{Sent}
+            \DeclareMathOperator{\Th}{Th}
+            \DeclareMathOperator{\supp}{supp}
+            \DeclareMathOperator{\Eq}{Eq}
+            \DeclareMathOperator{\Prop}{Prop}
+
+
+%env_shortens_from_hirsh            
+    \newcommand{\bex}{\begin{example}\rm}
+    \newcommand{\eex}{\end{example}}
+    \newcommand{\ba}{\begin{algorithm}\rm}
+    \newcommand{\ea}{\end{algorithm}}
+    \newcommand{\bea}{\begin{eqnarray*}}
+    \newcommand{\eea}{\end{eqnarray*}}
+    \newcommand{\be}{\begin{eqnarray}}
+    \newcommand{\ee}{\end{eqnarray}}
+    \newcommand{\abs}[1]{\lvert#1\rvert}
+        \newcommand{\bp}{\begin{prob}}
+        \newcommand{\ep}{\end{prob}}
+
+    
+\begin{document}
+%ya_ebanutyi
+\newcommand{\resetexlcounters}{%
+  \setcounter{exl}{0}%
+} 
+\newcommand{\resetremarkcounters}{%
+  \setcounter{remark}{0}%
+} 
+\newcommand{\reseconscounters}{%
+  \setcounter{cons}{0}%
+} 
+\newcommand{\resetall}{%
+    \resetexlcounters
+    \resetremarkcounters
+    \reseconscounters%
+}
+
+\newcommand{\cursed}[1]{\textit{\textcolor{coralpink}{#1}}}
+\newcommand{\de}[3][2]{\index{#2}{\textbf{\textcolor{coralpink}{#3}}}}
+\newcommand{\re}[3][2]{\hypertarget{#2}{\textbf{\textcolor{coralpink}{#3}}}}
+\newcommand{\se}[3][2]{\index{#2}{\textit{\textcolor{coralpink}{#3}}}}
+
+\maketitle 
+
+\newpage
+
+\hypertarget{sod}
+\tableofcontents
+
+\newpage
+
+
+\section{Теория меры}
+
+\subsection{Алгебраические структуры подмножеств}
+
+Пусть нам дано множество $\mathcal{X}$ произвольной природы и система его подмножеств $\GA$.
+
+\begin{defn}
+    $\GA$ - \se{Полукольцо множеств}{полукольцо множеств}, если для любых $A$, $B$ $\in \GA$ их пересечение $A \cap B$ тоже лежит в $\GA$, а их разность $A \backslash B$ представляется в виде конечного объединения попарно дизъюнктных множеств из $\GA$.
+\end{defn}
+
+\begin{remark}
+    Легко понять, что любое полукольцо содержит пустое множество.
+\end{remark}
+
+\begin{defn}
+    $\GA$ - \se{Кольцо множеств}{кольцо множеств}, если для любых $A$, $B$ $\in \GA$ их пересечение $A \cap B$, объединение $A \cup B$ и разность $A \backslash B$ лежат в $\GA$
+\end{defn}
+
+\begin{remark}
+    Легко понять, что тогда и $A \triangle B$ лежит в $\GA$. Тогда если на элементах кольца множеств определить операции сложения $+:= \triangle$ и умножения $\times := \cap$, то оно превратится в алгебраическое кольцо. 
+\end{remark}
+
+\begin{defn}
+    $\GA$ - \se{Алгебра множеств}{алгебра множеств}, если оно кольцо, и для любого $A \in \GA$ множество $X \backslash A$ тоже лежит в $\GA$
+\end{defn}
+
+\begin{stat}
+    Пусть $\GA \subseteq \Rho(X)$ и $\GB \subseteq \Rho(Y)$ - полукольца. Тогда $\GA \times \GB \subseteq \Rho(X \times Y)$ - тоже полукольцо.
+\end{stat}
+
+\begin{stat}
+    Пусть множества $A$, $B_1$, ... $B_n$ принадлежат какому-то полукольцу. Тогда $A \backslash (B_1 \cup ... \cup B_n)$ представляется в виде объединения конечного числа элементов этого полукольца.
+\end{stat}
+
+\begin{proof}
+    $A \backslash (B_1 \cup ... \cup B_n)=(A \backslash B_1) \cap ... \cap (A \backslash B_n)=(\bigsqcup_{i=1}^{k_1}C_{1, i}) \cap ... \cap (\bigsqcup_{i=1}^{k_n}C_{n, i}) = \bigsqcup_{i_1, ... i_n} (C_{1, i_1} \cap ... \cap C_{n, i_n})$. В последнем выражении все множества попарно дизъюнктны, так как если бы, например, $(C_{1, i_1} \cap ... \cap C_{n, i_n}) \cap C_{1, j_1} \cap ... \cap C_{n, j_n} \ni x$, то для каждого $k$ от $1$ до $n$ $x \in C_{k, i_k} \cap C_{k, j_k}$, что возможно только при $i_k=j_k$, но для всех $k$ это равенство быть верным не может.
+\end{proof}
+
+\begin{exl}
+    $P(\RR)=\{[a, b) | a, b, \in \RR \cup \{\pm \infty\}\}$ - \se{Полукольцо ячеек}{полукольцо ячеек}
+    \\
+    $P(\RR^n)=\{[a_1, b_1) \times ... \times [a_n, b_n) | a_i, b_i, \in \RR \cup \{\pm \infty\}\}$ - тоже полукольцо ячеек, только многомерных
+\end{exl}
+
+\subsection{Вводим меру}
+
+Пусть $\mathfrak{X}$ - множество произвольной природы, $\GA \subseteq \Rho(\mathfrak{X})$. 
+
+\begin{defn}
+    Функция $\mu: \GA \ra \RR_{\geq 0} \cup \{+\infty\}$ называется \se{Мера}{мерой}, если для любых попарно дизъюнктных множеств $A_1$, ... $A_k$ $\in \GA$ и таких, что $\bigsqcup_{i=1}^k A_i \in \GA$, верно равенство $\mu(\bigsqcup_{i=1}^k A_i)=\sum_{i=1}^k \mu(A_i)$
+\end{defn}
+
+\begin{remark}
+    Данное свойство называется \textit{аддитивностью}
+\end{remark}
+
+\begin{exl}
+    \
+    \begin{itemize}
+        \item $\mathfrak{X}$ - дискретное пространство, и для любого $x \in \mathfrak{X}$ $\mu({x})=1$. Тогда $\mu(A)=\sum_{x \in A} 1$
+        \item $\mathfrak{X}$ - дискретное пространство, и для любого $x \in \mathfrak{X}$ $\mu({x})=p_x$, причём $\sum_{x \in \mathfrak{X}} p_x=1$. Тогда мы получаем в точности вероятностное пространство.
+        \item $\mathfrak{X}=\RR$, $\GA$ - полукольцо конечных ячеек. Тогда $\mu([a, b))=b-a$ - мера.
+        \item То же, что и в предыдущем примере, только теперь $\mu([a, b))=f(b)-f(a)$, где $f$ - монотонно возрастающая функция.
+    \end{itemize}
+\end{exl}
+
+\begin{stat}
+    Мера, определённая на полукольце, монотонна: если $A$, $B$ $\in \GA$, и $B \subseteq A$, то $\mu(B) \leq \mu(A)$.
+\end{stat}
+
+\begin{proof}
+    $\mu(A)=\mu(B)+\mu(A \backslash B) = \mu(B)+\mu(\bigsqcup_{i=1}^n C_i)=\mu(B)+\sum_{i=1}^n \mu(C_i) \geq \mu(B)$
+\end{proof}
+
+\subsection{Простые функции}
+
+\begin{defn}
+    Пусть $\GA$ - полукольцо, и $A \in \GA$. Определим \se{Функция-индикатор}{функцию-индикатор} (или \se{Характеристическая функция}{характеристическую функцию}): 
+
+\begin{equation*}
+    \chi_A(x)=
+  \begin{cases}
+     1 , \: \text{если} \: x \in A, \\
+     0 , \: \text{если} \: x \notin A\\
+  \end{cases}
+\end{equation*}
+
+\end{defn}
+
+\begin{defn}
+    \se{Простая функция}{Простая функция} - это функция вида $f(x)=\sum_{i=1}^n a_i \chi_{A_i}(x)$, где $A_i \in \GA$ и $a_i \in \RR$
+\end{defn}
+
+\begin{remark}
+    Сумма и произведение простых функций - простые функции.
+\end{remark}
+
+\subsection{Элементарный интеграл}
+
+Пусть мы имеем $\GA$ - полукольцо, $\mu$ - меру и $f$ - простую функцию (всё пока что конечно). Можем тогда ввести следующее понятие:
+
+\begin{defn}
+    \se{Интеграл!элементарный}{Элементарным интегралом} называется 
+
+    \[
+        \int f(x)dx = \sum a_i \mu(A_i)
+    \]
+\end{defn}
+
+\begin{stat}
+    Определение корректно.
+\end{stat}
+
+\begin{remark}
+    Я не понял, что тут рассказывает Юрий Ильич, поэтому доказательство найдено в других источниках. Суть просто в попарном подразбиении и перегуппировке.
+\end{remark}
+
+\begin{proof}
+    Пусть $f = \sum \alpha_i \cdot \chi(a_i) = \sum \beta_j \cdot \chi(b_j)$, рассмотрим тогда $c_{ij} = a_i \cap b_j$.  
+
+    \[
+        \sum \mu(a_j) \cdot \alpha_j = \sum \mu(c_{ij}) \cdot \alpha_i = \sum \mu(c_{ij}) \cdot \beta_j = \sum \mu(b_j) \beta_j
+    \]
+\end{proof}
+
+\begin{stat}[Техническое замечение]
+    \[
+        \int \chi_A = \mu(A).
+    \]
+\end{stat}
+
+\begin{stat}
+    Рассмотрим свойства интеграла: 
+
+    \begin{itemize}
+        \item Линейность. Если у нас есть две простые функции: $f$ и $g$, а также два числа: $\alpha, \beta \in \RR$, тогда 
+        \[
+            \int \alpha f + \beta g = \alpha \int f + \beta \int g.
+        \]
+        \item Монотонность. Пусть $f$ и $g$ - простые функции, а также $f \leq g$. Тогда 
+        \[
+            \int f \leq \int g.
+        \]
+    \end{itemize}
+\end{stat}
+
+\begin{remark}
+    Для доказательства практически всего нужно просто рассмотреть дизъюнктное подразбиение данных функций.
+\end{remark}
+
+\subsection{Включаем бесконечность}
+
+Пусть у нас, по прежнему, имеется кольцо, и простая функция $f$. Выделим тогда у неё положительную и отрицательную часть ($f^{+}$ и $f^{-}$). Такие, что положительная часть во всех положительных значениях остаётся таковой, а при отрицательных - обнуляется. Почти аналогично с отрицательной, только мы рассмотриваем модуль того, что останется. Таким образом,
+
+\[
+    f = f^{+} - f^{-}. 
+\]
+
+Определим тогда $I_{+}(f) = \int f_{+}$, и аналогично $I_{-}$. Мы хотим определить интеграл от функции, как $I_{+}(f) - I_{-}(f)$. Но нам мешает то, что обе эти функции могут быть бесконечными. Так что в случае, когда оба интеграла равны бесконечности, у нас ничего не получится, и этот случай мы попросу запрещаем. И рассмотриваем мы теперь только функции, который могут быть бесконечны максимум в одну сторону.
+
+\begin{remark}
+    Монотонность и линейность останутся при данном определении (последнее, конечно, опять таки при конечности хотя бы одного из интегралов). 
+\end{remark}
+
+
+
+\hypertarget{dex}
+    \printindex
+
+
+%staryi_variant
+%\hypertarget{uk}{Основные понятия.}
+
+%\begin{multicols}{2}
+%    \hyperlink{}{} \ 
+%\end{multicols}
+
+
+
+%novyi_variant
+
+
+\end{document}
