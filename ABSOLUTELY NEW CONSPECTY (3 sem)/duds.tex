@@ -352,10 +352,10 @@ $y(x)$ -- решение \se{Задача Коши}{задачи Коши} с н
 \begin{proof}
   Если $y(x)$ -- решение, то $U(x,y(x)) = \const$
 
-  \[\frac{dU}{dy} \equiv 0
+  \[\frac{dU}{dx} \equiv 0
   \]
 
-  \[\frac{d}{dy} U(x,y(x)) = \frac{\partial U}{\partial x}(x, y(x))  + \frac{\partial U}{\partial y} \cdot y'(x) =  \frac{\partial U}{\partial x} + \frac{\partial U}{\partial y} \cdot f \equiv 0
+  \[\frac{d}{dx} U(x,y(x)) = \frac{\partial U}{\partial x}(x, y(x))  + \frac{\partial U}{\partial y} \cdot y'(x) =  \frac{\partial U}{\partial x} + \frac{\partial U}{\partial y} \cdot f \equiv 0
   \]
 \end{proof}
 
@@ -438,7 +438,7 @@ $f(x,y)$ определена на $G = (a,b) \times \mathbb{R} $, $f$ и $\frac
       v' \cdot e^{\int p(x) dx} & = q(x) \\
       v'& = q(x) \cdot e^{-\int p(x) dx} \\
       v  &= \int q(x) e^{-\int p(x) dx} dx \\
-      y & = e^{\int p(x) dx} (\int q(x) e^{-\int p(x) dx} dx)
+      y & = e^{\int p(x) dx} \left( \int q(x) e^{-\int p(x) dx} dx \right)
   \end{aligned}
 \end{equation*}
 
@@ -447,7 +447,7 @@ $f(x,y)$ определена на $G = (a,b) \times \mathbb{R} $, $f$ и $\frac
 Для задачи Коши с начальным условием $(x_0,y_0)$ имеем
 
 
-\[y  = e^{\int_{x_0}^x p(t) dt} (y_0 + \int\limits_{x_0}^x q(s) e^{-\int_{x_0}^x p(t) dt} ds)\]
+\[y  = e^{\int_{x_0}^x p(t) dt} \left( y_0 + \int\limits_{x_0}^x q(s) e^{-\int_{x_0}^x p(t) dt} ds \right)\]
 
 \end{enumerate}
 
@@ -587,7 +587,7 @@ $\gamma$ была интегральной кривой формы $F$, то е�
 
 \subsection{Условие точности 1-формы}
 
-\[U in C^2 \Rightarrow \frac{\partial U}{\partial x}, \frac{\partial U}{\partial y} \in C^1\]
+\[U \in C^2 \Rightarrow \frac{\partial U}{\partial x}, \frac{\partial U}{\partial y} \in C^1\]
 
 \[\frac{\partial m}{\partial y} = \frac{\partial^2 U}{\partial x \partial y}\]
 \[\frac{\partial n}{\partial x} = \frac{\partial^2 U}{\partial y\partial x}\]
