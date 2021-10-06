@@ -124,6 +124,8 @@
             \DeclareMathOperator{\Lin}{Lin}
             \DeclareMathOperator{\Prf}{Pr}
             \DeclareMathOperator{\Iso}{Iso}
+	    \DeclareMathOperator{\Lip}{Lip}
+            \DeclareMathOperator{\loc}{loc}
 
         %specific_shit
             \DeclareMathOperator{\Tors}{Tors}
@@ -907,6 +909,188 @@ $\gamma$ была интегральной кривой формы $F$, то е�
   Таким образом, мы нашли решение $g$ для исходного уравнения, и доказали теорему.
   
 \end{proof}
+
+\section{Напоминание из анализа}
+
+
+\begin{defn}
+  $f$  удовлетворяет \se{Условие Липшица}{условию Липшица} по $x$ в $G \subset \mathbb{R}_{t,x}^{n+1}$ $(f \in \Lip_x(G))$
+
+  Если $\exists L > 0$ такое, что $\forall (t,x), (t',x) \in G$
+  $$|f(t,x) - f(t',x)| \leqslant L|t - t'|$$
+
+  
+
+\end{defn}
+
+\begin{defn}
+  $f$ удовлетворяет \se{Локальное условие Липшица}{локальномум условию Липшица} по $x$ в $G$, если $\forall (t_0,x_0) in G$ $\exists U$ -- окрестность, такая что $f \in \Lip_x(U)$
+
+  \[f \in \Lip_{x, \loc}(G)\]
+
+\end{defn}
+
+
+\[\text{Пусть } f = \begin{pmatrix}
+    f_1 \\
+    \vdots \\
+    f_n
+  \end{pmatrix} \text{ и } \exists \frac{\partial f_i}{\partial x_j} \ \forall i,j = 1,\ldots,n\]
+
+\begin{defn}
+  \se{Матрица Якоби}{Матрица Якоби}
+
+  \[\frac{\partial f}{\partial x} = \begin{pmatrix}
+      \frac{\partial f_1}{\partial x_1} \ldots \frac{\partial f_1}{\partial x_n} \\
+      \vdots \ddots \vdots \\
+      \frac{\partial f_n}{\partial x_1} \ldots \frac{\partial f_n}{\partial x_n}
+    \end{pmatrix}
+  \]
+\end{defn}
+
+\begin{defn}
+  $A$ -- матрица, тогда норма $||A|| = \max\limits_{|x| = 1} |Ax|$
+\end{defn}
+\[\forall x\ |x| \leqslant ||A|| \cdot |x|\]
+
+\begin{lemma}
+  \[\frac{\partial f}{\partial x} \in C(G) \Rightarrow f \in \Lip_{x,\loc}(G)  \]
+\end{lemma}
+\begin{proof}
+  Фиксируем $(t_0,x_0)$
+
+  \[\exists \alpha, \beta > 0 : G \supset R = \{(t,x) \ | \ |t-t_0| \leqslant \alpha, |x-x_0| \leqslant \beta\} \]
+
+  \[\exists L > 0: \ ||\frac{\partial f}{\partial x}|| \text{ в } R  \]
+
+  Рассмотрим $(t,x), (t,x') \in R, \ g(s) = f(t, sx + (1-s)x')$
+
+  \begin{equation*}
+    \begin{gathered}
+      f(t,x) - f(t,x') = g(1) - g(0) = \int_{0}^{1}\frac{\partial g}{\partial s}ds  = \int_{0}^{1}\frac{\partial f}{\partial x}(t,sx + (1-s)x')ds \\
+      |f(t,x) - f(t,x')| \leqslant |\int_{0}^{1}| \leqslant \int_{0}^{1}|\ldots| \leqslant \int_{0}^{1}L|x-x'|ds = L|x - x'|
+    \end{gathered}
+  \end{equation*}
+  
+\end{proof}
+
+\begin{lemma}
+  \[f \in C(G), \Lip_{x,\loc}(G), K \text{ -- компакт в } G\]
+  \[\Downarrow \]
+  \[f \in \Lip_x(K)\]
+\end{lemma}
+\begin{proof}
+  Предположим противное:
+
+  \[\forall L_n \to \infty  \exists (t_n,x_n), (t_n, x_n') \in K:\]
+  \[|f(t_n,x_n) - f(t_n,x_n') | > L_n |x_n - x_n'|\]
+
+  Так как $K$ -- компакт, то из $(t_n,x_n)$ можно выбрать сходящуюся подпоследовательность $(t_{n_k},x_{n_k}) \to (t_0, x_0)$
+
+  После этого можно выбрать сходящуюся подпоследовательность из $t_{n_k}, x_{n_k}'$, сходяющуюся к $(t_0,x_0')$
+
+  Для удобства будем считать, что $(t_n,x_n) \to (t_0,x_0), \ (t_n,x_n') \to (t_0,x_0)$
+  \begin{description}
+  \item[Случай 1] $x_0 = x_0'$
+    Так как $f$ -- локально-липшицева по $x$, то $\exists U \ni (t_0,x_0)$ и $L$, такие, что
+    \[(t,x), (t,x') \in U  \to |f(t,x) - f(t,x')| \leqslant L|x - x'|\]
+
+    При достатчно больших $n$ $(t_n,x_n), \ (t_n,x_n') \in U$ и мы получаем противоречие
+  \end{description}
+\item[Случай 2] $x_0 \neq x_0'$
+
+  Рассмотрим $g(t,x,y) = \frac{|f(t,x) - f(t,y)|}{|x-y|} $, $f \in C(G) \Rightarrow $ $g$ непрервывна в окрестности $U$ точки $(t_0,x_0,x_0')$
+
+  \[\Rightarrow \exists L : |g(t,x,y)| \leqslant L \Rightarrow |f(t,x) - f(t,y)| \leqslant L|x-y|\]
+  
+  Тогда для достаточно больших $n$ $(t_n,x_n,x_n') \in U$ и мы снова получаем противоречие.
+  
+\end{proof}
+
+\section{Лемма Гронуолла}
+
+\begin{lemma}
+  (\se{Лемма Гронуолла}{Лемма Гронуолла})
+
+  Пусть $\varphi(t) \geqslant 0$ при $t \in (a,b)$ и  $\exists t_0 \in (a,b), \lambda, \mu \geqslant 0$, такие что
+  \[\varphi (t) \leqslant \lambda + \mu \bigg|\int_{t_0}^{t}\varphi (s) ds \bigg| , \ t \in (a,b)\]
+
+  \[\text{Тогда } \varphi (t) \leqslant \lambda e^{\mu(t - t_0)}\]
+
+\end{lemma}
+\begin{proof}
+  Разберем случай, когда $t \leqslant t_0$ (случай $t < t_0$ оставим на проверку любопытному читателю)
+
+  \[\Phi(t) := \lambda + \mu \bigg|\int_{t_0}^{t}\varphi (s) ds \bigg| \geqslant \varphi (t)\]
+
+  \[\dot \Phi(t) = \mu \varphi (t) \leqslant \mu \Phi(t)\]
+  \[\Downarrow \]
+  \[e^{-\mu(t-t_0)} \dot \Phi - \mu e^{\mu(t-t_0)}\Phi \leqslant 0\]
+  \[\frac{d}{dt} (\Phi e^{-\mu(t-t_0)}) \leqslant 0 \]
+  \[\Downarrow \]
+  \[\Phi e^{-\mu(t-t_0)} \leqslant \Phi(t_0) = \lambda\]
+  
+\end{proof}
+
+
+Частный случай:
+
+\[\varphi(t) \leqslant  \mu \bigg|\int_{t_0}^{t}\varphi (s) ds \bigg| \Rightarrow \varphi (t) = 0\]
+
+\section{Метод приближений Пикара}
+
+\begin{theorem}
+  (\se{Теорема Пикара}{Теорема Пикара})
+  \[\dot x = f(t,x), x \in \mathbb{R}^n   \]
+  \[f \in  C, \Lip_{x,\loc}(G) \subset \mathbb{R}^{n+1}  \]
+  \[\Rightarrow \text{ $G$ -- область существования и единственности}\]
+\end{theorem}
+\begin{proof}
+  Зафиксируем $(t_0,x_0) \in G$
+  Возьмем $\alpha, \beta > 0 $, что $R = \{(t,x) \ | \ |t - t_0| \leqslant \alpha, |x - x_0| \leqslant \beta\} \subset G$
+
+  \[\exists M > 0: \ |f(t,x)| \leqslant M, \ (t,x) \in R\]
+
+  \[h = \min(\alpha, \frac{\beta}{M})\]
+  $L > 0$ -- константа Липшица по $x$ в $R$
+
+  \se{Последовательные приближения Пикара}{Последовательные приближения Пикара} $\varphi_k(t)$
+
+  \[\varphi_0(t) \equiv x_0\]
+
+  \[\varphi_{k+1} = x_0 + \int\limits_{t_0}^{t}f(s,\varphi_k(s)) ds, \ k \leqslant  0\]
+  
+
+  \begin{lemma}
+    $\forall k$ $\varphi_k$ определены на $[t_0 - h, t_0 + h]$ и их графики лежат в $R$
+    
+  \end{lemma}
+  \begin{proof}
+    Идукция по $k$
+    \begin{description}
+    \item[База] $\varphi_0 \equiv x_0$ для всех $t$, график очевидно лежит в $R$
+    \item[Переход] \[\varphi_{k+1} = x_0 + \int_{t_0}^{t}f(s,\varphi_k(s))ds\]
+
+      \[(s,\varphi_k(s)) \in R \Rightarrow \text{ $f$ -- определена}\]
+
+      \[|\varphi_{k+1}(t) - x_0| = \bigg|\int_{t_0}^{t}f(s,\varphi_k(s)ds\bigg| \leqslant M|t - t_0| \leqslant Mh \leqslant \beta\]
+
+    \end{description}
+  \end{proof}
+
+  Докажем теперь, что $\varphi_k$ -- равномерно сходятся на $[t_0 - h, t_0 + h]$
+
+  Введем $\psi_0(t) = \phi_0(t), \ \psi_k(t) = \varphi_k(t) - \varphi_{k-1}(t)$ при $k \geqslant 0$
+
+  Рассмотрим теперь ряд
+  \[\sum_{k = 0}^{\infty}\psi_k(t)\]
+
+  Частинчые суммы этого ряда равны $\varphi_k(t)$
+
+  Поэтому сходимость ряда $\Longleftrightarrow$ сходимость $\varphi_k(t)$
+
+\end{proof}
+
 \newpage
 \hypertarget{dex}
     \printindex  
