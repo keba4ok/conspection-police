@@ -764,7 +764,7 @@ $\gamma$ была интегральной кривой формы $F$, то е�
   \end{itemize}
 \end{defn}
 
-\section{Теорема существования}
+\section{Теоремы существования}
 \begin{theorem}
   \cursed{существования} (Пеано)
   \[\dot x = f(t,x)\]
@@ -910,7 +910,7 @@ $\gamma$ была интегральной кривой формы $F$, то е�
   
 \end{proof}
 
-\section{Напоминание из анализа}
+\subsection{Напоминание из анализа}
 
 
 \begin{defn}
@@ -1007,7 +1007,7 @@ $\gamma$ была интегральной кривой формы $F$, то е�
   
 \end{proof}
 
-\section{Лемма Гронуолла}
+\subsection{Лемма Гронуолла}
 
 \begin{lemma}
   (\se{Лемма Гронуолла}{Лемма Гронуолла})
@@ -1037,7 +1037,7 @@ $\gamma$ была интегральной кривой формы $F$, то е�
 
 \[\varphi(t) \leqslant  \mu \bigg|\int_{t_0}^{t}\varphi (s) ds \bigg| \Rightarrow \varphi (t) = 0\]
 
-\section{Метод приближений Пикара}
+\subsection{Метод приближений Пикара}
 
 \begin{theorem}
   (\se{Теорема Пикара}{Теорема Пикара})
@@ -1046,50 +1046,180 @@ $\gamma$ была интегральной кривой формы $F$, то е�
   \[\Rightarrow \text{ $G$ -- область существования и единственности}\]
 \end{theorem}
 \begin{proof}
-  Зафиксируем $(t_0,x_0) \in G$
-  Возьмем $\alpha, \beta > 0 $, что $R = \{(t,x) \ | \ |t - t_0| \leqslant \alpha, |x - x_0| \leqslant \beta\} \subset G$
+  \begin{description}
+  \item [Существование]
+    Зафиксируем $(t_0,x_0) \in G$
+    Возьмем $\alpha, \beta > 0 $, что $R = \{(t,x) \ | \ |t - t_0| \leqslant \alpha, |x - x_0| \leqslant \beta\} \subset G$
 
-  \[\exists M > 0: \ |f(t,x)| \leqslant M, \ (t,x) \in R\]
+    \[\exists M > 0: \ |f(t,x)| \leqslant M, \ (t,x) \in R\]
 
-  \[h = \min(\alpha, \frac{\beta}{M})\]
-  $L > 0$ -- константа Липшица по $x$ в $R$
+    \[h = \min(\alpha, \frac{\beta}{M})\]
+    $L > 0$ -- константа Липшица по $x$ в $R$
 
-  \se{Последовательные приближения Пикара}{Последовательные приближения Пикара} $\varphi_k(t)$
-
-  \[\varphi_0(t) \equiv x_0\]
-
-  \[\varphi_{k+1} = x_0 + \int\limits_{t_0}^{t}f(s,\varphi_k(s)) ds, \ k \leqslant  0\]
-  
-
-  \begin{lemma}
-    $\forall k$ $\varphi_k$ определены на $[t_0 - h, t_0 + h]$ и их графики лежат в $R$
+    \se{Последовательные приближения Пикара}{Последовательные приближения Пикара} $\varphi_k(t)$
     
-  \end{lemma}
-  \begin{proof}
-    Идукция по $k$
-    \begin{description}
-    \item[База] $\varphi_0 \equiv x_0$ для всех $t$, график очевидно лежит в $R$
-    \item[Переход] \[\varphi_{k+1} = x_0 + \int_{t_0}^{t}f(s,\varphi_k(s))ds\]
+    \[\varphi_0(t) \equiv x_0\]
 
-      \[(s,\varphi_k(s)) \in R \Rightarrow \text{ $f$ -- определена}\]
+    \[\varphi_{k+1} = x_0 + \int\limits_{t_0}^{t}f(s,\varphi_k(s)) ds, \ k \leqslant  0\]
+    
 
-      \[|\varphi_{k+1}(t) - x_0| = \bigg|\int_{t_0}^{t}f(s,\varphi_k(s)ds\bigg| \leqslant M|t - t_0| \leqslant Mh \leqslant \beta\]
+    \begin{lemma}
+      $\forall k$ $\varphi_k$ определены на $[t_0 - h, t_0 + h]$ и их графики лежат в $R$
+      
+    \end{lemma}
+    \begin{proof}
+      Идукция по $k$
+      \begin{description}
+      \item[База] $\varphi_0 \equiv x_0$ для всех $t$, график очевидно лежит в $R$
+      \item[Переход] \[\varphi_{k+1} = x_0 + \int_{t_0}^{t}f(s,\varphi_k(s))ds\]
 
-    \end{description}
-  \end{proof}
+        \[(s,\varphi_k(s)) \in R \Rightarrow \text{ $f$ -- определена}\]
 
-  Докажем теперь, что $\varphi_k$ -- равномерно сходятся на $[t_0 - h, t_0 + h]$
+        \[|\varphi_{k+1}(t) - x_0| = \bigg|\int_{t_0}^{t}f(s,\varphi_k(s)ds\bigg| \leqslant M|t - t_0| \leqslant Mh \leqslant \beta\]
 
-  Введем $\psi_0(t) = \phi_0(t), \ \psi_k(t) = \varphi_k(t) - \varphi_{k-1}(t)$ при $k \geqslant 0$
+      \end{description}
+    \end{proof}
 
-  Рассмотрим теперь ряд
-  \[\sum_{k = 0}^{\infty}\psi_k(t)\]
+    Докажем теперь, что $\varphi_k$ -- равномерно сходятся на $[t_0 - h, t_0 + h]$
 
-  Частинчые суммы этого ряда равны $\varphi_k(t)$
+    Введем $\psi_0(t) = \phi_0(t), \ \psi_k(t) = \varphi_k(t) - \varphi_{k-1}(t)$ при $k \geqslant 0$
 
-  Поэтому сходимость ряда $\Longleftrightarrow$ сходимость $\varphi_k(t)$
+    Рассмотрим теперь ряд
+    \[\sum_{k = 0}^{\infty}\psi_k(t)\]
 
+    Частинчые суммы этого ряда равны $\varphi_k(t)$
+
+    Поэтому сходимость ряда $\Longleftrightarrow$ сходимость $\varphi_k(t)$
+    \begin{lemma}
+      $k \geqslant 1 \Rightarrow |\psi_k(t)| \leqslant \frac{M}{L}\frac{|L(t-t_0)|^k}{k!}$
+    \end{lemma}
+    \begin{proof}
+      Рассмотрим только случай $t \geqslant t_0$
+      \begin{description}
+      \item[$k = 1$]       \[|\psi_1(t)| = |\varphi_1(t) - \varphi_0(t)| = \bigg|\int_{t_0}^{t}f(s,\varphi_0(s))ds\bigg| \leqslant  \int_{t_0}^{t}|f(s,\varphi_0(s))|ds \leqslant M|t-t_0|\]
+      \item [$k \to k+1$] \[|\psi_{k+1}| =| \varphi_{k+1} - \varphi_{k}| = \bigg| \int_{t_0}^{t}f(s,\varphi_{k}(s))  - f(s,\varphi_{k-1}(s))ds\bigg| \leqslant  \]
+        \[\leqslant \int_{t_0}^{t}|f(s,\varphi_k(s)) - f(s,\varphi_{k-1}(s))| ds \leqslant \int_{t_0}^{t}L |\psi_k(s)|ds \leqslant \int_{t_0}^{t}L \frac{M}{L} \frac{|L(s - t_0)|^k}{k!} ds = \frac{M}{L} \frac{|L(t-t_0)|^{k+1}}{(k+1)!} \]
+      \end{description}
+    \end{proof}
+
+    \begin{equation*}
+      \begin{gathered}
+        \sum_{}^{}|\psi_k(t)| \leqslant \sum_{}^{}\frac{M}{L}\frac{|L(t-t_0)|^k}{k!} \leqslant \frac{M}{L} \frac{(Lh)^k}{k!} = \frac{M}{L} e^{Lh}
+        \\
+        \Downarrow
+        \\
+        \sum_{}^{}\psi_k \text{ -- сходистя равномерно на } [ t_0 - h, t_0 + h]
+      \end{gathered}
+    \end{equation*}
+
+    \[\varphi_k \rightrightarrows g\]
+    Проверим, тчо $g$ является решением нашего уравнения, для этого достаточно проверить, что $g$ --  решение эквивалентного интегрального уравнения
+    \begin{equation*}
+      \begin{gathered}
+        \varphi_k \text{ непрерывна } \Rightarrow g \text{ непрерывна }
+        \\
+        (t,\varphi_k(t)) \in R \Rightarrow (t,g(t)) \in R
+        \\
+        \varphi_{k+1} = x_0 + \int_{t_0}^{t}f(s,\varphi_k(s))ds
+        \\
+        f \text{ равномерно непрерывна на } R \Rightarrow f(s,\varphi_k(s)) \rightrightarrows f(s,g(s)) \text{ на } R
+        \\
+        \Downarrow
+        \\
+        \int_{t_0}^{t}f(s,\varphi_k(s))ds \to \int_{t_0}^{t}f(s,g(s))ds
+        \\
+        \Downarrow
+        \\
+        g(t) = x_0 
+      \end{gathered}
+    \end{equation*}
+  \item[Единственность]
+    Предположим, что существуют два различных решения $x_1(t), x_2(t)$ задачи Коши с начальным условиям $(t_0,x_0)$
+
+    \[(t,x_1(t)), (t,x_2(t)) \in R\]
+
+    \begin{equation*}
+      \begin{gathered}
+        x_1(t) = x_0 + \int_{t_0}^{t}f(s,x_1(s))ds \\
+        x_2(t) = x_0 + \int_{t_0}^{t}f(s,x_2(s))ds \\
+        |x_1(t) - x_2(t)| \leqslant \bigg| \int_{t_0}^{t}|f(s,x_1(s))ds f(s,x_2(s))|ds \bigg| \leqslant \bigg| \int_{t_0}^{t}L |x_1(s) - x_2(s)| ds \bigg| \\
+        |x_1 - x_2| \geqslant 0 \Rightarrow \text{ по лемме Гронуолла } x_1 = x_2
+      \end{gathered}
+    \end{equation*}
+  \end{description}
 \end{proof}
+
+
+\begin{theorem}
+  $G$ -- область единственности, тогда если существует два решения $x_1, x_2$ на промежутках $(a_1,b_1)$ и $(a_2,b_2)$ соответственно и $\exists \ t_0 \in (a,b) = (a_1,b_1) \cap (a_2,b_2): \ x_1(t_0) = x_2(t_0)$
+  \[\Downarrow \]
+  \[x_1 \equiv x_2 \text{ на }(a,b)\]
+\end{theorem}
+\begin{proof}
+  Докажем, что они совпадают на $[t_0,b)$, остальное аналогично
+  \[T :=  \{t' \ | \ t' \geqslant t_0, x_1 |_{[t_0,t']} = x_2 |_{[t_0,t']}\} \]
+  \[T' = \sup T\]
+  Предположим, что $T' < b$
+
+  Тогда по непрерывности $x_1(T') = x_2(T') = x'$
+
+  Так как $(T',x') \in G$, а $G$ -- область единственности, то $x_1(t) = x_2(t)$ на $[T', T' + \varepsilon)$ $\Rightarrow T' + \varepsilon  \in T $, получаем противоречие с тем, что $T'$ -- $\sup$
+\end{proof}
+
+\subsection{Метод сжимающих отображений}
+
+\[\dot x = f(t,x), \ f \in C,\Lip_{x,\loc}(G)\]
+\[(t_0,x_0) \in G, \ (t,_0,x_0) \in R \subset G, \ L \text{ -- константа Липшица}\]
+
+\[h_0 \leqslant h \text{ такое что } Lh_0 < 1\]
+
+\[X := \{x \text{ -- непрерывные функции на }[t_0 - h_0,t_0 + h_0], (t,x(t)) \in R\}\]
+\[\text{Метрика на $X$: } \rho(x,y) = \max\limits_{t \in [t_0 - h_0,t_0 + h_0]} |x(t) - y(t)|\]
+\begin{center}
+  $(X, \rho)$ -- полное метрическое пространство
+\end{center}
+
+Введем оператор $\mathcal{L} : X \to X$
+
+\[\mathcal{L}(\varphi) = \psi(t) =  x_0 \int_{t_0}^{t}f(s,\varphi(s))ds \]
+
+\begin{description}
+\item[Корректность]
+  Очевидно, $\psi$ непрерывна, нам нужно только показать, что $(t,\psi(t)) \in R$
+  \[|\psi(t) - x_0| = \bigg|\int_{t_0}^{t}f(s,\varphi(s))ds \bigg| \leqslant M|t -t_0| \leqslant Mh \leqslant \beta\]
+  \[\Downarrow \]
+  \[(t,\psi(t)) \in R\]
+\item[Сжимаемость]
+  \[\varphi_1, \varphi_2 \in X\]
+  \begin{equation*}
+    \begin{gathered}
+      \rho(\mathcal{L}(\varphi_1),\mathcal{L}(\varphi_2)) = \max\limits_t \bigg| \int_{t_0}^{t}f(s,\varphi_1(s)) - f(s,\varphi_2(s))ds \bigg| \leqslant  \\
+      \leqslant \max\limits_t \int_{t_0}^{t}L |\varphi_1(s) - \varphi_2(s)| ds \leqslant \max\limits_t \bigg|\int_{t_0}^{t}L\rho(\varphi_1,\varphi_2)ds \bigg|\leqslant \\
+      \leqslant \max\limits_t |t-t_0| L \rho(\varphi_1,\varphi_2) \leqslant Lh_0 \rho(\varphi_1,\varphi_2)\\
+      Lh_0 < 1
+    \end{gathered}
+  \end{equation*}
+\end{description}
+
+По теореме о сжимающем отображении существует единственная неподвижная точка
+\[\varphi(t) = x_0 + \int_{t_0}^{t}f(s,\varphi(s))ds\]
+
+Отсюда мы получаем существование и единственность решения для задачи Коши.
+
+\section{Продолжимость решений}
+
+\[\dot x = f(t,x), x \in \mathbb{R}^n, f \in C(G), \ G \text{ -- область единственности}\]
+
+\begin{defn}
+  $x(t)$ -- решение на $(a,b)$
+
+  Решение $y(t)$ -- \se{Продолжение решения}{продолжение вправо} $x(t)$, если $y$ решение на $(a,b_1), \ b_1 > b$ и $x|_{(a,b)} = y|_{(a,b)}$ 
+\end{defn}
+
+\begin{theorem}
+  \se{Теорема о продолжимости вправо}{Теорема о продолжимости вправо}
+  Решение $x$ на $(a,b)$ продолжимо вправо за $b$ $\Longleftrightarrow$ $\exists x' = \lim\limits_{t \to b-0}x(t), (b,x') \in G$
+\end{theorem}
 
 \newpage
 \hypertarget{dex}
