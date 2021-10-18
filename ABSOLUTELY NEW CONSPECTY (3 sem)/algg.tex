@@ -504,7 +504,130 @@ $\La$: $lim F = Eq()$
 \normalfont
 
 
+\section{Сопряжённые функторы}
+\defn Функторы $F: C \longrightarrow D$ и $G: D \longrightarrow C$ называются \se{Сопряжённые функторы}{сопряжёнными}, если задан естественный изоморфизм бифункторов: $Hom_D(F(X), Y) \simeq Hom_C(X, G(Y))$. $F$ в этом случае сопряжённый \textit{слева} к $G$.
+\\Примеры сопряжённых функторов: \begin{itemize}
+\item $G: Groups \longrightarrow Sets$ -- забывающий функтор, $F: Sets \longrightarrow Groups$ -- $F(X)$ -- свободная группа;
+\item $G: Ab \longrightarrow Groups$ -- в некотором смысле тоже забывающий, $F: Groups \longrightarrow Ab$: $F(H) = H^{ab} = H/[H, H]$;
+\item $G: Vect_K \longrightarrow Sets$ -- забывающий, $F: Sets \rightarrow Vect_K$, $F(I) = K^{(I)}$;
+\item $G: CommRings \longrightarrow Sets$ -- забывающий, $F: Sets \longrightarrow CommRings$: $F(X) = \ZZ [X]$;
+\item $G: Rings \longrightarrow Sets$ -- забывающий, $F: Sets \longrightarrow Rings$, $F(X) = \ZZ {X} = T^*(\ZZ ^{(X)})$;
+\item $G: K-Alg \longrightarrow Vect_K$ -- <<забывающий>>, $F: Vect_K \longrightarrow K-Alg$: $F(V) = T^*(V)$;
+\end{itemize}
+\exer $F: (\ZZ, le) \longrightarrow (\RR, le)$, найти сопряжённые слева и справа.
+\begin{theorem}
+Если $F: C \longrightarrow D$ сопряжённый слева к $G: D \longrightarrow C$, то $G$ сохраняет пределы, а $F$ -- копределы, то есть $G(\lim K) \simeq \lim (G \circ K)$.  
+\begin{proof}
+Надо задать $Hom_C(X, G(\lim K)) \simeq Nat(const_X, G \circ K)$, воспользуемся сопряжённостью функторов и определением предела: $Hom_C(X, G(\lim K)) \simeq Hom_D(F(X), \lim K) \simeq Nat(const_{F(X)}, K) \simeq Nat(const_X, G \circ K)$. 
+\end{proof}
+\end{theorem}
+\begin{theorem} \se{Теорема Фрейда}{Теорема Фрейда}: Пусть $D$ полна, $G: D \longrightarrow C$ сохраняет пределы и выполнено условие $(*)$:
+\\ $\forall X \in C \exists \lbrace A_i \rbrace_{i \in I(X)}$, где $I(X)$ -- множество объектов $D$, вместе с $f_i : X \longrightarrow G(A_i)$, такое что для любых $A \in D$ и $f: X \longrightarrow G(A)$, $\exists \phi_i : A_i \longrightarrow A: f = G(phi_i) \circ f_i$. Тогда у $G$ есть сопряжённый слева. 
+\begin{proof}
+Определим \se{Категория стрелок}{категорию стрелок}: $X/G$, $ObX/G = f: X \rightarrow G(A)$, $Mor(f: X \rightarrow G(A), g: X \rightarrow G(B)) = \lbrace \phi: A \rightarrow B: G(\phi) \circ f = g$.
+\begin{lemma} У $G$ есть сопряжённый слева $\Leftrightarrow$ $\forall X \in C$ в $X/G$ есть инициальный объект.
+\begin{proof} Надо задать $\forall X F(X) \in D$, $\eta_X: X \rightarrow G(F(X)): Hom(X, G(Y)) \simeq Hom(F(X), Y)$ так что $\forall \phi \in Hom(F(X), Y), \phi \longleftrightarrow G(\phi)\circ \eta_X$ задаёт биекцию. Так как $Hom(инициальный$ объект, --) -- одноэлементное множество, для любых $X, Y, f: X \rightarrow G(Y)$, должен существовать единственный морфизм $G(F(X)) \rightarrow G(Y)$, делающий диаграмму коммутативной: 
+\begin{center}
+    \includegraphics[scale=0.3]{lemma_for_Freid (1).pdf}
+\end{center} 
+Пусть $F$ у нас есть, возьмём в качестве $\eta_X$ элемент $\Hom(X, G(F(X)) \simeq \Hom(F(X), F(X))$, соответствующий $id_{F(X)}$. \\
 
+В другую сторону: определим $F(X)$ через лемму Йонеды как объект, такой что $\Hom_D(F(X), Y) \simeq \Hom_C(X, G(Y))$, $\phi \rightarrow G(\phi) \circ \eta_X$. $f: X \rightarrow X'$, $Hom(F(X), F(X') \simeq Hom(X, G(F(X'))$, определим $F(f)$ как морфизм, соответствующий $\eta_{X'} \circ f$, тогда $G(F(f)) \circ \eta_X = \eta_{X'} \circ f$. Проверим, что $F$ сохраняет композицию:  $X \xrightarrow[]{f} X' \xrightarrow[]{f'} X''$. $F(f' \circ f) = F(f') \circ F(f)$ $\Leftrightarrow$ $G(F(f') \circ F(f)) \circ \eta_X = \eta_{X''} \circ f' circ f$. Левая часть равна $GF(f') \circ GF(f) \circ \eta_X$, правая = $GF(f') \circ \eta_{X'} \circ f = GF(f') \circ GF(f) \circ \eta_X$.
+\end{proof}
+\end{lemma}
+\end{proof}
+\end{theorem}
+
+
+\section{Теорема Фрейда}
+\theorem $G: D \ra C$ - функтор, причем $D$ - полная, сохраняющий пределы и со следующим свойством: $\forall X \in Ob\;C$ $\exists \{A_i\}_{i \in I}$ - множество объектов $D$ вместе с множеством стрелок $X \stackrel{f_i}{\ra} G(A_i)$ такое, что $\forall A \in Ob\;D$ и $\forall f: X \ra G(A)$ $\exists i \in I$ и $\exists \phi_i: A_i \ra A$ такие, что следующий треугольник коммутативен:\\
+\begin{center}\includegraphics[scale=0.7]{freyd_treory.PNG}\end{center}
+\de{Теорема Фрейда}{Тогда и только тогда у $G$ есть сопряженный слева}.\\
+Доказательство:
+\lemma Если $D$ - полная, то $X / G$ - тоже полная.\\
+Доказательство Леммы: \\
+Что нужно: для каждого функтора $K: I \ra X /G$, где $I$ - малая категория, требуется найти предел. \\
+$K$ сопоставляет каждому $i$ - $X \ra G(A_i)$ \\
+Т.к. $D$ - полная, то можно в ней найти предел функтора $K_D: I \ra D$, который каждому $i$ будет сопоставлять $A_i$. Обозначим предел за $lim\;A_i$. Т.к. $G$ - сохраняет пределы, то $G(lim\;A_i) = lim\;G(A_i)$ - предел соответствующего функтора, но уже для категории $C$. Осталось лишь показать, что объект $X \ra G(lim\;A_i) = lim\;G(A_i)$ будет пределом функтора $K$. По универсальному свойству предела $K_C$ морфизмы $X \ra G(A_i)$ единственным образом задают морфизм $X \ra lim\;G(A_i) = G(lim\;A_i)$. А $X \ra G(A_i)$ и $X \ra G(lim\;A_i)$ - это объекты $X / G$, причем последний - будет пределом функтора $K$ по универсальному свойству. \\
+Давайте строить инциальный объект, исходя из свойства, приписанного функтору G в условии теоремы:\\
+Такое условие, в терминах категории $X / G$ называется "содержание \de{Преинициальное семейство}{преинициального семейства}": $\exists \{B_i\}_{i \in I}$ - множество объектов \textbf{в $X / G$} такое, что $\forall B \in Ob\;X / G$ $\exists i \in I$ и $\exists \phi: A_i \ra A$ \\
+Итак, благодаря этому соображению для доказательства теоремы Фрейда и применения самой первой леммы остается лишь доказать следующее утверждение: \\
+\textbf{Если в категории есть преинциальное семейство, то в ней есть инициальный объект.}
+\lemma $f, g: A \ra B$. Утверждение: $\phi: E \ra A$, где $E$ это уравнитель $f$ и $g$ - мономорфизм, т.е. $\phi \circ h = \phi \circ h' \Ra h = h'$ \\
+Доказательство Леммы: \\
+По определению уравнителя: $f \circ \phi \circ h' = f \circ \phi \circ h = g \circ \phi \circ h = g \circ \phi \circ h'$ \\
+$\phi \circ h$, $\phi \circ h'$ - это стрелки из некоторого $X$ в $A$, причем действуют одинаково (по определению). По определению уравнителя: $\forall \psi: X \ra A$ $!\exists \theta: X \ra E$ такой, что диаграмма будет коммутативна. Стрелки $h$ и $h'$ сохранили коммутативность, они представляют одну стрелку типа $\psi$, а значит по опредлению совпадают. \\
+Доказательство \textbf{утверждения}:
+Итак, у нас есть преинициальный объект $B = \prod_i B_i$, т.е. $\forall W \in X / G \exists \psi: B \ra W = \pi_i \circ \phi_i$, где $\pi_i$ - это проекция на соответствующий элемент произведения (из которого в определении преинциального семейства существовала стрелка). Возьмем уравнитель $E_B$ всех стрелок вида $B \ra B$ вместе с $\alpha: E_B \ra B$ и покажем, что это и будет искомым \textbf{инициальным объектом}. \\
+Пусть есть какие-то две (стрелка есть хотя бы одна, ведь это банально $\alpha \circ \psi$) стрелки $f, g$ из $E_B$ в $X$. Т.к. $D$ полная, то мы можем взять уравнитель этих стрелок $E_{f, g}$ вместе с $\beta: E_{f, g} \ra E_B$. Вспомним, что из B есть стрелки во всё, значит и есть стрелка $\gamma: B \ra E_{f, g}$. Заметим, что $\alpha\beta\gamma$ - это стрелка из $B$ в $B$, а значит по определению $E_B$: $\alpha\beta\gamma\alpha = id_B\alpha$, а т.к. $\alpha$ еще и мономорфизм по доказанному ранее, то $\alpha\beta\gamma = id_B$. \\
+Теперь осталась лишь игра скобок: \\
+$f = f(\alpha\beta\gamma) = (f\alpha)\beta\gamma \stackrel{\alpha - уравнитель f, g}{=} (g\alpha)\beta\gamma = g(\alpha\beta\gamma) = g \Lra f = g$. Что и требовалось доказать.
+\begin{center}\includegraphics[scale=0.6]{PreinitToInit.PNG}\end{center}
+
+\section{Еще немного про сопряженность}
+\lemma $F: C\,\overset{\longrightarrow}{\la} D: G$ - сопряжены $\Lra \exists \eta: Id_C \ra GF$ и $\exists \epsilon: FG \ra Id_D$ такие, что следующие две диаграммы коммутативны:
+\begin{center}\includegraphics[scale=0.7]{lemmawithtwodiagram.PNG}\end{center}
+Доказательство:\\
+$\Ra$. \\
+$\eta: Id_C \ra GF$ - $Hom(A, GF(A)) \simeq Hom(F(A), F(A))$. \\
+$\epsilon: FG \ra Id_D$ - $Hom(FG(B), B) \simeq Hom(G(B), G(B))$ \\
+Посмотрим на следующую диграмму и заменим в ней каждую стрелку по сопряженности, получится соседняя диаграмма, которая, очевидно, коммутативна:
+\begin{center}\includegraphics[scale=0.6]{stupidlemmastupiddiagram.PNG}\end{center}
+Другой треугольник аналогично преобразовывается.\\
+$\La$. \\
+Нужно построить естественную биекцию $Hom(F(A), B) \overset{\longrightarrow}{\la} Hom(A, G(B))$ \\
+Например, действующую по таким правилам: \\
+Туда: $f \mapsto G(f) \circ \eta_A$ \\
+Обратно: $g \circ \epsilon_B \circ F(g)$ \\
+Осталось показать, что они взаимнообратны.
+Их взаимнообратность это и есть коммутативность треугольников, которые были в условии.
+
+\section{Монада}
+Эта Лемма подводит нас к одному важному определению.
+Вообще говоря, такие функторы $GF$ называются \de{Эндофунктор}{эндофункторами} (как эндоморфизмы по отношению к морфизмам). Заметим одно интересное свойство: $T = GF$. $T^2 = GFGF = G(FG)F \overset{G\epsilon F}{\ra} GF = T$. $\mu = G\epsilon F$.
+\remark Это своего рода "умножение".\\
+Итак, определение: \\
+Набор $T: C \ra C$, $\eta: Id_C \ra T$, $\mu: T^2 \ra T$ называется \de{Монада}{монадой}, если следующие две диаграммы коммутативны:
+\begin{center}\includegraphics[scale=0.6]{monaddifinition.PNG}\end{center}
+\theorem $F \dashv G$. Тогда $T = G \circ F$ вместе с $\eta: Id_C \ra T$ и $\mu = G \epsilon F: T^2 \ra T$ является монадой. \\
+Доказательство:\\
+"Коммутативность $\eta$": "домножим" правую диаграмму из леммы выше на $G$, а левую "запустим" от $F$, сошьем их "по общему ребру" и получим то, что требуется:
+\begin{center}\includegraphics[scale=0.8]{commmmmmutativnast.PNG}\end{center}
+"Коммутативность $\mu$": заметим, что это частный случай диаграммы естественного преобразования $G\epsilon: GFG \ra G$ при $A = FGF(X)$, $B = F(X)$:
+\begin{center}\includegraphics[scale=0.6]{coetativnost.PNG}\end{center}
+
+\section{Примеры монад}
+\begin{enumerate}
+    \item Списки\\
+    > $T$ - список букв переводит в список слов из этих букв\\
+    > $\eta$ - из буквы делает одноэлементный список ($x \mapsto [x]$)\\
+    > $\mu$ - стирает границы внутренних списков\\
+    ($[[...]_1, [...]_2, [...]_3, ...] \mapsto [...,...,..._1, ...,...,..._2, ...,...,..._3, ...]$)
+    \item Множества\\
+    > $T: X \mapsto \Rho(X)$\\
+    > $\eta: x \mapsto {x}$\\
+    > $\mu: M \in \Rho(\Rho(X)) \mapsto \cup M (\in \Rho(X))$
+    \item Монада $Write$    M - фиксированный моноид\\
+    > $T: X \mapsto X \times M$\\
+    > $\eta: x \mapsto (x, 1)$\\
+    > $\mu: (x, m, n) \mapsto (x, mn)$
+    \item Монада $State$    $S$ - фиксированное множество (состояний)\\
+    > $T: X \mapsto Hom(S, X)$\\
+    > $\eta$ - получает функцию, которая все состояния переводит в $x$\\
+    > $\mu$ - при построении пользуемся известным фактом:\\
+    $Hom(S, Hom(S, X)) \simeq Hom(S \times S, X)$, а по последнему отображение строим так: выделяем из него строчки вида $(s, s) \mapsto x$ и их принимаем как $s \mapsto x$.
+    \item
+    > $T: V \mapsto V^{**}$\\
+    > $\eta: v \mapsto v^{**}$\\
+    > $\mu: (V^{*})^{***} \mapsto (V^{*})^*$, причем $\mu_v = \eta^{*}_{v^*}$
+    \item $\Omega$ - фиксированное множество\\
+    > $T: X \mapsto Hom(Hom(X, \Omega), \Omega)$\\
+    > $\eta: x \mapsto (f \mapsto f(x))$\\
+    > $\mu$ как в предыдущем примере.
+\end{enumerate}
+
+
+\normalfont
 
 \hypertarget{dex}
     \printindex
