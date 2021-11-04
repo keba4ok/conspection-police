@@ -1674,6 +1674,261 @@ $||A||$ -- операторная норма $A$
 \[A^k = \diag (\lambda_1^k, \ldots, \lambda_n^k)\]
 \[e^{At} = \diag (e^{\lambda_1}, \ldots, e^{\lambda_n})\]
 
+\subsection{Вычисление $e^{At}$}
+
+\[B = s^{-1}AS \Rightarrow e^{Bt} = S^{-1}e^{At}S\]
+
+Матрицу $A$ можно привести к ЖНФ
+
+$\exists S: S^{-1}AS = J = \diag (J_1,\ldots,J_m)$, где $J_i$ -- жордановы блоки.
+
+\[S^{-1}e^{At}S = \diag(e^{J_1t},\ldots, e^{J_mt})\]
+
+Жорданов блок $J_l = \lambda E_s +I_s$
+
+\[I_s = \begin{pmatrix}
+    0 & 1 & \ldots & 0 & 0 \\
+    0 & 0 & 1 & \ldots & 0 \\
+    \vdots & & \ddots & \ddots & \\
+    0 & 0 & \ldots & 0 & 1\\
+    0 & 0 & \ldots & 0 & 0
+  \end{pmatrix}\]
+
+\[e^{J_st} = e^{\lambda E_st + I_st} = e^{\lambda E_s t} \cdot e^{I_s t}\]
+
+\[e^{\lambda E_s t} = e^{\diag(\lambda t, \ldots, \lambda t)} = e^{\lambda t} \cdot E_s \]
+
+\[\text{ Вычислим }e^{I_s t} \]
+\[I_s^0 = E_s\]
+\begin{equation*}
+  \begin{gathered}
+    I_s^2 = \begin{pmatrix}
+      0 & 0 & 1 & \ldots & 0 & 0 \\
+      0 & 0 & 0 & 1 & \ldots & 0 \\
+      \vdots & & &\ddots & \ddots & \\
+      0 & 0 & 0 &\ldots & 0 & 1\\
+      0 & 0 & 0 &\ldots & 0 & 0
+    \end{pmatrix} \\
+    \vdots \\
+    I_s^{s-1} =
+    \begin{pmatrix}
+      0 & \ldots & 1 \\
+      \vdots & & 0 \\
+      0 & \ldots & 0
+    \end{pmatrix}
+    \\
+     I_s^k = 0, k \geqslant s
+  \end{gathered}
+\end{equation*}
+
+\begin{equation*}
+  \begin{gathered}
+    e^{I_s t} = \sum_{k = 0}^{\infty} \frac{1}{k!}I_s^k t^k 
+    =\\
+    \begin{pmatrix}
+      1 & t & \frac{t^2}{2} & \ldots & \frac{t^{s-1}}{(s-1)!} \\
+      0 & 1 & t & \ldots & \frac{t^{s-2}}{(s-2)!}\\
+      \vdots & \ddots & \ddots & \ddots & \vdots \\
+      0 & & \ldots & & 1
+    \end{pmatrix}
+  \end{gathered}
+\end{equation*}
+
+Тогда 
+\[e^{J_lt} = e^{\lambda t}
+  \begin{pmatrix}
+      1 & t & \frac{t^2}{2} & \ldots & \frac{t^{s-1}}{(s-1)!} \\
+      0 & 1 & t & \ldots & \frac{t^{s-2}}{(s-2)!}\\
+      \vdots & \ddots & \ddots & \ddots & \vdots \\
+      0 & & \ldots & & 1
+    \end{pmatrix}\]
+
+Зная каждую матрицу $e^{J_s t}$, легко вычислить и всю $e^{J t}$
+
+\subsection{Оценка фундаментальной матрицы}
+
+\begin{theorem}
+  
+
+$A$ -- матрица, $\lambda_j$ -- собственные числа:
+
+\[\forall a > \Real \lambda_j, j = 1, \ldots , n \exists c > 0:
+\]
+\[||e^{At}|| \leqslant Ce^{at}\]
+\end{theorem}
+\begin{proof}
+  \[J = S^{-1}AS\]
+  \[\text{ Достаточно посчитать норму }||e^{Jt}||\]
+
+  Ненулевой элемент -- $\frac{t^k}{k!}e^{\lambda_j t}, |e^{\lambda_j t}| = e^{\Real \lambda_j t}$
+
+  $$a > \max \Real \lambda_j$$
+
+  \[e^{-at} \cdot \frac{t^k}{k!}e^{\lambda_j,t} \xrightarrow{ k \to \infty} 0\]
+  \[\Downarrow \]
+  \[\exists c_{j,k}: \ |e^{-at} \cdot \frac{t^k}{k!}e^{\lambda_j,t} | \leqslant c_{j,k}\]
+
+  Тогда $|\frac{t^k}{k!}e^{\lambda_j t}| \leqslant c_{j,k} e^{at}$ при $ t \geqslant 0$
+
+  В качестве константы $C$ можно взять $\max c_{j,k}$ (пар $(j,k)$ конечное число)
+\end{proof}
+
+\subsection{Сравнение с методом Эйлера}
+
+\[\dot x = Ax\]
+
+Предполагаем, что с.ч. $A$ вещественные и простые
+
+$\lambda_j$ -- с.ч. $A$, $\gamma_j$ -- соответствующие с.в.
+
+Методом Эйлера получаем, что ф.м. равна:
+\[(\gamma_1 e^{\lambda_1 t}, \ldots, \gamma_n e^{\lambda_n t})\]
+
+Если следовать методу матричной экспоненты:
+
+Берем $S : S^{-1}AS = J = \diag (\lambda_1, \ldots, \lambda_n)$
+
+Тогда $S^{-1}e^{At}S = e^{Jt} = \diag (e^{\lambda_1 t}, \ldots, e^{\lambda_n t}$
+
+$S$ -- решение уравнения $AS = SJ$, $S = (s_1, \ldots, s_n)$
+
+$As_j = \lambda_j s_j \Rightarrow $ $s_j$ -- собственные векторы.
+
+Знаем, что $e^{At}$ -- фундаментальная матрица
+
+По теореме об общем виде фундаментальных матриц $\Rightarrow $ $e^{At} \cdot S$ -- ф. м.
+
+\[e^{At} S = S e^{J t} = (s_1 e^{\lambda_1 t}, \ldots, s_n e^{\lambda_n t})\]
+
+То же самое. что и методом Эйлера
+
+
+\subsection{Случай Лаппо-Данилевского}
+
+\[\dot x = A(t) x, x \in \mathbb{R}^n, A \in C(a,b)\]
+
+\begin{theorem}
+  предположим, что $\exists t_0 \in (a,b)$:
+
+  \[A(t) \int_{t_0}^{t}A(s)ds = \left( \int_{t_0}^{t}A(s)ds\right) \cdot A(t) \]
+  \[\Downarrow \]
+  \[e^{\int_{t_0}^{t}A(s)ds} \text{ -- фундаментальная матрица}\]
+  
+\end{theorem}
+
+\begin{proof}
+  Достаточно доказать, что
+  \[\frac{d}{dt}e^{\int_{t_0}^{t}A(s)ds} = A(t) e^{\int_{t_0}^{t}A(s)ds}\]
+
+  Тогда $e^{\int_{t_0}^{t}A(s)ds}$ -- матрица решений и $W(t_0) = \det (E) = 1$
+
+  \[e^{\int_{t_0}^{t}A(s)ds} = \sum_{k = 0}^{\infty} \frac{1}{k!}\left(\int_{t_0}^{t}\right)^k\]
+  \[\frac{d}{dt}\left(\int_{t_0}^{t}\right)^k = \frac{d}{dt}\left(\int_{t_0}^{t} \cdot \ldots \cdot \int_{t_0}^{t}\right) = A(t) \left(\int_{t_0}^{t}\right)^{k-1} +\left(\int_{t_0}^{t}\right)A(t) \left(\int_{t_0}^{t}\right)^{k-2} + \ldots\]
+  \begin{center}
+    Так как матрица и интеграл коммутируют:
+  \end{center}
+  \[= k A(t) (\int_{t_0}^{t})^{k-1}\]
+  \[\frac{d}{dt}\sum_{k = 0}^{l}\frac{1}{k!}(\int_{t_0}^{t})^k = \sum_{k = 1}^{l - 1}\frac{1}{k!}\cdot k \cdot A(t) (\int_{t_0}^{t})^{k-1} = A(t)\sum_{k = 1 }^{l - 1} \frac{1}{(k-1)!} (\int_{t_0}^{t})^{k-1} \to A(t) e^{\int_{t_0}^{t}A(s)ds} \]
+
+  Откуда и следует формула для производной.
+\end{proof}
+
+\section{Неоднородные линейныые системы}
+\begin{defn}
+  \se{неоднородная линейная система}{Неоднородная линейная система}
+  \[\dot x = P(t) x + Q(t), x \in \mathbb{R}^n\]
+\end{defn}
+\begin{center}
+  Соответствующая Лос $\dot x = P(t) x$
+\end{center}
+
+\begin{theorem}
+  Об общем решении неоднородной линейной системы
+
+  Пусть $y(t) $-- решение НЛС
+
+  $\Phi(t)$ -- ф.м. соответсвующей ЛОС
+
+  $\Rightarrow \forall x(t)$ -- решение НЛС $\exists ! \ c \in \mathbb{R}^n: \ x(t) = \Phi(t)c + y(t)$
+\end{theorem}
+\begin{proof}
+  \[x(t) - y(t) \text{ -- решение ЛОС}\]
+  \[\dot x - \dot y = Px + Q - (Py +Q) = P(x-y)\]
+  
+  Тогда $x - y = \Phi(t) c, \ c \in \mathbb{R}^n$
+
+  При фиксированном $y$, $x = \Phi(t) c + y(t)$, причем $c$ -- единственно.
+  
+\end{proof}
+
+\subsection{Метод Лагранжа}
+
+$\Phi(t)$ -- ф.м. соответствующей ЛОС
+
+Ищем решение $x(t)$ НЛС в виде
+\[x(t) = \Phi(t) \alpha(t), \alpha \in C^1\]
+
+\[\dot x = \dot \Phi \alpha + \Phi \dot \alpha =Px + Q\]
+\begin{center}
+  Так как $\dot \Phi(t) = P \Phi(t)$, уравнение можно переписать в виде
+\end{center}
+
+\[P \Phi \alpha + \Phi \dot \alpha = P \Phi \alpha + Q\]
+\begin{center}
+  Откуда
+\end{center}
+\[\Phi \dot \alpha = Q, \det \Phi \neq 0\]
+
+\[\exists \Phi^{-1} \in C\]
+
+\[\Phi \dot \alpha = Q \Leftrightarrow \dot \alpha = \Phi^{-1}Q\]
+\[\alpha = \int_{}^{}\Phi^{-1}Qdt\]
+
+\[x(t) = \Phi \int_{}^{}\Phi^{-1}Qdt\]
+
+\subsection{Логарифм матрицы}
+
+\begin{defn}
+  \se{Логарифм матрицы}{Логарифм матрицы} $\log(B) $ -- такая матрица $A$, что $e^A = B$, так как $e^A$ всегда обратима, необходимо, чтобы $\det B \neq 0$
+\end{defn}
+Оказывается, что это условие необходимо и достаточно
+
+\begin{theorem}
+  \[\forall A, \det A \neq 0\ \exists \log A\]
+\end{theorem}
+
+Напомним, что
+\[I_r =
+   \begin{pmatrix}
+    0 & 1 & \ldots & 0 & 0 \\
+    0 & 0 & 1 & \ldots & 0 \\
+    \vdots & & \ddots & \ddots & \\
+    0 & 0 & \ldots & 0 & 1\\
+    0 & 0 & \ldots & 0 & 0
+  \end{pmatrix}
+  \text{ -- матрица }r \times r\]
+
+\begin{lemma}
+  $\lambda \neq 0$
+
+  $$Z = \sum_{p = 1}^{\infty}\frac{(-1)^{p+1}}{p} \left(\frac{I_r}{\lambda}\right)^p$$
+
+  Тогда $e^Z = E_r + \frac{I_r}{\lambda}$
+\end{lemma}
+\begin{proof}
+  Ряд в определении $Z$ конечен
+
+  $z \in \mathbb{C}, |z| < 1$
+
+  \[\log(1+z) = \sum_{p=1}^{\infty} \frac{(-1)^{p+1}}{p}z^p\]
+  \[e^{\log (1+z)} = \sum_{k = 0}^{\infty}\frac{1}{k!} \left(\sum_{p = 1}^{\infty}\frac{(-1)^{p+1}}{p}z^p\right)^k = 1+z\] 
+
+  Частная сумма ряда $\sigma_m(z) = \sum_{k = 0}^{m}\frac{1}{k!} (\sum_{p = 1}^{\infty}\frac{(-1)^{p+1}}{p}z^p)^k$
+  \[\sigma_{m+1}(z) - \sigma_m(z) = z^{m+1}(...)\]
+
+  \[\sigma_m(z) = a_0^{(m)} + a_1^{(m)}z + \ldots + a_m^{(m)} z^m + \ldots \]
+
+\end{proof}
 \newpage
 \hypertarget{dex}
     \printindex  
