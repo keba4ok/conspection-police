@@ -1926,9 +1926,241 @@ $\Phi(t)$ -- ф.м. соответствующей ЛОС
   Частная сумма ряда $\sigma_m(z) = \sum_{k = 0}^{m}\frac{1}{k!} (\sum_{p = 1}^{\infty}\frac{(-1)^{p+1}}{p}z^p)^k$
   \[\sigma_{m+1}(z) - \sigma_m(z) = z^{m+1}(...)\]
 
-  \[\sigma_m(z) = a_0^{(m)} + a_1^{(m)}z + \ldots + a_m^{(m)} z^m + \ldots \]
+  \begin{equation*}
+    \begin{aligned}
+        \sigma_m(z) = & \ a_0^{(m)} + a_1^{(m)}z + \ldots + a_m^{(m)} z^m + \ldots \\
+        \sigma_{m+1}(z) = &  \ a_0^{(m+1)} + a_1^{(m+1)}z + \ldots + a_m^{(m+1)} z^m + \ldots 
+    \end{aligned}
+  \end{equation*}
+
+  Коэффициенты до $m$-го совпадают
+
+  $\sigma_{m+1}(z) \to 1 + z$
+
+  Значит, $\sigma_m(z) = 1 + z + z^m(\ldots)$
+
+  То же самое можно проделать и для матричной экспоненты:
+  \[\Sigma_m(Z) = \sum_{k = 0}^{m}\frac{1}{k!} \left(\sum_{p = 0}^{\infty}\frac{(-1)^{p+1}}{p} \left(\frac{I_r}{\lambda} \right)^p\right)^k = \]
+  \[= E_r + \frac{I_r}{\lambda} + \mathbb{O}\]
+  Откуда и следует требуемое равнество.
 
 \end{proof}
+
+\begin{proof} (существования логарифма матрицы)
+
+  Рассмотрим Жорданов блок ($\lambda \neq 0$): $\lambda E_r + I_r$
+
+  Его логарифмом является $\log (\lambda) E_r + Z$
+
+  Действительно,
+  \[e^{\log \lambda E_r + Z} = e^{\log \lambda E_r} \cdot e^{Z} = \lambda E_r \cdot (E_r + \frac{I_r}{\lambda}) = \lambda E_r + I_r\]
+
+  Тогда несложно видеть, что логарифм жордановой формы $J = (J_1,\ldots, J_m)$ это \[\log J = (\log J_1, \ldots, \log J_m)\]
+
+  Если $A = SJS^{-1}$, то $\log A = S \log J S^{-1}$, действительно
+
+  \[e^{S \log J S^{-1}} = Se^{\log J} S^{-1} = S J S^{-1} = A\]
+\end{proof}
+\section{Линейные периодические системы}
+
+\[\dot x = P(t) x + q(t), x \in \mathbb{R}^n\]
+
+\[\exists \ \omega > 0: \ P(t+\omega) = P(t), \ q(t + \omega) = q(t), \ t \in \mathbb{R}\]
+
+\begin{lemma}
+  $x(t)$ --  решение $\Rightarrow $ $y(t) = x(t+\omega)$ -- тоже решение
+  
+\end{lemma}
+\begin{proof}
+  $\frac{dy}{dt} = \frac{dx(t+\omega)}{dt} = \frac{dx(t+\omega)}{d(t + \omega)} = P(t+\omega)x(t+\omega) + q(t+\omega) = P(t)y(t) + q(t)$
+\end{proof}
+
+Одронодная линейная система с периодической матрицей:
+
+\[\dot x = P(t) x\]
+\begin{theorem}
+  \se{Теорема Флоке}{Флоке}
+
+  $\Phi(t)$ -- ф.м. $\Rightarrow  \exists \omega$-периодическая $G(t),\ \det G(t) \neq 0$, и $R$ -- постоянная матрица: $\Phi(t) = G(t)e^{Rt}$ 
+\end{theorem}
+\begin{proof}
+  $\Phi(t)$ -- ф.м.
+
+  Рассмотрим ее сдвиг на период: $\Psi(t) = \Phi(t+\omega)$ -- это тоже ф. м. (по предыдущей лемме)
+
+  По теореме о множестве фундаментальных матриц: $\exists B, \det B \neq 0: \ \Psi(t) = \Phi(t) B$
+
+  $\exists \log B$ в качестве $R = \frac{1}{\omega}\log B$
+  $G(t) = \Phi(t) e^{-Rt}, \ \det G(t) \neq 0$
+
+  \[G(t+\omega) = \Phi(t+\omega) \cdot e^{-R(t+\omega)} = \Phi(t) \cdot B \cdot e^{-R\omega} \cdot e^{-Rt} = \Phi(t) e^{-Rt}\]
+  
+\end{proof}
+
+\begin{defn}
+  \se{Матрица монодромии}{Матрица монодромии} такая матрица 
+  $B$, что $\Phi(t+\omega) = \Phi(t)B$
+  
+   \se{мультипликаторы}{мультипликаторы} -- собственные числа матрицы монодромии
+\end{defn}
+\begin{stat}
+  Мультипилкаторы не зависят от $\Phi$
+\end{stat}
+\begin{proof}
+  Рассмотрим $\Phi_1(t)$ -- ф.м. $B_1$ -- матрица монодромии $\Phi_1$
+
+  \[\exists S \det S \neq 0: \Phi_1(t) = \Phi(t) S\]
+
+  $\Phi(t) S B_1 = \Phi_1(t)B_1 = \Phi_1(t + \omega = \Phi(t+\omega)S = \Phi(t)B S$
+
+  \[\Phi(t) SB_1 = \Phi(t)B S\]
+  \[BS = SB_1\]
+  \[B = SB_1S^{-1}\]
+\end{proof}
+\begin{theorem}
+  \se{Теорема о мультипликаторах}{о мультипликаторах}
+
+  $\mu$ -- мультипликатор $\Leftrightarrow$ $\exists$ ненулевое решение $x(t): x(t+\omega) = \mu x(t)$
+\end{theorem}
+\begin{proof}
+  Зафиксируем ф.м. $\Phi(t): \ \Phi(0) = E$
+
+  Рассмотрим $x(t) = \Phi(t)x_0, \ x_0 \neq 0$
+
+  $$x(t + \omega) = \Phi(t+\omega)x_0 = \Phi(t)Bx_0$$
+
+  Рассмотрим равенство
+  $$x(t+\omega) = \mu x(t)$$
+
+  $$\mu x(t) = \mu \Phi(t) x_0 = \Phi(t) Bx_0$$
+
+  Можно поделить на $\Phi^{-1}(t)$
+
+  $$\mu x_0 = Bx_0 \Leftrightarrow \mu \text{ -- с.ч. $B$ (мультипликатор)}$$
+\end{proof}
+
+\section{Формула Остроградского-Лиувилля (Якоби)}
+
+\[\dot x = P(t) x, \ x \in \mathbb{R}^n\]
+
+\[\Phi(t) = (x_1(t), \ldots , x_n(t)) \text{ (не обязательно фундаментальная матрица)}\]
+
+\[W(t) = \det \Phi (t)\]
+
+\[\frac{d}{dt}W(t) = (\Tr P(t)) \cdot W(t)\]
+
+\subsection{Дифференцирование определителя}
+
+\begin{equation*}
+  \begin{gathered}
+    A(t) =
+    \begin{pmatrix}
+      a_{11}(t)& \ldots & a_{1n}(t) \\
+      \vdots & & \vdots \\
+      a_{n1}(t) &\ldots & a_{nn}(t)
+    \end{pmatrix}
+     \ (a_{ij} \text{ Дифференцируемы})
+    \\
+    \frac{d}{dt} W(t) =
+    \begin{vmatrix}
+      \dot a_{11} & \ldots & \dot a_{1n} \\
+      a_{21} & \ldots & a_{2n} \\
+      \vdots & & \vdots \\
+      a_{n1} & \ldots & a_{nn}
+    \end{vmatrix} +
+    \begin{vmatrix}
+      a_{11} & \ldots & a_{1n} \\
+      \dot a_{21} & \ldots & \dot a_{2n} \\
+      \vdots & & \vdots \\
+       a_{n1} & \ldots & a_{nn}
+     \end{vmatrix} +
+     \ldots +
+     \begin{vmatrix}
+        a_{11} & \ldots & a_{1n} \\
+       a_{21} & \ldots &  a_{2n} \\
+      \vdots & & \vdots \\
+      \dot a_{n1} & \ldots & \dot a_{nn}
+     \end{vmatrix}
+     \\
+     \text{Формула очевидным образом следует из определения детерминанта}
+    A(t) = \sum_{\pi \in S_n}^{}(-1)^{\sign \pi} a_{1\pi(1)}\ldots a_{n\pi(n)}
+  \end{gathered}
+\end{equation*}
+\begin{proof}
+  (формулы Остроградского-Лиувилля)
+
+  \begin{equation*}
+    \begin{aligned}
+      \Phi(t) =& (x_1(t),\ldots,x_n(t))  = \\
+      = &
+      \begin{pmatrix}
+        x_1^{(1)}& \ldots & x_n^{(1)} \\
+        \vdots & & \vdots \\
+        x_1^{(n)} & \ldots & x_n^{(n)}
+      \end{pmatrix}
+      \\
+      \\
+      P(t) = & \begin{pmatrix}
+        p_{11} & \ldots & p_{1n} \\
+        \vdots & & \vdots \\
+        p_{n1} & \ldots & p_{nn}
+      \end{pmatrix}
+      \\
+      W_1(t) = &
+      \begin{vmatrix}
+        \dot x_1^{(1)}& \ldots & \dot x_n^{(1)} \\
+        \vdots & & \vdots \\
+        x_1^{(n)} & \ldots & x_n^{(n)}
+      \end{vmatrix}
+  \end{aligned}
+\end{equation*}
+
+  \[\dot x_i= [Px_i]^{(1)} = p_{11}  x_i^{(1)} + p_{12}x_i^{(2)} + \ldots + p_{1n}x_i^{(n)}\]
+  Прибавляя к 1-й строке $j$-ю, умноженную на $-p_{1j}$, тогда мы получим, что 
+
+  \[W_1(t) =
+  \begin{pmatrix}
+    p_{11}x_1^{(1)} & \ldots & p_{11}x_n^{(1)} \\
+    \vdots & & \vdots \\
+    x_1^{(n)} & \ldots & x_n^{(n)}
+  \end{pmatrix} = p_{11}W(t)\]
+\begin{center}
+  Аналогично получаем, что \[W_i(t) = p_{ii}W(t)\]
+  
+  Откуда и следует Формула Остроградского-Лиувилля
+\end{center}
+
+\[\frac{d}{dt}W(t) = p_{11}W(t) = p_{22}W(t) + \ldots + p_{nn}W(t) = Tr W(t)\]
+\end{proof}
+
+\section{Линейные дифференциальные уравнения высших порядков}
+
+\begin{defn}
+  \se{Линейное дифференциальное уравнение порядка $n$}{Линейное дифференциальное уравнение порядка $n$}
+
+  \[x^{(n)} + a_1(t)x^{(n-1)} + \ldots + a_n(t)x = b(t)\]
+
+  Коэффициенты $a_1, \ldots, a_n, b \in C(I), \ I $-- открытый промежуток $\mathbb{R}$
+
+  
+\end{defn}
+\begin{defn}
+  Решением уравнения называется функция $x(t)$, определенная на $(\alpha, \beta) \subset I:$ и удовлетворяющая следующим свойствам:
+  \begin{enumerate}
+  \item $\exists\ \dot x, \ldots, x^{(n)}$ на $(\alpha,\beta)$
+  \item $x^{(n)}(t) + \ldots + a_n(t)x(t) \equiv b(t)$
+  \end{enumerate}
+\end{defn}
+\begin{defn}
+  Решение задачи Коши
+
+  Фиксируем начальные данные $t_0 \in I$ и числа $x_0,\dot x_0, \ldots, x_0^{(n-1)}$
+
+  Решение задачи Коши с этими начальными данными -- решение $x(t)$ на $(\alpha,\beta)$, такое что
+
+  $$x(t_0) = x_0, \ldots, x^{(n-1)}(t_0) = x_0^{(n-1)}$$
+\end{defn}
+
 \newpage
 \hypertarget{dex}
     \printindex  
