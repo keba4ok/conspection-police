@@ -1,0 +1,733 @@
+\documentclass[a4paper]{article}
+
+%plastikovye pakety
+
+\usepackage[12pt]{extsizes}
+\usepackage[utf8]{inputenc}
+\usepackage[unicode, pdftex]{hyperref}
+\usepackage{cmap}
+\usepackage{mathtext}
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\usepackage[T2A]{fontenc}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}
+\usepackage{icomma}
+\usepackage{euscript}
+\usepackage{mathrsfs}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[left=2cm,right=2cm,
+    top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+\usepackage[normalem]{ulem}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algorithmicx}
+
+\usepackage{collectbox}
+
+\makeatletter
+\newcommand{\mybox}{%
+    \collectbox{%
+        \setlength{\fboxsep}{1pt}%
+        \fbox{\BOXCONTENT}%
+    }%
+}
+\makeatother
+
+\makeindex
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+%\usepackage[usenames]{color}
+\hypersetup{
+     colorlinks=true,
+     linkcolor=coralpink,
+     filecolor=coralpink,
+     citecolor=black,      
+     urlcolor=coralpink,
+     }
+\usepackage{fancyhdr}
+\pagestyle{fancy} 
+\fancyhead{} 
+\fancyhead[LE,RO]{\thepage} 
+\fancyhead[CO]{\hyperlink{dex}{предметный указатель}}
+\fancyhead[LO]{\hyperlink{sod}{содержание}} 
+\fancyfoot{}
+\newtheoremstyle{indented}{0 pt}{0 pt}{\itshape}{}{\bfseries}{. }{0 em}{ }
+
+\renewcommand\thesection{}
+\renewcommand\thesubsection{}
+
+%\geometry{verbose,a4paper,tmargin=2cm,bmargin=2cm,lmargin=2.5cm,rmargin=1.5cm}
+
+\title{Билеты по алгебре$^\beta$}
+\author{3 семестр \\ @keba4ok}
+\date{9 января 2022г.}
+
+
+%envirnoments
+    \theoremstyle{indented}
+    \newtheorem{theorem}{Теорема}
+    \newtheorem{lemma}{Лемма}
+    \newtheorem{alg}{Алгоритм}
+
+    \theoremstyle{definition} 
+    \newtheorem{defn}{Определение}
+    \newtheorem{exl}{Пример(ы)}
+    \newtheorem*{prob}{Задача}
+
+    \theoremstyle{remark} 
+    \newtheorem{remark}{Примечание}
+    \newtheorem{cons}{Следствие}
+    \newtheorem{exer}{Упражнение}
+    \newtheorem{stat}{Утверждение}
+    \newtheorem*{prop}{Свойство(а)}
+%esli ne hochetsa numeracii - nuzhno prisunut' zvezdochku-pezsochku
+
+\definecolor{coralpink}{rgb}{0.87, 0.19, 0.39}
+
+%declarations
+        %arrows_shorten
+            \DeclareMathOperator{\la}{\leftarrow}
+            \DeclareMathOperator{\ra}{\rightarrow}
+            \DeclareMathOperator{\lra}{\leftrightarrow}
+            \DeclareMathOperator{\llra}{\longleftrightarrow}
+            \DeclareMathOperator{\La}{\Leftarrow}
+            \DeclareMathOperator{\Ra}{\Rightarrow}
+            \DeclareMathOperator{\Lra}{\Leftrightarrow}
+            \DeclareMathOperator{\Llra}{\Longleftrightarrow}
+
+        %letters_different
+            \DeclareMathOperator{\CC}{\mathbb{C}}
+            \DeclareMathOperator{\QQ}{\mathbb{Q}}
+            \DeclareMathOperator{\ZZ}{\mathbb{Z}}
+            \DeclareMathOperator{\RR}{\mathbb{R}}
+            \DeclareMathOperator{\NN}{\mathbb{N}}
+            \DeclareMathOperator{\HH}{\mathbb{H}}
+            \DeclareMathOperator{\LL}{\mathscr{L}}
+            \DeclareMathOperator{\KK}{\mathscr{K}}
+            \DeclareMathOperator{\GA}{\mathfrak{A}}
+            \DeclareMathOperator{\GB}{\mathfrak{B}}
+            \DeclareMathOperator{\GC}{\mathfrak{C}}
+            \DeclareMathOperator{\GD}{\mathfrak{D}}
+            \DeclareMathOperator{\GN}{\mathfrak{N}}
+            \DeclareMathOperator{\Rho}{\mathcal{P}}
+            \DeclareMathOperator{\FF}{\mathcal{F}}
+
+        %common_shit
+            \DeclareMathOperator{\Ker}{Ker}
+            \DeclareMathOperator{\Frac}{Frac}
+            \DeclareMathOperator{\Imf}{Im}
+            \DeclareMathOperator{\cont}{cont}
+            \DeclareMathOperator{\id}{id}
+            \DeclareMathOperator{\ev}{ev}
+            \DeclareMathOperator{\lcm}{lcm}
+            \DeclareMathOperator{\chard}{char}
+            \DeclareMathOperator{\codim}{codim}
+            \DeclareMathOperator{\rank}{rank}
+            \DeclareMathOperator{\ord}{ord}
+            \DeclareMathOperator{\End}{End}
+            \DeclareMathOperator{\Ann}{Ann}
+            \DeclareMathOperator{\Real}{Re}
+            \DeclareMathOperator{\Res}{Res}
+            \DeclareMathOperator{\Rad}{Rad}
+            \DeclareMathOperator{\disc}{disc}
+            \DeclareMathOperator{\rk}{rk}
+            \DeclareMathOperator{\const}{const}
+            \DeclareMathOperator{\grad}{grad}
+            \DeclareMathOperator{\Aff}{Aff}
+            \DeclareMathOperator{\Lin}{Lin}
+            \DeclareMathOperator{\Prf}{Pr}
+            \DeclareMathOperator{\Iso}{Iso}
+            \DeclareMathOperator{\tr}{tr}
+            \DeclareMathOperator{\Hom}{Hom}
+            \DeclareMathOperator{\Ob}{Ob}
+
+
+        %specific_shit
+            \DeclareMathOperator{\Tors}{Tors}
+            \DeclareMathOperator{\form}{Form}
+            \DeclareMathOperator{\Pred}{Pred}
+            \DeclareMathOperator{\Func}{Func}
+            \DeclareMathOperator{\Const}{Const}
+            \DeclareMathOperator{\arity}{arity}
+            \DeclareMathOperator{\Aut}{Aut}
+            \DeclareMathOperator{\Var}{Var}
+            \DeclareMathOperator{\Term}{Term}
+            \DeclareMathOperator{\sub}{sub}
+            \DeclareMathOperator{\Sub}{Sub}
+            \DeclareMathOperator{\Atom}{Atom}
+            \DeclareMathOperator{\FV}{FV}
+            \DeclareMathOperator{\Sent}{Sent}
+            \DeclareMathOperator{\Th}{Th}
+            \DeclareMathOperator{\supp}{supp}
+            \DeclareMathOperator{\Eq}{Eq}
+            \DeclareMathOperator{\Prop}{Prop}
+            \DeclareMathOperator{\colim}{colim}
+
+
+%env_shortens_from_hirsh            
+    \newcommand{\bex}{\begin{example}\rm}
+    \newcommand{\eex}{\end{example}}
+    \newcommand{\ba}{\begin{algorithm}\rm}
+    \newcommand{\ea}{\end{algorithm}}
+    \newcommand{\bea}{\begin{eqnarray*}}
+    \newcommand{\eea}{\end{eqnarray*}}
+    \newcommand{\be}{\begin{eqnarray}}
+    \newcommand{\ee}{\end{eqnarray}}
+    \newcommand{\abs}[1]{\lvert#1\rvert}
+        \newcommand{\bp}{\begin{prob}}
+        \newcommand{\ep}{\end{prob}}
+
+    
+\begin{document}
+%ya_ebanutyi
+\newcommand{\resetexlcounters}{%
+  \setcounter{exl}{0}%
+} 
+\newcommand{\resetremarkcounters}{%
+  \setcounter{remark}{0}%
+} 
+\newcommand{\reseconscounters}{%
+  \setcounter{cons}{0}%
+} 
+\newcommand{\resetall}{%
+    \resetexlcounters
+    \resetremarkcounters
+    \reseconscounters%
+}
+
+\newcommand{\cursed}[1]{\textit{\textcolor{coralpink}{#1}}}
+\newcommand{\de}[3][2]{\index{#2}{\textbf{\textcolor{coralpink}{#3}}}}
+\newcommand{\re}[3][2]{\hypertarget{#2}{\textbf{\textcolor{coralpink}{#3}}}}
+\newcommand{\se}[3][2]{\index{#2}{\textit{\textcolor{coralpink}{#3}}}}
+
+
+\maketitle 
+
+Жёстко записываем все билеты.
+
+\hypertarget{sod}
+\tableofcontents
+
+
+%\begin{center}
+%    \includegraphics[width = 0.4\textwidth]{dora}
+%\end{center}
+
+\newpage
+
+\section{Это билеты.}
+
+Часть I: Теория категорий 
+
+1. Определение категории. Примеры. 
+2. Инициальные и терминальные объекты. 
+3. Мономорфизмы и эпиморфизмы. 
+4. Функторы. Примеры. 
+5. Естественные преобразования. Примеры. 
+6. Лемма Йонеды. 
+7. Пределы. Примеры. 
+8. Копределы. Примеры. 
+9. Конструкция пределов через произведения и уравнители. 
+10. Сопряженные функторы. Примеры. 
+11. Сопряженные функторы сохраняют пределы (или копределы). 
+12. Лемма о существовании инициального объекта. 
+13. Теорема Фрейда о сопряженном функторе. 
+14. Определение монады. Примеры. 
+15. Категория алгебр над монадой. 
+16. Категория Клейсли. 
+17. Декартово замкнутые категории. Карринг. 
+18. Типизированное лямбда-исчисление и его интерпретация в декартово замкнутых категориях. Корректность. 
+19. Типизированное лямбда-исчисление и его интерпретация в декартово замкнутых категориях. Полнота. 
+20. Декартова замкнутость категории предпучков. 
+
+Часть II: Теория представлений 
+
+1. Представления групп: различные определения и их эквивалентность. Групповая алгебра. 
+2. Неприводимые представления. Теорема Машке. 
+3. Лемма Шура. 
+4. Теорема Крулля-Шмидта. 
+5. Представления абелевых групп. 
+6. Матричные коэффициенты. Соотношения ортогональности. 
+7. Некоммутативное преобразование Фурье. 
+8. Теорема Бернсайда. 
+9. Характеры. Соотношения ортогональности. Таблица характеров. 
+10. Представления произведения групп. 
+11. Целые элементы в коммутативном кольце. 
+12. Свойства целочисленности характеров. 
+13. Размерность неприводимого представления делит индекс центра. 
+14. Индуцированные представления и их характер. Закон взаимности Фробениуса. 
+15. Вещественные представления: индикатор Шура и инвариантные формы. 
+16. Вещественные представления: теорема об индикаторе Шура. 
+17. Теорема о двойном централизаторе. 
+18. Двойственность Шура-Вейля. 
+19. Диаграмма Браттели и представления симметрических групп (обзор без доказательства).
+
+\newpage
+
+\subsection{Билет 1.1.}
+
+Определение категории. Примеры. 
+
+\hrulefill
+
+\textbf{Лекция 1.} 
+
+\begin{flushright}
+    \mybox{
+        \href{https://disk.yandex.ru/d/knoQ44wLmGDwwQ/2021-2022%20учебный%20год%20(осенний%20семестр)/2%20курс/Теоретическая%20информатика/Теор%20информатика%2C%20лекция%2C%2001.09.2021.mp4}{Запись}
+    }
+\end{flushright}
+
+\begin{defn} 
+    \se{Категория}{Категория $\mathcal{C}$} - это 
+
+        \begin{itemize}
+            \item класс $\Ob\mathcal{C}$, элементы которого называются \textit{объектами};
+            \item попарно непересекающиеся множества \textit{морфизмов} $\Hom (X, Y)$ для любых двух $X$ и $Y$ из $\Ob\mathcal{C}$;
+            \item операция композиции $\circ $: $\Hom (Y, Z)\times \Hom (X, Y) \rightarrow \Hom (X, Z)$, удовлетворяющая двум аксиомам.
+        \end{itemize}
+\end{defn}
+
+Аксиомы композиции: 
+
+\begin{itemize}
+    \item ассоциативность $(f\circ g)\circ h = f\circ (g\circ h)$;
+    \item для любого $A$ из $\mathcal{C}$ существует $\id_{A}\in{\Hom (A, A)}$ такое, что $f\circ \id_{A} = f$, $\id_{A}\circ f = f$ для любого осмысленного $f$.
+\end{itemize}
+
+\begin{defn}
+    Два объекта $X$ и $Y$ в категории $\mathcal{C}$ называются \se{Изоморфные объекты}{изоморфными}, если $\exists f\in{\Hom (X, Y)}$ и $g\in{\Hom (Y, X)}$ такие, что $f\circ g=\id_{Y}$, $g\circ f=\id_{X}$. $f$ и $g$ в этом случае называются $\textit{изоморфизмами}$.
+\end{defn}
+
+\begin{exl} \
+    \begin{itemize}
+        \item $Sets$: $\Ob Sets=$ все множества, $\Hom (X, Y)=$ все отображения из $X$ в $Y$, $\circ $ - обычная композиция отображений. Инициальный объект - $\varnothing$, терминальный - любой, состоящий из одного элемента (нетрудно проверить, что они действительно попарно изоморфны);
+        \item $Groups$, $Rings$ и т.д. морфизмы были определены на первом курсе. В $Vect_{F}$ и инициальный, и терминальный объект - 0;
+        \item $Top$: объекты - топологические пространства, морфизмы - непрерывные отображения. Инициальный и терминальный объект такие же, как и для $Sets$;
+        \item $HTop$: $\Ob HTop$ - компактно-порождённые топологические пространства, морфизмы - непрерывные отображения, профакторизованные по гомотопиям;
+        \item Категория с одним элементом, $\Ob\mathcal{C}$ = ${X}$, морфизмы в этом случае образуют моноид.
+        \item Частичный (пред)порядок на $M$ (ЧУМ), $\Ob\mathcal{C}$ = $M$, $\Hom (x, y) = {\varnothing}$, если $x\leq y$, $=\varnothing$, иначе.
+        \item $Rels$, $\Ob Rels$ = все множества, $\Hom (X, Y)$ = все подмножества в $X\times{Y}$, $R\circ  S$ = $\lbrace(x, z) \vert \exists y \in Y, (x, y)\in S, (y, z)\in T\rbrace$
+    \end{itemize}
+\end{exl}
+
+
+
+\newpage
+
+\subsection{Билет 1.2.}
+
+Инициальные и терминальные объекты.  
+
+\hrulefill
+
+\textbf{Лекция 1.} 
+
+\begin{flushright}
+    \mybox{
+        \href{https://disk.yandex.ru/d/knoQ44wLmGDwwQ/2021-2022%20учебный%20год%20(осенний%20семестр)/2%20курс/Теоретическая%20информатика/Теор%20информатика%2C%20лекция%2C%2001.09.2021.mp4}{Запись}
+    }
+\end{flushright}
+
+\begin{defn}
+    Объект $A$ в категории $\mathcal{C}$ называется \se{Терминальный объект}{терминальным} (\cursed{инициальным}), если для любого $X$ из $\mathcal{C}$ $\vert \Hom (X, A)\vert=1$ ($\vert \Hom (A, X)\vert=1$)
+\end{defn}
+
+\begin{stat}
+    Если терминальный (инициальный) объект существует, то он единственен с точностью до единственного изоморфизма.
+\end{stat}
+
+\begin{proof}
+    Пусть $A$ и $A'$ -- терминальные объекты, тогда из определения существует единственный $f$ из $A$ в $A'$ и единственный $g$ из $A'$ в $A$, композиция $f\circ g$ в этом случае будет элементом $\Hom (A', A')$, но $\id_{A'}$ также элемент этого одноэлементного множества, поэтому $f\circ g = \id_{A'}$, аналогично $g\circ f = \id_{A}$, то есть $A$ и $A'$ изоморфны по определению.
+\end{proof}
+
+\begin{exl} \
+    \begin{itemize}
+        \item $Sets$: $\Ob Sets=$ все множества, $\Hom (X, Y)=$ все отображения из $X$ в $Y$, $\circ $ - обычная композиция отображений. Инициальный объект - $\varnothing$, терминальный - любой, состоящий из одного элемента (нетрудно проверить, что они действительно попарно изоморфны);
+        \item $Groups$, $Rings$ и т.д. морфизмы были определены на первом курсе. В $Vect_{F}$ и инициальный, и терминальный объект - 0;
+        \item $Top$: объекты - топологические пространства, морфизмы - непрерывные отображения. Инициальный и терминальный объект такие же, как и для $Sets$;
+        \item $HTop$: $\Ob HTop$ - компактно-порождённые топологические пространства, морфизмы - непрерывные отображения, профакторизованные по гомотопиям;
+        \item Категория с одним элементом, $\Ob\mathcal{C}$ = ${X}$, морфизмы в этом случае образуют моноид.
+        \item Частичный (пред)порядок на $M$ (ЧУМ), $\Ob\mathcal{C}$ = $M$, $\Hom (x, y) = {\varnothing}$, если $x\leq y$, $=\varnothing$, иначе.
+        \item $Rels$, $\Ob Rels$ = все множества, $\Hom (X, Y)$ = все подмножества в $X\times{Y}$, $R\circ  S$ = $\lbrace(x, z) \vert \exists y \in Y, (x, y)\in S, (y, z)\in T\rbrace$
+    \end{itemize}
+\end{exl}
+
+
+
+\newpage
+
+\subsection{Билет 1.3.}
+
+Мономорфизмы и эпиморфизмы. 
+
+\hrulefill
+
+\textbf{Лекция 1.} 
+
+\begin{flushright}
+    \mybox{
+        \href{https://disk.yandex.ru/d/knoQ44wLmGDwwQ/2021-2022%20учебный%20год%20(осенний%20семестр)/2%20курс/Теоретическая%20информатика/Теор%20информатика%2C%20лекция%2C%2001.09.2021.mp4}{Запись}
+    }
+\end{flushright}
+
+\begin{defn}
+    Гомоморфизм f называется \se{мономорфизм}{мономорфизмом}, если <<на него можно сокращать слева>>, т.е. $f \circ g = f \circ h \Ra g = h$.
+\end{defn}
+
+\begin{defn}
+    Гомоморфизм $f: X \ra Y$ называется \se{Расщепимый мономорфизм}{расщепимым мономорфизмом}, если $\exists r: Y \ra X$ такой, что $r \circ f =\id_X$
+\end{defn}
+
+\begin{exl} \
+    \begin{itemize}
+        \item Sets - инъективные отображения
+        \item Groups - инъективне гомоморфизмы групп
+        \item Rings - инъективные гомоморфизмы колец
+    \end{itemize}
+\end{exl}
+
+\begin{remark}
+    Функторы не сохраняют обычные мономорфизмы, но сохраняют расщепимые.
+\end{remark}
+
+\begin{defn}
+    Гомоморфизм $f$ называется \se{Эпиморфизм}{эпиморфизмом}, если <<на него можно сокращать справа>>, т.е. $g \circ f = h \circ f \Ra g = h$. 
+\end{defn}
+
+\begin{defn}
+    Гомоморфизм $f: X \ra Y$ называется \se{Расщепимый эпиморфизм}{расщепимым эпиморфизмом}, если $\exists s : Y \ra X$ такой, что $f \circ s =\id_Y$.
+\end{defn}
+
+\begin{exl} \
+    \begin{itemize}
+        \item Sets - сюръективные отображения
+        \item Groups - сюръективные гомоморфизмы групп
+        \item HausTop - непрерывные отображения с $f(X) = Y$
+    \end{itemize}
+\end{exl}
+
+
+
+\newpage
+
+\subsection{Билет 1.4.}
+
+Функторы. Примеры. 
+
+\hrulefill
+
+\textbf{Лекция 1.} 
+
+\begin{flushright}
+    \mybox{
+        \href{https://disk.yandex.ru/d/knoQ44wLmGDwwQ/2021-2022%20учебный%20год%20(осенний%20семестр)/2%20курс/Теоретическая%20информатика/Теор%20информатика%2C%20лекция%2C%2001.09.2021.mp4}{Запись}
+    }
+\end{flushright}
+
+\begin{defn}
+    \se{Функтор}{Функтором} $\mathcal{F}$ называется отображение между двумя категориями $\mathcal{C}$ и $\mathcal{D}$ (определённое и на объектах, и на морфизмах) со свойствами: 
+
+        \begin{itemize}
+            \item Если $f\in \Hom (X, Y)$, то $\mathcal{F} (f)\in \Hom (\mathcal{F}(X), \mathcal{F}(Y))$;
+            \item $\mathcal{F}(f\circ  g) = \mathcal{F}(f) \circ  \mathcal{F}(g)$;
+            \item $\mathcal{F}(\id_{A}) = \id_{\mathcal{F}(A)}$.
+        \end{itemize}
+\end{defn} 
+
+\begin{stat} 
+    $A \simeq B \Ra F(A) \simeq F(B)$.
+\end{stat}
+
+\begin{remark}
+    $\simeq$ в этом случае означает, что существуют $f: A \ra B$ и $g: B \ra A$ такие, что $f \circ g = \id_B$ и $g \circ f = \id_A$. 
+\end{remark}
+
+\begin{defn}
+    \se{Контрвариантый функтор}{Контрвариантный функтор} из $C$ в $D$ - это функтор из $C^{op}$ в $D$: $A \in\Ob C$ $\Ra$ $F(A) \in\Ob D$, $f: A \ra B$ $\Ra$ $F(f): F(B) \ra F(a)$ и $F(f \circ g) = F(g) \circ F(f)$, $F(\id_A) = \id_{F(A)}$.
+\end{defn}
+
+\begin{defn} 
+    \se{Представимый функтор}{Представимый функтор} - это такой функтор $h_A: C^{Op} \ra Sets$, $A \in\Ob C$, действующий по правилу: $h_A(X) = Hom(X, A)$, $h_A(f): \varphi \mapsto \varphi \circ f$.
+\end{defn}
+
+\begin{exl} \ 
+    \begin{enumerate}
+        \item \se{Забывающий функтор}{Забывающий функтор} \\
+        Такой функтор стандартно обозначается как $U$, он "забывает" алгебраические структуры. Рассмотрим на примере групп: \\
+        $U: Groups \ra Sets$ \\
+        $U(G) = G$ как множество \\
+        $U(f) = f$ как отображение множеств
+        \item \se{Свободный функтор}{Свободный функтор} \\
+        Это функтор, который "вспоминает" алгебраическую структуру. Рассмотрим также на примере групп: \\
+        $F: Sets \ra Groups$ \\
+        $F(X) = $ свободная группа, порожденная X\\
+        $F(f): F(X) \ra F(Y)$, который переводит образующие в образующие: $x \mapsto f(x)$
+        \item Конкретный пример свободного функтора между ассоциативными алгебрами с единицей и векторными пространствами: \\
+        $K$ - поле, $U: K-Alg \ra Vect_K$ и $F: Vect_K \ra K-Alg$ \\
+        $F(V) = T(V) = K \bigoplus V \bigoplus V^{\bigotimes 2} \bigoplus V^{\bigotimes 3} \bigoplus ...$ \\
+        Со следующей структурой: \\
+        $V^{\bigotimes n} \times V ^{\bigotimes m} \ra V^{\bigotimes (n + m)}$ \\
+        $(v_1 \otimes ... \otimes v_n; u_1 \otimes ... \otimes u_m) \mapsto v_1 \otimes ... \otimes v_n \otimes u_1 \otimes ... \otimes u_m$ \\
+        А с гомоморфизмами дела обстоят следующим образом: \\
+        $f: V \ra W$, тогда $F(f): T(V) \ra T(W)$, который работает так: \\
+        $V^{\bigotimes n} \ra W^{\bigotimes n}$ \\
+        $v_1 \otimes ... \otimes v_n \ra f(v_1) \otimes ... \otimes f(v_n)$
+        \item Аналогично между коммутативными алгебрами и векторными пространствами: \\
+        $S: K-CommAlg \ra Vect_K$ \\
+        $S(V) = T(V)_{/<u \otimes v - v \otimes u>}$, что называется \cursed{симметрической алгеброй}
+        \item Еще пример - между абелевыми и обычными группами: \\
+        $F: AbGroups \ra Groups$ \\
+        $F(G) = G_{/[G, G]}$ \\
+        $F(f)[g] = [f(g)]$
+        \item \se{Множества с выделенной точкой}{Множества с выделенной точкой} и свободный функтор между ними и категорией множеств: \\
+        $Sets_*$ - это категория, определенная следующим образом: $Ob\;Sets_*$ состоит из элементов следующего вида: $(A, a \in A)$. Гомоморфизмы устроены так: $f_*: (A, a) \ra (B, b)$, причем переводит выделенную точку в выделенную точку. \\
+        Свободный функтор выглядит так: \\
+        $F: Sets \ra Sets_*$ \\
+        $A \mapsto A \sqcup \{\varnothing\}$ \\
+        $f \mapsto f \times (\varnothing; \varnothing)$
+        \item \se{Копредставимый функтор}{Копредставимый функтор} - это функтор, действующий их категории в категорию множеств $F: C \ra Sets$, построенный следующим образом: \\
+        $A\in\Ob\;C$ $F(X) = Hom(A, X)$ \\
+        $f: X \ra Y$ -- $F(f): Hom(A, X) \ra Hom(A, Y)$ \\
+        $\phi \mapsto f \circ \phi$
+    \end{enumerate}
+\end{exl}
+
+
+
+\newpage
+
+\subsection{Билет 1.5.}
+
+Естественные преобразования. Примеры.  
+
+\hrulefill
+
+\textbf{Лекция 1.} 
+
+\begin{flushright}
+    \mybox{
+        \href{https://disk.yandex.ru/d/knoQ44wLmGDwwQ/2021-2022%20учебный%20год%20(осенний%20семестр)/2%20курс/Теоретическая%20информатика/Теор%20информатика%2C%20лекция%2C%2001.09.2021.mp4}{Запись}
+    }
+\end{flushright}
+
+\begin{defn}
+
+    Пусть $F$ и $G$ — ковариантные функторы из категории $C$ в $D$. Тогда \se{Преобразование!естественное}{естественное преобразование} сопоставляет каждому объекту $X$ категории $C$ морфизм $\eta_X\colon F(X) \to G(X)$ в категории $D$, называемый \textit{компонентой} $\eta$ в $X$, так, что для любого морфизма $f\colon X \to Y$ диаграмма, изображённая на рисунке ниже, коммутативна. В случае контравариантных функторов $C$ и $D$ определение совершенно аналогично (необходимо только обратить горизонтальные стрелки, учитывая, что их обращает контравариантный морфизм).
+
+\begin{center}
+    \includegraphics[width = 0.3\textwidth]{alg1}
+\end{center}
+
+\end{defn}
+
+\begin{defn}
+    Есть три функтора $F, G, H: C \ra D$ и два естественных преобразования: $\alpha: F \ra G$ и $\beta: G \ra H$.  \se{Композиция(вертикальная) естественных преобразований}{Композиция(вертикальная) естественных преобразований} это естественное преобразование $\beta \circ \alpha : F \ra H\;|\;(\beta \circ \alpha)_A = \beta_A \circ \alpha_A$. 
+\end{defn}
+
+\begin{defn}
+    Есть четыре функтора $F, G: C \ra D, \;H, K: D \ra E$ и два естественных преобразования: $\alpha: F \ra G$ и $\beta: H \ra E$. \se{Композиция(горизнтальная) естественных преобразований}{Композиция(горизнтальная) естественных преобразований} - это естественное преобразование $\beta \bullet \alpha: H \circ F \ra K \circ G\;|\;(\beta \bullet \alpha)_A : H(F(A)) \ra K(G(A))$, последнее работает следующим образом: $H(\alpha_A): H(F(A)) \ra H(G(A)), \break (\beta \bullet \alpha)_A = \beta_{G(A)}(H(\alpha_A))$.
+\end{defn}
+
+\begin{exl} \
+    \begin{itemize}
+        \item $V \in Vect_K$. Для функторов $Vect_K \ra Vect_K$ $F: V \mapsto V, f \mapsto f$ и $G: V \mapsto V^{**}, \phi \mapsto \phi^{**}$ есть естественное преобразование $\alpha\;|\;\alpha_V: F \ra G: V = F(V) \mapsto G(V) = V^{**}$ такое, что $\alpha_V(f)(v) = f(v)$
+        \item \se{Топологическая группа}{Топологическая группа} - это группа с топологической структурой, на которой заданы две непрерывные операции: $G \times G \ra G : (a, b) \mapsto ab$ и $G \ra G : a \mapsto a^{-1}$ \\
+        (к примеру, $(\RR, +)$ и $(S^1, \cdot)$ - это топологические группы). В данном примере нас будет интересовать \cursed{локально компактные тополгические абелевы группы}. Для каждой группы $A$ определим двойственную: $A^* = Hom(A, S^1)$ - непрерывные гомоморфизмы групп (вместе с какой-то топологией). \\
+        Итак, для функторов $LocCompAb \ra LocCompAb$ $F = Id$ и $G: A \mapsto A^{**}$ есть естественное преобразование $\alpha: F \ra G$, которое определяется так же, как и в предыдущем примере.
+    \end{itemize}
+\end{exl}
+
+
+
+\newpage
+
+\subsection{Билет 1.6.}
+
+Лемма Йонеды. 
+
+\hrulefill
+
+\textbf{Лекция 1.} 
+
+\begin{flushright}
+    \mybox{
+        \href{https://disk.yandex.ru/d/knoQ44wLmGDwwQ/2021-2022%20учебный%20год%20(осенний%20семестр)/2%20курс/Теоретическая%20информатика/Теор%20информатика%2C%20лекция%2C%2001.09.2021.mp4}{Запись}
+    }
+\end{flushright}
+
+\begin{lemma}[\se{Лемма!Йонеды}{Лемма Йонеды}]
+    В произвольной категории $C$ бозначим за $h_A$ \cursed{ковариантный функтор} $Hom(A, -)$, а за $Nat(F, G)$ все естественные преобразования функторов $F$ и $G$. Тогда теорема утверждает, что $Nat(h_a, F) \simeq F(A)$, где F действует из некоторой категории $C$ в $Sets$.
+\end{lemma}
+
+\begin{proof}
+    Сначала подберем отображение "слева-направо": \\
+    Есть естественное преобразование $\eta: h_A \ra F$, задача состоит в том, чтобы поставить ему в соответствие элемент из $F(A)$. Посмотрим, как оно действует на A: $Hom(A, A) \stackrel{\eta_A}{\ra} F(A)$. Т.к. C - категория, то в $Hom(A, A)$ есть $id_A$, тогда в соответствии этому естественному преобразованию поставим то, во что отобразится $id_A$, т.е. $G(\eta) = \eta_A(id_A) \in F(A)$. \\
+    Теперь "справа-налево": \\
+    Задан элемент $a \in F(A)$, ему в соответствие поставим естественное преобразование $\tau: h_A \ra F$ так, что для каждого $X \in Ob\;C$ задано отображение $Hom(A, X) \stackrel{\tau_X}{\ra} F(X)$, действующее следующим образом: $A \stackrel{f}{\ra} X \mapsto F(f)(a)$. Проверим его естественность: \\
+    
+    \begin{center}
+        \includegraphics[scale=0.55]{YOneda}
+    \end{center}
+
+    По верху: \\
+    $f \mapsto F(f)(a) \mapsto (F(g) \circ F(f))(a)$ \\
+    По низу: \\
+    $f \mapsto f \circ g \mapsto F(f \circ g)(a)$ \\
+    Вспомним, что наш функтор ковариантный, а он разворачивает композицию, поэтому наше преобразование действительно естественно. \\
+    Теперь остается только проверить, что сопоставления взаимно обратные: \\
+    В одну сторону: \\
+    $a \in F(a) \longrightarrow A \stackrel{f}{X} \mapsto F(f)(a) \longrightarrow F(id_A)(a) = id_{F(A)}(a) = a$. Сошлось. \\
+    В другую: \\
+    $\eta_X: A \stackrel{f}{X} \mapsto \eta_A(f) \longrightarrow \eta_A(id_A) \longrightarrow \tau_X: A \stackrel{f}{\ra} X \mapsto F(f)(\eta_A(id_A))$ \\
+    $\tau_X(f) = F(f)(\eta_A(id_A)) = \eta_X(Hom(A, f)(id_A)) = \eta_X(f)$. Тоже =).
+\end{proof}
+
+\begin{cons} 
+    $Nat(h_A, h_B) = Hom(A, B) = h_B(A)$. 
+\end{cons} \ 
+
+\begin{cons}[\se{Вложение Йонеды}{Вложение Йонеды}]
+    $h_-: C \ra Set^{C^{Op}}$ - полный унивалентный ковариантный функтор, который действует следующим образом: $A \mapsto h_A$, $f: B \ra A \mapsto Hom(f, -)$
+\end{cons}
+
+
+
+\newpage
+
+\subsection{Билет 1.7.}
+
+Пределы. Примеры. 
+
+\hrulefill
+
+\textbf{Лекция 1.} 
+
+\begin{flushright}
+    \mybox{
+        \href{https://disk.yandex.ru/d/knoQ44wLmGDwwQ/2021-2022%20учебный%20год%20(осенний%20семестр)/2%20курс/Теоретическая%20информатика/Теор%20информатика%2C%20лекция%2C%2001.09.2021.mp4}{Запись}
+    }
+\end{flushright}
+
+\begin{defn}
+    Категория $D$ называется \se{Малая категория(диаграмма)}{малой категорией (диаграммой)}, если ее объекты составляют множество.
+\end{defn}
+
+\begin{defn}
+    $D$ - малая категория, $F: D \ra C$ - функтор. \se{Предел}{Предел} - это объект $\lim F$, представляющий функтор, который действует следующим образом: $Z \mapsto Nat(\const_Z, F)$. 
+\end{defn}
+
+\begin{exl}
+    \begin{itemize}
+        \item Расслоеное произведение: $D$ - категория с тремя объектами $1, 2, 3$ и стрелками $1 \ra 3$, $2 \ra 3$ - и есть то, во что функтор F переводит это все: $X, Y, W \in Ob\;C$, стрелки $X \ra W$, $Y \ra W$. Пределом такого функтора будет объект $X \times_W Y$ со следующим свойством: $\forall Z \in Ob\;C$ и $Z \ra X$, $Z \ra Y$ $\exists !h: Z \ra X \times_W Y$, сохраняющая коммутативность диаграммы.
+        \begin{center}\includegraphics[scale=0.45]{lim1}\end{center}
+        \item Уравнитель морфизмов: $D$ - категория с двумя объектами $1, 2$ и двумя стрелками $1 \ra 2$ - и есть то, во что функтор F переводит это все: $X, Y \in Ob\;C$, две стрелки $f, g: X \ra Y$. Пределом такого функтора будет объект $Eq(f, g)$ со следуюшим свойством: $\forall Z \in Ob\;C$ и $h: Z \ra X$, причем $f \circ h = g \circ h$, $\exists !\alpha: Z \ra Eq(f, g)$, сохраняющая коммутативность диаграммы. \\
+        Уравнитель для $C = Sets$ будет такой: $Eq(f, g) = \{x \in X | f(x) = g(x)\}$
+        \begin{center}\includegraphics[scale=0.45]{lim2}\end{center}
+        \item Пусть в $D$ есть инициальный объект $A$. Тогда $lim\;F = F(A)$
+    \end{itemize}
+\end{exl}
+
+
+
+\newpage
+
+\subsection{Билет 1.8.}
+
+Копределы. Примеры. 
+
+\hrulefill
+
+\textbf{Лекция 1.} 
+
+\begin{flushright}
+    \mybox{
+        \href{https://disk.yandex.ru/d/knoQ44wLmGDwwQ/2021-2022%20учебный%20год%20(осенний%20семестр)/2%20курс/Теоретическая%20информатика/Теор%20информатика%2C%20лекция%2C%2001.09.2021.mp4}{Запись}
+    }
+\end{flushright}
+
+\begin{defn}
+    \se{Копредел}{Копредел} $F: D \ra C$ - это объект, копредставляющий функтор $G: Z \mapsto Nat(F, \const_Z)$. Копредставляющий в том смысле, что $G \simeq Hom(\colim F, -)$.
+\end{defn}
+
+\begin{exl}
+    \begin{itemize}
+        \item D - дискретная, т.е. есть категория, в которой есть только тождественные морфизмы. $Ob\;D = I$, есть то, во что функтор их переводит: $(X_i \in C)_{i\in I}$. Копределом для такой конструкции называется копроизведение $\coprod X_i$. В $Sets$ это дизъюнктное объединение
+        \item $D$ - категория "два объекта - две параллельные стрелки" (как во втором примере предела). Копределом такого функтора называется коуравнитель $Coeq(f, g)$ со следующим свойством: $\forall Z \in C$ со стрелкой $h: Y \ra Z$, сохраняющей коммутативность диаграммы, т.е. $h \circ f = h \circ g$, $\exists ! \phi: Coeq(f, g) \ra Z$, сохраняющая коммутативность диаграммы
+        \begin{center}\includegraphics[scale=0.42]{lim3}\end{center}
+        \item D - натуральные числа как упорядоченное множество. Функтор переводит их в $(X_i)_{i \in \mathbb{N}}$. Если предположить, что $C = Sets$ и $X_i \ra X_{i+1}$ - вложения, то $Colim X_i = \cup X_i$
+    \end{itemize}
+\end{exl}
+
+
+
+\newpage
+
+\subsection{Билет 1.9.}
+
+Конструкция пределов через произведения и уравнители.
+
+\hrulefill
+
+\textbf{Лекция 1.} 
+
+\begin{flushright}
+    \mybox{
+        \href{https://disk.yandex.ru/d/knoQ44wLmGDwwQ/2021-2022%20учебный%20год%20(осенний%20семестр)/2%20курс/Теоретическая%20информатика/Теор%20информатика%2C%20лекция%2C%2001.09.2021.mp4}{Запись}
+    }
+\end{flushright}
+
+
+
+\newpage
+
+\subsection{Билет 1.10.}
+
+Сопряженные функторы. Примеры. 
+
+\hrulefill
+
+\textbf{Лекция 1.} 
+
+\begin{flushright}
+    \mybox{
+        \href{https://disk.yandex.ru/d/knoQ44wLmGDwwQ/2021-2022%20учебный%20год%20(осенний%20семестр)/2%20курс/Теоретическая%20информатика/Теор%20информатика%2C%20лекция%2C%2001.09.2021.mp4}{Запись}
+    }
+\end{flushright}
+
+\begin{defn}
+    Функторы $F: C \longrightarrow D$ и $G: D \longrightarrow C$ называются \se{Сопряжённые функторы}{сопряжёнными}, если задан естественный изоморфизм бифункторов: $Hom_D(F(X), Y) \simeq Hom_C(X, G(Y))$. $F$ в этом случае сопряжённый \textit{слева} к $G$.
+\end{defn} 
+
+\begin{exl}
+    \begin{itemize}
+        \item $G: Groups \longrightarrow Sets$ -- забывающий функтор, $F: Sets \longrightarrow Groups$ -- $F(X)$ -- свободная группа;
+        \item $G: Ab \longrightarrow Groups$ -- в некотором смысле тоже забывающий, $F: Groups \longrightarrow Ab$: $F(H) = H^{ab} = H/[H, H]$;
+        \item $G: Vect_K \longrightarrow Sets$ -- забывающий, $F: Sets \rightarrow Vect_K$, $F(I) = K^{(I)}$;
+        \item $G: CommRings \longrightarrow Sets$ -- забывающий, $F: Sets \longrightarrow CommRings$: $F(X) = \ZZ [X]$;
+        \item $G: Rings \longrightarrow Sets$ -- забывающий, $F: Sets \longrightarrow Rings$, $F(X) = \ZZ {X} = T^*(\ZZ ^{(X)})$;
+        \item $G: K-Alg \longrightarrow Vect_K$ -- <<забывающий>>, $F: Vect_K \longrightarrow K-Alg$: $F(V) = T^*(V)$;
+    \end{itemize}
+\end{exl}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+\hypertarget{dex}
+    \printindex
+
+\end{document}
